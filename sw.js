@@ -4,19 +4,22 @@
    se a rede falhar ou demorar mais de 3 segundos, usa a cópia guardada.
    SPDX-License-Identifier: AGPL-3.0-or-later · Copyright (C) 2026 Contribuidores do Trilha Livre */
 
-const CACHE = 'trilha-livre-v7';
+const CACHE = 'trilha-livre-v8';
 const FONTES = 'trilha-livre-fontes';
+const PYTHON = 'trilha-livre-python'; // o Pyodide, baixado na primeira vez que alguém roda Python
 const ARQUIVOS = [
   './', 'index.html', 'manifest.webmanifest', 'css/estilo.css',
   'conteudo/_registro.js', 'conteudo/catalogo.js', 'conteudo/biblioteca.js',
   'conteudo/logica-js/nivel-1.js', 'conteudo/logica-js/nivel-2.js', 'conteudo/logica-js/nivel-3.js', 'conteudo/logica-js/nivel-4.js',
   'conteudo/logica-js/nivel-5.js', 'conteudo/logica-js/nivel-6.js', 'conteudo/logica-js/nivel-7.js', 'conteudo/logica-js/pratica.js',
   'conteudo/html-css/nivel-1.js', 'conteudo/html-css/nivel-2.js', 'conteudo/html-css/nivel-3.js', 'conteudo/html-css/nivel-4.js', 'conteudo/html-css/nivel-5.js', 'conteudo/html-css/nivel-6.js', 'conteudo/html-css/nivel-7.js', 'conteudo/html-css/nivel-8.js', 'conteudo/html-css/pratica.js',
+  'conteudo/python/nivel-1.js', 'conteudo/python/nivel-2.js', 'conteudo/python/nivel-3.js', 'conteudo/python/nivel-4.js', 'conteudo/python/nivel-5.js', 'conteudo/python/nivel-6.js', 'conteudo/python/nivel-7.js', 'conteudo/python/pratica.js',
+  'conteudo/git/nivel-1.js', 'conteudo/git/nivel-2.js', 'conteudo/git/nivel-3.js', 'conteudo/git/nivel-4.js', 'conteudo/git/nivel-5.js', 'conteudo/git/nivel-6.js',
   'conteudo/marxismo/nivel-1.js', 'conteudo/marxismo/nivel-2.js', 'conteudo/marxismo/nivel-3.js', 'conteudo/marxismo/nivel-4.js', 'conteudo/marxismo/nivel-5.js', 'conteudo/marxismo/nivel-6.js', 'conteudo/marxismo/nivel-7.js', 'conteudo/o-capital/nivel-1.js', 'conteudo/o-capital/nivel-2.js', 'conteudo/o-capital/nivel-3.js', 'conteudo/o-capital/nivel-4.js', 'conteudo/o-capital/nivel-5.js', 'conteudo/o-capital/nivel-6.js', 'conteudo/o-capital/nivel-7.js',
   'conteudo/capital-guiado/nivel-1.js', 'conteudo/capital-guiado/nivel-2.js', 'conteudo/capital-guiado/nivel-3.js', 'conteudo/capital-guiado/nivel-4.js', 'conteudo/capital-guiado/nivel-5.js', 'conteudo/capital-guiado/nivel-6.js', 'conteudo/capital-guiado/nivel-7.js',
   // imagens usadas nos exercícios de HTML e CSS
   'imagens/biblioteca.jpg', 'imagens/computadores.jpg', 'imagens/feira.jpg', 'imagens/gato.jpg', 'imagens/horta.jpg', 'imagens/icone.png', 'imagens/livros.jpg', 'imagens/logo.png', 'imagens/mapa.png', 'imagens/pessoa.jpg', 'imagens/praia.jpg', 'imagens/quadra.jpg',
-  'js/nucleo.js', 'js/efeitos.js', 'js/teclado.js', 'js/web.js', 'js/terminal.js', 'js/pwa.js', 'js/app.js',
+  'js/nucleo.js', 'js/efeitos.js', 'js/teclado.js', 'js/web.js', 'js/python.js', 'js/py-worker.js', 'js/terminal.js', 'js/pwa.js', 'js/app.js',
   'icones/icone-192.png', 'icones/icone-512.png', 'icones/icone-maskable-512.png', 'icones/apple-touch-icon.png', 'icones/favicon-32.png'
 ];
 
@@ -27,7 +30,7 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys()
-      .then(nomes => Promise.all(nomes.filter(n => n !== CACHE && n !== FONTES).map(n => caches.delete(n))))
+      .then(nomes => Promise.all(nomes.filter(n => n !== CACHE && n !== FONTES && !n.startsWith(PYTHON)).map(n => caches.delete(n))))
       .then(() => self.clients.claim())
   );
 });
@@ -51,6 +54,17 @@ self.addEventListener('fetch', e => {
       if (salvo) return salvo;
       const r = await fetch(req);
       if (r.ok || r.type === 'opaque') c.put(req, r.clone());
+      return r;
+    }));
+    return;
+  }
+  // Python (Pyodide): os arquivos têm a versão no endereço e não mudam, então a cópia guardada vale para sempre
+  if (url.hostname === 'cdn.jsdelivr.net' && url.pathname.startsWith('/npm/pyodide@')) {
+    e.respondWith(caches.open(PYTHON).then(async c => {
+      const salvo = await c.match(req);
+      if (salvo) return salvo;
+      const r = await fetch(req);
+      if (r.ok) c.put(req, r.clone());
       return r;
     }));
     return;

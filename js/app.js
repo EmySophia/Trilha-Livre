@@ -23,11 +23,12 @@ function usarCurso(id) {
   ALL = TODAS.filter(l => l.unit.curso === CURSO.id);
   POS = Object.fromEntries(ALL.map((l, i) => [l.id, i]));
   DESAFIOS = TODOS_DESAFIOS.filter(d => d.curso === CURSO.id);
-  // cursos sem programação não usam o terminal JavaScript
-  const tb = document.getElementById('termBtnL'); if (tb) tb.hidden = CURSO.linguagem === 'texto';
+  // o terminal (JavaScript ou Python) só aparece nos cursos em que faz sentido
+  const tb = document.getElementById('termBtnL'); if (tb) tb.hidden = !temTerminal();
   // o último nível (normalmente o de projetos) não entra no teste de nivelamento
   NIVEIS_TESTAVEIS = NIVEIS.length > 1 ? NIVEIS.slice(0, -1).map(n => n.n) : [];
 }
+function temTerminal() { return !['texto', 'shell'].includes(CURSO && CURSO.linguagem); }
 const INTERVALOS = [1, 3, 7, 14, 30, 60]; // dias até a próxima revisão, por "caixa"
 const DIF = { facil: { nome: 'Fácil', xp: 10 }, medio: { nome: 'Médio', xp: 15 }, dificil: { nome: 'Difícil', xp: 20 } };
 const METAS = [{ xp: 10, nome: 'Leve' }, { xp: 30, nome: 'Normal' }, { xp: 50, nome: 'Puxada' }, { xp: 100, nome: 'Intensa' }];
@@ -247,7 +248,7 @@ window.addEventListener('hashchange', () => { if (!L) { const r = rolarDepois; r
 
 function renderStats() {
   $('stats').innerHTML = `
-    <button class="term-open" data-term aria-label="Abrir terminal">${IC.term}<span>Terminal</span></button>
+    ${temTerminal() ? `<button class="term-open" data-term aria-label="Abrir terminal">${IC.term}<span>Terminal</span></button>` : ''}
     <span class="stat fire" title="Dias seguidos estudando"><span class="sr">Dias seguidos:</span>${IC.flame}${sequenciaAtual()}</span>
     <span class="stat xp" title="Pontos de experiência"><span class="sr">XP:</span>${IC.star}${S.xp}</span>`;
 }
@@ -882,7 +883,7 @@ function updateProg() {
 
 function rotulo(ex) {
   const texto = lingDe(ex) === 'texto';
-  const tipo = { escolha: 'Escolha a resposta', complete: texto ? 'Complete a frase' : 'Complete o código', ordene: ex.plain || texto ? 'Coloque em ordem' : lingDe(ex) === 'js' ? 'Monte o programa' : 'Monte o código', codigo: 'Escreva o código', web: ex.conserte ? 'Conserte a página' : 'Monte a página' }[ex.t];
+  const tipo = { escolha: 'Escolha a resposta', complete: texto ? 'Complete a frase' : lingDe(ex) === 'shell' ? 'Complete o comando' : 'Complete o código', ordene: ex.plain || texto ? 'Coloque em ordem' : ['js', 'py'].includes(lingDe(ex)) ? 'Monte o programa' : lingDe(ex) === 'shell' ? 'Coloque os comandos em ordem' : 'Monte o código', codigo: 'Escreva o código', web: ex.conserte ? 'Conserte a página' : 'Monte a página', comando: 'Digite o comando' }[ex.t];
   if (L.tipo === 'revisao') return `${tipo} · revisão de ${esc(LICAO[item().lid].titulo)}`;
   if (L.tipo === 'pratica') return `Desafio · ${DIF[L.desafio.dif].nome} · ${esc(L.desafio.titulo)}`;
   if (L.tipo === 'nivelamento') return `Teste de nivelamento · Nível ${item().nivel}`;
@@ -924,18 +925,29 @@ function renderEx() {
     renderOrdene();
   }
   if (ex.t === 'codigo') {
+    const py = lingDe(ex) === 'py';
     body.innerHTML = `
+      ${ex.entrada && ex.entrada.length ? `<p class="entrada">Quando o programa pedir, a entrada digitada vai ser ${ex.entrada.map(v => `<code>${esc(v)}</code>`).join(', ')}.</p>` : ''}
       <label class="lab" for="editor">Seu código</label>
-      <textarea id="editor" class="editor" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off">${esc(ex.start || '')}</textarea>
-      ${tecladoHTML('editor')}
+      <textarea id="editor" class="editor" data-lang="${py ? 'py' : 'js'}" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off">${esc(ex.start || '')}</textarea>
+      ${tecladoHTML('editor', py ? 'py' : 'js')}
       <div class="run-row">
         <button class="btn-ghost" id="runBtn">${IC.play}Executar</button>
         <button class="btn-ghost" id="termBtn">${IC.term}Testar no terminal</button>
         <span class="hint">${esc(ex.dica || '')}</span>
       </div>
-      <div class="console"><span class="lab" id="consoleLab">Console</span><pre class="out muted" id="out" aria-live="polite" aria-labelledby="consoleLab">A saída do seu programa aparece aqui.</pre></div>
+      <div class="console"><span class="lab" id="consoleLab">${py ? 'Saída' : 'Console'}</span><pre class="out muted" id="out" aria-live="polite" aria-labelledby="consoleLab">A saída do seu programa aparece aqui.</pre></div>
       <p class="atalho">No teclado: Ctrl+Enter verifica.</p>`;
     setMain('check', true);
+  }
+  if (ex.t === 'comando') {
+    const pr = `<span class="sh-pr" aria-hidden="true">${esc(ex.pasta || '~')} $</span>`;
+    const linhas = (ex.antes || []).map(l => l.startsWith('$ ') ? `<div class="sh-cmd">${pr} ${esc(l.slice(2))}</div>` : `<div class="sh-out">${esc(l)}</div>`).join('');
+    body.innerHTML = `<div class="shell" id="shell">${linhas}<label class="sh-in">${pr}<input id="cmdIn" type="text" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" enterkeyhint="go" aria-label="Comando"></label></div>
+      ${tecladoHTML('cmdIn', 'shell')}
+      ${ex.dica ? `<details class="dica-cmd"><summary>Ver uma dica</summary><p>${inlineMd(ex.dica)}</p></details>` : ''}
+      <p class="atalho">Digite o comando e aperte Enter.</p>`;
+    setMain('check', false);
   }
   if (ex.t === 'web') {
     const temCss = ex.css != null;
@@ -1178,9 +1190,9 @@ function renderTexto(ex) {
     if (b.p) return `<p>${inlineMd(b.p)}</p>`;
     if (b.code) {
       const lang = b.lang || lingDe(null);
-      if (b.semTeste || lang !== 'js') return `<pre class="code${lang === 'texto' ? ' quebra' : ''}">${hl(b.code, lang)}</pre>`;
+      if (b.semTeste || !['js', 'py'].includes(lang) || lang !== termLang()) return `<pre class="code${lang === 'texto' ? ' quebra' : ''}">${hl(b.code, lang)}</pre>`;
       const i = L.codes.push(b.code) - 1;
-      return `<figure class="exemplo"><pre class="code">${hl(b.code)}</pre><button class="try-btn" data-code="${i}">${IC.term}Testar no terminal</button></figure>`;
+      return `<figure class="exemplo"><pre class="code">${hl(b.code, lang)}</pre><button class="try-btn" data-code="${i}">${IC.term}Testar no terminal</button></figure>`;
     }
     if (b.web != null) return exemploWeb(b.web, b.css);
     if (b.projetos) return projetosHTML();
@@ -1282,35 +1294,72 @@ $('exArea').addEventListener('click', async e => {
     renderOrdene();
     const prox = $('exBody').querySelector('.pool .line') || $('mainBtn'); prox.focus();
   }
-  if (ex.t === 'codigo' && t.closest('#runBtn')) showOut(await runCode($('editor').value));
+  if (ex.t === 'codigo' && t.closest('#runBtn')) showOut(await executar($('editor').value, ex));
 });
 
+// confere um comando de terminal: ignora espaços repetidos e aceita aspas curvas e o travessão que o celular coloca no lugar de --
+const normCmd = s => String(s).trim().replace(/\s+/g, ' ').replace(/[\u201c\u201d]/g, '"').replace(/[\u2018\u2019']/g, '"').replace(/[\u2014\u2013]/g, '--');
+function comandoOk(digitado, ex) {
+  const d = normCmd(digitado);
+  return [ex.sol, ...(ex.aceita || [])].some(a => /^\/.+\/$/.test(a) ? new RegExp(a.slice(1, -1)).test(d) : normCmd(a) === d);
+}
+$('exArea').addEventListener('input', e => {
+  if (e.target.id === 'cmdIn' && L && !L.checked) setMain('check', e.target.value.trim() !== '');
+});
+
+// roda o código do aluno na linguagem do exercício; no Python, avisa enquanto ele é baixado
+function executar(code, ex) {
+  if (lingDe(ex) !== 'py') return runCode(code);
+  return rodarPython(code, { entrada: ex.entrada, aoCarregar: () => {
+    const o = $('out');
+    if (o) { o.textContent = 'Preparando o Python... Na primeira vez ele é baixado da internet, o que pode levar alguns segundos. Depois fica guardado no aparelho.'; o.className = 'out muted'; }
+  } });
+}
+
 $('exArea').addEventListener('keydown', e => {
-  if (e.target.classList.contains('editor') && e.key === 'Tab' && !e.shiftKey) {
+  const ta = e.target;
+  if (!ta.classList.contains('editor')) return;
+  const py = ta.dataset.lang === 'py', tab = py ? '    ' : '  ';
+  const s = ta.selectionStart, en = ta.selectionEnd;
+  const troca = (txt, cursor) => { ta.value = ta.value.slice(0, s) + txt + ta.value.slice(en); ta.selectionStart = ta.selectionEnd = cursor; };
+  if (e.key === 'Tab' && !e.shiftKey) { e.preventDefault(); troca(tab, s + tab.length); return; }
+  if (!py || s !== en) return;
+  const linha = ta.value.slice(ta.value.lastIndexOf('\n', s - 1) + 1, s);
+  // Python: o Enter mantém o recuo da linha e acrescenta 4 espaços depois de dois-pontos
+  if (e.key === 'Enter' && !e.ctrlKey && !e.metaKey && !e.shiftKey) {
     e.preventDefault();
-    const ta = e.target, s = ta.selectionStart, en = ta.selectionEnd;
-    ta.value = ta.value.slice(0, s) + '  ' + ta.value.slice(en);
-    ta.selectionStart = ta.selectionEnd = s + 2;
+    const recuo = (/^ */.exec(linha) || [''])[0] + (/:\s*(#.*)?$/.test(linha) ? '    ' : '');
+    troca('\n' + recuo, s + 1 + recuo.length);
+    return;
+  }
+  // Backspace num recuo só de espaços apaga 4 de uma vez
+  if (e.key === 'Backspace' && linha.length && /^ +$/.test(linha) && linha.length % 4 === 0) {
+    e.preventDefault();
+    ta.value = ta.value.slice(0, s - 4) + ta.value.slice(s); ta.selectionStart = ta.selectionEnd = s - 4;
   }
 });
 
 function showOut(r) {
   const o = $('out');
+  const py = lingDe(cur()) === 'py';
   let txt = r.timeout ? 'O programa demorou demais e foi parado. Confira se algum laço nunca termina.' : (r.out || []).join('\n');
-  if (r.err) txt += (txt ? '\n' : '') + traduz(r.err);
-  if (!txt) txt = '(nada foi mostrado: use console.log para ver algo aqui)';
+  if (r.falha) txt = `Não consegui abrir o Python (${r.falha}). Na primeira vez, ele precisa de internet. Confira a conexão e tente de novo.`;
+  if (r.err) txt += (txt ? '\n' : '') + traduzErro(r.err, py ? 'py' : 'js');
+  if (!txt) txt = py ? '(nada foi mostrado: use print para ver algo aqui)' : '(nada foi mostrado: use console.log para ver algo aqui)';
   o.textContent = txt;
-  o.className = 'out' + (r.err || r.timeout ? ' err' : '');
+  o.className = 'out' + (r.err || r.timeout || r.falha ? ' err' : '');
 }
 
 /* ---------- comparação linha a linha da saída ---------- */
 function compararSaida(r, esperada) {
+  const py = lingDe(cur()) === 'py';
   if (r.timeout) return { html: '', dicas: ['O programa foi parado porque demorou demais. Confira se algum laço nunca termina.'] };
+  if (r.falha) return { html: '', dicas: ['O Python não abriu. Na primeira vez, ele precisa de internet. Confira a conexão e tente de novo.'] };
   const obtidas = norm((r.out || []).join('\n')) ? norm((r.out || []).join('\n')).split('\n') : [];
   const esperadas = norm(esperada).split('\n');
   const dicas = [];
-  if (r.err) dicas.push(traduz(r.err));
-  if (!obtidas.length && !r.err) dicas.push('Seu código não mostrou nada. Faltou um console.log?');
+  if (r.err) dicas.push(traduzErro(r.err, py ? 'py' : 'js'));
+  if (!obtidas.length && !r.err) dicas.push(py ? 'Seu código não mostrou nada. Faltou um print?' : 'Seu código não mostrou nada. Faltou um console.log?');
   const juntas = s => s.join('\n');
   if (obtidas.length) {
     if (juntas(obtidas).toLowerCase() === juntas(esperadas).toLowerCase()) dicas.push('A diferença está só nas letras maiúsculas e minúsculas.');
@@ -1349,6 +1398,16 @@ async function check() {
   }
   if (ex.t === 'complete') { ok = L.ans.every((b, i) => ex.bank[b] === ex.c[i]); correct = ex.code.split('___').reduce((acc, p, i) => acc + ex.c[i - 1] + p); }
   if (ex.t === 'ordene') { ok = L.ans.every((li, i) => ex.lines[li] === ex.lines[i]); correct = ex.lines.join('\n'); }
+  if (ex.t === 'comando') {
+    const inp = $('cmdIn');
+    ok = comandoOk(inp.value, ex); correct = ex.sol;
+    // o comando digitado vira texto, com quebra de linha, e a resposta do programa aparece embaixo
+    const linha = inp.closest('.sh-in');
+    // {msg} na saída vira a mensagem entre aspas que a pessoa digitou, como num commit
+    const msg = (/"([^"]+)"/.exec(normCmd(inp.value)) || [])[1] || '';
+    linha.outerHTML = `<div class="sh-cmd"><span class="sh-pr" aria-hidden="true">${esc(ex.pasta || '~')} $</span> <span${ok ? '' : ' class="sh-errado"'}>${esc(inp.value)}</span></div>`
+      + (ok && ex.saida ? ex.saida.replace('{msg}', msg).split('\n').map(l => `<div class="sh-out">${esc(l)}</div>`).join('') : '');
+  }
   if (ex.t === 'web') {
     $('mainBtn').disabled = true;
     clearTimeout(previaT);
@@ -1360,9 +1419,9 @@ async function check() {
   }
   if (ex.t === 'codigo') {
     $('mainBtn').disabled = true;
-    r = await runCode($('editor').value);
+    r = await executar($('editor').value, ex);
     showOut(r);
-    ok = !r.timeout && !r.err && norm((r.out || []).join('\n')) === norm(ex.saida);
+    ok = !r.timeout && !r.err && !r.falha && norm((r.out || []).join('\n')) === norm(ex.saida);
     correct = ex.saida;
   }
   feedback(ok, ex, correct, r);

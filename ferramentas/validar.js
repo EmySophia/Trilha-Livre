@@ -35,9 +35,15 @@ function rodar(codigo) {
   }
 }
 
-function validarCodigo(onde, ex) {
+// exercícios em Python: rodam no fim, todos de uma vez, no mesmo Python do app (Pyodide)
+const tarefasPy = [];
+const { PY_PRELUDIO, PY_VERSAO } = require(path.join(raiz, 'js', 'python.js'));
+
+function validarCodigo(onde, ex, lang = ling) {
   for (const campo of ['p', 'saida', 'sol']) if (typeof ex[campo] !== 'string') erro(onde, `falta o campo "${campo}"`);
   if (typeof ex.sol !== 'string') return;
+  if (ex.entrada != null && !(Array.isArray(ex.entrada) && ex.entrada.every(v => typeof v === 'string'))) erro(onde, 'entrada precisa ser uma lista de textos, um para cada input()');
+  if (lang === 'py') { tarefasPy.push({ onde, ex }); return; }
   const r = rodar(ex.sol);
   if (r.erro) erro(onde, `a solução deu erro: ${r.erro}`);
   else if (norm(r.saida) !== norm(ex.saida)) erro(onde, `a solução mostra ${JSON.stringify(r.saida)}, mas a saída esperada é ${JSON.stringify(ex.saida)}`);
@@ -100,10 +106,11 @@ function validarExercicio(onde, ex) {
         if (b.trecho && (!b.trecho.onde || !b.trecho.explica)) erro(onde, 'o bloco trecho precisa de onde e explica');
         if (b.perguntas && !(Array.isArray(b.perguntas) && b.perguntas.length && b.perguntas.every(q => typeof q === 'string' && q.trim()))) erro(onde, 'o bloco perguntas precisa de uma lista de perguntas');
         const lang = b.lang || ling;
-        if (b.lang != null && !['js', 'html', 'css', 'texto'].includes(b.lang)) erro(onde, `lang desconhecida: ${b.lang} (use js, html, css ou texto)`);
+        if (b.lang != null && !['js', 'html', 'css', 'texto', 'py', 'shell'].includes(b.lang)) erro(onde, `lang desconhecida: ${b.lang} (use js, py, html, css, shell ou texto)`);
         if (b.web != null) { conferirImagens(onde, b.web); conferirImagens(onde, b.css); }
         if (b.tabela && b.tabela.codigo != null && !(Array.isArray(b.tabela.codigo) && b.tabela.codigo.every(i => Number.isInteger(i) && i >= 0 && i < b.tabela.cab.length))) erro(onde, 'tabela.codigo precisa ser uma lista de posições de colunas, começando do 0');
         if (b.code && !b.semTeste && lang === 'js') { const r = rodar(b.code); if (r.erro) erro(onde, `exemplo de código com erro: ${r.erro}`); }
+        if (b.code && !b.semTeste && lang === 'py') tarefasPy.push({ onde, exemplo: b.code });
       }
       break;
     case 'escolha':
@@ -127,6 +134,15 @@ function validarExercicio(onde, ex) {
       break;
     case 'web':
       validarWeb(onde, ex);
+      break;
+    case 'comando':
+      if (typeof ex.sol !== 'string' || !ex.sol.trim()) erro(onde, 'comando precisa de sol (o comando certo)');
+      if (ex.antes != null && !(Array.isArray(ex.antes) && ex.antes.every(l => typeof l === 'string'))) erro(onde, 'antes precisa ser uma lista de linhas');
+      if (ex.saida != null && typeof ex.saida !== 'string') erro(onde, 'saida precisa ser um texto');
+      for (const a of ex.aceita || []) {
+        if (typeof a !== 'string') erro(onde, 'cada item de aceita precisa ser um texto');
+        else if (/^\/.+\/$/.test(a)) { try { new RegExp(a.slice(1, -1)); } catch (e) { erro(onde, `expressão regular inválida em aceita: ${a}`); } }
+      }
       break;
     default:
       erro(onde, `tipo de exercício desconhecido: ${ex.t}`);
@@ -192,7 +208,7 @@ for (const d of TRILHA.desafios) {
   if (!idsCurso.has(d.curso)) erro(d.id, `curso desconhecido: ${d.curso}`);
   if (!['facil', 'medio', 'dificil'].includes(d.dif)) erro(d.id, `dif inválida: ${d.dif}`);
   if (!Array.isArray(d.temas)) erro(d.id, 'falta a lista de temas');
-  if (d.t === 'web') validarWeb(d.id, d); else validarCodigo(d.id, d);
+  if (d.t === 'web') validarWeb(d.id, d); else validarCodigo(d.id, d, (TRILHA.cursos.find(c => c.id === d.curso) || {}).linguagem || 'js');
 }
 
 // biblioteca
@@ -218,6 +234,36 @@ for (const a of TRILHA.acervos) {
   if (a.url != null && !/^https:\/\//.test(a.url)) erro('biblioteca', `o acervo ${a.id} precisa de url com https://`);
 }
 
+async function conferirPython() {
+  if (!tarefasPy.length) return;
+  let loadPyodide;
+  try { ({ loadPyodide } = require('pyodide')); } catch (e) {
+    console.log(`Aviso: rode "npm install" para o validador conferir também os ${tarefasPy.length} exercícios e exemplos em Python.`);
+    return;
+  }
+  const py = await loadPyodide();
+  if (py.version !== PY_VERSAO) console.log(`Aviso: o validador está com o Pyodide ${py.version}, e o app usa o ${PY_VERSAO}.`);
+  py.runPython(PY_PRELUDIO);
+  const rodarPy = (src, entrada) => {
+    const ns = py.globals.get('_tl_novo_ns')(), ent = py.toPy(entrada || []);
+    const r = py.globals.get('_tl_rodar')(src, ns, false, ent);
+    const [saida, err] = r.toJs();
+    r.destroy(); ent.destroy(); ns.destroy();
+    return { saida, erro: err };
+  };
+  for (const t of tarefasPy) {
+    if (t.exemplo != null) { const r = rodarPy(t.exemplo); if (r.erro) erro(t.onde, `exemplo de Python com erro: ${r.erro}`); continue; }
+    const ex = t.ex;
+    const r = rodarPy(ex.sol, ex.entrada);
+    if (r.erro) erro(t.onde, `a solução deu erro: ${r.erro}`);
+    else if (norm(r.saida) !== norm(ex.saida)) erro(t.onde, `a solução mostra ${JSON.stringify(r.saida)}, mas a saída esperada é ${JSON.stringify(ex.saida)}`);
+    const ini = rodarPy(ex.start || '', ex.entrada);
+    if (!ini.erro && norm(ini.saida) === norm(ex.saida)) erro(t.onde, 'o código inicial já passa no teste sem o aluno fazer nada');
+  }
+}
+
+(async () => {
+await conferirPython();
 const comConteudo = TRILHA.cursos.filter(c => TRILHA.niveis.some(nv => nv.curso === c.id));
 console.log(`${TRILHA.areas.length} áreas · ${TRILHA.cursos.length} cursos (${comConteudo.length} com conteúdo: ${comConteudo.map(c => c.id).join(', ')})`);
 console.log(`${TRILHA.niveis.length} níveis · ${TRILHA.unidades.length} unidades · ${nLicoes} lições · ${nItens} itens · ${TRILHA.desafios.length} desafios`);
@@ -228,3 +274,4 @@ if (problemas.length) {
   process.exit(1);
 }
 console.log('Tudo certo: todas as soluções produzem a saída esperada.');
+})();

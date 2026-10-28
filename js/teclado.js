@@ -1,5 +1,5 @@
 /* Trilha Livre · teclado de código
-   Barra com os símbolos mais usados em JavaScript, para digitar código no celular.
+   Barra com os símbolos mais usados em JavaScript, Python, HTML e CSS, para digitar código no celular.
    Aparece só em telas de toque. Os pares, como ( ), já entram com o cursor no meio.
    SPDX-License-Identifier: AGPL-3.0-or-later · Copyright (C) 2026 Contribuidores do Trilha Livre */
 
@@ -36,7 +36,32 @@ const TECLAS_WEB = [
   { l: '( )', ins: '()', volta: 1, nome: 'parênteses' }, { l: ',', nome: 'vírgula' },
   { l: '←', mover: -1, nome: 'cursor para a esquerda' }, { l: '→', mover: 1, nome: 'cursor para a direita' }
 ];
-const CONJUNTOS = { js: TECLAS, web: TECLAS_WEB };
+// símbolos para Python: o ⇥ põe 4 espaços, o recuo padrão da linguagem
+const TECLAS_PY = [
+  { l: '⇥', ins: '    ', nome: 'Tab' },
+  { l: ':', nome: 'dois-pontos' },
+  { l: '( )', ins: '()', volta: 1, nome: 'parênteses' },
+  { l: '" "', ins: '""', volta: 1, nome: 'aspas' },
+  { l: '=', nome: 'igual' },
+  { l: '[ ]', ins: '[]', volta: 1, nome: 'colchetes' },
+  { l: '.', nome: 'ponto' }, { l: ',', nome: 'vírgula' },
+  { l: 'f" "', ins: 'f""', volta: 1, nome: 'f-string' }, { l: '{ }', ins: '{}', volta: 1, nome: 'chaves' },
+  { l: '_', nome: 'sublinhado' }, { l: '#', nome: 'comentário' },
+  { l: '+', nome: 'mais' }, { l: '-', nome: 'menos' }, { l: '*', nome: 'vezes' }, { l: '/', nome: 'dividir' },
+  { l: '//', nome: 'divisão inteira' }, { l: '%', nome: 'resto' }, { l: '**', nome: 'potência' },
+  { l: '==', nome: 'igual a' }, { l: '!=', nome: 'diferente de' }, { l: '<', nome: 'menor' }, { l: '>', nome: 'maior' },
+  { l: "' '", ins: "''", volta: 1, nome: 'aspas simples' },
+  { l: '←', mover: -1, nome: 'cursor para a esquerda' }, { l: '→', mover: 1, nome: 'cursor para a direita' }
+];
+
+// símbolos para comandos de terminal (curso de Git)
+const TECLAS_SHELL = [
+  { l: '-', nome: 'hífen' }, { l: '--', nome: 'dois hífens' }, { l: '" "', ins: '""', volta: 1, nome: 'aspas' },
+  { l: '.', nome: 'ponto' }, { l: '/', nome: 'barra' }, { l: '~', nome: 'til' }, { l: '*', nome: 'asterisco' },
+  { l: ':', nome: 'dois-pontos' }, { l: '@', nome: 'arroba' }, { l: '_', nome: 'sublinhado' }, { l: '^', nome: 'circunflexo' },
+  { l: '←', mover: -1, nome: 'cursor para a esquerda' }, { l: '→', mover: 1, nome: 'cursor para a direita' }
+];
+const CONJUNTOS = { js: TECLAS, web: TECLAS_WEB, py: TECLAS_PY, shell: TECLAS_SHELL };
 
 function tecladoHTML(alvo, conjunto) {
   const nome = CONJUNTOS[conjunto] ? conjunto : 'js';
