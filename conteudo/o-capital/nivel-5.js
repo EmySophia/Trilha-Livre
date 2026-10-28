@@ -23,7 +23,7 @@ nivel({
       tipo: 'texto',
       titulo: 'A chamada acumulação primitiva (capítulo 24)',
       canal: 'Arquivo Marxista na Internet',
-      url: 'https://www.marxists.org/portugues/marx/1867/capital/cap24/index.htm'
+      url: 'https://www.marxists.org/portugues/marx/1867/capital/livro1/cap24/01.htm'
     }
   ],
   unidades: [

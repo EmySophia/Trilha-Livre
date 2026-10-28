@@ -1,6 +1,6 @@
 # Licença do conteúdo
 
-O conteúdo das lições e dos desafios do Trilha Livre (todos os arquivos desta pasta `conteudo`) e as ilustrações da pasta `imagens`, usadas nos exercícios, estão licenciados sob a
+O conteúdo das lições, dos desafios e das descrições da biblioteca do Trilha Livre (todos os arquivos desta pasta `conteudo`) e as ilustrações da pasta `imagens`, usadas nos exercícios, estão licenciados sob a
 **Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional (CC BY-NC-SA 4.0)**.
 
 Texto completo da licença: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.pt
@@ -22,3 +22,5 @@ Desde que:
 O código do aplicativo (fora desta pasta) tem outra licença, a GNU AGPL-3.0 ou posterior. Veja o arquivo `LICENSE` na raiz do projeto.
 
 Este resumo não substitui o texto completo da licença.
+
+Os livros listados na biblioteca não fazem parte deste conteúdo: o app só aponta para eles nos sites de origem, e cada um segue a sua própria licença ou está em domínio público.

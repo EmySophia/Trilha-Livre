@@ -94,8 +94,11 @@ function validarExercicio(onde, ex) {
     case 'texto':
       if (!ex.titulo || !Array.isArray(ex.blocos) || !ex.blocos.length) erro(onde, 'texto precisa de titulo e blocos');
       for (const b of ex.blocos || []) {
-        const tipos = ['p', 'code', 'dica', 'passos', 'fluxo', 'tabela', 'web', 'projetos'].filter(k => k in b);
+        const tipos = ['p', 'code', 'dica', 'passos', 'fluxo', 'tabela', 'web', 'projetos', 'leia', 'trecho', 'perguntas'].filter(k => k in b);
         if (tipos.length !== 1) erro(onde, `bloco com formato desconhecido: ${JSON.stringify(Object.keys(b))}`);
+        if (b.leia && (!b.leia.titulo || !/^https:\/\//.test(b.leia.url || ''))) erro(onde, 'o bloco leia precisa de titulo e de url com https://');
+        if (b.trecho && (!b.trecho.onde || !b.trecho.explica)) erro(onde, 'o bloco trecho precisa de onde e explica');
+        if (b.perguntas && !(Array.isArray(b.perguntas) && b.perguntas.length && b.perguntas.every(q => typeof q === 'string' && q.trim()))) erro(onde, 'o bloco perguntas precisa de uma lista de perguntas');
         const lang = b.lang || ling;
         if (b.lang != null && !['js', 'html', 'css', 'texto'].includes(b.lang)) erro(onde, `lang desconhecida: ${b.lang} (use js, html, css ou texto)`);
         if (b.web != null) { conferirImagens(onde, b.web); conferirImagens(onde, b.css); }
@@ -192,9 +195,33 @@ for (const d of TRILHA.desafios) {
   if (d.t === 'web') validarWeb(d.id, d); else validarCodigo(d.id, d);
 }
 
+// biblioteca
+const idsEstante = new Set(), idsLivro = new Set();
+for (const e of TRILHA.estantes) {
+  if (!e.id || !e.nome || !e.desc) erro('biblioteca', `estante sem id, nome ou desc: ${JSON.stringify(e)}`);
+  if (idsEstante.has(e.id)) erro('biblioteca', `estante repetida: ${e.id}`);
+  idsEstante.add(e.id);
+}
+for (const l of TRILHA.livros) {
+  const onde = `livro ${l.id || l.titulo}`;
+  if (!l.id || !l.titulo || !l.autor || !l.desc) erro(onde, 'livro precisa de id, titulo, autor e desc');
+  if (idsLivro.has(l.id)) erro(onde, 'id de livro repetido');
+  idsLivro.add(l.id);
+  if (!idsEstante.has(l.estante)) erro(onde, `estante desconhecida: ${l.estante}`);
+  if (l.ano != null && !/^\d{3,4}(–\d{4})?$/.test(String(l.ano))) erro(onde, `ano em formato estranho: ${l.ano} (use 1867 ou '1845–1846')`);
+  if (!Array.isArray(l.links) || !l.links.length) erro(onde, 'livro precisa de pelo menos um link');
+  for (const k of l.links || []) if (!k.rotulo || !/^https:\/\//.test(k.url || '')) erro(onde, 'cada link precisa de rotulo e de url com https://');
+  for (const c of l.cursos || []) if (!idsCurso.has(c)) erro(onde, `curso desconhecido: ${c}`);
+}
+for (const a of TRILHA.acervos) {
+  if (!a.id || !a.nome || !a.desc) erro('biblioteca', `acervo sem id, nome ou desc: ${JSON.stringify(a)}`);
+  if (a.url != null && !/^https:\/\//.test(a.url)) erro('biblioteca', `o acervo ${a.id} precisa de url com https://`);
+}
+
 const comConteudo = TRILHA.cursos.filter(c => TRILHA.niveis.some(nv => nv.curso === c.id));
 console.log(`${TRILHA.areas.length} áreas · ${TRILHA.cursos.length} cursos (${comConteudo.length} com conteúdo: ${comConteudo.map(c => c.id).join(', ')})`);
 console.log(`${TRILHA.niveis.length} níveis · ${TRILHA.unidades.length} unidades · ${nLicoes} lições · ${nItens} itens · ${TRILHA.desafios.length} desafios`);
+console.log(`Biblioteca: ${TRILHA.estantes.length} estantes · ${TRILHA.livros.length} livros · ${TRILHA.acervos.length} acervos`);
 if (problemas.length) {
   console.log(`\n${problemas.length} problema(s):`);
   problemas.forEach(p => console.log('  - ' + p));

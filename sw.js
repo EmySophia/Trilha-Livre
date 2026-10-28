@@ -4,15 +4,16 @@
    se a rede falhar ou demorar mais de 3 segundos, usa a cópia guardada.
    SPDX-License-Identifier: AGPL-3.0-or-later · Copyright (C) 2026 Contribuidores do Trilha Livre */
 
-const CACHE = 'trilha-livre-v6';
+const CACHE = 'trilha-livre-v7';
 const FONTES = 'trilha-livre-fontes';
 const ARQUIVOS = [
   './', 'index.html', 'manifest.webmanifest', 'css/estilo.css',
-  'conteudo/_registro.js', 'conteudo/catalogo.js',
+  'conteudo/_registro.js', 'conteudo/catalogo.js', 'conteudo/biblioteca.js',
   'conteudo/logica-js/nivel-1.js', 'conteudo/logica-js/nivel-2.js', 'conteudo/logica-js/nivel-3.js', 'conteudo/logica-js/nivel-4.js',
   'conteudo/logica-js/nivel-5.js', 'conteudo/logica-js/nivel-6.js', 'conteudo/logica-js/nivel-7.js', 'conteudo/logica-js/pratica.js',
   'conteudo/html-css/nivel-1.js', 'conteudo/html-css/nivel-2.js', 'conteudo/html-css/nivel-3.js', 'conteudo/html-css/nivel-4.js', 'conteudo/html-css/nivel-5.js', 'conteudo/html-css/nivel-6.js', 'conteudo/html-css/nivel-7.js', 'conteudo/html-css/nivel-8.js', 'conteudo/html-css/pratica.js',
   'conteudo/marxismo/nivel-1.js', 'conteudo/marxismo/nivel-2.js', 'conteudo/marxismo/nivel-3.js', 'conteudo/marxismo/nivel-4.js', 'conteudo/marxismo/nivel-5.js', 'conteudo/marxismo/nivel-6.js', 'conteudo/marxismo/nivel-7.js', 'conteudo/o-capital/nivel-1.js', 'conteudo/o-capital/nivel-2.js', 'conteudo/o-capital/nivel-3.js', 'conteudo/o-capital/nivel-4.js', 'conteudo/o-capital/nivel-5.js', 'conteudo/o-capital/nivel-6.js', 'conteudo/o-capital/nivel-7.js',
+  'conteudo/capital-guiado/nivel-1.js', 'conteudo/capital-guiado/nivel-2.js', 'conteudo/capital-guiado/nivel-3.js', 'conteudo/capital-guiado/nivel-4.js', 'conteudo/capital-guiado/nivel-5.js', 'conteudo/capital-guiado/nivel-6.js', 'conteudo/capital-guiado/nivel-7.js',
   // imagens usadas nos exercícios de HTML e CSS
   'imagens/biblioteca.jpg', 'imagens/computadores.jpg', 'imagens/feira.jpg', 'imagens/gato.jpg', 'imagens/horta.jpg', 'imagens/icone.png', 'imagens/livros.jpg', 'imagens/logo.png', 'imagens/mapa.png', 'imagens/pessoa.jpg', 'imagens/praia.jpg', 'imagens/quadra.jpg',
   'js/nucleo.js', 'js/efeitos.js', 'js/teclado.js', 'js/web.js', 'js/terminal.js', 'js/pwa.js', 'js/app.js',
