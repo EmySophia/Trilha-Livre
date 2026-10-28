@@ -53,6 +53,8 @@ O modo offline e a instalação só funcionam quando o site está publicado em H
 
 Para publicar de graça, use o **GitHub Pages**: no repositório, vá em *Settings → Pages* e escolha a branch principal. O site fica disponível em `https://SEU-USUARIO.github.io/trilha-livre/`.
 
+O arquivo vazio `.nojekyll`, na raiz, precisa ir junto: ele avisa o GitHub Pages para publicar os arquivos como estão. Sem ele, o GitHub descarta o `conteudo/_registro.js`, por começar com sublinhado, e o app abre sem nenhum curso.
+
 ## Estrutura
 
 ```
