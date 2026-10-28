@@ -15,6 +15,7 @@ Obrigado por ajudar. Você não precisa saber programar o app para contribuir: q
 - `conteudo/catalogo.js` lista as **áreas** e os **cursos**.
 - Cada curso tem uma pasta própria, como `conteudo/logica-js/`, com um arquivo por **nível** (`nivel-1.js`, `nivel-2.js`...) e, se tiver, um `pratica.js` com desafios avulsos.
 - Dentro de cada nível há uma lista de **unidades**, e cada unidade tem uma lista de **lições**.
+- `conteudo/biblioteca.js` tem os **livros** e os **acervos** da aba Livros. Veja a seção [Biblioteca](#biblioteca).
 
 Para acrescentar um nível a um curso, crie o próximo `nivel-N.js` na pasta dele e adicione a tag `<script src="conteudo/<curso>/nivel-N.js"></script>` no `index.html`, logo depois do nível anterior. Adicione também o arquivo na lista `ARQUIVOS` do `sw.js`, para ele funcionar sem internet. O mesmo vale para qualquer arquivo novo de código ou imagem.
 
@@ -42,7 +43,7 @@ Os `videos` aparecem na trilha, embaixo do título do nível, numa caixa que abr
 3. Adicione as tags `<script>` no `index.html` (depois do `catalogo.js`) e os arquivos no `sw.js`.
 4. Rode `npm run validar`. Assim que o curso tem um nível, ele deixa de aparecer como "em construção".
 
-Cursos que não são de programação, como os de política, levam `linguagem: 'texto'` no catálogo. Neles, o terminal some, os quadros de texto quebram a linha, o exercício `complete` aparece como "Complete a frase" e o `ordene` como "Coloque em ordem". Os cursos Introdução ao marxismo e O Capital são bons exemplos.
+Cursos que não são de programação, como os de política, levam `linguagem: 'texto'` no catálogo. Neles, o terminal some, os quadros de texto quebram a linha, o exercício `complete` aparece como "Complete a frase" e o `ordene` como "Coloque em ordem". Os cursos Introdução ao marxismo, O Capital e Leitura guiada de O Capital são bons exemplos.
 
 Os tipos de exercício atuais (escolha, completar, montar, escrever código e montar página) já servem para matemática e idiomas: exercícios de código podem virar contas ou frases para traduzir em escolha e completar. Se um curso precisar de um tipo novo, como áudio para idiomas, abra uma issue antes para combinarmos como fazer.
 
@@ -84,9 +85,15 @@ Os ids seguem o padrão `n<nível>l<número>` para lições e `n<nível>u<númer
     { k: 'dec', s: 'nota >= 6?', sim: 'Aprovado', nao: 'Reprovado' },
     { k: 'fim', s: 'Fim' }
   ]},
-  { dica: 'Uma dica ou erro comum.' }
+  { dica: 'Uma dica ou erro comum.' },
+  // nas leituras guiadas de livros:
+  { leia: { titulo: 'Capítulo 4, seção 1', url: 'https://...', obs: 'Curta.' } },  // cartão que abre o texto em outra aba
+  { trecho: { onde: 'Seção 1: o vampiro', explica: 'O que o trecho quer dizer, com as suas palavras.' } },
+  { perguntas: ['Uma pergunta para pensar sozinho ou discutir em grupo.'] }
 ]}
 ```
+
+Os blocos `leia`, `trecho` e `perguntas` foram feitos para acompanhar a leitura de um livro, como no curso Leitura guiada de O Capital. O `leia` aceita também `rotulo`, que troca o texto pequeno de cima ("Para ler agora"). O `perguntas` aceita `titulo` ("Para pensar e conversar", por padrão). No `trecho`, explique com as suas palavras: não copie parágrafos de traduções protegidas por direito autoral.
 
 Nas tabelas, a primeira coluna aparece como código (fonte de largura fixa, sem quebrar a linha) e as outras como texto. Quando outras colunas também forem código, liste as posições em `codigo`, começando do 0.
 
@@ -187,6 +194,31 @@ Ficam no `pratica.js` do curso, dentro de `desafios('<id-do-curso>', [ ... ])`. 
 ```
 
 `dif` pode ser `'facil'`, `'medio'` ou `'dificil'`.
+
+## Biblioteca
+
+A aba Livros mostra livros que dá para ler **de graça e de forma legal**. O app não guarda os textos: cada livro aponta para o site de origem. Os livros ficam em `conteudo/biblioteca.js`:
+
+```js
+livros([
+  { id: 'manifesto', titulo: 'Manifesto do Partido Comunista', autor: 'Karl Marx e Friedrich Engels', ano: 1848,
+    estante: 'classicos',          // uma das estantes de estantes([...])
+    comece: true,                  // opcional: mostra a etiqueta "Bom para começar"
+    cursos: ['marxismo'],          // opcional: cursos do app que estudam o livro
+    obs: 'em inglês',              // opcional: aparece ao lado do autor (idioma, licença...)
+    desc: 'Uma ou duas frases sobre o livro.',
+    links: [{ rotulo: 'Ler', url: 'https://...' }] }
+]);
+```
+
+Para autores com muitos textos, use `colecao: true` e aponte para a página do autor no acervo. Os acervos (sites e aplicativos com muitos livros) ficam em `acervos([...])`, com `id`, `nome`, `desc` e, se houver, `url`.
+
+Só entram:
+
+- obras em **domínio público** (no Brasil, em geral, 70 anos depois da morte do autor, contados a partir de 1º de janeiro do ano seguinte) ou que o próprio site publica para leitura gratuita, com permissão do autor ou da editora, como o Arquivo Marxista na Internet, o Projeto Gutenberg e os livros com licença aberta;
+- links que você abriu e conferiu.
+
+Nunca adicione links para PDFs piratas, nem para cópias de livros que a editora vende, mesmo que estejam "por aí" na internet. O id de um livro também não deve mudar depois de publicado: a estante de cada pessoa é guardada por id.
 
 ## Como escrever bem
 

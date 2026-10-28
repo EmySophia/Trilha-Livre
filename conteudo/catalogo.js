@@ -33,5 +33,7 @@ cursos([
   { id: 'marxismo', area: 'politica', sigla: 'Mx', linguagem: 'texto', titulo: 'Introdução ao marxismo',
     desc: 'Marx, Engels e quem veio depois: a história, os conceitos, os debates e o que ler.' },
   { id: 'o-capital', area: 'politica', sigla: 'K', linguagem: 'texto', titulo: 'O Capital, de Marx',
-    desc: 'A crítica da economia política, da mercadoria às crises, com guia de leitura.' }
+    desc: 'A crítica da economia política, da mercadoria às crises, com guia de leitura.' },
+  { id: 'capital-guiado', area: 'politica', sigla: 'K1', linguagem: 'texto', titulo: 'Leitura guiada de O Capital',
+    desc: 'Para ler o Livro I junto com o app: o que observar em cada capítulo, os trechos difíceis explicados e perguntas para o grupo.' }
 ]);

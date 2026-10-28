@@ -1,5 +1,5 @@
 /* Trilha Livre · app
-   Telas (trilha, prática, perfil), sessões de estudo (lição, revisão, desafio, nivelamento) e progresso.
+   Telas (cursos, trilha, prática, biblioteca, perfil), sessões de estudo (lição, revisão, desafio, nivelamento) e progresso.
    Depende de conteudo/*.js (TRILHA) e de js/nucleo.js, efeitos.js, teclado.js, terminal.js e pwa.js.
    SPDX-License-Identifier: AGPL-3.0-or-later · Copyright (C) 2026 Contribuidores do Trilha Livre */
 
@@ -208,7 +208,7 @@ function niveisDispensados(certos) {
 /* =========================================================
    Navegação entre telas
    ========================================================= */
-const VIEWS = ['cursos', 'trilha', 'pratica', 'perfil'];
+const VIEWS = ['cursos', 'trilha', 'pratica', 'livros', 'perfil'];
 let viewAtual = 'trilha';
 const telaDaHash = () => {
   const h = location.hash.replace('#', '');
@@ -219,7 +219,7 @@ const telaDaHash = () => {
 
 function mostrar(id) {
   // as telas têm id "tela-..." para o navegador não rolar a página até elas quando o endereço muda (#perfil, #pratica)
-  ['cursos', 'trilha', 'pratica', 'perfil', 'lesson', 'fim'].forEach(v => { $(VIEWS.includes(v) ? 'tela-' + v : v).hidden = v !== id; });
+  [...VIEWS, 'lesson', 'fim'].forEach(v => { $(VIEWS.includes(v) ? 'tela-' + v : v).hidden = v !== id; });
   $('barra').hidden = !VIEWS.includes(id);
   $('actions').hidden = id !== 'lesson';
   window.scrollTo(0, 0);
@@ -232,7 +232,7 @@ function irPara(v, rolarPara) {
     a.classList.toggle('ativo', ativo);
     if (ativo) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
   });
-  ({ cursos: renderCursos, trilha: renderTrilha, pratica: renderPratica, perfil: renderPerfil })[v]();
+  ({ cursos: renderCursos, trilha: renderTrilha, pratica: renderPratica, livros: renderLivros, perfil: renderPerfil })[v]();
   mostrar(v);
   if (rolarPara && $(rolarPara)) $(rolarPara).scrollIntoView();
 }
@@ -459,6 +459,170 @@ $('tela-pratica').addEventListener('click', e => {
   const d = e.target.closest('[data-desafio]');
   if (d) startDesafio(d.dataset.desafio);
 });
+
+/* =========================================================
+   Tela: Biblioteca (livros de acesso livre e estante pessoal)
+   Os livros ficam em conteudo/biblioteca.js; a estante de cada pessoa fica em S.biblioteca.
+   ========================================================= */
+const ESTADOS_LEITURA = [['quero', 'Quero ler'], ['lendo', 'Lendo'], ['lido', 'Lido']];
+let filtroEstante = 'todas', buscaLivro = '';
+const semAcento = s => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const meuLivro = id => (S.biblioteca || (S.biblioteca = {}))[id] || null;
+const naEstante = id => { const m = meuLivro(id); return !!(m && (m.st || (m.nota || '').trim())); };
+const nomeEstante = id => (TRILHA.estantes.find(e => e.id === id) || { nome: '' }).nome;
+function iniciais(nome) { // da lombada, quando o livro não tem ano: só o primeiro autor
+  const p = String(nome).split(/,| e /)[0].split(/\s+/).filter(w => /^[A-ZÀ-Ý]/.test(w) && !/^(Júnior|Filho|Neto|Sobrinho)$/.test(w));
+  if (p.length === 1 && /^[A-Z]{2,4}$/.test(p[0])) return p[0]; // siglas, como MDN
+  return ((p[0] || '?')[0] + (p.length > 1 ? p[p.length - 1][0] : '')).toUpperCase();
+}
+const PREVIA_ESTANTE = 4; // em "Todos", cada estante mostra só os primeiros livros
+function livrosFiltrados() {
+  const termos = semAcento(buscaLivro).split(/\s+/).filter(Boolean);
+  const lista = TRILHA.livros.filter(l => {
+    if (filtroEstante === 'minha' ? !naEstante(l.id) : filtroEstante !== 'todas' && l.estante !== filtroEstante) return false;
+    const alvo = semAcento([l.titulo, l.autor, l.desc, l.ano || '', l.obs || '', nomeEstante(l.estante)].join(' '));
+    return termos.every(t => alvo.includes(t));
+  });
+  if (filtroEstante !== 'minha') return lista;
+  const ordem = { lendo: 0, quero: 1, lido: 2 };
+  return lista.sort((a, b) => (ordem[meuLivro(a.id).st] ?? 3) - (ordem[meuLivro(b.id).st] ?? 3));
+}
+function cartaoLivro(l) {
+  const meu = meuLivro(l.id) || {};
+  const cursos = (l.cursos || []).map(id => CURSOS.find(c => c.id === id && c.disponivel)).filter(Boolean);
+  const tags = [l.comece ? 'Bom para começar' : '', l.colecao ? 'Coleção de textos' : ''].filter(Boolean);
+  return `<article class="livro${meu.st ? ' st-' + meu.st : ''}" id="lv-${esc(l.id)}" aria-labelledby="lvt-${esc(l.id)}">
+    <div class="lv-topo">
+      <span class="lombada lombada-${esc(l.estante)}" aria-hidden="true">${l.ano ? esc(String(l.ano).slice(0, 4)) : esc(iniciais(l.autor))}</span>
+      <div class="lv-txt">
+        ${tags.length ? `<p class="lv-tags">${tags.map(t => `<i>${t}</i>`).join('')}</p>` : ''}
+        <h3 id="lvt-${esc(l.id)}">${esc(l.titulo)}</h3>
+        <p class="lv-autor">${esc(l.autor)}${l.ano ? ` · ${esc(l.ano)}` : ''}${l.obs ? ` · ${esc(l.obs)}` : ''}</p>
+      </div>
+    </div>
+    <p class="lv-desc">${esc(l.desc)}</p>
+    <div class="lv-links">${l.links.map(k => `<a class="lv-ler" href="${esc(k.url)}" target="_blank" rel="noopener">${esc(k.rotulo)}${IC.externo}<span class="sr">: ${esc(l.titulo)}, abre em outra aba</span></a>`).join('')}</div>
+    ${cursos.length ? `<p class="lv-cursos">Estudado no curso ${cursos.map(c => `<button class="lv-curso" data-ir-curso="${esc(c.id)}">${esc(c.titulo)}</button>`).join(' e ')}</p>` : ''}
+    <div class="lv-estado" role="group" aria-label="Situação da leitura">
+      ${ESTADOS_LEITURA.map(([v, rot]) => `<button class="seg${meu.st === v ? ' ativo' : ''}" aria-pressed="${meu.st === v}" data-lv="${esc(l.id)}" data-st="${v}">${rot}</button>`).join('')}
+    </div>
+    <details class="lv-nota"${(meu.nota || '').trim() ? ' open' : ''}><summary>Anotações</summary>
+      <textarea data-nota="${esc(l.id)}" rows="3" aria-label="Anotações sobre ${esc(l.titulo)}" placeholder="Ideias, dúvidas, páginas para reler...">${esc(meu.nota || '')}</textarea>
+    </details>
+  </article>`;
+}
+function filtrosLivrosHTML() {
+  const filtros = [['todas', 'Todos', TRILHA.livros.length], ['minha', 'Minha estante', TRILHA.livros.filter(l => naEstante(l.id)).length],
+    ...TRILHA.estantes.map(e => [e.id, e.curto || e.nome, TRILHA.livros.filter(l => l.estante === e.id).length])];
+  return filtros.map(([k, n, q]) => `<button class="filtro${filtroEstante === k ? ' ativo' : ''}" data-estante="${esc(k)}" aria-pressed="${filtroEstante === k}">${esc(n)}<span>${q}</span></button>`).join('');
+}
+function resumoEstanteHTML() {
+  const conta = st => TRILHA.livros.filter(l => (meuLivro(l.id) || {}).st === st).length;
+  const partes = [['lendo', 'lendo', 'lendo'], ['quero', 'para ler', 'para ler'], ['lido', 'lido', 'lidos']]
+    .map(([st, um, varios]) => { const n = conta(st); return n ? `${n} ${n === 1 ? um : varios}` : ''; }).filter(Boolean);
+  return partes.length ? `Na sua estante: ${partes.join(' · ')}` : 'Marque os livros como Quero ler, Lendo ou Lido para montar a sua estante.';
+}
+function renderLivros() {
+  $('tela-livros').innerHTML = `
+    <div class="intro">
+      <p class="kind">Biblioteca</p>
+      <h1>Livros livres</h1>
+      <p>Clássicos, teoria, literatura e manuais que dá para ler de graça e de forma legal. O texto abre no site de origem.</p>
+      <p class="lv-resumo" id="lvResumo">${resumoEstanteHTML()}</p>
+    </div>
+    <div class="busca">
+      <label class="sr" for="buscaLivro">Buscar na biblioteca</label>
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
+      <input id="buscaLivro" type="search" enterkeyhint="search" autocomplete="off" placeholder="Buscar por título, autor ou assunto" value="${esc(buscaLivro)}">
+    </div>
+    <div class="filtros" id="lvFiltros" role="group" aria-label="Filtrar por estante">${filtrosLivrosHTML()}</div>
+    <div id="lvLista"></div>
+    <section class="bloco acervos" aria-labelledby="t-acervos">
+      <h2 id="t-acervos">Acervos para explorar</h2>
+      <p class="muted">Sites e aplicativos com milhares de livros gratuitos e legais, além dos que estão aqui.</p>
+      <ul class="acervos-lista">${TRILHA.acervos.map(a => `<li>${a.url ? `<a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.nome)}${IC.externo}</a>` : `<b>${esc(a.nome)}</b>`}<span>${esc(a.desc)}</span></li>`).join('')}</ul>
+    </section>
+    <footer class="foot">
+      <p>Só entram aqui obras em domínio público ou que o próprio site publica para leitura gratuita. Os livros abrem em sites de fora e precisam de internet. Sua estante e suas anotações ficam salvas neste aparelho e entram no backup do Perfil.</p>
+      <p>Conhece um livro livre que deveria estar aqui? O guia de contribuição (CONTRIBUINDO.md) explica como sugerir.${REPOSITORIO ? ` <a href="${esc(REPOSITORIO)}" target="_blank" rel="noopener">Ver o repositório</a>.` : ''}</p>
+    </footer>`;
+  renderListaLivros();
+}
+function renderListaLivros() {
+  const lista = livrosFiltrados();
+  const buscando = buscaLivro.trim() !== '';
+  let h;
+  if (!lista.length) {
+    h = `<p class="vazio">${filtroEstante === 'minha' && !buscando ? 'Sua estante ainda está vazia. Marque um livro como Quero ler, Lendo ou Lido para ele aparecer aqui.' : 'Nenhum livro encontrado. Tente outra palavra ou outra estante.'}</p>`;
+  } else if (filtroEstante === 'todas' && !buscando) {
+    h = TRILHA.estantes.map(e => {
+      const ls = lista.filter(l => l.estante === e.id);
+      if (!ls.length) return '';
+      const resto = ls.length - PREVIA_ESTANTE;
+      return `<section class="estante" aria-labelledby="est-${esc(e.id)}"><div class="area-head"><h2 id="est-${esc(e.id)}">${esc(e.nome)}</h2><p>${esc(e.desc)}</p></div>
+        <div class="livros">${ls.slice(0, PREVIA_ESTANTE).map(cartaoLivro).join('')}</div>
+        ${resto > 0 ? `<button class="btn-sec ver-estante" data-estante="${esc(e.id)}">Ver mais ${resto} ${resto === 1 ? 'livro' : 'livros'} de ${esc(e.curto || e.nome)}</button>` : ''}</section>`;
+    }).join('');
+  } else {
+    const est = TRILHA.estantes.find(e => e.id === filtroEstante);
+    h = `${est && !buscando ? `<p class="lv-cont">${esc(est.desc)}</p>` : ''}<p class="lv-cont">${lista.length} ${lista.length === 1 ? 'livro' : 'livros'}</p><div class="livros">${lista.map(cartaoLivro).join('')}</div>`;
+  }
+  $('lvLista').innerHTML = h;
+}
+function atualizarEstante() {
+  $('lvFiltros').innerHTML = filtrosLivrosHTML();
+  $('lvResumo').innerHTML = resumoEstanteHTML();
+}
+function marcarLeitura(id, st) {
+  const m = meuLivro(id) || {};
+  if (m.st === st) { delete m.st; delete m.dia; } else { m.st = st; m.dia = hoje(); }
+  if (!m.st && !(m.nota || '').trim()) delete S.biblioteca[id]; else S.biblioteca[id] = m;
+  save(); som('toque');
+  const livro = TRILHA.livros.find(l => l.id === id);
+  if (filtroEstante === 'minha') renderListaLivros();
+  else { const card = $('lv-' + id); if (card) card.outerHTML = cartaoLivro(livro); }
+  atualizarEstante();
+  const b = document.querySelector(`[data-lv="${CSS.escape(id)}"][data-st="${st}"]`);
+  if (b) b.focus({ preventScroll: true });
+  anunciar(m.st ? `${livro.titulo}: ${ESTADOS_LEITURA.find(x => x[0] === st)[1]}` : `${livro.titulo} saiu da estante`);
+}
+$('tela-livros').addEventListener('click', e => {
+  const f = e.target.closest('[data-estante]');
+  if (f) {
+    filtroEstante = f.dataset.estante;
+    atualizarEstante(); renderListaLivros();
+    const b = $('lvFiltros').querySelector(`[data-estante="${CSS.escape(filtroEstante)}"]`);
+    if (b) { b.focus({ preventScroll: true }); b.scrollIntoView({ block: 'nearest', inline: 'center' }); }
+    if (f.classList.contains('ver-estante')) { // volta para o começo da lista, logo abaixo da barra fixa do topo
+      const y = $('lvFiltros').getBoundingClientRect().top + window.scrollY - $('barra').offsetHeight - 12;
+      window.scrollTo(0, Math.max(0, y));
+    }
+    return;
+  }
+  const st = e.target.closest('[data-st]');
+  if (st) { marcarLeitura(st.dataset.lv, st.dataset.st); return; }
+  const c = e.target.closest('[data-ir-curso]');
+  if (c) { S.curso = c.dataset.irCurso; save(); usarCurso(S.curso); som('toque'); voltar('trilha'); }
+});
+let anuncioBusca = null;
+$('tela-livros').addEventListener('input', e => {
+  if (e.target.id === 'buscaLivro') {
+    buscaLivro = e.target.value;
+    renderListaLivros();
+    clearTimeout(anuncioBusca);
+    anuncioBusca = setTimeout(() => { const n = livrosFiltrados().length; anunciar(n ? `${n} ${n === 1 ? 'livro encontrado' : 'livros encontrados'}` : 'Nenhum livro encontrado'); }, 700);
+    return;
+  }
+  const n = e.target.closest('[data-nota]');
+  if (n) {
+    const id = n.dataset.nota, m = meuLivro(id) || {};
+    m.nota = n.value;
+    if (!m.st && !m.nota.trim()) delete S.biblioteca[id]; else S.biblioteca[id] = m;
+    save();
+  }
+});
+// a contagem de "Minha estante" muda quando a anotação é a única coisa que mantém o livro lá
+$('tela-livros').addEventListener('focusout', e => { if (e.target.closest('[data-nota]')) atualizarEstante(); });
 
 /* =========================================================
    Tela: Perfil (resumo, meta, ajustes, backup, conquistas)
@@ -1036,6 +1200,12 @@ function renderTexto(ex) {
       }).join('')}</div>`;
     }
     if (b.dica) return `<aside class="dica"><span class="lab">Dica</span><p>${inlineMd(b.dica)}</p></aside>`;
+    if (b.leia) return `<a class="leia" href="${esc(b.leia.url)}" target="_blank" rel="noopener">
+      <span class="leia-ic" aria-hidden="true">${IC.livro}</span>
+      <span class="leia-txt"><span class="lab">${esc(b.leia.rotulo || 'Para ler agora')}</span><b>${esc(b.leia.titulo)}</b>${b.leia.obs ? `<small>${inlineMd(b.leia.obs)}</small>` : ''}</span>
+      <span class="leia-seta" aria-hidden="true">${IC.externo}</span><span class="sr">, abre em outra aba</span></a>`;
+    if (b.trecho) return `<div class="trecho"><span class="lab">${esc(b.trecho.onde)}</span>${b.trecho.diz ? `<p class="trecho-diz">${inlineMd(b.trecho.diz)}</p>` : ''}<p>${inlineMd(b.trecho.explica)}</p></div>`;
+    if (b.perguntas) return `<aside class="perguntas"><span class="lab">${esc(b.titulo || 'Para pensar e conversar')}</span><ul>${b.perguntas.map(q => `<li>${inlineMd(q)}</li>`).join('')}</ul></aside>`;
     return '';
   }).join('');
   let aviso = '';

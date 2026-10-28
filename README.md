@@ -4,7 +4,7 @@
 
 Plataforma gratuita e de código aberto para aprender **programação, matemática, idiomas e política** em português, no estilo dos apps de idiomas: lições curtas, exercícios interativos, sequência de dias e XP. Funciona no navegador, no celular e no computador, sem instalar nada e sem criar conta.
 
-A pessoa escolhe a área e o curso num catálogo. Os cursos prontos são **Lógica de programação com JavaScript** (54 lições), **Sites com HTML e CSS** (42 lições), **Introdução ao marxismo** (25 lições) e **O Capital, de Marx** (24 lições). Os outros (Python, Git e GitHub, Matemática básica, Matemática financeira, Inglês e Espanhol) já aparecem no catálogo como "em construção" e ficam disponíveis assim que ganham lições.
+A pessoa escolhe a área e o curso num catálogo. Os cursos prontos são **Lógica de programação com JavaScript** (54 lições), **Sites com HTML e CSS** (42 lições), **Introdução ao marxismo** (25 lições), **O Capital, de Marx** (24 lições) e **Leitura guiada de O Capital** (39 lições). Uma **biblioteca** reúne livros que dá para ler de graça e de forma legal. Os outros (Python, Git e GitHub, Matemática básica, Matemática financeira, Inglês e Espanhol) já aparecem no catálogo como "em construção" e ficam disponíveis assim que ganham lições.
 
 ## O que tem
 
@@ -19,6 +19,8 @@ A pessoa escolhe a área e o curso num catálogo. Os cursos prontos são **Lógi
   7. Projetos (troco, parcelas com juros, validação de CPF, jogo da velha, tabela do campeonato e outros)
 - Na área de política, **Introdução ao marxismo**, com **7 níveis e 25 lições**: Marx e Engels, o Manifesto, socialismo e comunismo, materialismo histórico, dialética e ideologia, o essencial da economia, Rosa Luxemburgo, Lenin e Gramsci, as experiências do século XX (com as conquistas e os crimes), o marxismo no Brasil, as principais críticas e as respostas marxistas, e um guia de estudo com roteiro de leitura.
 - E **O Capital, de Marx**, com **7 níveis e 24 lições**: o Livro I seção por seção (mercadoria, dinheiro, fetichismo, mais-valia, jornada de trabalho, máquinas, salário, acumulação e acumulação primitiva), um panorama dos Livros II e III (circulação, lucro, juros, renda da terra e crises), os debates sobre o livro e um guia de leitura.
+- E a **Leitura guiada de O Capital**, com **7 níveis e 39 lições**, para ler o Livro I junto com o app, capítulo por capítulo: antes de cada capítulo, onde você está no livro e o que observar, com um link direto para o texto no Arquivo Marxista na Internet; depois, os trechos difíceis explicados, perguntas para o grupo de estudo e exercícios. O primeiro nível explica as diferenças entre a tradução portuguesa on-line e as edições brasileiras e traz um método de estudo.
+- **Biblioteca** (aba Livros), com 43 livros e coleções de acesso livre: clássicos do marxismo, O Capital e o debate em torno dele, pensamento brasileiro, literatura em domínio público e livros abertos de programação, além de acervos como o Arquivo Marxista na Internet, o Projeto Gutenberg, a Wikisource e a BNDigital. Tem busca, filtros por estante e uma estante pessoal (quero ler, lendo, lido) com anotações, que entra no backup.
 - **Leituras** no começo de cada lição, com exemplos que abrem direto no terminal.
 - No curso de HTML e CSS, **8 níveis e 42 lições**:
   1. Primeira página (tags, títulos, esqueleto do documento)
@@ -66,17 +68,19 @@ js/teclado.js           barra de símbolos para digitar código no celular
 js/web.js               exercícios de página: monta, confere e colore HTML e CSS
 js/terminal.js          terminal JavaScript integrado
 js/pwa.js               instalação como app e registro do modo offline
-js/app.js               telas, lições, revisão, nivelamento, prática, perfil e backup
+js/app.js               telas, lições, revisão, nivelamento, prática, biblioteca, perfil e backup
 sw.js                   service worker: guarda o app no aparelho para funcionar sem internet
 manifest.webmanifest    nome, cores e ícones do app instalado
 icones/                 ícones do app
 imagens/                ilustrações livres usadas nos exercícios de HTML e CSS
-conteudo/_registro.js   funções areas(), cursos(), nivel() e desafios(), que registram o conteúdo
+conteudo/_registro.js   funções areas(), cursos(), nivel(), desafios(), estantes(), livros() e acervos(), que registram o conteúdo
 conteudo/catalogo.js    áreas e cursos do catálogo
+conteudo/biblioteca.js  livros e acervos da aba Livros
 conteudo/logica-js/     curso de lógica: nivel-1.js ... nivel-7.js e pratica.js
 conteudo/html-css/      curso de HTML e CSS: nivel-1.js ... nivel-8.js e pratica.js
 conteudo/marxismo/      curso Introdução ao marxismo: nivel-1.js ... nivel-7.js
 conteudo/o-capital/     curso O Capital, de Marx: nivel-1.js ... nivel-7.js
+conteudo/capital-guiado/ curso Leitura guiada de O Capital: nivel-1.js ... nivel-7.js
 ferramentas/validar.js  confere todo o conteúdo e roda todas as soluções
 ```
 

@@ -128,7 +128,7 @@ nivel({
                   p: 'Leia devagar, um capítulo de cada vez, com um caderno. Anote as definições, faça os exemplos numéricos à mão e, se puder, leia em grupo. Um bom ritmo é um capítulo por semana.'
                 },
                 {
-                  dica: 'Este curso segue a ordem do Livro I. Faça cada nível do app junto com as seções correspondentes do livro: o app explica, e o livro aprofunda.'
+                  dica: 'Este curso explica os conceitos na ordem do Livro I. Para ler o livro junto, capítulo por capítulo, use também o curso Leitura guiada de O Capital.'
                 }
               ]
             },
