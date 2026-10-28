@@ -696,6 +696,29 @@ a:focus-visible, .opt:focus-visible, .chip:focus-visible, .line:focus-visible, .
 .perguntas li { font-size: 16px; line-height: 1.5; }
 .perguntas code { font-family: var(--f-mono); font-size: .86em; }
 
+/* ---------- Python: entrada do programa ---------- */
+.entrada { margin: 0 0 10px; font-size: 15px; color: var(--muted); }
+.entrada code { font-family: var(--f-mono); font-size: 14px; background: var(--accent-soft); color: var(--ink); padding: 1px 7px; border-radius: 6px; }
+
+/* ---------- terminal simulado (curso de Git) ---------- */
+.shell {
+  background: var(--code-bg); color: var(--code-fg); border-radius: 14px; padding: 12px 14px; display: grid; gap: 4px;
+  font-family: var(--f-mono); font-size: 14px; line-height: 1.5; overflow-wrap: anywhere;
+}
+.sh-pr { color: var(--t-s); font-weight: 600; white-space: nowrap; }
+.sh-cmd, .sh-out { white-space: pre-wrap; }
+.sh-out { color: var(--term-muted); }
+.sh-in { display: flex; align-items: center; gap: 8px; }
+.sh-in input {
+  flex: 1; min-width: 0; font: inherit; color: var(--code-fg); background: transparent; border: 0; border-bottom: 2px solid var(--term-line);
+  padding: 4px 0; caret-color: var(--t-k); border-radius: 0;
+}
+.sh-in input:focus-visible { outline: none; border-bottom-color: var(--t-k); }
+.sh-errado { text-decoration: line-through; text-decoration-color: var(--term-err); }
+.dica-cmd { margin-top: 10px; font-size: 15px; }
+.dica-cmd summary { cursor: pointer; font-weight: 700; color: var(--accent); }
+.dica-cmd p { margin: 6px 0 0; font-family: var(--f-mono); font-size: 14px; }
+
 /* ---------- animações ---------- */
 @keyframes subir { from { transform: translateY(100%); } to { transform: none; } }
 @keyframes pulo { 0% { transform: scale(1); } 40% { transform: scale(1.04); } 100% { transform: scale(1); } }

@@ -2,7 +2,8 @@
    Um curso aparece como disponível quando tem pelo menos um nível (conteudo/<id-do-curso>/nivel-1.js).
    Sem níveis, ele aparece como "em construção", convidando quem quiser ajudar a escrever.
    sigla: até 3 caracteres, mostrados no selo do curso.
-   linguagem: 'js' (padrão), 'html' ou 'css', usada para colorir o código nas lições;
+   linguagem: 'js' (padrão), 'py', 'html' ou 'css', usada para colorir e rodar o código nas lições;
+   'shell' para cursos de comandos de terminal, como o de Git;
    'texto' para cursos sem programação (sem terminal e sem cores de código).
    Conteúdo sob licença CC BY-NC-SA 4.0 (veja conteudo/LICENCA.md). */
 
@@ -18,10 +19,10 @@ cursos([
     desc: 'Do primeiro algoritmo a projetos completos. Ideal para quem nunca programou.' },
   { id: 'html-css', area: 'programacao', sigla: '</>', linguagem: 'html', titulo: 'Sites com HTML e CSS',
     desc: 'Monte páginas de verdade e coloque na internet de graça.' },
-  { id: 'python', area: 'programacao', sigla: 'Py', titulo: 'Python do zero',
-    desc: 'A linguagem mais usada em ciência de dados, automação e engenharia.' },
-  { id: 'git', area: 'programacao', sigla: 'Git', titulo: 'Git e GitHub',
-    desc: 'Guarde as versões do seu código e trabalhe junto com outras pessoas.' },
+  { id: 'python', area: 'programacao', sigla: 'Py', linguagem: 'py', titulo: 'Python do zero',
+    desc: 'A linguagem mais usada em ciência, dados e engenharia, rodando de verdade no navegador. Termina com métodos numéricos e um projeto de ensaio de tração.' },
+  { id: 'git', area: 'programacao', sigla: 'Git', linguagem: 'shell', titulo: 'Git e GitHub',
+    desc: 'Guarde as versões do seu código, publique no GitHub e contribua com projetos abertos, praticando os comandos num terminal simulado.' },
   { id: 'mat-basica', area: 'matematica', sigla: '+−', titulo: 'Matemática básica',
     desc: 'Frações, porcentagem, potências e equações, com problemas do cotidiano.' },
   { id: 'mat-financeira', area: 'matematica', sigla: 'R$', titulo: 'Matemática financeira',

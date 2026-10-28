@@ -1,13 +1,14 @@
 {
   "name": "trilha-livre",
   "version": "1.0.0",
-  "description": "Curso gratuito e de código aberto de lógica de programação com JavaScript, em português.",
+  "description": "Plataforma de ensino gratuita e de código aberto, em português: programação, web, política e uma biblioteca de livros livres.",
   "private": true,
   "scripts": {
     "validar": "node ferramentas/validar.js"
   },
   "license": "AGPL-3.0-or-later",
   "devDependencies": {
-    "jsdom": "^24.1.3"
+    "jsdom": "^24.1.3",
+    "pyodide": "0.29.5"
   }
 }

@@ -27,12 +27,22 @@ const norm = s => String(s).replace(/\r/g, '').split('\n').map(l => l.trimEnd())
 // `crases` no meio de um texto viram <code>
 const inlineMd = s => esc(s).replace(/`([^`]+)`/g, '<code>$1</code>');
 
-// destaque de sintaxe: JavaScript aqui; HTML e CSS em js/web.js
+// destaque de sintaxe: JavaScript aqui; HTML e CSS em js/web.js; Python em js/python.js
 function hl(src, lang) {
   if (lang === 'texto') return esc(src);
+  if (lang === 'py' && typeof hlPy === 'function') return hlPy(src);
+  if (lang === 'shell') return hlShell(src);
   if (lang === 'html' && typeof hlHtml === 'function') return hlHtml(src);
   if (lang === 'css' && typeof hlCss === 'function') return hlCss(src);
   return hlJs(src);
+}
+// terminal: o "$ " do começo da linha é o prompt; o resto é comando; linhas sem $ são a resposta do programa
+function hlShell(src) {
+  return src.split('\n').map(l => {
+    if (/^\$ /.test(l)) return `<span class="t-s">$</span> ` + esc(l.slice(2)).replace(/(#.*)$/, '<span class="t-c">$1</span>');
+    if (/^#/.test(l)) return `<span class="t-c">${esc(l)}</span>`;
+    return esc(l);
+  }).join('\n');
 }
 function hlJs(src) {
   const re = /(\/\/[^\n]*)|("(?:[^"\\\n]|\\.)*"|`[^`]*`|'(?:[^'\\\n]|\\.)*')|\b(let|const|var|if|else|for|while|function|return|true|false|switch|case|break|continue|default|try|catch|throw|new|of|in)\b|\b(\d+(?:\.\d+)?)\b|\b(console|log)\b/g;
@@ -109,7 +119,11 @@ function runCode(code) {
   });
 }
 
-// mensagens de erro do JavaScript explicadas em português
+// mensagens de erro explicadas em português (as do Python ficam em js/python.js)
+function traduzErro(err, lang) {
+  if (lang === 'py' && typeof traduzPy === 'function') return traduzPy(err);
+  return traduz(err);
+}
 function traduz(err) {
   let m;
   if ((m = /ReferenceError: (\S+) is not defined/.exec(err))) return `Erro: "${m[1]}" não existe. Você criou essa variável ou função? Confira maiúsculas e minúsculas.`;

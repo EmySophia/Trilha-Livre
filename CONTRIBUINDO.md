@@ -6,7 +6,7 @@ Obrigado por ajudar. Você não precisa saber programar o app para contribuir: q
 
 1. Faça um fork do repositório e crie uma branch para a sua mudança.
 2. Edite os arquivos.
-3. Rode `npm install` (só na primeira vez) e depois `npm run validar`. O `npm install` baixa o jsdom, que o validador usa para conferir os exercícios de página.
+3. Rode `npm install` (só na primeira vez) e depois `npm run validar`. O `npm install` baixa o jsdom, que o validador usa para conferir os exercícios de página, e o Pyodide, que roda as soluções em Python.
 4. Abra o `index.html` no navegador e faça a lição que você mudou.
 5. Abra um pull request explicando o que mudou e por quê.
 
@@ -135,6 +135,35 @@ Escreva as linhas **na ordem certa**: o app embaralha. Cuidado para não existir
 ```
 
 A correção compara a saída do console com `saida`. Listas e objetos aparecem no formato JSON, como `[1,2,3]`. O validador roda a `sol` e confere se ela produz exatamente a `saida`. Ele também avisa se o código de `start` já passasse sem o aluno fazer nada.
+
+**Em Python** (cursos com `linguagem: 'py'`), o mesmo formato vale, com `print` no lugar do `console.log`. O código roda no Pyodide, o Python de verdade compilado para o navegador, que o app baixa na primeira vez que alguém roda Python. Listas e dicionários aparecem como o Python mostra, como `[1, 2, 3]`. Para programas com `input()`, liste o que será digitado em `entrada`:
+
+```js
+{ t: 'codigo', p: 'Peça o nome e cumprimente',
+  start: '# seu código\n',
+  entrada: ['Maria'],                 // um texto para cada input(), na ordem
+  saida: 'Qual é o seu nome? Maria\nOlá, Maria!',
+  sol: 'nome = input("Qual é o seu nome? ")\nprint(f"Olá, {nome}!")' }
+```
+
+Na saída, aparece a pergunta do `input` seguida do que foi digitado, como num terminal. O programa pode criar e ler arquivos com `open()`: eles ficam numa memória temporária durante a execução. Exemplos de Python nas leituras rodam no validador; os que usam `input()` ou bibliotecas de fora, como NumPy, precisam de `semTeste: true`.
+
+### Digitar um comando (`comando`)
+
+Para cursos de terminal, como o de Git (`linguagem: 'shell'`). A pessoa digita o comando num terminal simulado:
+
+```js
+{ t: 'comando', p: 'Faça o commit com uma mensagem entre aspas',
+  pasta: '~/meu-site',                       // aparece antes do $
+  antes: ['$ git add .'],                    // linhas que já estão no terminal (com "$ " são comandos)
+  sol: 'git commit -m "Primeira versão"',    // o comando certo, mostrado quando a pessoa erra
+  aceita: ['/^git commit -m "[^"]+"$/'],     // outras formas certas; entre barras, uma expressão regular
+  saida: '[main a1b2c3d] {msg}',             // o que o terminal responde quando acerta; {msg} vira a mensagem digitada
+  dica: 'git commit -m "sua mensagem"',      // fica escondida atrás de "Ver uma dica"
+  exp: 'Explicação.' }
+```
+
+Espaços repetidos não importam, e aspas simples, aspas curvas e o travessão que o celular coloca no lugar de `--` são aceitos.
 
 ### Montar uma página (`web`)
 
