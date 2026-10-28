@@ -1,0 +1,13 @@
+{
+  "name": "trilha-livre",
+  "version": "1.0.0",
+  "description": "Curso gratuito e de código aberto de lógica de programação com JavaScript, em português.",
+  "private": true,
+  "scripts": {
+    "validar": "node ferramentas/validar.js"
+  },
+  "license": "AGPL-3.0-or-later",
+  "devDependencies": {
+    "jsdom": "^24.1.3"
+  }
+}

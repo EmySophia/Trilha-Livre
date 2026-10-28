@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trilha Livre</title>
+<meta name="description" content="Curso gratuito e de código aberto de lógica de programação com JavaScript.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="css/estilo.css">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0E7A57">
+<link rel="icon" type="image/png" sizes="32x32" href="icones/favicon-32.png">
+<link rel="apple-touch-icon" href="icones/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Trilha Livre">
+</head>
+<body>
+<div class="wrap">
+  <div class="barra" id="barra">
+    <header class="top">
+      <a class="brand" href="#trilha"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="var(--accent)"/><path d="M12 10l-5 6 5 6M20 10l5 6-5 6" fill="none" stroke="var(--sun)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Trilha Livre</span></a>
+      <div class="stats" id="stats"></div>
+    </header>
+    <nav class="tabs" aria-label="Seções">
+      <a href="#cursos" data-tab="cursos">Cursos</a>
+      <a href="#trilha" data-tab="trilha">Trilha</a>
+      <a href="#pratica" data-tab="pratica">Prática</a>
+      <a href="#perfil" data-tab="perfil">Perfil</a>
+    </nav>
+  </div>
+  <main>
+    <section id="tela-cursos" hidden></section>
+    <section id="tela-trilha"></section>
+    <section id="tela-pratica" hidden></section>
+    <section id="tela-perfil" hidden></section>
+    <section id="lesson" hidden>
+      <div class="lbar">
+        <button class="xbtn" id="closeBtn" aria-label="Sair da lição">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+        <div class="prog" id="progBar" role="progressbar" aria-label="Progresso da lição" aria-valuemin="0" aria-valuenow="0" aria-valuemax="1"><i id="progFill"></i></div>
+        <button class="xbtn" id="termBtnL" aria-label="Abrir terminal" title="Terminal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="3"/><path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"/></svg>
+        </button>
+      </div>
+      <div class="ex" id="exArea"></div>
+    </section>
+    <section id="fim" hidden></section>
+  </main>
+</div>
+
+<div class="actions" id="actions" hidden>
+  <div class="wrap">
+    <div class="fb" id="fb" hidden></div>
+    <button class="btn-main" id="mainBtn" disabled>Verificar</button>
+  </div>
+</div>
+
+<div class="term" id="term" hidden role="dialog" aria-label="Terminal">
+  <div class="term-head">
+    <div class="term-title">
+      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="3"/><path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"/></svg>
+      Terminal <small>JavaScript</small>
+    </div>
+    <div class="term-btns">
+      <button id="tClear">Limpar</button>
+      <button id="tReset">Reiniciar</button>
+      <button id="tClose" aria-label="Fechar terminal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+  </div>
+  <div class="term-log" id="tLog" aria-live="polite"></div>
+  <div class="term-in">
+    <span class="pr" aria-hidden="true">›</span>
+    <textarea id="tInput" rows="1" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="Comando" placeholder="Digite um comando"></textarea>
+    <button id="tRun" aria-label="Executar"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l12.5-7.5z"/></svg></button>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+<div class="sr" id="anuncio" aria-live="assertive" aria-atomic="true"></div>
+<noscript><p style="padding:16px">O Trilha Livre precisa de JavaScript ligado para funcionar.</p></noscript>
+
+<!-- Conteúdo. O catálogo lista áreas e cursos; cada curso tem uma pasta com um arquivo por nível.
+     A ordem das tags define a ordem dos níveis dentro de cada curso. -->
+<script src="conteudo/_registro.js"></script>
+<script src="conteudo/catalogo.js"></script>
+<script src="conteudo/logica-js/nivel-1.js"></script>
+<script src="conteudo/logica-js/nivel-2.js"></script>
+<script src="conteudo/logica-js/nivel-3.js"></script>
+<script src="conteudo/logica-js/nivel-4.js"></script>
+<script src="conteudo/logica-js/nivel-5.js"></script>
+<script src="conteudo/logica-js/nivel-6.js"></script>
+<script src="conteudo/logica-js/nivel-7.js"></script>
+<script src="conteudo/logica-js/pratica.js"></script>
+<script src="conteudo/html-css/nivel-1.js"></script>
+<script src="conteudo/html-css/nivel-2.js"></script>
+<script src="conteudo/html-css/nivel-3.js"></script>
+<script src="conteudo/html-css/nivel-4.js"></script>
+<script src="conteudo/html-css/nivel-5.js"></script>
+<script src="conteudo/html-css/nivel-6.js"></script>
+<script src="conteudo/html-css/nivel-7.js"></script>
+<script src="conteudo/html-css/nivel-8.js"></script>
+<script src="conteudo/html-css/pratica.js"></script>
+<script src="conteudo/marxismo/nivel-1.js"></script>
+<script src="conteudo/marxismo/nivel-2.js"></script>
+<script src="conteudo/marxismo/nivel-3.js"></script>
+<script src="conteudo/marxismo/nivel-4.js"></script>
+<script src="conteudo/marxismo/nivel-5.js"></script>
+<script src="conteudo/marxismo/nivel-6.js"></script>
+<script src="conteudo/marxismo/nivel-7.js"></script>
+<script src="conteudo/o-capital/nivel-1.js"></script>
+<script src="conteudo/o-capital/nivel-2.js"></script>
+<script src="conteudo/o-capital/nivel-3.js"></script>
+<script src="conteudo/o-capital/nivel-4.js"></script>
+<script src="conteudo/o-capital/nivel-5.js"></script>
+<script src="conteudo/o-capital/nivel-6.js"></script>
+<script src="conteudo/o-capital/nivel-7.js"></script>
+<!-- App -->
+<script src="js/nucleo.js"></script>
+<script src="js/efeitos.js"></script>
+<script src="js/teclado.js"></script>
+<script src="js/web.js"></script>
+<script src="js/terminal.js"></script>
+<script src="js/pwa.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
