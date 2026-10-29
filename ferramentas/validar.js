@@ -260,6 +260,7 @@ for (const c of TRILHA.cursos) {
 }
 for (const nv of TRILHA.niveis) {
   if (!idsCurso.has(nv.curso)) erro(`nível ${nv.n}`, `curso desconhecido: ${nv.curso}`);
+  if (nv.faixa != null && !(typeof nv.faixa === 'string' && nv.faixa.trim() && nv.faixa.length <= 12)) erro(`${nv.curso} nível ${nv.n}`, 'faixa precisa ser um texto curto, como A2 ou B1–B2');
   for (const v of nv.videos || []) {
     if (!v.titulo || !v.canal || !/^https:\/\//.test(v.url || '')) erro(`${nv.curso} nível ${nv.n}`, 'cada vídeo precisa de titulo, canal e url com https://');
     if (v.tipo != null && !['video', 'texto'].includes(v.tipo)) erro(`${nv.curso} nível ${nv.n}`, `tipo de material desconhecido: ${v.tipo}`);

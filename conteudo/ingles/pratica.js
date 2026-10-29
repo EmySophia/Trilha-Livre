@@ -112,5 +112,97 @@ desafios('ingles', [
     ouvir: 'I\'m gonna grab a coffee. Do you wanna come?',
     r: 'I\'m (gonna|going to) grab a coffee. Do you (wanna|want to) come?',
     exp: 'Gonna e wanna são going to e want to falados rápido. Na escrita informal, aparecem assim mesmo.'
+  },
+  {
+    id: 'en-p-horas',
+    t: 'escolha',
+    dif: 'facil',
+    titulo: 'A que horas sai o trem?',
+    temas: ['horas', 'números'],
+    p: 'Ouça. A que horas sai o trem?',
+    ouvir: 'The train leaves at a quarter to nine.',
+    ops: ['8h45', '9h15', '8h15'],
+    c: 0,
+    exp: 'A quarter to nine: faltam quinze para as nove.'
+  },
+  {
+    id: 'en-p-preco',
+    t: 'escreva',
+    dif: 'facil',
+    titulo: 'Doze e cinquenta',
+    temas: ['preços', 'números'],
+    p: 'Escreva por extenso, do jeito que se fala na conversa, o preço $12.50.',
+    r: [
+      'twelve fifty',
+      'twelve dollars and fifty cents',
+      'twelve dollars fifty',
+      'twelve fifty dollars'
+    ],
+    dica: 'Na conversa, um preço vira dois números: os dólares e os centavos.',
+    exp: 'Twelve fifty é o jeito mais comum. Por extenso: twelve dollars and fifty cents.'
+  },
+  {
+    id: 'en-p-comparar',
+    t: 'monte',
+    dif: 'medio',
+    titulo: 'Mais barato, mais rápido',
+    temas: ['comparativos'],
+    p: 'Monte a frase: "O ônibus é mais barato, mas o metrô é muito mais rápido."',
+    r: 'The bus is cheaper, but the [[subway|underground]] is much faster.',
+    extra: ['more', 'very', 'than'],
+    exp: 'Adjetivos curtos ganham -er, e "muito mais" é much, e não very.'
+  },
+  {
+    id: 'en-p-telefone',
+    t: 'escreva',
+    dif: 'medio',
+    titulo: 'O telefone tocou',
+    temas: ['past continuous'],
+    p: 'Escreva em inglês: "Eu estava dormindo quando o telefone tocou."',
+    r: [
+      'I was sleeping when the phone rang.',
+      'I was asleep when the phone rang.',
+      'When the phone rang, I was sleeping.',
+      'When the phone rang, I was asleep.'
+    ],
+    dica: 'A ação longa vai no past continuous; a curta, no passado simples. O passado de ring é rang.',
+    exp: 'Was sleeping é a ação em andamento; rang interrompe.'
+  },
+  {
+    id: 'en-p-relativa',
+    t: 'escolha',
+    dif: 'medio',
+    titulo: 'A amiga com quem eu moro',
+    temas: ['orações relativas'],
+    p: 'Qual frase quer dizer "A amiga com quem eu moro é de Manaus"?',
+    ops: [
+      'The friend I live with is from Manaus.',
+      'The friend who I live is from Manaus.',
+      'The friend with I live is from Manaus.'
+    ],
+    c: 0,
+    exp: 'Na fala, o who cai e a preposição vai para o fim: the friend I live with.'
+  },
+  {
+    id: 'en-p-passiva',
+    t: 'escreva',
+    dif: 'dificil',
+    titulo: 'O estádio',
+    temas: ['voz passiva'],
+    p: 'Passe para a voz passiva: "They built this stadium in 2014."',
+    r: 'This stadium was built in (2014|twenty fourteen|two thousand fourteen|two thousand and fourteen).',
+    dica: 'To be no passado + particípio de build.',
+    exp: 'Built é o passado e o particípio de build. Quem construiu não importa, então they some.'
+  },
+  {
+    id: 'en-p-indireto',
+    t: 'escreva',
+    dif: 'dificil',
+    titulo: 'Ela disse que não podia',
+    temas: ['discurso indireto'],
+    p: 'Conte o que ela disse, começando com "She said": "I can\'t come because I\'m working."',
+    r: 'She said (that |)she couldn\'t come because she was working.',
+    dica: 'O tempo volta um passo: can vira could, e am working vira was working.',
+    exp: 'She said she couldn\'t come because she was working. O I de quem falou vira she.'
   }
 ]);

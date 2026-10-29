@@ -30,7 +30,7 @@ cursos([
   { id: 'mat-financeira', area: 'matematica', sigla: 'R$', titulo: 'Matemática financeira',
     desc: 'Juros, parcelas, inflação e investimentos sem mistério.' },
   { id: 'ingles', area: 'idiomas', sigla: 'EN', linguagem: 'en', titulo: 'Inglês do zero',
-    desc: 'Do zero à conversa, com o porquê de cada regra, pronúncia com áudio em inglês americano ou britânico e as expressões que as pessoas usam de verdade no dia a dia.',
+    desc: 'Do zero ao intermediário (B1), com o porquê de cada regra, pronúncia com áudio em inglês americano ou britânico, as expressões que as pessoas usam de verdade e um guia para seguir até o C2.',
     // áudio (js/fala.js): vozes do Kokoro para cada sotaque, a primeira feminina e a segunda masculina
     fala: { sotaques: { us: 'Americano', uk: 'Britânico' }, vozes: { us: ['af_heart', 'am_michael'], uk: ['bf_emma', 'bm_george'] },
       lang: { us: 'en-US', uk: 'en-GB' }, kokoro: { us: 'en-us', uk: 'en-gb' }, exemplo: "Hi! How's it going?" } },

@@ -4,7 +4,7 @@
 
 Plataforma gratuita e de código aberto para aprender **programação, matemática, idiomas e política** em português, no estilo dos apps de idiomas: lições curtas, exercícios interativos, sequência de dias e XP. Funciona no navegador, no celular e no computador, sem instalar nada e sem criar conta.
 
-A pessoa escolhe a área e o curso num catálogo. Os cursos prontos são **Lógica de programação com JavaScript** (54 lições), **Sites com HTML e CSS** (42 lições), **Python do zero** (59 lições), **Git e GitHub** (25 lições), **Matemática básica** (46 lições), **Matemática do ensino médio** (38 lições), **Inglês do zero** (44 lições), **Introdução ao marxismo** (25 lições), **O Capital, de Marx** (24 lições) e **Leitura guiada de O Capital** (39 lições). Uma **biblioteca** reúne livros que dá para ler de graça e de forma legal. Os outros (Matemática financeira e Espanhol) já aparecem no catálogo como "em construção" e ficam disponíveis assim que ganham lições.
+A pessoa escolhe a área e o curso num catálogo. Os cursos prontos são **Lógica de programação com JavaScript** (54 lições), **Sites com HTML e CSS** (42 lições), **Python do zero** (59 lições), **Git e GitHub** (25 lições), **Matemática básica** (46 lições), **Matemática do ensino médio** (38 lições), **Inglês do zero** (73 lições), **Introdução ao marxismo** (25 lições), **O Capital, de Marx** (24 lições) e **Leitura guiada de O Capital** (39 lições). Uma **biblioteca** reúne livros que dá para ler de graça e de forma legal. Os outros (Matemática financeira e Espanhol) já aparecem no catálogo como "em construção" e ficam disponíveis assim que ganham lições.
 
 ## O que tem
 
@@ -38,17 +38,23 @@ A pessoa escolhe a área e o curso num catálogo. Os cursos prontos são **Lógi
   8. Estatística (médias, dispersão e gráficos que enganam)
   9. Geometria analítica (distância, ponto médio, equação da reta e circunferência)
   10. Matrizes e sistemas (operações, multiplicação, determinantes e sistemas)
-- Na área de idiomas, **Inglês do zero**, com **10 níveis e 44 lições**, do primeiro "oi" à leitura de textos do Enem. Cada regra vem com o porquê, e não só com o "decore assim". Todas as frases têm **áudio com voz natural**, em **inglês americano ou britânico**, à escolha da pessoa, gravado antes com uma voz aberta e guardado no app, que funciona até sem internet. Os exercícios incluem ditado, tradução digitada (que aceita contrações e avisa de errinhos de digitação), montar a frase com fichas e ouvir para escolher:
-  1. Primeiros passos (por que o inglês não se lê como se escreve, cumprimentos de verdade, apresentações e o verbo to be)
-  2. Pessoas, coisas e lugares (a, an e the, plurais e o som do -s, possessivos, adjetivos e there is)
-  3. O presente e o futuro (presente simples, do e does, presente contínuo, going to, gonna e will)
-  4. O passado (o som do -ed, irregulares, did, was e were, used to e uma história para ouvir)
-  5. Pronúncia que muda tudo (o th, vogais curtas e longas, o h, o r, a sílaba forte, o schwa e a fala rápida)
-  6. Inglês do dia a dia (reações, gírias americanas e britânicas, abreviações de mensagens, café e restaurante, pedir ajuda e phrasal verbs)
-  7. Americano × britânico (palavras, grafia, gramática e sotaques, ouvidos lado a lado)
-  8. O present perfect (for e since, ever, already, yet e just, e quando usar o passado simples)
-  9. Poder, dever e as condições (can, could, should, must, have to e if)
-  10. Ler em inglês e o Enem (falsos cognatos, estratégias de leitura e textos no estilo da prova)
+- Na área de idiomas, **Inglês do zero**, com **16 níveis e 73 lições**, do primeiro "oi" ao inglês intermediário (B1), com a faixa do Quadro Europeu (CEFR) de cada nível à vista na trilha e um guia final para continuar até o C2. Cada regra vem com o porquê, e não só com o "decore assim". Todas as frases têm **áudio com voz natural**, em **inglês americano ou britânico**, à escolha da pessoa, gravado antes com uma voz aberta e guardado no app, que funciona até sem internet. Os exercícios incluem ditado, tradução digitada (que aceita contrações e avisa de errinhos de digitação), montar a frase com fichas e ouvir para escolher:
+  1. Primeiros passos, A1 (por que o inglês não se lê como se escreve, cumprimentos de verdade, apresentações e o verbo to be)
+  2. Pessoas, coisas e lugares, A1 (a, an e the, plurais e o som do -s, possessivos, me e him, adjetivos e there is)
+  3. Números, horas e datas, A1 (a armadilha do 13 × 30, preços, anos, horas, dias, meses, datas e at, on e in)
+  4. O presente e o futuro, A1 (presente simples, do e does, presente contínuo, going to, gonna e will)
+  5. O passado, A1–A2 (o som do -ed, irregulares, did, was e were, used to, past continuous e duas histórias para ouvir)
+  6. Pronúncia que muda tudo, A2 (o th, vogais curtas e longas, o h, o r, a sílaba forte, o schwa e a fala rápida)
+  7. Quantidades e comparações, A2 (contáveis e incontáveis, some e any, much e many, comparativos, superlativos, too, enough e good × well)
+  8. Inglês do dia a dia, A2 (reações, gírias americanas e britânicas, abreviações de mensagens, café e restaurante, pedir ajuda e phrasal verbs)
+  9. Americano × britânico, A2 (palavras, grafia, gramática e sotaques, ouvidos lado a lado)
+  10. O present perfect, A2–B1 (for e since, ever, already, yet e just, e quando usar o passado simples)
+  11. Poder, dever e as condições, A2–B1 (can, could, should, must, have to e if)
+  12. Ler em inglês e o Enem, B1 (falsos cognatos, estratégias de leitura e textos no estilo da prova)
+  13. Frases mais longas, B1 (who, which, that, where e whose, gerúndio ou infinitivo e conectores como although e unless)
+  14. Quem fez e o que veio antes, B1 (voz passiva, have something done, past perfect e uma notícia para ouvir)
+  15. O que os outros disseram, B1 (discurso indireto, perguntas indiretas, question tags e as palavrinhas da conversa)
+  16. Além do app (os níveis do A1 ao C2, testes grátis, canais do YouTube, séries, podcasts, leitura, conversa e um plano de estudo)
 - Na área de política, **Introdução ao marxismo**, com **7 níveis e 25 lições**: Marx e Engels, o Manifesto, socialismo e comunismo, materialismo histórico, dialética e ideologia, o essencial da economia, Rosa Luxemburgo, Lenin e Gramsci, as experiências do século XX (com as conquistas e os crimes), o marxismo no Brasil, as principais críticas e as respostas marxistas, e um guia de estudo com roteiro de leitura.
 - E **O Capital, de Marx**, com **7 níveis e 24 lições**: o Livro I seção por seção (mercadoria, dinheiro, fetichismo, mais-valia, jornada de trabalho, máquinas, salário, acumulação e acumulação primitiva), um panorama dos Livros II e III (circulação, lucro, juros, renda da terra e crises), os debates sobre o livro e um guia de leitura.
 - E a **Leitura guiada de O Capital**, com **7 níveis e 39 lições**, para ler o Livro I junto com o app, capítulo por capítulo: antes de cada capítulo, onde você está no livro e o que observar, com um link direto para o texto no Arquivo Marxista na Internet; depois, os trechos difíceis explicados, perguntas para o grupo de estudo e exercícios. O primeiro nível explica as diferenças entre a tradução portuguesa on-line e as edições brasileiras e traz um método de estudo.
@@ -86,7 +92,7 @@ A pessoa escolhe a área e o curso num catálogo. Os cursos prontos são **Lógi
 - **Teste de nivelamento**: quem já sabe o assunto responde até duas perguntas por nível e pula os níveis que domina.
 - **Liberdade com rede de segurança**: dá para começar por qualquer nível. Se você abrir uma lição sem ter feito a base dela, ou errar muito, o app sugere a lição certa para reforçar e depois traz você de volta.
 - **Revisão espaçada**: cada lição concluída volta depois de 1, 3, 7, 14, 30 e 60 dias. Exercícios errados voltam até você acertar de primeira.
-- **Prática livre** com desafios avulsos em três níveis de dificuldade: 25 de lógica, 16 de HTML e CSS, 22 de Python, 16 de matemática (8 da básica e 8 do ensino médio) e 9 de inglês.
+- **Prática livre** com desafios avulsos em três níveis de dificuldade: 25 de lógica, 16 de HTML e CSS, 22 de Python, 16 de matemática (8 da básica e 8 do ensino médio) e 16 de inglês.
 - **Aulas em vídeo e leituras por nível**: os níveis indicam aulas gratuitas em português (Curso em Vídeo, Professor Ferretto, Matemática Rio, Gis com Giz, Khan Academy, English in Brazil, TV Boitempo, Jones Manoel e outros) e textos livres, como os do Arquivo Marxista na Internet.
 - **Projetos guardados**: os projetos do curso de HTML e CSS ficam salvos no app e podem ser baixados prontos para publicar, como um `index.html` ou, no caso do site de várias páginas, um .zip com as páginas, o CSS e as imagens.
 - **Conquistas e meta diária** de XP.
@@ -136,7 +142,7 @@ conteudo/python/        curso Python do zero: nivel-1.js ... nivel-11.js e prati
 conteudo/git/           curso Git e GitHub: nivel-1.js ... nivel-6.js
 conteudo/mat-basica/    curso Matemática básica: nivel-1.js ... nivel-9.js e pratica.js
 conteudo/mat-medio/     curso Matemática do ensino médio: nivel-1.js ... nivel-10.js e pratica.js
-conteudo/ingles/        curso Inglês do zero: nivel-1.js ... nivel-10.js e pratica.js
+conteudo/ingles/        curso Inglês do zero: nivel-1.js ... nivel-16.js e pratica.js
 audio/ingles/           as falas do curso de inglês, em MP3, nos dois sotaques (o nome de cada arquivo vem do texto)
 conteudo/marxismo/      curso Introdução ao marxismo: nivel-1.js ... nivel-7.js
 conteudo/o-capital/     curso O Capital, de Marx: nivel-1.js ... nivel-7.js

@@ -1,369 +1,373 @@
-/* Trilha Livre · Inglês do zero · Nível 9: Poder, dever e as condições
+/* Trilha Livre · Inglês do zero · Nível 9: Americano × britânico (A2)
    Conteúdo sob licença CC BY-NC-SA 4.0 (veja conteudo/LICENCA.md). O formato das lições está explicado em CONTRIBUINDO.md.
    ((frase)) tem botão de ouvir; [[americano|britânico]] muda com o sotaque escolhido. */
 
 nivel({
   curso: 'ingles',
   n: 9,
-  titulo: 'Poder, dever e as condições',
-  desc: 'Can, could, should, must e have to, a armadilha do mustn\'t, e as frases com if.',
+  titulo: 'Americano × britânico',
+  faixa: 'A2',
+  desc: 'As palavras, a escrita, a gramática e os sons que mudam entre os Estados Unidos e o Reino Unido.',
   videos: [
     {
-      titulo: 'English in Brazil',
-      canal: 'Carina Fragozo',
-      obs: 'modal verbs explicados em português',
-      url: 'https://www.youtube.com/user/carinafragozo'
+      titulo: 'English with Lucy',
+      canal: 'Lucy Earl',
+      obs: 'vídeos comparando o inglês britânico e o americano',
+      url: 'https://www.youtube.com/@EnglishwithLucy'
     },
     {
-      titulo: 'BBC Learning English',
-      canal: 'BBC',
-      obs: 'condicionais na série de gramática, com exemplos do dia a dia',
-      url: 'https://www.youtube.com/@bbclearningenglish'
+      titulo: 'Rachel\'s English',
+      canal: 'Rachel Smith',
+      obs: 'o sotaque americano em detalhe',
+      url: 'https://www.youtube.com/@rachelsenglish'
     },
     {
-      titulo: 'Speak English With Vanessa',
-      canal: 'Vanessa',
-      obs: 'could, would e should em conversas reais',
-      url: 'https://www.youtube.com/@SpeakEnglishWithVanessa'
+      tipo: 'texto',
+      titulo: 'Dicionário Cambridge',
+      canal: 'Cambridge',
+      obs: 'cada verbete mostra a pronúncia britânica (UK) e a americana (US), com áudio',
+      url: 'https://dictionary.cambridge.org/pt/'
+    },
+    {
+      tipo: 'texto',
+      titulo: 'YouGlish',
+      canal: 'YouGlish',
+      obs: 'ouça a mesma palavra em vídeos de pessoas dos dois países',
+      url: 'https://youglish.com/english'
     }
   ],
   unidades: [
     {
-      id: 'enu15',
-      titulo: 'Os modais e o if',
-      conceito: 'can · should · if',
-      desc: 'Habilidade, permissão, conselho, obrigação e as três condicionais mais usadas.',
+      id: 'enu17',
+      titulo: 'Dois países, uma língua',
+      conceito: 'flat · apartment',
+      desc: 'Vocabulário, grafia, gramática e pronúncia dos dois lados do Atlântico.',
       licoes: [
         {
           id: 'en9l1',
-          titulo: 'Can e could',
-          pre: ['en3l2'],
+          titulo: 'Palavras diferentes',
+          pre: ['en2l1'],
           exs: [
             {
               t: 'texto',
-              titulo: 'Poder: saber, conseguir, ter permissão',
+              titulo: 'A mesma coisa, outro nome',
               blocos: [
                 {
-                  p: '**Can** cobre três sentidos que o português separa: saber fazer, como em ((I can swim.)) (sei nadar); conseguir, como em ((I can\'t hear you.)) (não consigo te ouvir); e ter permissão, como em ((Can I sit here?)) (posso sentar aqui?).'
+                  p: 'Americanos e britânicos se entendem sem problema, mas usam palavras diferentes para várias coisas do dia a dia. Nesta lição, cada par toca primeiro no sotaque americano e depois no britânico, não importa qual você escolheu.'
                 },
                 {
-                  p: 'Can é um **modal**, e os modais têm regras próprias: não ganham -s (é ((she can)), nunca "she cans"), não usam do nas perguntas (é ((Can you help me?)), sem do) e o verbo depois deles fica na forma básica, sem to (é ((I can go)), nunca "I can to go").'
+                  pares: [
+                    ['apartment', 'flat', 'apartamento'],
+                    ['elevator', 'lift', 'elevador'],
+                    ['cell phone', 'mobile phone', 'celular'],
+                    ['vacation', 'holiday', 'férias'],
+                    ['line', 'queue', 'fila'],
+                    ['subway', 'underground', 'metrô (em Londres, também the Tube)'],
+                    ['truck', 'lorry', 'caminhão'],
+                    ['gas', 'petrol', 'gasolina'],
+                    ['cookie', 'biscuit', 'biscoito'],
+                    ['French fries', 'chips', 'batata frita'],
+                    ['chips', 'crisps', 'batata de saquinho'],
+                    ['soccer', 'football', 'futebol'],
+                    ['sneakers', 'trainers', 'tênis'],
+                    ['trash', 'rubbish', 'lixo'],
+                    ['movie', 'film', 'filme'],
+                    ['restroom', 'toilet', 'banheiro (fora de casa)']
+                  ],
+                  sotaques: ['us', 'uk']
+                },
+                { p: '**Três armadilhas de verdade:**' },
+                {
+                  p: '**Chips:** nos EUA, é batata de saquinho; no Reino Unido, é batata frita (como em fish and chips).'
                 },
                 {
-                  p: '**Por que os modais são assim?** Eles vêm de verbos antigos que já se comportavam de um jeito especial, e o uso constante congelou a forma. Pense neles como peças fixas que se encaixam antes do verbo.'
-                },
-                { p: '**Could** é o passado de can e também a forma educada:' },
-                {
-                  tabela: {
-                    cab: ['Sentido', 'Exemplo'],
-                    codigo: [],
-                    linhas: [
-                      ['Sabia, conseguia (passado)', '((I could read when I was four.))'],
-                      ['Pedido educado', '((Could you help me, please?))'],
-                      ['Possibilidade', '((It could rain later.))']
-                    ]
-                  }
+                  p: '**Pants:** nos EUA, é calça. No Reino Unido, pants é **roupa de baixo**. Calça, lá, é ((trousers)). Elogiar as "pants" de um britânico pode criar uma situação engraçada.'
                 },
                 {
-                  p: 'Para tempos que o can não tem (futuro, present perfect), usa-se **be able to**: ((I\'ll be able to help you tomorrow.)) (Vou poder te ajudar amanhã.)'
+                  p: '**Os andares:** no Reino Unido, o térreo é ((ground floor)), e o first floor é o andar de cima, como no Brasil. Nos EUA, o térreo já é o first floor. Então o "primeiro andar" de um americano é o térreo para um britânico.'
                 },
-                { pares: [['I can do it.', 'I can\'t do it.', 'can fraco × can\'t forte']] }
+                {
+                  dica: 'Nos dois países, todo mundo entende as duas formas, graças a filmes e séries. Use a do sotaque que você escolheu e não se preocupe em misturar de vez em quando.',
+                  rotulo: 'Relaxa'
+                }
               ]
             },
             {
               t: 'escolha',
-              p: 'Qual está certa?',
+              p: 'No Reino Unido, "chips" são...',
               ops: [
-                'She can speak three languages.',
-                'She cans speak three languages.',
-                'She can to speak three languages.'
+                'Batatas fritas, como as de fish and chips',
+                'Batatas de saquinho',
+                'Fichas de jogo'
               ],
               c: 0,
-              exp: 'Modais não ganham -s, e o verbo depois deles vem sem to.'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Posso sentar aqui?"',
-              r: ['Can I sit here?', 'Could I sit here?', 'May I sit here?']
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Eu não consigo te ouvir."',
-              r: ['I can\'t hear you.']
+              exp: 'Batata de saquinho, no Reino Unido, é crisps.'
             },
             {
               t: 'escolha',
-              p: 'Qual pedido é o mais educado?',
+              p: 'Em Londres, alguém diz "I love your pants!". Do que está falando?',
+              ops: ['Da sua roupa de baixo', 'Da sua calça', 'Do seu tênis'],
+              c: 0,
+              exp: 'No Reino Unido, calça é trousers. Pants é a roupa de baixo.'
+            },
+            {
+              t: 'escolha',
+              p: 'Você está em Nova York e procura o elevador. Que palavra usa?',
+              ops: ['elevator', 'lift', 'escalator'],
+              c: 0,
+              exp: 'Nos EUA é elevator; no Reino Unido, lift. Escalator é a escada rolante.'
+            },
+            {
+              t: 'escolha',
+              p: 'Num prédio em Londres, você mora no "first floor". Onde fica isso para um americano?',
               ops: [
-                'Could you open the window, please?',
-                'Can you open the window?',
-                'Open the window.'
+                'No second floor, porque o térreo dele já é o first floor',
+                'No first floor também',
+                'No subsolo'
               ],
               c: 0,
-              exp: 'Could suaviza o pedido.'
+              exp: 'No Reino Unido, o térreo é ground floor, como no Brasil. Nos EUA, o térreo é o first floor.'
             },
             {
               t: 'escolha',
               p: 'O que você ouviu?',
-              ouvir: 'I can\'t do it.',
-              ops: ['I can\'t do it.', 'I can do it.'],
-              c: 0,
-              exp: 'Can\'t é forte e longo; can, na afirmativa, é fraco.'
+              ouvir: 'Let\'s take the underground.',
+              ops: [
+                'Let\'s take the underground.',
+                'Let\'s take the elevator.',
+                'Let\'s take the lift.'
+              ],
+              c: 0
             },
+            { t: 'escreva', p: 'Como um americano diz "fila"?', r: ['line'] },
             {
-              t: 'monte',
-              p: 'Monte a frase: "Eu sabia ler quando tinha quatro anos."',
-              r: 'I could read when I was four.',
-              extra: ['can', 'had', 'years']
+              t: 'escreva',
+              p: 'E um britânico?',
+              r: ['queue'],
+              exp: 'Queue soa "kiú": as letras ueue não se pronunciam como se escreve.'
             },
             {
               t: 'escreva',
               p: 'Escreva o que você ouviu',
-              ouvir: 'Could you help me, please?'
+              ouvir: 'We were on [[vacation|holiday]] in July.',
+              exp: 'Férias é vacation nos EUA e holiday no Reino Unido.'
             }
           ]
         },
         {
           id: 'en9l2',
-          titulo: 'Should, must e have to',
+          titulo: 'Escrita e gramática',
           pre: ['en9l1'],
           exs: [
             {
               t: 'texto',
-              titulo: 'Conselho e obrigação',
+              titulo: 'Colour ou color?',
               blocos: [
                 {
-                  p: '**Should** é conselho, o nosso "deveria": ((You should drink more water.)) ((You shouldn\'t work so late.))'
+                  p: 'A grafia americana ficou mais simples por causa de Noah Webster, que publicou um dicionário em 1828 querendo uma escrita mais próxima da fala e própria do novo país. Os britânicos mantiveram a grafia antiga, com mais marcas do francês.'
                 },
-                {
-                  p: '**Must** e **have to** são obrigação, o nosso "tem que": ((I have to work tomorrow.)) ((You must wear a seatbelt.)) Na conversa, have to é bem mais comum. Must aparece em regras escritas e em obrigações que a própria pessoa sente: ((I must call my [[mom|mum]].))'
-                },
-                { p: '**A armadilha:** na negativa, os dois se separam completamente.' },
                 {
                   tabela: {
-                    cab: ['Forma', 'Sentido', 'Exemplo'],
+                    cab: ['Padrão', 'EUA', 'Reino Unido'],
                     codigo: [],
                     linhas: [
                       [
-                        'mustn\'t',
-                        'proibido: não pode',
-                        '((You mustn\'t smoke here.)) (É proibido fumar aqui.)'
+                        '-or / -our',
+                        'color, favorite, neighbor',
+                        'colour, favourite, neighbour'
                       ],
+                      ['-er / -re', 'center, theater', 'centre, theatre'],
                       [
-                        'don\'t have to',
-                        'não é obrigatório: não precisa',
-                        '((You don\'t have to come.)) (Você não precisa vir.)'
-                      ]
+                        '-ize / -ise',
+                        'realize, organize',
+                        'realise, organise (as duas formas existem)'
+                      ],
+                      ['l / ll', 'traveled, canceled', 'travelled, cancelled'],
+                      ['-se / -ce', 'defense, license', 'defence, licence']
+                    ]
+                  }
+                },
+                { p: '**Na gramática**, as diferenças são poucas:' },
+                {
+                  tabela: {
+                    cab: ['', 'EUA', 'Reino Unido'],
+                    codigo: [],
+                    linhas: [
+                      ['Ter', '((Do you have a pen?))', '((Have you got a pen?))'],
+                      [
+                        'Particípio de get',
+                        '((It has gotten worse.))',
+                        '((It has got worse.))'
+                      ],
+                      ['Grupos', '((The team is winning.))', '((The team are winning.))'],
+                      ['Fim de semana', '((on the weekend))', '((at the weekend))'],
+                      ['Algo recente', '((Did you eat yet?))', '((Have you eaten yet?))']
                     ]
                   }
                 },
                 {
-                  p: 'Confundir os dois muda tudo: dizer a um convidado "You mustn\'t come" é proibir a pessoa de vir, quando você só queria dizer que não era obrigado.'
+                  p: '**As datas:** nos EUA, o mês vem primeiro. 03/04 é 4 de março (March 4th). No Reino Unido, como no Brasil, 03/04 é 3 de abril. Em documentos e formulários, confira de que país eles são.'
                 },
                 {
-                  p: '**Para não esquecer:** have to se conjuga como verbo comum, como em ((she has to)) e ((did you have to?)), e na fala vira "háfta": ((I have to go.))'
-                },
-                {
-                  dica: 'Must também serve para deduções: She must be tired = ela deve estar cansada (tenho quase certeza). É o mesmo "dever" do português, com outro sentido.',
-                  rotulo: 'Um must diferente'
+                  dica: 'Para provas como o Enem, as duas grafias valem. O importante é escolher uma e manter a mesma do começo ao fim do texto.',
+                  rotulo: 'Na escrita, seja coerente'
                 }
               ]
             },
             {
               t: 'escolha',
-              p: 'Seu amigo está gripado. O que você aconselha?',
-              ops: ['You should rest.', 'You must to rest.', 'You don\'t have to rest.'],
+              p: 'Qual é a grafia britânica?',
+              ops: ['colour', 'color', 'coulor'],
               c: 0,
-              exp: 'Conselho: should. Lembre: modais não levam to depois.'
+              exp: 'O Reino Unido manteve o -our, que veio do francês.'
             },
             {
               t: 'escolha',
-              p: '"You mustn\'t park here." O que quer dizer?',
-              ops: [
-                'É proibido estacionar aqui',
-                'Você não precisa estacionar aqui',
-                'Você deveria estacionar aqui'
-              ],
+              p: 'Num formulário americano, a data 03/04 quer dizer...',
+              ops: ['4 de março', '3 de abril', '3 de março'],
               c: 0,
-              exp: 'Mustn\'t é proibição.'
+              exp: 'Nos EUA, o mês vem antes do dia.'
             },
+            { t: 'escreva', p: 'Escreva "centro" na grafia americana.', r: ['center'] },
             {
               t: 'escolha',
-              p: '"You don\'t have to bring anything." O que quer dizer?',
-              ops: [
-                'Você não precisa trazer nada',
-                'Você não pode trazer nada',
-                'Você deveria trazer algo'
-              ],
+              p: 'Qual destas perguntas soa mais britânica?',
+              ops: ['Have you got a pen?', 'Do you have a pen?', 'You have a pen?'],
               c: 0,
-              exp: 'Don\'t have to: não é obrigatório.'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Eu tenho que trabalhar amanhã."',
-              r: [
-                'I have to work tomorrow.',
-                'I must work tomorrow.',
-                'I\'ve got to work tomorrow.',
-                'I gotta work tomorrow.'
-              ]
-            },
-            {
-              t: 'complete',
-              p: 'Complete:',
-              code: 'She ___ to wake up early. You ___ worry, it\'s fine.',
-              bank: ['has', 'don\'t have to', 'have', 'mustn\'t'],
-              c: ['has', 'don\'t have to'],
-              exp: 'She has to: com she, have vira has. Não precisa se preocupar: don\'t have to.'
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'You should drink more water.',
-              ops: [
-                'You should drink more water.',
-                'You shouldn\'t drink more water.',
-                'You could drink more water.'
-              ],
-              c: 0
-            },
-            {
-              t: 'monte',
-              p: 'Monte a frase: "Você não precisa vir."',
-              r: ['You don\'t have to come.', 'You don\'t need to come.'],
-              extra: ['mustn\'t', 'need', 'to']
-            },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'I have to go now.' }
-          ]
-        },
-        {
-          id: 'en9l3',
-          titulo: 'Se: as condicionais',
-          pre: ['en9l1', 'en4l2'],
-          exs: [
-            {
-              t: 'texto',
-              titulo: 'If',
-              blocos: [
-                {
-                  p: 'Frases com **if** (se) têm três formas muito usadas. O que muda é **o quanto aquilo é real**.'
-                },
-                {
-                  tabela: {
-                    cab: ['Tipo', 'Estrutura', 'Exemplo'],
-                    codigo: [],
-                    linhas: [
-                      [
-                        'Sempre verdade',
-                        'if + presente, presente',
-                        '((If you heat ice, it melts.))'
-                      ],
-                      [
-                        'Possível, real',
-                        'if + presente, will',
-                        '((If it rains, I\'ll stay home.))'
-                      ],
-                      [
-                        'Imaginário',
-                        'if + passado, would',
-                        '((If I had money, I would travel.))'
-                      ]
-                    ]
-                  }
-                },
-                {
-                  p: '**Atenção à segunda:** depois do if, o inglês usa o **presente**, mesmo falando do futuro. "If it will rain" está errado. Em português, também dizemos "se chover", e não "se vai chover".'
-                },
-                {
-                  p: '**Por que o passado na terceira?** Em ((If I had money...)), não se fala do passado: fala-se de algo que não é real agora. O inglês usa o passado como uma forma de **distância**: assim como o passado está longe no tempo, a situação imaginária está longe da realidade. O português faz algo parecido com "se eu tivesse".'
-                },
-                {
-                  p: 'Com to be, na condição imaginária, o padrão é were para todas as pessoas: ((If I were you, I would go.)) (Se eu fosse você, eu iria.) Na conversa também se ouve "if I was", mas a frase "If I were you" é fixa.'
-                },
-                { p: 'Na fala, would vira **\'d**: ((I\'d travel)), ((she\'d say yes)).' },
-                {
-                  dialogo: [
-                    [
-                      'Mia',
-                      'If you could live anywhere, where would you go?',
-                      'Se você pudesse morar em qualquer lugar, para onde iria?'
-                    ],
-                    [
-                      'Dan',
-                      'Probably Portugal. If I spoke better English, I\'d try Canada.',
-                      'Provavelmente Portugal. Se eu falasse inglês melhor, tentaria o Canadá.'
-                    ],
-                    [
-                      'Mia',
-                      'Your English is good! If you [[practice|practise]] every day, you\'ll get there.',
-                      'Seu inglês é bom! Se você praticar todo dia, você chega lá.'
-                    ]
-                  ]
-                }
-              ]
-            },
-            {
-              t: 'complete',
-              p: 'Complete:',
-              code: 'If it ___ tomorrow, I ___ stay home.',
-              bank: ['rains', 'will', 'will rain', 'would'],
-              c: ['rains', 'will'],
-              exp: 'Depois do if, presente: rains. Na outra parte, will.'
-            },
-            {
-              t: 'escolha',
-              p: 'Qual está certa?',
-              ops: [
-                'If I had more time, I\'d learn to play the guitar.',
-                'If I would have more time, I learn the guitar.',
-                'If I have more time, I would learned the guitar.'
-              ],
-              c: 0,
-              exp: 'Situação imaginária: if + passado, would + verbo.'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Se eu fosse você, eu iria."',
-              r: [
-                'If I were you, I would go.',
-                'If I were you, I\'d go.',
-                'If I was you, I would go.',
-                'If I was you, I\'d go.'
-              ]
-            },
-            {
-              t: 'escolha',
-              p: 'Por que "If I had money" usa o passado?',
-              ops: [
-                'O passado aqui mostra distância da realidade: não é real agora',
-                'Porque a frase fala do passado',
-                'Porque have é irregular'
-              ],
-              c: 0,
-              exp: 'É um "passado de imaginação", como o nosso "se eu tivesse".'
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'If it rains, I\'ll stay home.',
-              ops: [
-                'If it rains, I\'ll stay home.',
-                'If it rained, I\'d stay home.',
-                'If it rains, I stay home.'
-              ],
-              c: 0
-            },
-            {
-              t: 'monte',
-              p: 'Monte a frase: "Se você praticar, vai melhorar."',
-              r: 'If you [[practice|practise]], you\'ll get better.',
-              extra: ['will', 'practices', 'would'],
-              exp: 'O verbo praticar se escreve practice nos EUA e practise no Reino Unido.'
+              exp: 'Have got para posse é muito mais comum no Reino Unido.'
             },
             {
               t: 'escreva',
               p: 'Escreva o que você ouviu',
-              ouvir: 'If I had more time, I would travel.'
+              ouvir: 'What is your [[favorite|favourite]] [[color|colour]]?',
+              exp: 'Nos dois sotaques a pronúncia é parecida; muda a escrita. As duas grafias são aceitas aqui.'
+            },
+            {
+              t: 'escolha',
+              p: '"The team are playing well." Essa frase é...',
+              ops: [
+                'Correta no inglês britânico, que vê o time como um grupo de pessoas',
+                'Errada em qualquer lugar',
+                'Correta só nos EUA'
+              ],
+              c: 0,
+              exp: 'Nos EUA, o mais comum é the team is.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Você já comeu?" (no estilo britânico)',
+              r: ['Have you eaten yet?', 'Have you eaten?', 'Have you eaten already?']
+            }
+          ]
+        },
+        {
+          id: 'en9l3',
+          titulo: 'Os sotaques',
+          pre: ['en9l1', 'en6l3'],
+          exs: [
+            {
+              t: 'texto',
+              titulo: 'Mesmas palavras, outros sons',
+              blocos: [
+                {
+                  p: 'Nesta lição, cada par toca primeiro no sotaque americano e depois no britânico.'
+                },
+                {
+                  pares: [
+                    [
+                      'car',
+                      'car',
+                      'o r depois da vogal: nos EUA, pronunciado; no Reino Unido, some'
+                    ],
+                    [
+                      'water',
+                      'water',
+                      'o t: nos EUA, vira um toque rápido ("uóder"); no Reino Unido, fica claro'
+                    ],
+                    [
+                      'can\'t',
+                      'can\'t',
+                      'a vogal: nos EUA, um a aberto; no Reino Unido, um "á" longo'
+                    ],
+                    [
+                      'hot',
+                      'hot',
+                      'o o: nos EUA, quase um "á"; no Reino Unido, um "ó" arredondado'
+                    ],
+                    ['schedule', 'schedule', 'nos EUA, "skédjul"; no Reino Unido, "shédjul"'],
+                    ['tomato', 'tomato', 'nos EUA, "toméirou"; no Reino Unido, "tomátou"']
+                  ],
+                  sotaques: ['us', 'uk']
+                },
+                {
+                  p: '**Qual escolher?** O que você mais gosta de ouvir, ou o que você mais vai usar. A maior parte do que se ouve em filmes, séries e na internet é americano. O britânico aparece muito em séries, no futebol e na BBC.'
+                },
+                {
+                  p: '**O que importa de verdade** é ser entendido e ser coerente. Misturar um pouco não é problema, mas um sotaque mais consistente soa mais natural.'
+                },
+                {
+                  p: 'E não existem só esses dois. O inglês é falado como primeira língua na Irlanda, na Escócia, na Austrália, na Nova Zelândia, no Canadá, na África do Sul, e como língua oficial na Índia, na Nigéria e em dezenas de outros países. Nenhum sotaque é mais certo que outro.'
+                },
+                {
+                  dica: 'A maioria das pessoas que fala inglês no mundo não é nativa. Em viagens e no trabalho, você vai conversar mais com outros "estrangeiros" do que com americanos ou britânicos. Clareza vale mais que sotaque perfeito.',
+                  rotulo: 'Uma coisa que pouca gente sabe'
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Em que sotaque o r de car desaparece?',
+              ops: ['No britânico', 'No americano', 'Nos dois'],
+              c: 0,
+              exp: 'No Reino Unido, o r depois da vogal só aparece se vier outra vogal em seguida.'
+            },
+            {
+              t: 'escolha',
+              p: 'Ouça o water. Que sotaque é esse?',
+              ouvir: 'water',
+              sotaque: 'us',
+              ops: [
+                'Americano: o t virou um toque rápido, quase um r',
+                'Britânico: o t ficou bem claro'
+              ],
+              c: 0,
+              exp: 'Nos EUA, o t entre vogais vira um toque rápido da língua.'
+            },
+            {
+              t: 'escolha',
+              p: 'Ouça o car. Que sotaque é esse?',
+              ouvir: 'car',
+              sotaque: 'uk',
+              ops: ['Britânico: o r do fim sumiu', 'Americano: o r do fim aparece'],
+              c: 0,
+              exp: 'No Reino Unido, o r no fim da palavra some.'
+            },
+            {
+              t: 'escolha',
+              p: 'Qual sotaque é o "certo"?',
+              ops: [
+                'Nenhum: todos são inglês de verdade',
+                'O britânico, porque o inglês nasceu lá',
+                'O americano, porque é o mais falado'
+              ],
+              c: 0,
+              exp: 'Todo sotaque é uma variedade legítima. O importante é ser entendido.'
+            },
+            {
+              t: 'escolha',
+              p: 'Para quem está aprendendo, o mais importante sobre sotaque é...',
+              ops: [
+                'Ser entendido e ser coerente',
+                'Imitar perfeitamente um nativo',
+                'Evitar falar até perder o sotaque brasileiro'
+              ],
+              c: 0,
+              exp: 'Sotaque não é erro. Clareza é o que conta.'
+            },
+            {
+              t: 'escreva',
+              p: 'Escreva o que você ouviu',
+              ouvir: 'I usually take the [[subway|underground]] to work.'
             }
           ]
         }

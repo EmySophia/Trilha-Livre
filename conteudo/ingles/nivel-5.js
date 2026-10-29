@@ -1,553 +1,750 @@
-/* Trilha Livre · Inglês do zero · Nível 5: Pronúncia que muda tudo
+/* Trilha Livre · Inglês do zero · Nível 5: O passado (A1–A2)
    Conteúdo sob licença CC BY-NC-SA 4.0 (veja conteudo/LICENCA.md). O formato das lições está explicado em CONTRIBUINDO.md.
    ((frase)) tem botão de ouvir; [[americano|britânico]] muda com o sotaque escolhido. */
 
 nivel({
   curso: 'ingles',
   n: 5,
-  titulo: 'Pronúncia que muda tudo',
-  desc: 'Os sons que o português não tem, vogais curtas e longas, a sílaba forte, o schwa e a fala rápida de verdade.',
+  titulo: 'O passado',
+  faixa: 'A1–A2',
+  desc: 'O passado simples, o som do -ed, os irregulares mais usados, did, was e were, used to, o past continuous e duas histórias para ouvir.',
   videos: [
     {
       titulo: 'Rachel\'s English',
       canal: 'Rachel Smith',
-      obs: 'o canal mais completo de pronúncia americana: posição da boca e câmera lenta',
+      obs: 'a pronúncia do -ed em inglês americano, com exemplos em câmera lenta',
       url: 'https://www.youtube.com/@rachelsenglish'
-    },
-    {
-      titulo: 'English with Lucy',
-      canal: 'Lucy Earl',
-      obs: 'pronúncia britânica, com os sons difíceis explicados um por um',
-      url: 'https://www.youtube.com/@EnglishwithLucy'
     },
     {
       titulo: 'English in Brazil',
       canal: 'Carina Fragozo',
-      obs: 'os erros de pronúncia mais comuns de brasileiros, explicados em português',
+      obs: 'verbos irregulares e as dúvidas mais comuns sobre o passado',
       url: 'https://www.youtube.com/user/carinafragozo'
     },
     {
-      tipo: 'texto',
-      titulo: 'YouGlish',
-      canal: 'YouGlish',
-      obs: 'digite uma palavra e ouça pessoas de verdade falando, em vídeos do YouTube, com o sotaque que você escolher',
-      url: 'https://youglish.com/english'
+      titulo: 'BBC Learning English',
+      canal: 'BBC',
+      obs: 'histórias curtas e notícias para praticar o passado ouvindo',
+      url: 'https://www.youtube.com/@bbclearningenglish'
     }
   ],
   unidades: [
     {
       id: 'enu9',
-      titulo: 'Sons que o português não tem',
-      conceito: 'think · ship · sheep',
-      desc: 'O th, as vogais curtas e longas, o h, o r e o fim das palavras.',
+      titulo: 'O passado simples',
+      conceito: 'worked · went · did',
+      desc: 'Os verbos regulares e o som do -ed, os irregulares e o ajudante did.',
       licoes: [
         {
           id: 'en5l1',
-          titulo: 'O TH',
+          titulo: 'Verbos regulares e o som do -ed',
+          pre: ['en4l1'],
           exs: [
             {
               t: 'texto',
-              titulo: 'A língua entre os dentes',
+              titulo: 'O -ed e os seus três sons',
               blocos: [
                 {
-                  p: 'O **th** é o som mais famoso do inglês que não existe em português. Ele tem duas versões, e as duas se fazem do mesmo jeito: a ponta da língua encosta de leve entre os dentes da frente, e o ar passa por ali.'
+                  p: 'O passado dos verbos regulares é o verbo com **-ed**, igual para todas as pessoas: ((I worked)), ((she worked)), ((they worked)). Sem -s da terceira pessoa, sem conjugação. Aqui o inglês é mais fácil que o português.'
                 },
                 {
                   tabela: {
-                    cab: ['Versão', 'Como fazer', 'Exemplos'],
+                    cab: ['Regra da escrita', 'Exemplos'],
                     codigo: [],
                     linhas: [
+                      ['Regra geral: -ed', '((work)) → ((worked)), ((play)) → ((played))'],
+                      ['Termina em e: só -d', '((live)) → ((lived)), ((like)) → ((liked))'],
+                      ['Consoante + y: -ied', '((study)) → ((studied)), ((try)) → ((tried))'],
                       [
-                        'Sem voz',
-                        'só o ar passando, como um sopro',
-                        '((think)), ((three)), ((thanks)), ((birthday)), (([[math|maths]]))'
-                      ],
-                      [
-                        'Com voz',
-                        'o mesmo, mas com a garganta vibrando',
-                        '((this)), ((the)), ((they)), ((mother)), ((brother))'
+                        'Uma vogal + uma consoante, sílaba forte: dobra',
+                        '((stop)) → ((stopped)), ((plan)) → ((planned))'
                       ]
                     ]
                   }
                 },
                 {
-                  p: 'Para sentir a diferença, ponha a mão na garganta: em ((this)) ela vibra; em ((think)), não.'
+                  p: '**A pronúncia é o que mais importa aqui.** Quase todo brasileiro pronuncia o -ed como "id": "uórk-id", "plêi-id". Na maioria das vezes, o -ed **não cria sílaba nenhuma**. Ele tem três sons:'
                 },
                 {
-                  p: '**O que o brasileiro costuma fazer:** trocar o th por f, t, s ou d. ((think)) vira "fink" ou "sink", ((three)) vira "tree" ou "free", ((this)) vira "dis". Às vezes isso só deixa o sotaque mais forte; às vezes muda a palavra. Ouça os pares:'
+                  tabela: {
+                    cab: ['Som', 'Quando', 'Exemplos'],
+                    codigo: [],
+                    linhas: [
+                      [
+                        't',
+                        'depois de sons "sem voz": p, k, f, s, sh, ch',
+                        '((worked)), ((stopped)), ((laughed)), ((watched))'
+                      ],
+                      [
+                        'd',
+                        'depois de vogais e de sons "com voz": b, g, l, m, n, v, z',
+                        '((played)), ((lived)), ((called)), ((cleaned))'
+                      ],
+                      [
+                        'id (sílaba a mais)',
+                        'só depois de t e d',
+                        '((wanted)), ((needed)), ((started)), ((decided))'
+                      ]
+                    ]
+                  }
+                },
+                {
+                  p: '**Por que só depois de t e d?** É a mesma lógica do -s do plural. Juntar o som de t ou d ao -ed seria impossível ("want-t"), então entra uma vogal para separar. Em todos os outros casos, o som gruda no fim da palavra: ((worked)) tem uma sílaba só, como "uôrkt".'
                 },
                 {
                   pares: [
-                    ['think', 'sink', 'pensar × pia, afundar'],
-                    ['three', 'tree', 'três × árvore'],
-                    ['thank', 'tank', 'agradecer × tanque'],
-                    ['they', 'day', 'eles × dia'],
-                    ['thought', 'taught', 'pensou × ensinou'],
-                    ['mouth', 'mouse', 'boca × rato']
+                    ['walked', 'wanted', 'uma sílaba × duas sílabas'],
+                    ['played', 'painted', 'uma sílaba × duas sílabas']
                   ]
                 },
                 {
-                  p: '**Para treinar:** fale devagar, exagerando a língua para fora no começo. Com o tempo, ela vai para trás dos dentes e o som fica natural. Repita estas frases em voz alta, junto com o áudio:'
-                },
-                { fala: 'Thank you. I think so.', trad: 'Obrigado. Acho que sim.' },
-                {
-                  fala: 'My brother and my mother are there.',
-                  trad: 'Meu irmão e minha mãe estão lá.'
-                },
-                { fala: 'Three thousand three hundred.', trad: 'Três mil e trezentos.' },
-                {
-                  dica: 'Ninguém precisa de um th perfeito para ser entendido. Muitos nativos da Irlanda e de partes de Londres também o trocam por t ou f. Mas, quando a troca cria outra palavra (three e tree), o contexto precisa ajudar, e vale caprichar.',
-                  rotulo: 'Calma'
+                  dica: 'Treine falando em voz alta: worked, watched, played, lived. Só uma sílaba cada. Depois: wanted, needed, started. Essas, sim, com duas.',
+                  rotulo: 'Treino'
                 }
               ]
             },
             {
               t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'think',
-              ops: ['think', 'sink', 'pink'],
+              p: 'Quantas sílabas tem ((worked))?',
+              ops: ['Uma', 'Duas', 'Três'],
               c: 0,
-              exp: 'Think tem a língua entre os dentes. Sink começa com um s comum.'
+              exp: 'O -ed depois de k soa como t e não forma sílaba: "uôrkt".'
+            },
+            {
+              t: 'escolha',
+              p: 'Em qual destas palavras o -ed forma uma sílaba a mais?',
+              ops: ['needed', 'played', 'watched'],
+              c: 0,
+              exp: 'A sílaba extra só aparece depois de t ou d. Need termina em d.'
+            },
+            {
+              t: 'complete',
+              p: 'Complete com o passado:',
+              code: 'Yesterday I ___ my room and ___ a movie.',
+              bank: ['cleaned', 'watched', 'clean', 'watch'],
+              c: ['cleaned', 'watched'],
+              exp: 'Yesterday pede o passado: cleaned e watched.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Ela estudou ontem."',
+              r: ['She studied yesterday.'],
+              exp: 'Study, com consoante + y, vira studied.'
             },
             {
               t: 'escolha',
               p: 'O que você ouviu?',
-              ouvir: 'three',
-              ops: ['three', 'tree', 'free'],
+              ouvir: 'I walked to work.',
+              ops: ['I walked to work.', 'I walk to work.', 'I worked at home.'],
               c: 0,
-              exp: 'Três é three, com th. Tree, com t, é árvore.'
+              exp: 'Walked soa "uókt": o -ed vira só um t.'
             },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'they',
-              ops: ['they', 'day', 'hey'],
-              c: 0,
-              exp: 'They tem o th com voz; day começa com d.'
-            },
-            {
-              t: 'escolha',
-              p: 'Como se faz o som do th?',
-              ops: [
-                'A ponta da língua encosta de leve entre os dentes da frente e o ar passa',
-                'Os lábios se fecham, como no f',
-                'A língua toca o céu da boca, como no t'
-              ],
-              c: 0,
-              exp: 'É a única posição de língua do inglês que o português não usa.'
-            },
-            {
-              t: 'escolha',
-              p: 'Em qual destas palavras o th tem voz (a garganta vibra)?',
-              ops: ['mother', '[[math|maths]]', 'thanks'],
-              c: 0,
-              exp: 'Mother, this, the, they: th com voz. [[Math|Maths]], thanks, think: sem voz.'
-            },
-            { t: 'escreva', p: 'Traduza: "Eu acho que sim."', r: ['I think so.'] },
             {
               t: 'monte',
-              p: 'Monte: "minha mãe e meu irmão"',
-              r: ['my mother and my brother', 'my mom and my brother'],
-              extra: ['the', 'mom', 'with']
+              p: 'Monte a frase: "Nós moramos em Recife por dois anos."',
+              r: 'We lived in Recife for two years.',
+              extra: ['live', 'during', 'by'],
+              exp: 'For indica quanto tempo durou: for two years.'
             },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'Thank you so much.' }
+            {
+              t: 'escolha',
+              p: 'Por que dizer "uórk-id" para worked soa errado?',
+              ops: [
+                'Porque o -ed só vira uma sílaba depois de t ou d; depois de k, ele soa só como t',
+                'Porque worked é irregular',
+                'Porque o certo é "uórk-éd"'
+              ],
+              c: 0,
+              exp: 'Na maioria dos verbos, o -ed gruda no final: worked, liked, stopped.'
+            },
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'They started at nine.' }
           ]
         },
         {
           id: 'en5l2',
-          titulo: 'Vogais curtas e longas',
+          titulo: 'Os irregulares de todo dia',
           pre: ['en5l1'],
           exs: [
             {
               t: 'texto',
-              titulo: 'Ship ou sheep?',
+              titulo: 'Os que não seguem o -ed',
               blocos: [
                 {
-                  p: 'O português tem um i só. O inglês tem dois: um **curto e relaxado**, entre o nosso i e o ê, e um **longo e esticado**, como o nosso i, só que mais comprido. Essa diferença muda a palavra.'
+                  p: 'Alguns verbos fazem o passado do seu próprio jeito. **Por que existem?** São formas muito antigas, que mudavam a vogal no passado (como sing, sang). Quase todos os verbos perderam isso e passaram a usar -ed. Os que resistiram são justamente os mais usados, porque palavra muito usada não deixa a gente esquecer a forma antiga. Por isso a lista parece injusta: os irregulares são os verbos que você mais vai precisar.'
                 },
+                { p: 'Comece por estes, que aparecem em quase toda conversa:' },
                 {
-                  pares: [
-                    ['ship', 'sheep', 'navio × ovelha'],
-                    ['live', 'leave', 'morar × sair'],
-                    ['sit', 'seat', 'sentar × assento'],
-                    ['fill', 'feel', 'encher × sentir'],
-                    ['it', 'eat', 'isso × comer']
+                  vocab: [
+                    ['go, went', 'ir, fui'],
+                    ['have, had', 'ter, tive'],
+                    ['do, did', 'fazer, fiz'],
+                    ['get, got', 'conseguir, receber, ficar'],
+                    ['make, made', 'fazer, criar'],
+                    ['say, said', 'dizer', 'said soa "séd"'],
+                    ['see, saw', 'ver, vi'],
+                    ['come, came', 'vir, vim'],
+                    ['take, took', 'pegar, levar'],
+                    ['give, gave', 'dar, dei'],
+                    ['know, knew', 'saber, soube', 'knew soa igual a new'],
+                    ['think, thought', 'pensar, pensei'],
+                    ['buy, bought', 'comprar, comprei'],
+                    ['find, found', 'encontrar, encontrei'],
+                    ['tell, told', 'contar, contei'],
+                    ['leave, left', 'sair, deixar']
                   ]
                 },
                 {
-                  p: '**Como treinar o curto:** relaxe a boca, sem sorrir, como se fosse falar "ê" e parasse no meio do caminho. **O longo:** sorria um pouco e estique o som. Na escrita, ee e ea costumam ser longos (sheep, leave, eat), e o i sozinho entre consoantes costuma ser curto (ship, live, sit).'
+                  p: '**Um truque:** muitos irregulares andam em grupos com o mesmo som. Aprender o grupo é mais fácil do que decorar um por um.'
                 },
                 {
-                  dica: 'Brasileiros costumam falar todas essas palavras com o i longo. Cuidado especial com sheet (folha) e beach (praia): elas têm o i longo. Com o i curto, viram palavrões.',
-                  rotulo: 'Atenção'
+                  tabela: {
+                    cab: ['Grupo', 'Exemplos'],
+                    codigo: [],
+                    linhas: [
+                      [
+                        '-ought / -aught (soam igual)',
+                        '((thought)), ((bought)), ((brought)), ((taught)), ((caught))'
+                      ],
+                      ['i → a', '((sing, sang)), ((drink, drank)), ((swim, swam))'],
+                      ['não muda nada', '((put)), ((cut)), ((hit)), ((let))']
+                    ]
+                  }
                 },
-                { p: 'O mesmo acontece com o u e com o a:' },
                 {
-                  pares: [
-                    ['full', 'fool', 'cheio × bobo: u curto × u longo'],
-                    ['pull', 'pool', 'puxar × piscina'],
-                    ['bad', 'bed', 'ruim × cama'],
-                    ['man', 'men', 'homem × homens'],
-                    ['sad', 'said', 'triste × disse']
-                  ]
-                },
-                {
-                  p: 'O a de ((bad)), ((man)) e ((cat)) é um som aberto, entre o nosso a e o é, com a boca bem aberta. É um dos sons mais marcantes do inglês americano.'
+                  dica: 'O passado irregular só vale nas frases afirmativas. Na pergunta e na negativa, o did assume o passado e o verbo volta ao normal: Did you go? (e nunca Did you went?). Isso é a próxima lição.',
+                  rotulo: 'Antes de continuar'
                 }
               ]
             },
             {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'ship',
-              ops: ['ship', 'sheep', 'shop'],
-              c: 0,
-              exp: 'Ship tem o i curto e relaxado. Sheep tem o i longo.'
+              t: 'complete',
+              p: 'Complete:',
+              code: 'Last year I ___ to Chile and ___ a lot of photos.',
+              bank: ['went', 'took', 'go', 'taked'],
+              c: ['went', 'took']
             },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'leave',
-              ops: ['leave', 'live', 'love'],
-              c: 0,
-              exp: 'Leave (sair) tem o i longo, escrito ea.'
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'bed',
-              ops: ['bed', 'bad', 'bird'],
-              c: 0,
-              exp: 'Bed (cama) tem um é. Bad (ruim) tem o a bem aberto.'
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'men',
-              ops: ['men', 'man', 'mean'],
-              c: 0,
-              exp: 'Men, o plural de man, tem o som de é.'
-            },
-            {
-              t: 'escolha',
-              p: 'Qual destas palavras tem o i longo?',
-              ops: ['seat', 'sit', 'city'],
-              c: 0,
-              exp: 'O ea costuma ser i longo: seat, eat, leave.'
-            },
-            {
-              t: 'escolha',
-              p: '"I live in São Paulo" com o i longo vira...',
-              ops: [
-                '"I leave São Paulo": eu saio de São Paulo',
-                'A mesma frase, só com sotaque',
-                '"Eu amo São Paulo"'
-              ],
-              c: 0,
-              exp: 'Live, com i curto, é morar. Leave, com i longo, é sair, partir.'
-            },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'I live in a big city.' },
             {
               t: 'escreva',
-              p: 'Traduza: "O navio é grande."',
-              r: ['The ship is big.', 'The ship is large.']
-            }
+              p: 'Traduza: "Eu comprei um celular novo."',
+              r: [
+                'I bought a new phone.',
+                'I bought a new cell phone.',
+                'I bought a new mobile.',
+                'I bought a new mobile phone.'
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Qual é o passado de think?',
+              ops: ['thought', 'thinked', 'thank'],
+              c: 0,
+              exp: 'Think, thought: do grupo do -ought, junto com bought e brought.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'She said no.',
+              ops: ['She said no.', 'She says no.', 'She said so.'],
+              c: 0,
+              exp: 'Said soa "séd", com e aberto curto. Não rima com paid.'
+            },
+            {
+              t: 'monte',
+              p: 'Monte a frase: "Eu vi um filme ótimo ontem."',
+              r: ['I saw a great movie yesterday.', 'I watched a great movie yesterday.'],
+              extra: ['see', 'seen', 'watched']
+            },
+            { t: 'escreva', p: 'Escreva o passado de go.', r: ['went'] },
+            {
+              t: 'escolha',
+              p: 'Ouça ((knew)). Que palavra tem exatamente o mesmo som?',
+              ops: ['new', 'now', 'know'],
+              c: 0,
+              exp: 'O k de knew é mudo, como o de know. Knew e new soam igual.'
+            },
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'We had a great time.' }
           ]
         },
         {
           id: 'en5l3',
-          titulo: 'O H, o R e o fim das palavras',
-          pre: ['en5l1'],
+          titulo: 'Did: perguntas e negativas no passado',
+          pre: ['en5l2', 'en4l2'],
           exs: [
             {
               t: 'texto',
-              titulo: 'Três sons que entregam o sotaque',
+              titulo: 'O ajudante do passado',
               blocos: [
                 {
-                  p: '**O h do inglês** é um sopro suave, como o rr de "carro" ou o r de "rato" em boa parte do Brasil: ((house)), ((hello)), ((happy)). Ele existe, e engolir o h muda palavras: ((hair)) (cabelo) vira ((air)) (ar).'
+                  p: 'Lembra do do e do does? No passado, o ajudante é **did**, e ele serve para todas as pessoas. Assim como o does pegava o -s do verbo, o **did pega o passado**: o verbo principal volta para a forma básica.'
                 },
                 {
-                  p: '**O r do inglês** é outro som: a ponta da língua se curva para trás, sem encostar em nada. E aqui mora uma confusão curiosa: como o nosso r de "rato" soa parecido com o h do inglês, muitos brasileiros falam ((red)) como se fosse ((head)), e ((ready)) como "hédi".'
+                  tabela: {
+                    cab: ['Afirmação', 'Pergunta', 'Negativa'],
+                    codigo: [],
+                    linhas: [
+                      [
+                        '((You went to the party.))',
+                        '((Did you go to the party?))',
+                        '((You didn\'t go to the party.))'
+                      ],
+                      [
+                        '((She called me.))',
+                        '((Did she call you?))',
+                        '((She didn\'t call me.))'
+                      ]
+                    ]
+                  }
                 },
                 {
-                  pares: [
-                    ['red', 'head', 'vermelho × cabeça'],
-                    ['hair', 'air', 'cabelo × ar'],
-                    ['hat', 'at', 'chapéu × em']
-                  ]
+                  p: '"Did you went?" e "I didn\'t saw" são erros muito comuns, porque o passado apareceria duas vezes: no did e no verbo. Uma vez só basta, e quem carrega é o did.'
                 },
                 {
-                  p: '**O r depois da vogal** é uma das maiores diferenças entre os sotaques. Nos EUA, ele é pronunciado: ((car)), ((park)), ((her)). No Reino Unido, ele some quando não vem vogal depois: car soa "cá", park soa "páak". Os dois estão certos.'
+                  p: '**Respostas curtas:** ((Did you like the movie?)) → ((Yes, I did.)) / ((No, I didn\'t.))'
                 },
                 {
-                  p: '**O fim das palavras.** O português quase não termina palavras em consoantes como t, d, k, g ou p. Por isso, brasileiros costumam acrescentar um i no fim: "Facebook-i", "big-i", "internet-chi". Em inglês, a palavra termina na consoante: ((big)), ((book)), ((good)), ((stop)), ((cat)).'
+                  p: 'Com palavra de pergunta: ((Where did you go?)), ((What did you do?)), ((When did it happen?)), ((Why did she leave?))'
                 },
                 {
-                  p: 'Truque para treinar: ligue a consoante final à próxima palavra, quando ela começa com vogal. ((big apple)) soa como "bi-gápple". Assim o i extra não tem onde entrar.'
-                },
-                {
-                  p: '**E o m final:** em ((I\'m)), ((time)) e ((name)), os lábios se fecham no fim. Em português, "tem" e "bom" não fecham a boca. Em inglês, fecham.'
-                },
-                {
-                  vocab: [
+                  dialogo: [
                     [
-                      'I need a big bag.',
-                      'Preciso de uma bolsa grande.',
-                      'nada de "bigi bégui"'
+                      'Zoe',
+                      'So, what did you do [[on the weekend|at the weekend]]?',
+                      'E aí, o que você fez no fim de semana?'
                     ],
-                    ['What time is it?', 'Que horas são?', 'feche os lábios no m de time'],
-                    ['Good job!', 'Bom trabalho!']
+                    [
+                      'Max',
+                      'Not much. I stayed home and watched a series. You?',
+                      'Nada de mais. Fiquei em casa vendo uma série. E você?'
+                    ],
+                    ['Zoe', 'I went to a concert!', 'Fui a um show!'],
+                    ['Max', 'Really? Did you have fun?', 'Sério? Você se divertiu?'],
+                    ['Zoe', 'Yes, I did. It was amazing.', 'Muito. Foi incrível.']
                   ]
+                },
+                {
+                  dica: 'Concert é show de música. A palavra show em inglês é mais usada para programas de TV e espetáculos.',
+                  rotulo: 'Show ou concert?'
                 }
               ]
             },
             {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'red',
-              ops: ['red', 'head', 'bed'],
-              c: 0,
-              exp: 'Red começa com o r do inglês, com a língua curvada para trás.'
+              t: 'escreva',
+              p: 'Transforme em pergunta: "You went to the party."',
+              r: ['Did you go to the party?'],
+              exp: 'O did leva o passado; went volta a ser go.'
             },
             {
               t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'hair',
-              ops: ['hair', 'air', 'her'],
+              p: 'Qual está certa?',
+              ops: ['I didn\'t see him.', 'I didn\'t saw him.', 'I don\'t saw him.'],
               c: 0,
-              exp: 'Hair começa com o sopro do h.'
+              exp: 'Depois de didn\'t, o verbo fica na forma básica: see.'
             },
             {
-              t: 'escolha',
-              p: 'Por que tantos brasileiros falam "bigi" para big?',
-              ops: [
-                'O português quase não termina palavras em g, t, d ou k, então a boca acrescenta um i',
-                'Porque está na escrita',
-                'Porque é o sotaque britânico'
+              t: 'monte',
+              p: 'Monte a pergunta: "O que você fez no fim de semana?"',
+              r: [
+                'What did you do [[on the weekend|at the weekend]]?',
+                'What did you do last weekend?'
               ],
-              c: 0,
-              exp: 'Em inglês, a palavra termina na própria consoante.'
-            },
-            {
-              t: 'escolha',
-              p: 'Por que ready às vezes sai como "hédi"?',
-              ops: [
-                'Porque o nosso r de "rato" soa como o h do inglês',
-                'Porque o r de ready é mudo',
-                'Porque é assim no Reino Unido'
-              ],
-              c: 0,
-              exp: 'O r inglês é com a língua curvada para trás, sem encostar, e não um sopro.'
-            },
-            {
-              t: 'escolha',
-              p: 'Como um britânico costuma pronunciar car?',
-              ops: ['Sem o r: "cá"', 'Com o r bem forte no fim', 'Como "quér"'],
-              c: 0,
-              exp: 'No Reino Unido, o r depois de vogal some se não vier outra vogal em seguida.'
+              extra: ['does', 'made', 'done']
             },
             {
               t: 'escolha',
               p: 'O que você ouviu?',
-              ouvir: 'What time is it?',
-              ops: ['What time is it?', 'What time it is?', 'What a time it is!'],
+              ouvir: 'Did you call her?',
+              ops: ['Did you call her?', 'Do you call her?', 'Did you tell her?'],
               c: 0
             },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'I need a big bag.' }
+            {
+              t: 'complete',
+              p: 'Complete:',
+              code: 'She ___ come yesterday. ___ she call you?',
+              bank: ['didn\'t', 'Did', 'doesn\'t', 'Does'],
+              c: ['didn\'t', 'Did'],
+              exp: 'Yesterday pede o passado: didn\'t e Did.'
+            },
+            {
+              t: 'escolha',
+              p: 'Resposta curta para "Did you like the movie?"',
+              ops: ['Yes, I did.', 'Yes, I liked.', 'Yes, I do.'],
+              c: 0,
+              exp: 'A resposta curta repete o ajudante: did.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Eu não entendi."',
+              r: ['I didn\'t understand.', 'I didn\'t get it.'],
+              exp: 'Na conversa, I didn\'t get it é muito comum para "não entendi".'
+            },
+            {
+              t: 'escreva',
+              p: 'Escreva o que você ouviu',
+              ouvir: 'Where did you go last night?'
+            }
           ]
         }
       ]
     },
     {
       id: 'enu10',
-      titulo: 'Ritmo e fala conectada',
-      conceito: 'gonna · wanna · ə',
-      desc: 'A sílaba forte, o schwa, as palavras fracas e como as palavras se juntam na fala rápida.',
+      titulo: 'Contando uma história',
+      conceito: 'was · used to · was doing',
+      desc: 'O passado do to be, there was, ago, used to, o past continuous e as palavras que costuram uma história.',
       licoes: [
         {
           id: 'en5l4',
-          titulo: 'Sílaba forte e o schwa',
+          titulo: 'Was e were',
+          pre: ['en5l1'],
           exs: [
             {
               t: 'texto',
-              titulo: 'O ritmo do inglês',
+              titulo: 'O passado do to be',
               blocos: [
                 {
-                  p: 'Toda palavra em inglês tem uma **sílaba forte**, e errar qual é atrapalha mais a compreensão do que errar uma vogal. Repare como ela muda de lugar numa mesma família de palavras:'
+                  tabela: {
+                    cab: ['Pessoa', 'Passado de to be'],
+                    codigo: [],
+                    linhas: [['I, he, she, it', '((was))'], ['you, we, they', '((were))']]
+                  }
                 },
                 {
-                  vocab: [
-                    ['photograph', 'fotografia (a foto)', 'forte no PHO'],
-                    ['photography', 'fotografia (a arte)', 'forte no TO'],
-                    ['photographer', 'fotógrafo', 'forte no TO'],
-                    ['photographic', 'fotográfico', 'forte no GRA']
+                  p: 'As perguntas e negativas funcionam como no presente, sem ajudante: ((Were you at home?)) ((She wasn\'t there.)) ((We weren\'t ready.))'
+                },
+                {
+                  p: '**Nascer é passivo.** Em inglês, você não "nasce": você **foi nascido**, como se a ação fosse da sua mãe. Por isso é ((I was born in 2005.)), sempre com was ou were. "I born" e "I am born" estão errados.'
+                },
+                {
+                  p: '**There was e there were** são o passado de there is e there are: ((There was a problem.)) (Teve um problema.) ((There were a lot of people at the party.)) (Tinha muita gente na festa.)'
+                },
+                {
+                  p: '**Há três anos** se diz ((three years ago)). Repare na ordem: o ago vem **depois** do tempo. "Ago three years" não existe.'
+                },
+                {
+                  dialogo: [
+                    [
+                      'Ana',
+                      'Where were you yesterday? I called you twice.',
+                      'Onde você estava ontem? Te liguei duas vezes.'
+                    ],
+                    [
+                      'Ben',
+                      'Sorry, I was at my grandma\'s. It was her birthday.',
+                      'Desculpa, eu estava na casa da minha avó. Era aniversário dela.'
+                    ],
+                    [
+                      'Ana',
+                      'Oh, nice! Was it a big party?',
+                      'Que legal! Foi uma festa grande?'
+                    ],
+                    [
+                      'Ben',
+                      'Not really. There were about ten people.',
+                      'Não muito. Tinha umas dez pessoas.'
+                    ]
                   ]
                 },
                 {
-                  p: 'Às vezes, a sílaba forte separa duas palavras: ((desert)) (deserto) é forte no começo; ((dessert)) (sobremesa) é forte no fim.'
-                },
-                {
-                  p: '**O schwa.** As sílabas fracas do inglês perdem a vogal original e viram um som neutro e curto, parecido com o "â" de "cama" falado bem rápido. Os linguistas chamam esse som de schwa, e ele é **o som mais comum do inglês**. Está no a de ((about)), nos dois a fracos de ((banana)) e no o de ((problem)).'
-                },
-                {
-                  p: '**Palavras fracas.** Numa frase, as palavras de conteúdo (verbos, substantivos, adjetivos) são fortes, e as pequenas (to, for, and, of, can, a, the) ficam fracas, com schwa. ((a cup of coffee)) soa como "a cáp-â cófi". ((fish and chips)) soa como "fish-ân-chips".'
-                },
-                {
-                  p: '**Can e can\'t:** na frase afirmativa, can é fraco ("kân"). Can\'t é sempre forte. É por isso que ((I can swim)) e ((I can\'t swim)) se diferenciam mais pela força da palavra do que pelo t final, que muitas vezes quase some.'
-                },
-                { pares: [['I can swim.', 'I can\'t swim.', 'can fraco × can\'t forte']] },
-                {
-                  dica: 'O português dá o mesmo tempo para cada sílaba. O inglês corre pelas fracas e se demora nas fortes, como uma música com batidas. Ouvir e imitar o ritmo, e não só os sons, deixa a sua fala muito mais fácil de entender.',
-                  rotulo: 'O segredo do ritmo'
+                  dica: 'At my grandma\'s é "na casa da minha avó". O inglês costuma deixar o house subentendido depois do \'s.',
+                  rotulo: 'Repare'
                 }
               ]
             },
             {
-              t: 'escolha',
-              p: 'Em ((photography)), qual é a sílaba forte?',
-              ops: ['TO: pho-TO-gra-phy', 'PHO: PHO-to-gra-phy', 'PHY: pho-to-gra-PHY'],
-              c: 0,
-              exp: 'Repare como ela muda de photograph (PHO) para photography (TO).'
+              t: 'complete',
+              p: 'Complete:',
+              code: 'I ___ at home yesterday, but my parents ___ at work.',
+              bank: ['was', 'were', 'are', 'is'],
+              c: ['was', 'were']
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Eu nasci em 2005."',
+              r: ['I was born in 2005.'],
+              exp: 'Nascer é passivo em inglês: was born.'
             },
             {
               t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'dessert',
-              ops: ['dessert', 'desert', 'deserve'],
+              p: 'Como se diz "há três anos"?',
+              ops: ['three years ago', 'ago three years', 'has three years'],
               c: 0,
-              exp: 'Dessert, a sobremesa, é forte no fim. Desert, o deserto, é forte no começo.'
+              exp: 'Ago vem depois do tempo.'
             },
-            {
-              t: 'escolha',
-              p: 'Qual é o som mais comum do inglês?',
-              ops: ['O schwa, a vogal fraca e neutra de about', 'O th', 'O i longo'],
-              c: 0,
-              exp: 'Ele aparece em quase toda sílaba fraca.'
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'I can\'t swim.',
-              ops: ['I can\'t swim.', 'I can swim.'],
-              c: 0,
-              exp: 'Can\'t é forte; can, na afirmativa, é fraco.'
-            },
-            {
-              t: 'escolha',
-              p: 'Como costuma soar o and em "fish and chips"?',
-              ops: [
-                'Como um "ân" fraco: "fish-ân-chips"',
-                'Como "énd", bem forte',
-                'Ele não é pronunciado'
-              ],
-              c: 0,
-              exp: 'Palavras pequenas ficam fracas na frase.'
-            },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'A cup of coffee, please.' },
             {
               t: 'monte',
-              p: 'Monte: "Eu sei nadar."',
-              r: 'I can swim.',
-              extra: ['can\'t', 'know', 'to'],
-              exp: 'Saber fazer algo é can: I can swim.'
-            }
+              p: 'Monte a frase: "Tinha muita gente na festa."',
+              r: 'There were a lot of people at the party.',
+              extra: ['was', 'had', 'in']
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'It wasn\'t my fault.',
+              ops: ['It wasn\'t my fault.', 'It isn\'t my fault.', 'It was my fault.'],
+              c: 0
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza para o português: "Where were you last night?"',
+              r: [
+                'Onde você estava ontem à noite?',
+                'Onde você estava ontem de noite?',
+                'Onde você estava noite passada?',
+                'Onde vocês estavam ontem à noite?',
+                'Onde você esteve ontem à noite?',
+                'Onde você tava ontem à noite?'
+              ],
+              lingua: 'pt'
+            },
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'I was born in Brazil.' }
           ]
         },
         {
           id: 'en5l5',
-          titulo: 'Fala rápida: wanna, gonna, gotta',
-          pre: ['en3l5', 'en5l4'],
+          titulo: 'Used to e uma história para ouvir',
+          pre: ['en5l3'],
           exs: [
             {
               t: 'texto',
-              titulo: 'O inglês de verdade é mais rápido que o do livro',
+              titulo: 'Antigamente, e depois',
               blocos: [
                 {
-                  p: 'Na conversa, as palavras se juntam e encolhem. Não é preguiça nem gíria: é como qualquer língua funciona falada rápido. Em português também dizemos "tô", "cê" e "pra". Algumas dessas formas aparecem até na escrita informal:'
+                  p: 'Para hábitos do passado que não existem mais, o inglês usa **used to**: ((I used to play [[soccer|football]].)) (Eu jogava futebol.) É o nosso imperfeito, o "jogava", "morava", "ia". A ideia é: era assim, não é mais.'
                 },
                 {
-                  tabela: {
-                    cab: ['Forma falada', 'Por extenso', 'Exemplo'],
-                    codigo: [],
-                    linhas: [
-                      ['gonna', 'going to', '((I\'m gonna call you.))'],
-                      ['wanna', 'want to', '((I wanna go home.))'],
-                      ['gotta', 'have got to (ter que)', '((I gotta go.))'],
-                      ['dunno', 'don\'t know', '((I dunno.))'],
-                      ['lemme', 'let me', '((Lemme see.))'],
-                      ['gimme', 'give me', '((Gimme a second.))'],
-                      ['kinda', 'kind of (meio, mais ou menos)', '((I\'m kinda tired.))'],
-                      ['whatcha', 'what are you / what do you', '((Whatcha doing?))']
-                    ]
-                  }
+                  p: 'Na fala, used to soa como "iúst-tu", com som de s, e não de z. Na pergunta e na negativa, o did assume o passado: ((Did you use to live here?)) ((I didn\'t use to like coffee.))'
+                },
+                { p: 'Para contar uma história, estas palavras costuram as partes:' },
+                {
+                  vocab: [
+                    ['first', 'primeiro'],
+                    ['then', 'então, depois'],
+                    ['after that', 'depois disso'],
+                    ['later', 'mais tarde'],
+                    ['suddenly', 'de repente'],
+                    ['finally', 'finalmente, por fim']
+                  ]
                 },
                 {
-                  p: '**Use assim:** entenda todas quando ouvir. Fale gonna e wanna à vontade na conversa. Na escrita, só em mensagens informais. Em e-mails de trabalho, redações e provas, escreva por extenso.'
+                  p: '**Agora, uma história.** Ouça cada parte antes de ler a tradução. Repare nos verbos no passado e no som do -ed.'
                 },
                 {
-                  p: '**Um erro comum:** gonna substitui going to, e não o verbo to be. Continua sendo ((I\'m gonna)), e não "I gonna".'
+                  fala: 'Last summer, I went to the beach with my friends. We left early in the morning, but the traffic was terrible.',
+                  trad: 'No verão passado, fui à praia com meus amigos. Saímos cedo, mas o trânsito estava horrível.'
                 },
                 {
-                  p: '**Palavras que se ligam.** Quando uma palavra termina em consoante e a seguinte começa com vogal, elas se juntam: ((an apple)) soa "a-népol", ((turn it off)) soa "tur-ni-tóff", ((check it out)) soa "che-ki-dáut".'
+                  fala: 'When we finally arrived, it started to rain! So we found a small café and waited.',
+                  trad: 'Quando finalmente chegamos, começou a chover! Então achamos um cafezinho e esperamos.'
                 },
                 {
-                  p: '**O t americano.** Nos EUA, o t entre vogais vira um toque rápido da língua, parecido com o r de "caro": ((water)) soa "uóder", ((better)) soa "béder", ((city)) soa "cídi". No Reino Unido, o t costuma ficar claro, ou vira uma pausa na garganta na fala informal ("wa\'er").'
+                  fala: 'After an hour, the sun came out, and we had a great day. We used to go there every summer when we were kids.',
+                  trad: 'Depois de uma hora, o sol saiu, e o dia foi ótimo. A gente ia lá todo verão quando era criança.'
                 },
                 {
-                  dica: 'Se você ouve uma frase e não entende, mas lendo entende na hora, o problema não é vocabulário: é a fala conectada. Ouvir e repetir frases inteiras, como os ditados deste curso, treina exatamente isso.',
-                  rotulo: 'Por que é difícil entender filme sem legenda'
+                  dica: 'Repare em started e waited: os dois terminam em t antes do -ed, então ganham a sílaba extra. Arrived, depois do som de v, termina só com som de d.',
+                  rotulo: 'O -ed na história'
                 }
               ]
             },
             {
               t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'I wanna go home.',
-              ops: ['I wanna go home.', 'I want go home.', 'I won\'t go home.'],
-              c: 0,
-              exp: 'Wanna é want to falado rápido.'
-            },
-            {
-              t: 'escolha',
-              p: 'O que quer dizer gotta, em "I gotta go"?',
-              ops: ['Have got to: ter que (preciso ir)', 'Got: consegui', 'Go to: ir para'],
-              c: 0,
-              exp: 'I gotta go é "tenho que ir".'
-            },
-            { t: 'escreva', p: 'Escreva por extenso: "I dunno."', r: ['I don\'t know.'] },
-            { t: 'escreva', p: 'Escreva por extenso: "Lemme see."', r: ['Let me see.'] },
-            {
-              t: 'escolha',
-              p: 'Qual destas frases está errada?',
-              ops: ['I gonna travel.', 'I\'m gonna travel.', 'I wanna travel.'],
-              c: 0,
-              exp: 'Gonna substitui going to. O am continua lá: I\'m gonna.'
-            },
-            {
-              t: 'escolha',
-              p: 'Por que water soa como "uóder" nos EUA?',
+              p: 'Na história, por que eles foram a um café?',
               ops: [
-                'O t entre vogais vira um toque rápido da língua, parecido com o r de "caro"',
-                'Porque a palavra tem um d escondido',
-                'Porque é gíria'
+                'Porque começou a chover',
+                'Porque estavam com fome',
+                'Porque o trânsito estava ruim'
               ],
               c: 0,
-              exp: 'É o mesmo que acontece em better, city e party.'
+              exp: 'When we finally arrived, it started to rain! So we found a small café...'
+            },
+            {
+              t: 'escolha',
+              p: 'O que quer dizer "We used to go there every summer"?',
+              ops: [
+                'A gente ia lá todo verão (e hoje não vai mais)',
+                'A gente vai lá todo verão',
+                'A gente se acostumou a ir lá'
+              ],
+              c: 0,
+              exp: 'Used to fala de um hábito do passado que acabou.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Eu morava em Salvador."',
+              r: ['I used to live in Salvador.', 'I lived in Salvador.']
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'I used to play the guitar.',
+              ops: [
+                'I used to play the guitar.',
+                'I use to play the guitar.',
+                'I used to pay the guitar.'
+              ],
+              c: 0,
+              exp: 'Used to soa "iúst-tu": o d some na fala, mas na escrita ele fica.'
+            },
+            {
+              t: 'monte',
+              p: 'Monte a frase: "Primeiro nós comemos, depois fomos ao cinema."',
+              r: [
+                'First we ate, then we went to the [[movies|cinema]].',
+                'First, we ate, then we went to the [[movies|cinema]].'
+              ],
+              extra: ['eat', 'go', 'after'],
+              exp: 'Ir ao cinema é go to the movies nos EUA e go to the cinema no Reino Unido.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza para o português: "Suddenly, it started to rain."',
+              r: ['De repente, começou a chover.', 'De repente começou a chover.'],
+              lingua: 'pt'
             },
             {
               t: 'escreva',
               p: 'Escreva o que você ouviu',
-              ouvir: 'I gotta go.',
-              exp: 'Gotta é got to, "ter que". Por extenso, também vale.',
-              r: '(I gotta go|I\'ve got to go|I have got to go|I got to go|I have to go).'
+              ouvir: 'After an hour, the sun came out.'
+            }
+          ]
+        },
+        {
+          id: 'en5l6',
+          titulo: 'O que estava acontecendo: was doing',
+          pre: ['en5l4', 'en4l4'],
+          exs: [
+            {
+              t: 'texto',
+              titulo: 'Estava fazendo',
+              blocos: [
+                {
+                  p: 'O **past continuous** é o "estava fazendo" do português. Ele se forma com **was** ou **were** + o verbo com **-ing**: ((I was sleeping.)) (Eu estava dormindo.) ((They were watching TV.)) (Eles estavam vendo TV.)'
+                },
+                {
+                  p: 'Ele mostra uma ação **em andamento** num momento do passado: ela já tinha começado e ainda não tinha terminado. ((At eight o\'clock, I was having dinner.)) (Às oito, eu estava jantando.)'
+                },
+                {
+                  p: '**O par mais comum** é com o passado simples: uma ação longa, no past continuous, é interrompida por uma ação curta, no passado simples. ((I was taking a shower when you called.)) (Eu estava tomando banho quando você ligou.)'
+                },
+                { p: '**Repare como o sentido muda:**' },
+                {
+                  tabela: {
+                    cab: ['Frase', 'O que aconteceu'],
+                    codigo: [],
+                    linhas: [
+                      [
+                        '((When you called, I was cooking.))',
+                        'Eu já estava cozinhando antes da ligação.'
+                      ],
+                      [
+                        '((When you called, I started cooking.))',
+                        'Primeiro você ligou; depois, eu comecei a cozinhar.'
+                      ]
+                    ]
+                  }
+                },
+                {
+                  p: '**When e while.** When costuma vir com a ação curta: ((when the phone rang)). While (enquanto) vem com a ação longa: ((while I was walking home)). Duas ações longas ao mesmo tempo usam while e o past continuous nas duas: ((While I was cooking, my brother was setting the table.))'
+                },
+                {
+                  p: '**Onde o português engana.** Muitas vezes dizemos "quando você ligou, eu **tomava** banho", com o imperfeito. Em inglês, esse "tomava" de ação em andamento é sempre was taking, e não took nem used to take. Used to é só para hábitos que acabaram.'
+                },
+                {
+                  p: '**Nas histórias**, o past continuous pinta o **cenário**, e o passado simples conta os **acontecimentos**. Ouça:'
+                },
+                {
+                  fala: 'It was a cold night. It was raining, and people were walking fast to get home.',
+                  trad: 'Era uma noite fria. Estava chovendo, e as pessoas andavam rápido para chegar em casa.'
+                },
+                {
+                  fala: 'I was waiting for the bus when an old man asked me for directions. He was looking for the hospital.',
+                  trad: 'Eu estava esperando o ônibus quando um senhor me pediu informação. Ele estava procurando o hospital.'
+                },
+                {
+                  fala: 'While I was explaining the way, my bus arrived. So I decided to walk with him instead.',
+                  trad: 'Enquanto eu explicava o caminho, meu ônibus chegou. Então decidi ir andando com ele.'
+                },
+                {
+                  fala: 'When we got to the hospital, his daughter was waiting at the door. She was smiling.',
+                  trad: 'Quando chegamos ao hospital, a filha dele estava esperando na porta. Ela estava sorrindo.'
+                },
+                {
+                  dica: 'Verbos de estado, como know, like, want e understand, quase nunca vão para o -ing: é I knew the answer, e não "I was knowing the answer".',
+                  rotulo: 'Cuidado'
+                }
+              ]
+            },
+            {
+              t: 'complete',
+              p: 'Complete:',
+              code: 'I ___ a shower when you ___.',
+              bank: ['was taking', 'called', 'took', 'were calling'],
+              c: ['was taking', 'called'],
+              exp: 'A ação longa (o banho) vai no past continuous; a curta (a ligação), no passado simples.'
+            },
+            {
+              t: 'escolha',
+              p: '"Quando você ligou, eu estava dormindo." Como fica?',
+              ops: [
+                'When you called, I was sleeping.',
+                'When you were calling, I slept.',
+                'When you called, I used to sleep.'
+              ],
+              c: 0,
+              exp: 'Ação em andamento interrompida: was sleeping. Used to é só para hábitos que acabaram.'
+            },
+            {
+              t: 'escolha',
+              p: 'Qual é a diferença entre "When she arrived, we were eating" e "When she arrived, we ate"?',
+              ops: [
+                'Na primeira, já estávamos comendo; na segunda, comemos depois que ela chegou',
+                'Nenhuma: as duas dizem a mesma coisa',
+                'A primeira está no presente e a segunda, no passado'
+              ],
+              c: 0,
+              exp: 'O past continuous mostra algo que já estava acontecendo. O passado simples mostra uma ação que veio depois.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "O que você estava fazendo?"',
+              r: ['What were you doing?'],
+              exp: 'Com you, o passado de to be é were.'
+            },
+            {
+              t: 'escolha',
+              p: 'Na história, o que o senhor estava procurando?',
+              ops: ['O hospital', 'O ponto de ônibus', 'A filha dele'],
+              c: 0,
+              exp: 'He was looking for the hospital.'
+            },
+            {
+              t: 'escolha',
+              p: 'Por que o narrador não pegou o ônibus?',
+              ops: [
+                'Decidiu ir andando com o senhor até o hospital',
+                'O ônibus não chegou',
+                'Estava chovendo demais'
+              ],
+              c: 0,
+              exp: 'While I was explaining the way, my bus arrived. So I decided to walk with him instead.'
+            },
+            {
+              t: 'monte',
+              p: 'Monte a frase: "Enquanto eu cozinhava, ele arrumava a mesa."',
+              r: 'While I was cooking, he was setting the table.',
+              extra: ['when', 'cooked', 'were']
             },
             {
               t: 'escolha',
               p: 'O que você ouviu?',
-              ouvir: 'I\'m kinda tired.',
-              ops: ['I\'m kinda tired.', 'I\'m kind and tired.', 'I\'m kinda fired.'],
-              c: 0,
-              exp: 'Kinda é kind of: "meio", "um pouco".'
+              ouvir: 'It was raining.',
+              ops: ['It was raining.', 'It was rain.', 'It is raining.'],
+              c: 0
+            },
+            {
+              t: 'escreva',
+              p: 'Escreva o que você ouviu',
+              ouvir: 'I was waiting for the bus.'
             }
           ]
         }

@@ -425,7 +425,7 @@ function renderTrilha() {
     html += `<section class="nivel" id="niv-${nv.n}" aria-labelledby="niv-t-${nv.n}">
       <div class="nivel-head">
         <span class="niv-num" aria-hidden="true">${nv.n}</span>
-        <div><p class="kind">Nível ${nv.n} · ${d} de ${ls.length} lições</p><h2 id="niv-t-${nv.n}">${esc(nv.titulo)}</h2><p>${esc(nv.desc)}</p></div>
+        <div><p class="kind">Nível ${nv.n}${nv.faixa ? ` · <span class="faixa" title="Faixa do Quadro Europeu (CEFR), de A1 a C2">${esc(nv.faixa)}</span>` : ''} · ${d} de ${ls.length} lições</p><h2 id="niv-t-${nv.n}">${esc(nv.titulo)}</h2><p>${esc(nv.desc)}</p></div>
       </div>${materiaisHTML(nv)}`;
     UNITS.filter(u => u.nivel === nv.n).forEach(u => {
       unitNo++;

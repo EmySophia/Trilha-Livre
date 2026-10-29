@@ -30,14 +30,20 @@ KBPS = 48  # fala em MP3 mono: pequeno e claro
 # Cada linha: um trecho do texto (expressão regular) e as trocas a fazer nos fonemas que a voz geraria.
 # Para ver os fonemas de uma frase: python3 ferramentas/gravar_audio.py --fonemas "frase".
 # Depois de acrescentar uma correção, grave de novo as frases afetadas: python3 ferramentas/gravar_audio.py --refazer "trecho"
+# Uma troca pode ser um texto (troca em qualquer lugar) ou uma expressão regular já compilada (re.compile).
+TEEN = [(re.compile(errado + r"(?=[.,!?;:]|$)"), certo) for errado, certo in [
+    ('θˈɜːtiːn', 'θɜːtˈiːn'), ('fˈɔːɹtiːn', 'fɔːɹtˈiːn'), ('fˈɔːtiːn', 'fɔːtˈiːn'), ('fˈɪftiːn', 'fɪftˈiːn'),
+    ('sˈɪkstiːn', 'sɪkstˈiːn'), ('sˈɛvəntˌiːn', 'sˌɛvəntˈiːn'), ('ˈeɪtiːn', 'eɪtˈiːn'), ('nˈaɪntiːn', 'naɪntˈiːn')]]
 CORRECOES = [
-    (r"\blives (in|with|here|there|near|alone|at|on)\b", [('lˈaɪvz', 'lˈɪvz')]),  # mora, e não vidas
+    (r"\blives (in|with|here|there|near|next|alone|at|on)\b", [('lˈaɪvz', 'lˈɪvz')]),  # mora, e não vidas
     (r"^live$", [('lˈaɪv', 'lˈɪv')]),                                          # morar, e não ao vivo
     (r"\bused to\b", [('jˈuːzd t', 'jˈuːst t')]),                               # "iúst-tu"
     (r"\buse to\b", [('jˈuːz t', 'jˈuːs t')]),
-    (r"\bcould read\b", [('ɹˈiːd', 'ɹˈɛd')]),                                    # read no passado soa "réd"
+    (r"\b(could|that I) read\b", [('ɹˈiːd', 'ɹˈɛd')]),                            # read no passado soa "réd"
     (r"\bRecife\b", [('ɹᵻsˈaɪf', 'ɹɛsˈiːfi'), ('ɹɪsˈaɪf', 'ɹɛsˈiːfi')]),
     (r"\binnit\b", [('ɪnnˈɪt', 'ˈɪnɪt')]),
+    # 13 a 19 no fim da frase: a sílaba forte é a do -teen (thirTEEN), para não soar como thirty, forty...
+    (r"\b(thir|four|fif|six|seven|eigh|nine)teen\b", TEEN),
 ]
 
 
@@ -47,7 +53,7 @@ def fonemas_corrigidos(k, texto, lang):
         return None
     ph = k.tokenizer.phonemize(texto, lang)
     for errado, certo in trocas:
-        ph = ph.replace(errado, certo)
+        ph = errado.sub(certo, ph) if hasattr(errado, 'sub') else ph.replace(errado, certo)
     return ph
 
 

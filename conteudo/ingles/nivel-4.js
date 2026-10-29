@@ -1,280 +1,193 @@
-/* Trilha Livre · Inglês do zero · Nível 4: O passado
+/* Trilha Livre · Inglês do zero · Nível 4: O presente e o futuro (A1)
    Conteúdo sob licença CC BY-NC-SA 4.0 (veja conteudo/LICENCA.md). O formato das lições está explicado em CONTRIBUINDO.md.
    ((frase)) tem botão de ouvir; [[americano|britânico]] muda com o sotaque escolhido. */
 
 nivel({
   curso: 'ingles',
   n: 4,
-  titulo: 'O passado',
-  desc: 'O passado simples, o som do -ed, os irregulares mais usados, did, was e were, used to e uma história para ouvir.',
+  titulo: 'O presente e o futuro',
+  faixa: 'A1',
+  desc: 'Rotina com o presente simples, do e does, o que está acontecendo agora e planos com going to, gonna e will.',
   videos: [
-    {
-      titulo: 'Rachel\'s English',
-      canal: 'Rachel Smith',
-      obs: 'a pronúncia do -ed em inglês americano, com exemplos em câmera lenta',
-      url: 'https://www.youtube.com/@rachelsenglish'
-    },
     {
       titulo: 'English in Brazil',
       canal: 'Carina Fragozo',
-      obs: 'verbos irregulares e as dúvidas mais comuns sobre o passado',
+      obs: 'presente simples, do e does e os erros mais comuns de brasileiros',
       url: 'https://www.youtube.com/user/carinafragozo'
     },
     {
       titulo: 'BBC Learning English',
       canal: 'BBC',
-      obs: 'histórias curtas e notícias para praticar o passado ouvindo',
+      obs: 'a série de gramática para iniciantes, com present simple e present continuous',
       url: 'https://www.youtube.com/@bbclearningenglish'
+    },
+    {
+      titulo: 'Speak English With Vanessa',
+      canal: 'Vanessa',
+      obs: 'como os americanos falam do dia a dia e dos planos, com gonna e will',
+      url: 'https://www.youtube.com/@SpeakEnglishWithVanessa'
     }
   ],
   unidades: [
     {
       id: 'enu7',
-      titulo: 'O passado simples',
-      conceito: 'worked · went · did',
-      desc: 'Os verbos regulares e o som do -ed, os irregulares e o ajudante did.',
+      titulo: 'O presente simples',
+      conceito: 'she works · does she?',
+      desc: 'Rotina, fatos, o -s da terceira pessoa e o ajudante do e does.',
       licoes: [
         {
           id: 'en4l1',
-          titulo: 'Verbos regulares e o som do -ed',
-          pre: ['en3l1'],
+          titulo: 'O que você faz sempre',
+          pre: ['en1l4'],
           exs: [
             {
               t: 'texto',
-              titulo: 'O -ed e os seus três sons',
+              titulo: 'Rotina e fatos',
               blocos: [
                 {
-                  p: 'O passado dos verbos regulares é o verbo com **-ed**, igual para todas as pessoas: ((I worked)), ((she worked)), ((they worked)). Sem -s da terceira pessoa, sem conjugação. Aqui o inglês é mais fácil que o português.'
+                  p: 'O **presente simples** fala do que é sempre assim: hábitos, rotina e fatos. ((I work from home.)) (Eu trabalho de casa.) ((Water boils at 100 degrees.)) (A água ferve a 100 graus.)'
+                },
+                {
+                  p: 'A boa notícia: o verbo quase não muda. É igual para I, you, we e they. A única mudança é com **he, she e it**, que ganham um **-s**:'
+                },
+                {
+                  tabela: {
+                    cab: ['', 'work (trabalhar)', 'live (morar)'],
+                    codigo: [],
+                    linhas: [
+                      ['I, you, we, they', '((I work))', '((they live))'],
+                      ['he, she, it', '((she works))', '((he lives))']
+                    ]
+                  }
+                },
+                {
+                  p: '**Por que só a terceira pessoa?** O inglês antigo tinha uma terminação diferente para cada pessoa, como o português ainda tem (falo, falas, fala...). Com os séculos, quase todas sumiram. Esse -s é a única que sobreviveu. Por isso ele parece uma regra solta, mas é obrigatório: "she work" soa errado para qualquer nativo.'
                 },
                 {
                   tabela: {
                     cab: ['Regra da escrita', 'Exemplos'],
                     codigo: [],
                     linhas: [
-                      ['Regra geral: -ed', '((work)) → ((worked)), ((play)) → ((played))'],
-                      ['Termina em e: só -d', '((live)) → ((lived)), ((like)) → ((liked))'],
-                      ['Consoante + y: -ied', '((study)) → ((studied)), ((try)) → ((tried))'],
                       [
-                        'Uma vogal + uma consoante, sílaba forte: dobra',
-                        '((stop)) → ((stopped)), ((plan)) → ((planned))'
-                      ]
+                        'Termina em s, sh, ch, x ou o: -es',
+                        '((go)) → ((goes)), ((watch)) → ((watches)), ((do)) → ((does))'
+                      ],
+                      ['Consoante + y: -ies', '((study)) → ((studies)), ((fly)) → ((flies))'],
+                      ['Irregular', '((have)) → ((has))']
                     ]
                   }
                 },
                 {
-                  p: '**A pronúncia é o que mais importa aqui.** Quase todo brasileiro pronuncia o -ed como "id": "uórk-id", "plêi-id". Na maioria das vezes, o -ed **não cria sílaba nenhuma**. Ele tem três sons:'
+                  p: 'O som desse -s segue a mesma regra do plural: s em ((works)), z em ((plays)) e uma sílaba a mais em ((watches)). E duas palavras muito comuns têm a vogal diferente do que parece: ((does)) soa como "dâz" e ((says)) soa como "séz".'
                 },
-                {
-                  tabela: {
-                    cab: ['Som', 'Quando', 'Exemplos'],
-                    codigo: [],
-                    linhas: [
-                      [
-                        't',
-                        'depois de sons "sem voz": p, k, f, s, sh, ch',
-                        '((worked)), ((stopped)), ((laughed)), ((watched))'
-                      ],
-                      [
-                        'd',
-                        'depois de vogais e de sons "com voz": b, g, l, m, n, v, z',
-                        '((played)), ((lived)), ((called)), ((cleaned))'
-                      ],
-                      [
-                        'id (sílaba a mais)',
-                        'só depois de t e d',
-                        '((wanted)), ((needed)), ((started)), ((decided))'
-                      ]
-                    ]
-                  }
-                },
-                {
-                  p: '**Por que só depois de t e d?** É a mesma lógica do -s do plural. Juntar o som de t ou d ao -ed seria impossível ("want-t"), então entra uma vogal para separar. Em todos os outros casos, o som gruda no fim da palavra: ((worked)) tem uma sílaba só, como "uôrkt".'
-                },
-                {
-                  pares: [
-                    ['walked', 'wanted', 'uma sílaba × duas sílabas'],
-                    ['played', 'painted', 'uma sílaba × duas sílabas']
-                  ]
-                },
-                {
-                  dica: 'Treine falando em voz alta: worked, watched, played, lived. Só uma sílaba cada. Depois: wanted, needed, started. Essas, sim, com duas.',
-                  rotulo: 'Treino'
-                }
-              ]
-            },
-            {
-              t: 'escolha',
-              p: 'Quantas sílabas tem ((worked))?',
-              ops: ['Uma', 'Duas', 'Três'],
-              c: 0,
-              exp: 'O -ed depois de k soa como t e não forma sílaba: "uôrkt".'
-            },
-            {
-              t: 'escolha',
-              p: 'Em qual destas palavras o -ed forma uma sílaba a mais?',
-              ops: ['needed', 'played', 'watched'],
-              c: 0,
-              exp: 'A sílaba extra só aparece depois de t ou d. Need termina em d.'
-            },
-            {
-              t: 'complete',
-              p: 'Complete com o passado:',
-              code: 'Yesterday I ___ my room and ___ a movie.',
-              bank: ['cleaned', 'watched', 'clean', 'watch'],
-              c: ['cleaned', 'watched'],
-              exp: 'Yesterday pede o passado: cleaned e watched.'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Ela estudou ontem."',
-              r: ['She studied yesterday.'],
-              exp: 'Study, com consoante + y, vira studied.'
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'I walked to work.',
-              ops: ['I walked to work.', 'I walk to work.', 'I worked at home.'],
-              c: 0,
-              exp: 'Walked soa "uókt": o -ed vira só um t.'
-            },
-            {
-              t: 'monte',
-              p: 'Monte a frase: "Nós moramos em Recife por dois anos."',
-              r: 'We lived in Recife for two years.',
-              extra: ['live', 'during', 'by'],
-              exp: 'For indica quanto tempo durou: for two years.'
-            },
-            {
-              t: 'escolha',
-              p: 'Por que dizer "uórk-id" para worked soa errado?',
-              ops: [
-                'Porque o -ed só vira uma sílaba depois de t ou d; depois de k, ele soa só como t',
-                'Porque worked é irregular',
-                'Porque o certo é "uórk-éd"'
-              ],
-              c: 0,
-              exp: 'Na maioria dos verbos, o -ed gruda no final: worked, liked, stopped.'
-            },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'They started at nine.' }
-          ]
-        },
-        {
-          id: 'en4l2',
-          titulo: 'Os irregulares de todo dia',
-          pre: ['en4l1'],
-          exs: [
-            {
-              t: 'texto',
-              titulo: 'Os que não seguem o -ed',
-              blocos: [
-                {
-                  p: 'Alguns verbos fazem o passado do seu próprio jeito. **Por que existem?** São formas muito antigas, que mudavam a vogal no passado (como sing, sang). Quase todos os verbos perderam isso e passaram a usar -ed. Os que resistiram são justamente os mais usados, porque palavra muito usada não deixa a gente esquecer a forma antiga. Por isso a lista parece injusta: os irregulares são os verbos que você mais vai precisar.'
-                },
-                { p: 'Comece por estes, que aparecem em quase toda conversa:' },
+                { p: '**A rotina em inglês:**' },
                 {
                   vocab: [
-                    ['go, went', 'ir, fui'],
-                    ['have, had', 'ter, tive'],
-                    ['do, did', 'fazer, fiz'],
-                    ['get, got', 'conseguir, receber, ficar'],
-                    ['make, made', 'fazer, criar'],
-                    ['say, said', 'dizer', 'said soa "séd"'],
-                    ['see, saw', 'ver, vi'],
-                    ['come, came', 'vir, vim'],
-                    ['take, took', 'pegar, levar'],
-                    ['give, gave', 'dar, dei'],
-                    ['know, knew', 'saber, soube', 'knew soa igual a new'],
-                    ['think, thought', 'pensar, pensei'],
-                    ['buy, bought', 'comprar, comprei'],
-                    ['find, found', 'encontrar, encontrei'],
-                    ['tell, told', 'contar, contei'],
-                    ['leave, left', 'sair, deixar']
+                    ['wake up', 'acordar'],
+                    ['get up', 'levantar da cama'],
+                    ['have breakfast', 'tomar café da manhã'],
+                    ['go to work', 'ir para o trabalho'],
+                    ['get home', 'chegar em casa'],
+                    ['have dinner', 'jantar'],
+                    ['go to bed', 'ir dormir']
                   ]
                 },
                 {
-                  p: '**Um truque:** muitos irregulares andam em grupos com o mesmo som. Aprender o grupo é mais fácil do que decorar um por um.'
-                },
-                {
-                  tabela: {
-                    cab: ['Grupo', 'Exemplos'],
-                    codigo: [],
-                    linhas: [
-                      [
-                        '-ought / -aught (soam igual)',
-                        '((thought)), ((bought)), ((brought)), ((taught)), ((caught))'
-                      ],
-                      ['i → a', '((sing, sang)), ((drink, drank)), ((swim, swam))'],
-                      ['não muda nada', '((put)), ((cut)), ((hit)), ((let))']
+                  dialogo: [
+                    ['Kim', 'So what time do you get up?', 'Então, que horas você levanta?'],
+                    [
+                      'Leo',
+                      'Around six. I start work at seven.',
+                      'Lá pelas seis. Começo a trabalhar às sete.'
+                    ],
+                    [
+                      'Kim',
+                      'Wow, early! My brother works at night, so he sleeps all morning.',
+                      'Nossa, cedo! Meu irmão trabalha à noite, então ele dorme a manhã toda.'
                     ]
-                  }
-                },
-                {
-                  dica: 'O passado irregular só vale nas frases afirmativas. Na pergunta e na negativa, o did assume o passado e o verbo volta ao normal: Did you go? (e nunca Did you went?). Isso é a próxima lição.',
-                  rotulo: 'Antes de continuar'
+                  ]
                 }
               ]
             },
             {
               t: 'complete',
               p: 'Complete:',
-              code: 'Last year I ___ to Chile and ___ a lot of photos.',
-              bank: ['went', 'took', 'go', 'taked'],
-              c: ['went', 'took']
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Eu comprei um celular novo."',
-              r: [
-                'I bought a new phone.',
-                'I bought a new cell phone.',
-                'I bought a new mobile.',
-                'I bought a new mobile phone.'
-              ]
+              code: 'My sister ___ in a bank and ___ to work by bus.',
+              bank: ['works', 'goes', 'work', 'go'],
+              c: ['works', 'goes'],
+              exp: 'My sister é she: o verbo ganha -s. Go vira goes.'
             },
             {
               t: 'escolha',
-              p: 'Qual é o passado de think?',
-              ops: ['thought', 'thinked', 'thank'],
+              p: 'Em qual verbo o -s forma uma sílaba a mais?',
+              ops: ['watches', 'plays', 'works'],
               c: 0,
-              exp: 'Think, thought: do grupo do -ought, junto com bought e brought.'
+              exp: 'Igual ao plural: a sílaba extra só vem depois de sons de s, sh e ch.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Ele estuda à noite."',
+              r: ['He studies at night.'],
+              exp: 'Study, com consoante + y, vira studies.'
             },
             {
               t: 'escolha',
               p: 'O que você ouviu?',
-              ouvir: 'She said no.',
-              ops: ['She said no.', 'She says no.', 'She said so.'],
-              c: 0,
-              exp: 'Said soa "séd", com e aberto curto. Não rima com paid.'
+              ouvir: 'My brother lives in London.',
+              ops: [
+                'My brother lives in London.',
+                'My brother lived in London.',
+                'My brothers live in London.'
+              ],
+              c: 0
             },
             {
               t: 'monte',
-              p: 'Monte a frase: "Eu vi um filme ótimo ontem."',
-              r: ['I saw a great movie yesterday.', 'I watched a great movie yesterday.'],
-              extra: ['see', 'seen', 'watched']
+              p: 'Monte a frase: "Ela vai para o trabalho de ônibus."',
+              r: 'She goes to work by bus.',
+              extra: ['go', 'with', 'the'],
+              exp: 'De ônibus é by bus, sem artigo.'
             },
-            { t: 'escreva', p: 'Escreva o passado de go.', r: ['went'] },
             {
               t: 'escolha',
-              p: 'Ouça ((knew)). Que palavra tem exatamente o mesmo som?',
-              ops: ['new', 'now', 'know'],
+              p: 'Por que "He work here" está errado?',
+              ops: [
+                'Com he, she e it, o verbo no presente ganha -s: he works',
+                'Porque falta o verbo to be',
+                'Porque work precisa de -ing'
+              ],
               c: 0,
-              exp: 'O k de knew é mudo, como o de know. Knew e new soam igual.'
+              exp: 'Esse -s é a única terminação que sobrou do inglês antigo, e é obrigatória.'
             },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'We had a great time.' }
+            {
+              t: 'escreva',
+              p: 'Traduza: "Minha mãe tem dois irmãos."',
+              r: [
+                'My [[mom|mum]] has two brothers.',
+                'My mother has two brothers.',
+                'My mother has got two brothers.',
+                'My [[mom|mum]] has got two brothers.'
+              ],
+              exp: 'Have vira has com he, she e it. Mãe na conversa é mom nos EUA e mum no Reino Unido.'
+            },
+            {
+              t: 'escreva',
+              p: 'Escreva o que você ouviu',
+              ouvir: 'I usually wake up at seven.'
+            }
           ]
         },
         {
-          id: 'en4l3',
-          titulo: 'Did: perguntas e negativas no passado',
-          pre: ['en4l2', 'en3l2'],
+          id: 'en4l2',
+          titulo: 'Do e does: o ajudante das perguntas',
+          pre: ['en4l1'],
           exs: [
             {
               t: 'texto',
-              titulo: 'O ajudante do passado',
+              titulo: 'Um verbo que só ajuda',
               blocos: [
                 {
-                  p: 'Lembra do do e do does? No passado, o ajudante é **did**, e ele serve para todas as pessoas. Assim como o does pegava o -s do verbo, o **did pega o passado**: o verbo principal volta para a forma básica.'
+                  p: 'Com to be, a pergunta inverte a ordem: Are you...? Com os outros verbos, o inglês precisa de um ajudante: **do** (ou **does** com he, she e it). Ele vai para a frente do sujeito e o verbo principal fica na forma básica.'
                 },
                 {
                   tabela: {
@@ -282,104 +195,201 @@ nivel({
                     codigo: [],
                     linhas: [
                       [
-                        '((You went to the party.))',
-                        '((Did you go to the party?))',
-                        '((You didn\'t go to the party.))'
+                        '((You live here.))',
+                        '((Do you live here?))',
+                        '((You don\'t live here.))'
                       ],
                       [
-                        '((She called me.))',
-                        '((Did she call you?))',
-                        '((She didn\'t call me.))'
+                        '((She works on Sundays.))',
+                        '((Does she work on Sundays?))',
+                        '((She doesn\'t work on Sundays.))'
                       ]
                     ]
                   }
                 },
                 {
-                  p: '"Did you went?" e "I didn\'t saw" são erros muito comuns, porque o passado apareceria duas vezes: no did e no verbo. Uma vez só basta, e quem carrega é o did.'
+                  p: '**Repare no -s.** Na pergunta e na negativa, o -s de works sai do verbo e vai para o ajudante: does. Quem carrega a pessoa e o tempo é o ajudante, então o verbo principal volta para a forma básica. "Does she works?" e "She doesn\'t works" estão errados, porque o -s apareceria duas vezes.'
                 },
                 {
-                  p: '**Respostas curtas:** ((Did you like the movie?)) → ((Yes, I did.)) / ((No, I didn\'t.))'
+                  p: '**Por que esse ajudante existe?** Até uns 400 anos atrás, o inglês invertia o verbo direto, como em Shakespeare: "Know you the man?". Depois, o do passou a fazer esse papel em todas as perguntas, e a ordem sujeito + verbo ficou sempre intacta. Hoje ele parece um enfeite para quem fala português, mas é ele que mostra que é uma pergunta.'
                 },
                 {
-                  p: 'Com palavra de pergunta: ((Where did you go?)), ((What did you do?)), ((When did it happen?)), ((Why did she leave?))'
+                  p: '**Respostas curtas** usam o ajudante: ((Do you like coffee?)) → ((Yes, I do.)) / ((No, I don\'t.)) ((Does he speak English?)) → ((Yes, he does.))'
                 },
                 {
-                  dialogo: [
-                    [
-                      'Zoe',
-                      'So, what did you do [[on the weekend|at the weekend]]?',
-                      'E aí, o que você fez no fim de semana?'
-                    ],
-                    [
-                      'Max',
-                      'Not much. I stayed home and watched a series. You?',
-                      'Nada de mais. Fiquei em casa vendo uma série. E você?'
-                    ],
-                    ['Zoe', 'I went to a concert!', 'Fui a um show!'],
-                    ['Max', 'Really? Did you have fun?', 'Sério? Você se divertiu?'],
-                    ['Zoe', 'Yes, I did. It was amazing.', 'Muito. Foi incrível.']
-                  ]
+                  p: 'Com palavra de pergunta, a ordem é: palavra + do/does + sujeito + verbo. ((Where do you live?)) ((What does she want?))'
                 },
                 {
-                  dica: 'Concert é show de música. A palavra show em inglês é mais usada para programas de TV e espetáculos.',
-                  rotulo: 'Show ou concert?'
+                  fala: 'What do you do?',
+                  trad: 'Com o que você trabalha?',
+                  nota: 'Cuidado: não é "o que você faz agora". É a pergunta mais comum sobre profissão. Responda com o trabalho: I\'m a nurse. I work in a [[store|shop]].'
+                },
+                {
+                  dica: 'Do aparece duas vezes em What do you do? A primeira é o ajudante; a segunda é o verbo fazer.',
+                  rotulo: 'Dois do'
                 }
               ]
             },
             {
               t: 'escreva',
-              p: 'Transforme em pergunta: "You went to the party."',
-              r: ['Did you go to the party?'],
-              exp: 'O did leva o passado; went volta a ser go.'
+              p: 'Transforme em pergunta: "She works on Saturdays."',
+              r: ['Does she work on Saturdays?'],
+              exp: 'O -s vai para o ajudante: does. O verbo fica work.'
             },
             {
               t: 'escolha',
               p: 'Qual está certa?',
-              ops: ['I didn\'t see him.', 'I didn\'t saw him.', 'I don\'t saw him.'],
+              ops: ['She doesn\'t like fish.', 'She doesn\'t likes fish.', 'She don\'t like fish.'],
               c: 0,
-              exp: 'Depois de didn\'t, o verbo fica na forma básica: see.'
-            },
-            {
-              t: 'monte',
-              p: 'Monte a pergunta: "O que você fez no fim de semana?"',
-              r: [
-                'What did you do [[on the weekend|at the weekend]]?',
-                'What did you do last weekend?'
-              ],
-              extra: ['does', 'made', 'done']
+              exp: 'Com she, o ajudante é doesn\'t, e o verbo volta para a forma básica: like.'
             },
             {
               t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'Did you call her?',
-              ops: ['Did you call her?', 'Do you call her?', 'Did you tell her?'],
-              c: 0
+              p: 'O que quer dizer "What do you do?"',
+              ops: ['Com o que você trabalha?', 'O que você está fazendo agora?', 'O que você fez?'],
+              c: 0,
+              exp: 'É a pergunta sobre profissão. "O que você está fazendo?" seria What are you doing?'
             },
             {
               t: 'complete',
               p: 'Complete:',
-              code: 'She ___ come yesterday. ___ she call you?',
-              bank: ['didn\'t', 'Did', 'doesn\'t', 'Does'],
-              c: ['didn\'t', 'Did'],
-              exp: 'Yesterday pede o passado: didn\'t e Did.'
+              code: 'Where ___ you live? And where ___ your brother live?',
+              bank: ['do', 'does', 'are', 'is'],
+              c: ['do', 'does']
+            },
+            {
+              t: 'monte',
+              p: 'Monte a pergunta: "Você fala inglês?"',
+              r: 'Do you speak English?',
+              extra: ['Are', 'speaks', 'Does']
             },
             {
               t: 'escolha',
-              p: 'Resposta curta para "Did you like the movie?"',
-              ops: ['Yes, I did.', 'Yes, I liked.', 'Yes, I do.'],
+              p: 'O que você ouviu?',
+              ouvir: 'I don\'t know.',
+              ops: ['I don\'t know.', 'I don\'t go.', 'I don\'t no.'],
               c: 0,
-              exp: 'A resposta curta repete o ajudante: did.'
+              exp: 'Na fala rápida, I don\'t know às vezes vira "I dunno". É informal, mas você vai ouvir muito.'
+            },
+            { t: 'escreva', p: 'Traduza: "Eu não moro aqui."', r: ['I don\'t live here.'] },
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'What does your sister do?' }
+          ]
+        },
+        {
+          id: 'en4l3',
+          titulo: 'Com que frequência?',
+          pre: ['en4l1'],
+          exs: [
+            {
+              t: 'texto',
+              titulo: 'Sempre, às vezes, nunca',
+              blocos: [
+                {
+                  vocab: [
+                    ['always', 'sempre', '100%'],
+                    ['usually', 'geralmente'],
+                    ['often', 'com frequência', 'o t costuma ser mudo: "ófen"'],
+                    ['sometimes', 'às vezes'],
+                    ['rarely', 'raramente'],
+                    ['never', 'nunca', '0%']
+                  ]
+                },
+                {
+                  p: '**Onde eles ficam na frase:** antes do verbo principal, mas **depois** do to be.'
+                },
+                {
+                  tabela: {
+                    cab: ['Com verbos comuns', 'Com to be'],
+                    codigo: [],
+                    linhas: [
+                      ['((I always drink coffee.))', '((I\'m always late.))'],
+                      ['((She never eats meat.))', '((He\'s never at home.))']
+                    ]
+                  }
+                },
+                {
+                  p: '**Never já é negativo.** Em português, falamos "eu não como nunca". Em inglês, juntar duas negativas soa errado no inglês padrão: é ((I never eat meat.)) e não "I don\'t never eat". O never sozinho já nega.'
+                },
+                {
+                  p: 'Para perguntar: ((How often do you go to the gym?)) (Com que frequência você vai à academia?) Respostas com expressões de tempo, que ficam no fim da frase:'
+                },
+                {
+                  vocab: [
+                    ['every day', 'todo dia'],
+                    ['once a week', 'uma vez por semana'],
+                    ['twice a month', 'duas vezes por mês'],
+                    ['three times a year', 'três vezes por ano'],
+                    [
+                      '[[on weekends|at the weekend]]',
+                      'nos fins de semana',
+                      'on weekends nos EUA, at the weekend no Reino Unido'
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Qual frase está com o always no lugar certo?',
+              ops: [
+                'I always walk to school.',
+                'I walk always to school.',
+                'Always I walk to school.'
+              ],
+              c: 0,
+              exp: 'Always vem antes do verbo principal.'
+            },
+            {
+              t: 'escolha',
+              p: 'Qual frase está com o always no lugar certo?',
+              ops: ['She\'s always tired.', 'She always is tired.', 'Always she is tired.'],
+              c: 0,
+              exp: 'Com to be, a palavra de frequência vem depois do verbo.'
             },
             {
               t: 'escreva',
-              p: 'Traduza: "Eu não entendi."',
-              r: ['I didn\'t understand.', 'I didn\'t get it.'],
-              exp: 'Na conversa, I didn\'t get it é muito comum para "não entendi".'
+              p: 'Traduza: "Eu nunca como carne."',
+              r: ['I never eat meat.'],
+              exp: 'Never já é negativo: não precisa de don\'t.'
+            },
+            {
+              t: 'escolha',
+              p: 'Qual está certa no inglês padrão?',
+              ops: ['I never go there.', 'I don\'t never go there.', 'I never don\'t go there.'],
+              c: 0,
+              exp: 'Duas negativas juntas soam erradas no inglês padrão.'
+            },
+            {
+              t: 'monte',
+              p: 'Monte a pergunta: "Com que frequência você vai à academia?"',
+              r: 'How often do you go to the gym?',
+              extra: ['much', 'does', 'are']
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'I go there twice a week.',
+              ops: [
+                'I go there twice a week.',
+                'I go there once a week.',
+                'I go there three times a week.'
+              ],
+              c: 0
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Eu jogo futebol nos fins de semana."',
+              r: [
+                'I play [[soccer|football]] [[on weekends|at the weekend]].',
+                'I play [[soccer|football]] on the weekend.',
+                'I play [[soccer|football]] on the weekends.'
+              ],
+              exp: 'Futebol é soccer nos EUA, onde football é o futebol americano. No Reino Unido, é football.'
             },
             {
               t: 'escreva',
               p: 'Escreva o que você ouviu',
-              ouvir: 'Where did you go last night?'
+              ouvir: 'We usually have dinner at eight.'
             }
           ]
         }
@@ -387,223 +397,258 @@ nivel({
     },
     {
       id: 'enu8',
-      titulo: 'Contando uma história',
-      conceito: 'was · were · used to',
-      desc: 'O passado do to be, there was, ago, used to e as palavras que costuram uma história.',
+      titulo: 'Agora e depois',
+      conceito: 'I\'m doing · I\'m gonna',
+      desc: 'O presente contínuo, o que muda em relação ao simples e como falar do futuro.',
       licoes: [
         {
           id: 'en4l4',
-          titulo: 'Was e were',
+          titulo: 'O que está acontecendo agora',
           pre: ['en4l1'],
           exs: [
             {
               t: 'texto',
-              titulo: 'O passado do to be',
+              titulo: 'Presente contínuo',
               blocos: [
                 {
+                  p: 'Para o que está acontecendo **agora**, ou durante um período temporário, o inglês usa to be + verbo com **-ing**: ((I\'m reading.)) (Estou lendo.) ((She\'s working from home this week.)) (Ela está trabalhando de casa esta semana.)'
+                },
+                {
                   tabela: {
-                    cab: ['Pessoa', 'Passado de to be'],
+                    cab: [
+                      'Presente simples: sempre, hábito',
+                      'Presente contínuo: agora, temporário'
+                    ],
                     codigo: [],
-                    linhas: [['I, he, she, it', '((was))'], ['you, we, they', '((were))']]
+                    linhas: [
+                      ['((I work in a bank.))', '((I\'m working right now.))'],
+                      ['((She plays the guitar.))', '((She\'s playing the guitar.))'],
+                      ['((What do you do?)) (profissão)', '((What are you doing?)) (agora)']
+                    ]
                   }
                 },
                 {
-                  p: 'As perguntas e negativas funcionam como no presente, sem ajudante: ((Were you at home?)) ((She wasn\'t there.)) ((We weren\'t ready.))'
+                  tabela: {
+                    cab: ['Regra do -ing', 'Exemplos'],
+                    codigo: [],
+                    linhas: [
+                      [
+                        'Termina em e: tira o e',
+                        '((make)) → ((making)), ((write)) → ((writing))'
+                      ],
+                      [
+                        'Uma vogal + uma consoante, sílaba forte: dobra a consoante',
+                        '((run)) → ((running)), ((sit)) → ((sitting))'
+                      ],
+                      ['Termina em ie: vira y', '((lie)) → ((lying)), ((die)) → ((dying))']
+                    ]
+                  }
                 },
                 {
-                  p: '**Nascer é passivo.** Em inglês, você não "nasce": você **foi nascido**, como se a ação fosse da sua mãe. Por isso é ((I was born in 2005.)), sempre com was ou were. "I born" e "I am born" estão errados.'
+                  p: '**Verbos que não vão para o -ing.** Alguns verbos falam de estados, e não de ações: saber, gostar, querer, precisar, entender, acreditar, ter (no sentido de possuir). Eles ficam no presente simples mesmo quando você fala de agora: ((I know.)) (não "I\'m knowing"), ((I need help.)), ((I understand.)), ((She wants a coffee.))'
                 },
                 {
-                  p: '**There was e there were** são o passado de there is e there are: ((There was a problem.)) (Teve um problema.) ((There were a lot of people at the party.)) (Tinha muita gente na festa.)'
-                },
-                {
-                  p: '**Há três anos** se diz ((three years ago)). Repare na ordem: o ago vem **depois** do tempo. "Ago three years" não existe.'
+                  p: '**Por quê?** O -ing mostra algo em andamento, com começo e fim. Saber ou querer não "andam": são estados. Quando uma marca famosa diz "I\'m loving it", está quebrando a regra de propósito, para soar diferente e chamar atenção.'
                 },
                 {
                   dialogo: [
+                    ['Ana', 'Hey, what are you doing?', 'Oi, o que você está fazendo?'],
+                    ['Ben', 'I\'m cooking dinner. Why?', 'Fazendo o jantar. Por quê?'],
                     [
                       'Ana',
-                      'Where were you yesterday? I called you twice.',
-                      'Onde você estava ontem? Te liguei duas vezes.'
+                      'We\'re watching a movie at my place. Do you want to come?',
+                      'A gente está vendo um filme lá em casa. Quer vir?'
                     ],
-                    [
-                      'Ben',
-                      'Sorry, I was at my grandma\'s. It was her birthday.',
-                      'Desculpa, eu estava na casa da minha avó. Era aniversário dela.'
-                    ],
-                    [
-                      'Ana',
-                      'Oh, nice! Was it a big party?',
-                      'Que legal! Foi uma festa grande?'
-                    ],
-                    [
-                      'Ben',
-                      'Not really. There were about ten people.',
-                      'Não muito. Tinha umas dez pessoas.'
-                    ]
+                    ['Ben', 'Sure, I\'ll be there in an hour!', 'Claro, chego aí em uma hora!']
                   ]
-                },
-                {
-                  dica: 'At my grandma\'s é "na casa da minha avó". O inglês costuma deixar o house subentendido depois do \'s.',
-                  rotulo: 'Repare'
                 }
               ]
             },
             {
               t: 'complete',
               p: 'Complete:',
-              code: 'I ___ at home yesterday, but my parents ___ at work.',
-              bank: ['was', 'were', 'are', 'is'],
-              c: ['was', 'were']
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Eu nasci em 2005."',
-              r: ['I was born in 2005.'],
-              exp: 'Nascer é passivo em inglês: was born.'
+              code: 'Look! It ___ raining. I ___ an umbrella.',
+              bank: ['is', 'need', 'am needing', 'are'],
+              c: ['is', 'need'],
+              exp: 'Está chovendo agora: is raining. Need é um estado: fica no presente simples.'
             },
             {
               t: 'escolha',
-              p: 'Como se diz "há três anos"?',
-              ops: ['three years ago', 'ago three years', 'has three years'],
+              p: 'Qual está certa?',
+              ops: ['I know the answer.', 'I\'m knowing the answer.', 'I\'m know the answer.'],
               c: 0,
-              exp: 'Ago vem depois do tempo.'
+              exp: 'Know é um estado, não uma ação em andamento: fica no presente simples.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "O que você está fazendo?"',
+              r: ['What are you doing?']
+            },
+            {
+              t: 'escolha',
+              p: 'Sua amiga pergunta "What do you do?". O que ela quer saber?',
+              ops: [
+                'Sua profissão',
+                'O que você está fazendo neste momento',
+                'O que você fez ontem'
+              ],
+              c: 0,
+              exp: 'What do you do? é sobre o trabalho. Para "agora", seria What are you doing?'
             },
             {
               t: 'monte',
-              p: 'Monte a frase: "Tinha muita gente na festa."',
-              r: 'There were a lot of people at the party.',
-              extra: ['was', 'had', 'in']
+              p: 'Monte a frase: "Ela está estudando agora."',
+              r: 'She\'s studying now.',
+              extra: ['studing', 'study', 'does'],
+              exp: 'Study + ing é studying: o y fica.'
             },
             {
               t: 'escolha',
               p: 'O que você ouviu?',
-              ouvir: 'It wasn\'t my fault.',
-              ops: ['It wasn\'t my fault.', 'It isn\'t my fault.', 'It was my fault.'],
+              ouvir: 'We\'re watching a movie.',
+              ops: ['We\'re watching a movie.', 'We watch a movie.', 'We\'re washing the car.'],
               c: 0
             },
             {
               t: 'escreva',
-              p: 'Traduza para o português: "Where were you last night?"',
-              r: [
-                'Onde você estava ontem à noite?',
-                'Onde você estava ontem de noite?',
-                'Onde você estava noite passada?',
-                'Onde vocês estavam ontem à noite?',
-                'Onde você esteve ontem à noite?',
-                'Onde você tava ontem à noite?'
-              ],
-              lingua: 'pt'
+              p: 'Traduza: "Eu preciso de ajuda."',
+              r: ['I need (some |)help.'],
+              exp: 'Need é um estado: I need, e não I\'m needing.'
             },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'I was born in Brazil.' }
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'I\'m waiting for the bus.' }
           ]
         },
         {
           id: 'en4l5',
-          titulo: 'Used to e uma história para ouvir',
-          pre: ['en4l3'],
+          titulo: 'Planos: going to, gonna e will',
+          pre: ['en4l4'],
           exs: [
             {
               t: 'texto',
-              titulo: 'Antigamente, e depois',
+              titulo: 'Três jeitos de falar do futuro',
               blocos: [
                 {
-                  p: 'Para hábitos do passado que não existem mais, o inglês usa **used to**: ((I used to play [[soccer|football]].)) (Eu jogava futebol.) É o nosso imperfeito, o "jogava", "morava", "ia". A ideia é: era assim, não é mais.'
+                  p: '**Going to** é para planos que você já decidiu e para o que dá para prever pelo que se vê: ((I\'m going to visit my grandma on Sunday.)) ((Look at those clouds. It\'s going to rain.))'
                 },
                 {
-                  p: 'Na fala, used to soa como "iúst-tu", com som de s, e não de z. Na pergunta e na negativa, o did assume o passado: ((Did you use to live here?)) ((I didn\'t use to like coffee.))'
+                  p: 'Na fala, going to quase sempre vira ((gonna)): ((I\'m gonna call her tomorrow.)) É o mesmo significado, só que falado rápido. Use gonna na conversa e em mensagens informais, mas escreva going to em textos formais, como e-mails de trabalho e provas.'
                 },
-                { p: 'Para contar uma história, estas palavras costuram as partes:' },
                 {
-                  vocab: [
-                    ['first', 'primeiro'],
-                    ['then', 'então, depois'],
-                    ['after that', 'depois disso'],
-                    ['later', 'mais tarde'],
-                    ['suddenly', 'de repente'],
-                    ['finally', 'finalmente, por fim']
+                  p: '**Will** é para decisões tomadas na hora, promessas, ofertas e opiniões sobre o futuro. Na fala, quase sempre vira ((I\'ll)), e a negativa é ((won\'t)) (will not).'
+                },
+                {
+                  tabela: {
+                    cab: ['Situação', 'Exemplo'],
+                    codigo: [],
+                    linhas: [
+                      ['Decisão na hora', '((I\'ll have the chicken, please.))'],
+                      ['Promessa', '((I won\'t tell anyone. I promise.))'],
+                      ['Oferta', '((I\'ll help you with that.))'],
+                      ['Opinião sobre o futuro', '((I think it\'ll be fine.))']
+                    ]
+                  }
+                },
+                {
+                  p: '**Compromisso marcado:** para algo já combinado, com data e hora, o inglês usa até o presente contínuo: ((I\'m meeting Ana tomorrow at five.)) (Vou encontrar a Ana amanhã às cinco.)'
+                },
+                {
+                  dialogo: [
+                    [
+                      'Mia',
+                      'What are you gonna do this weekend?',
+                      'O que você vai fazer neste fim de semana?'
+                    ],
+                    [
+                      'Dan',
+                      'I\'m gonna visit my parents. You?',
+                      'Vou visitar meus pais. E você?'
+                    ],
+                    [
+                      'Mia',
+                      'No plans yet. Maybe I\'ll just stay home.',
+                      'Ainda sem planos. Talvez eu só fique em casa.'
+                    ],
+                    [
+                      'Dan',
+                      'If you\'re bored, call me. We\'ll think of something.',
+                      'Se ficar entediada, me liga. A gente pensa em alguma coisa.'
+                    ]
                   ]
                 },
                 {
-                  p: '**Agora, uma história.** Ouça cada parte antes de ler a tradução. Repare nos verbos no passado e no som do -ed.'
-                },
-                {
-                  fala: 'Last summer, I went to the beach with my friends. We left early in the morning, but the traffic was terrible.',
-                  trad: 'No verão passado, fui à praia com meus amigos. Saímos cedo, mas o trânsito estava horrível.'
-                },
-                {
-                  fala: 'When we finally arrived, it started to rain! So we found a small café and waited.',
-                  trad: 'Quando finalmente chegamos, começou a chover! Então achamos um cafezinho e esperamos.'
-                },
-                {
-                  fala: 'After an hour, the sun came out, and we had a great day. We used to go there every summer when we were kids.',
-                  trad: 'Depois de uma hora, o sol saiu, e o dia foi ótimo. A gente ia lá todo verão quando era criança.'
-                },
-                {
-                  dica: 'Repare em started e waited: os dois terminam em t antes do -ed, então ganham a sílaba extra. Arrived, depois do som de v, termina só com som de d.',
-                  rotulo: 'O -ed na história'
+                  dica: 'A diferença mais útil: going to = já estava decidido antes de você falar. Will = decidiu agora, enquanto fala. No restaurante, olhando o cardápio, é I\'ll have the soup.',
+                  rotulo: 'Resumo'
                 }
               ]
             },
             {
               t: 'escolha',
-              p: 'Na história, por que eles foram a um café?',
+              p: 'No restaurante, olhando o cardápio, você decide o prato. O que diz?',
               ops: [
-                'Porque começou a chover',
-                'Porque estavam com fome',
-                'Porque o trânsito estava ruim'
+                'I\'ll have the soup, please.',
+                'I\'m going to have the soup, please.',
+                'I have the soup, please.'
               ],
               c: 0,
-              exp: 'When we finally arrived, it started to rain! So we found a small café...'
-            },
-            {
-              t: 'escolha',
-              p: 'O que quer dizer "We used to go there every summer"?',
-              ops: [
-                'A gente ia lá todo verão (e hoje não vai mais)',
-                'A gente vai lá todo verão',
-                'A gente se acostumou a ir lá'
-              ],
-              c: 0,
-              exp: 'Used to fala de um hábito do passado que acabou.'
+              exp: 'Decisão tomada na hora: will.'
             },
             {
               t: 'escreva',
-              p: 'Traduza: "Eu morava em Salvador."',
-              r: ['I used to live in Salvador.', 'I lived in Salvador.']
+              p: 'Traduza: "Eu vou te ajudar." (uma oferta, na hora)',
+              r: ['I\'ll help you.', 'I will help you.']
             },
             {
               t: 'escolha',
               p: 'O que você ouviu?',
-              ouvir: 'I used to play the guitar.',
+              ouvir: 'I\'m gonna call her tomorrow.',
               ops: [
-                'I used to play the guitar.',
-                'I use to play the guitar.',
-                'I used to pay the guitar.'
+                'I\'m gonna call her tomorrow.',
+                'I\'m gonna call her today.',
+                'I\'m gonna tell her tomorrow.'
+              ],
+              c: 0
+            },
+            {
+              t: 'escolha',
+              p: 'Onde não se deve escrever gonna?',
+              ops: [
+                'Num e-mail para o seu chefe ou numa redação',
+                'Numa mensagem para um amigo',
+                'Numa legenda de rede social'
               ],
               c: 0,
-              exp: 'Used to soa "iúst-tu": o d some na fala, mas na escrita ele fica.'
+              exp: 'Gonna é o going to falado. Em textos formais, escreva going to.'
             },
             {
               t: 'monte',
-              p: 'Monte a frase: "Primeiro nós comemos, depois fomos ao cinema."',
-              r: [
-                'First we ate, then we went to the [[movies|cinema]].',
-                'First, we ate, then we went to the [[movies|cinema]].'
-              ],
-              extra: ['eat', 'go', 'after'],
-              exp: 'Ir ao cinema é go to the movies nos EUA e go to the cinema no Reino Unido.'
+              p: 'Monte a frase: "Vai chover."',
+              r: 'It\'s going to rain.',
+              extra: ['will', 'go', 'raining'],
+              exp: 'Previsão pelo que se vê (as nuvens): going to.'
+            },
+            {
+              t: 'complete',
+              p: 'Complete a promessa:',
+              code: 'I ___ tell anyone. I promise!',
+              bank: ['won\'t', 'don\'t', 'am not'],
+              c: ['won\'t'],
+              exp: 'Promessa é com will. Na negativa, will not vira won\'t.'
             },
             {
               t: 'escreva',
-              p: 'Traduza para o português: "Suddenly, it started to rain."',
-              r: ['De repente, começou a chover.', 'De repente começou a chover.'],
-              lingua: 'pt'
+              p: 'Traduza: "Vou encontrar a Ana amanhã." (já combinado)',
+              r: [
+                'I\'m meeting Ana tomorrow.',
+                'I\'m going to meet Ana tomorrow.',
+                'I\'m gonna meet Ana tomorrow.',
+                'I will meet Ana tomorrow.'
+              ],
+              exp: 'Para algo marcado, o mais natural é o presente contínuo: I\'m meeting Ana tomorrow.'
             },
             {
               t: 'escreva',
               p: 'Escreva o que você ouviu',
-              ouvir: 'After an hour, the sun came out.'
+              ouvir: 'What are you going to do this weekend?'
             }
           ]
         }

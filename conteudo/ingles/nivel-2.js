@@ -1,4 +1,4 @@
-/* Trilha Livre · Inglês do zero · Nível 2: Pessoas, coisas e lugares
+/* Trilha Livre · Inglês do zero · Nível 2: Pessoas, coisas e lugares (A1)
    Conteúdo sob licença CC BY-NC-SA 4.0 (veja conteudo/LICENCA.md). O formato das lições está explicado em CONTRIBUINDO.md.
    ((frase)) tem botão de ouvir; [[americano|britânico]] muda com o sotaque escolhido. */
 
@@ -6,7 +6,8 @@ nivel({
   curso: 'ingles',
   n: 2,
   titulo: 'Pessoas, coisas e lugares',
-  desc: 'Artigos, plurais e o som do -s, possessivos, adjetivos e there is.',
+  faixa: 'A1',
+  desc: 'Artigos, plurais e o som do -s, possessivos, me e him, adjetivos e there is.',
   videos: [
     {
       titulo: 'English in Brazil',
@@ -303,7 +304,7 @@ nivel({
       id: 'enu4',
       titulo: 'De quem é, como é, onde está',
       conceito: 'his · her · there is',
-      desc: 'Possessivos, adjetivos, there is e there are e as preposições de lugar.',
+      desc: 'Possessivos, os pronomes de quem recebe a ação, adjetivos, there is e there are e as preposições de lugar.',
       licoes: [
         {
           id: 'en2l3',
@@ -394,6 +395,140 @@ nivel({
               exp: 'Parents já termina em s, então fica só o apóstrofo: parents\'.'
             },
             { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'Is this your phone?' }
+          ]
+        },
+        {
+          id: 'en2l6',
+          titulo: 'Me, him, them: quem recebe a ação',
+          pre: ['en2l3'],
+          exs: [
+            {
+              t: 'texto',
+              titulo: 'O pronome muda de forma e de lugar',
+              blocos: [
+                {
+                  p: 'Em ((I love you)), I é quem ama e you é quem é amado. Quando a pessoa **recebe** a ação, ou vem depois de uma preposição (for, with, to...), a maioria dos pronomes muda de forma:'
+                },
+                {
+                  tabela: {
+                    cab: ['Quem faz', 'Quem recebe', 'Exemplo'],
+                    codigo: [],
+                    linhas: [
+                      ['I', 'me', '((Call me.))'],
+                      ['you', 'you', '((I miss you.))'],
+                      ['he', 'him', '((I know him.))'],
+                      ['she', 'her', '((Ask her.))'],
+                      ['it', 'it', '((I love it!))'],
+                      ['we', 'us', '((Wait for us.))'],
+                      ['they', 'them', '((Look at them.))']
+                    ]
+                  }
+                },
+                {
+                  p: '**Por que isso existe?** O português faz a mesma coisa: eu vira me e mim, como em "ele **me** chamou" e "é para **mim**". Mas, na fala do Brasil, é comum dizer "eu vi ele". Em inglês, isso não funciona: é ((I saw him)), nunca "I saw he".'
+                },
+                {
+                  p: '**O lugar também muda.** Em português, o pronome costuma vir antes do verbo: "eu **te** amo", "ela **me** ligou". Em inglês, ele vem **depois**: ((I love you.)) ((She called me.)) Como os verbos do inglês quase não têm terminações, é a ordem das palavras que mostra quem faz e quem recebe.'
+                },
+                {
+                  p: '**Depois de preposições**, sempre a forma de quem recebe: ((for me)), ((with him)), ((about them)), ((between you and me)). Por isso "para mim" é for me, e nunca "for I".'
+                },
+                {
+                  p: '**Nas respostas curtas** da conversa, também: ((Me too!)) (Eu também!), ((Me neither.)) (Eu também não.) E, para "quem quer pizza?", a resposta é ((Me!))'
+                },
+                {
+                  p: '**Her** tem duas funções: é possessivo, como em ((her car)), o carro dela, e é o pronome de quem recebe, como em ((I like her)), gosto dela. O contexto mostra qual é.'
+                },
+                {
+                  dialogo: [
+                    ['Leo', 'Is this coffee for me?', 'Este café é pra mim?'],
+                    [
+                      'Mia',
+                      'No, sorry, it\'s for Tom. That one is for you.',
+                      'Não, desculpa, é pro Tom. Aquele é pra você.'
+                    ],
+                    ['Leo', 'Thanks! Where is Tom?', 'Valeu! Cadê o Tom?'],
+                    [
+                      'Mia',
+                      'He\'s with Ana and Lia. Look, there they are. Can you give it to him?',
+                      'Está com a Ana e a Lia. Olha, lá estão eles. Você pode entregar pra ele?'
+                    ],
+                    [
+                      'Leo',
+                      'Sure. Tell them I said hi!',
+                      'Claro. Diz pra eles que eu mandei um oi!'
+                    ]
+                  ]
+                },
+                {
+                  dica: 'Na conversa informal, muitos nativos dizem "Me and my friend..." em vez de "My friend and I...". É comum na fala, mas em provas e na escrita o certo é My friend and I, com o I no fim.',
+                  rotulo: 'Me and my friend?'
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: '"Ela me ligou." Como fica?',
+              ops: ['She called me.', 'She me called.', 'She called I.'],
+              c: 0,
+              exp: 'Em inglês, o pronome vem depois do verbo, e quem recebe a ação é me.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Eu te amo."',
+              r: ['I love you.'],
+              exp: 'O pronome vai depois do verbo: love you.'
+            },
+            {
+              t: 'complete',
+              p: 'Complete com o pronome certo:',
+              code: 'Ana is my friend. I really like ___. Pedro and Lia? I don\'t know ___.',
+              bank: ['her', 'them', 'she', 'they'],
+              c: ['her', 'them'],
+              exp: 'Depois do verbo, she vira her e they vira them.'
+            },
+            {
+              t: 'escolha',
+              p: '"Isto é para mim?" Como fica?',
+              ops: ['Is this for me?', 'Is this for I?', 'Is this to my?'],
+              c: 0,
+              exp: 'Depois de preposição, a forma é me.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'Wait for us!',
+              ops: ['Wait for us!', 'Wait for it!', 'Wait for me!'],
+              c: 0
+            },
+            {
+              t: 'monte',
+              p: 'Monte a pergunta: "Você pode me ajudar?"',
+              r: 'Can you help me?',
+              extra: ['I', 'my', 'to']
+            },
+            {
+              t: 'escolha',
+              p: 'Alguém diz "I love pizza!", e você também ama. O que responde?',
+              ops: ['Me too!', 'I too!', 'Me neither!'],
+              c: 0,
+              exp: 'Me too é "eu também". Me neither é "eu também não", para frases negativas.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza para o português: "I miss you."',
+              r: [
+                '(Eu |)(sinto|sinto a) (sua|tua) falta.',
+                '(Eu |)(sinto|tenho|estou com|tô com) (saudade|saudades) de você.',
+                '(Sinto|Tenho|Estou com|Tô com) (saudade|saudades).',
+                '(Eu |)sinto falta de você.',
+                'Saudade de você.',
+                'Saudades de você.'
+              ],
+              lingua: 'pt',
+              exp: 'Miss someone é sentir falta de alguém: é o jeito de dizer saudade em inglês.'
+            },
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'Can you give it to him?' }
           ]
         },
         {

@@ -470,7 +470,7 @@ pre.code, .code-inline {
 .fb-base p { margin: 0; font-size: 15px; }
 .reforco { display: grid; gap: 8px; text-align: left; border: 2px solid var(--sun); border-radius: 14px; padding: 12px 14px; background: var(--surface); }
 .reforco p { margin: 0; }
-.reforco .acoes-linha .btn-card, .aviso-base .acoes-linha .btn-card, .fb-base .acoes-linha .btn-card { text-align: left; }
+.reforco .acoes-linha .btn-card, .aviso-base .acoes-linha .btn-card, .fb-base .acoes-linha .btn-card { text-align: left; flex: 0 1 auto; min-width: 0; max-width: 100%; }
 
 /* ---------- exercícios de página (HTML e CSS) ---------- */
 .abas { display: flex; gap: 4px; }
@@ -848,3 +848,5 @@ a:focus-visible, .opt:focus-visible, .chip:focus-visible, .line:focus-visible, .
 .fb-ouvir { margin-top: 2px; }
 .code.frase-en { font-family: var(--f-body); font-size: 19px; line-height: 1.7; background: var(--surface); color: var(--ink); }
 .par-sot { font-size: 12px; font-weight: 700; color: var(--muted); }
+/* faixa do Quadro Europeu (A1 a C2) ao lado do número do nível */
+.kind .faixa { display: inline-block; padding: 1px 7px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); letter-spacing: .04em; }

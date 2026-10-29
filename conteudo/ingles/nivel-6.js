@@ -1,790 +1,555 @@
-/* Trilha Livre · Inglês do zero · Nível 6: Inglês do dia a dia
+/* Trilha Livre · Inglês do zero · Nível 6: Pronúncia que muda tudo (A2)
    Conteúdo sob licença CC BY-NC-SA 4.0 (veja conteudo/LICENCA.md). O formato das lições está explicado em CONTRIBUINDO.md.
    ((frase)) tem botão de ouvir; [[americano|britânico]] muda com o sotaque escolhido. */
 
 nivel({
   curso: 'ingles',
   n: 6,
-  titulo: 'Inglês do dia a dia',
-  desc: 'Reações, gírias, abreviações de mensagens, pedidos no café, pedir ajuda e os phrasal verbs que todo mundo usa.',
+  titulo: 'Pronúncia que muda tudo',
+  faixa: 'A2',
+  desc: 'Os sons que o português não tem, vogais curtas e longas, a sílaba forte, o schwa e a fala rápida de verdade.',
   videos: [
     {
-      titulo: 'Speak English With Vanessa',
-      canal: 'Vanessa',
-      obs: 'expressões e gírias americanas em conversas de verdade',
-      url: 'https://www.youtube.com/@SpeakEnglishWithVanessa'
+      titulo: 'Rachel\'s English',
+      canal: 'Rachel Smith',
+      obs: 'o canal mais completo de pronúncia americana: posição da boca e câmera lenta',
+      url: 'https://www.youtube.com/@rachelsenglish'
     },
     {
       titulo: 'English with Lucy',
       canal: 'Lucy Earl',
-      obs: 'gírias e expressões britânicas, com o contexto de cada uma',
+      obs: 'pronúncia britânica, com os sons difíceis explicados um por um',
       url: 'https://www.youtube.com/@EnglishwithLucy'
     },
     {
       titulo: 'English in Brazil',
       canal: 'Carina Fragozo',
-      obs: 'expressões do dia a dia explicadas em português',
+      obs: 'os erros de pronúncia mais comuns de brasileiros, explicados em português',
       url: 'https://www.youtube.com/user/carinafragozo'
+    },
+    {
+      tipo: 'texto',
+      titulo: 'YouGlish',
+      canal: 'YouGlish',
+      obs: 'digite uma palavra e ouça pessoas de verdade falando, em vídeos do YouTube, com o sotaque que você escolher',
+      url: 'https://youglish.com/english'
     }
   ],
   unidades: [
     {
       id: 'enu11',
-      titulo: 'Conversa de verdade',
-      conceito: 'No way! · My bad.',
-      desc: 'As reações rápidas, as gírias mais ouvidas e a escrita das mensagens.',
+      titulo: 'Sons que o português não tem',
+      conceito: 'think · ship · sheep',
+      desc: 'O th, as vogais curtas e longas, o h, o r e o fim das palavras.',
       licoes: [
         {
           id: 'en6l1',
-          titulo: 'Reações e respostas rápidas',
-          pre: ['en1l2'],
+          titulo: 'O TH',
           exs: [
             {
               t: 'texto',
-              titulo: 'O que dizer enquanto o outro fala',
+              titulo: 'A língua entre os dentes',
               blocos: [
                 {
-                  p: 'Boa parte de uma conversa são reações curtas. São elas que fazem você soar natural, e quase nenhum livro ensina. Aprenda em blocos, sem traduzir palavra por palavra.'
-                },
-                { p: '**Surpresa:**' },
-                {
-                  vocab: [
-                    ['No way!', 'Não acredito! / Sério?!'],
-                    ['Seriously?', 'Sério?'],
-                    ['For real?', 'É sério? / Na moral?', 'bem informal'],
-                    ['You\'re kidding!', 'Tá brincando!']
-                  ]
-                },
-                { p: '**Concordar:**' },
-                {
-                  vocab: [
-                    ['Exactly!', 'Exatamente!'],
-                    ['Totally.', 'Total. / Com certeza.'],
-                    ['Same here.', 'Comigo também.'],
-                    ['Fair enough.', 'Justo. / Faz sentido.', 'aceitar um argumento'],
-                    ['Makes sense.', 'Faz sentido.'],
-                    ['Sounds good!', 'Fechado! / Beleza!', 'para aceitar um plano']
-                  ]
+                  p: 'O **th** é o som mais famoso do inglês que não existe em português. Ele tem duas versões, e as duas se fazem do mesmo jeito: a ponta da língua encosta de leve entre os dentes da frente, e o ar passa por ali.'
                 },
                 {
-                  p: '**Eu também e eu também não.** Para concordar com algo positivo, ((Me too.)) Com algo negativo, é ((Me neither.)): "I don\'t like coffee." → "Me neither." Dizer "me too" para uma frase negativa soa como se você estivesse discordando. Nos EUA também se ouve ((Me either.)) com o mesmo sentido.'
-                },
-                { p: '**Pedir desculpas e tranquilizar:**' },
-                {
-                  vocab: [
-                    ['My bad.', 'Foi mal. / Minha culpa.', 'informal, para coisas pequenas'],
-                    ['Sorry about that.', 'Desculpa por isso.'],
-                    ['No worries.', 'Sem problema. / Relaxa.'],
-                    ['It\'s all good.', 'Tá tudo certo.'],
-                    ['Never mind.', 'Deixa pra lá.']
-                  ]
-                },
-                {
-                  p: '**Para quando a notícia é ruim:** ((Oh no!)), ((I\'m sorry to hear that.)) (sinto muito) e, entre amigos, ((That sucks.)) (que droga).'
-                },
-                {
-                  dica: 'Whatever (tanto faz) soa desdenhoso e pode ser ofensivo. E Good for you! pode ser sincero ou irônico, dependendo do tom. Na dúvida, prefira That\'s great!',
-                  rotulo: 'Cuidado com o tom'
-                },
-                {
-                  dialogo: [
-                    [
-                      'Ana',
-                      'I can\'t come tonight, sorry. I have to work.',
-                      'Não vou conseguir ir hoje, desculpa. Tenho que trabalhar.'
-                    ],
-                    ['Ben', 'No worries! Next time.', 'Sem problema! Fica para a próxima.'],
-                    [
-                      'Ana',
-                      'Oh, and I forgot your book again. My bad!',
-                      'Ah, e esqueci o seu livro de novo. Foi mal!'
-                    ],
-                    [
-                      'Ben',
-                      'It\'s all good. Bring it on Monday.',
-                      'Tá tudo certo. Traz na segunda.'
+                  tabela: {
+                    cab: ['Versão', 'Como fazer', 'Exemplos'],
+                    codigo: [],
+                    linhas: [
+                      [
+                        'Sem voz',
+                        'só o ar passando, como um sopro',
+                        '((think)), ((three)), ((thanks)), ((birthday)), (([[math|maths]]))'
+                      ],
+                      [
+                        'Com voz',
+                        'o mesmo, mas com a garganta vibrando',
+                        '((this)), ((the)), ((they)), ((mother)), ((brother))'
+                      ]
                     ]
+                  }
+                },
+                {
+                  p: 'Para sentir a diferença, ponha a mão na garganta: em ((this)) ela vibra; em ((think)), não.'
+                },
+                {
+                  p: '**O que o brasileiro costuma fazer:** trocar o th por f, t, s ou d. ((think)) vira "fink" ou "sink", ((three)) vira "tree" ou "free", ((this)) vira "dis". Às vezes isso só deixa o sotaque mais forte; às vezes muda a palavra. Ouça os pares:'
+                },
+                {
+                  pares: [
+                    ['think', 'sink', 'pensar × pia, afundar'],
+                    ['three', 'tree', 'três × árvore'],
+                    ['thank', 'tank', 'agradecer × tanque'],
+                    ['they', 'day', 'eles × dia'],
+                    ['thought', 'taught', 'pensou × ensinou'],
+                    ['mouth', 'mouse', 'boca × rato']
                   ]
+                },
+                {
+                  p: '**Para treinar:** fale devagar, exagerando a língua para fora no começo. Com o tempo, ela vai para trás dos dentes e o som fica natural. Repita estas frases em voz alta, junto com o áudio:'
+                },
+                { fala: 'Thank you. I think so.', trad: 'Obrigado. Acho que sim.' },
+                {
+                  fala: 'My brother and my mother are there.',
+                  trad: 'Meu irmão e minha mãe estão lá.'
+                },
+                { fala: 'Three thousand three hundred.', trad: 'Três mil e trezentos.' },
+                {
+                  dica: 'Ninguém precisa de um th perfeito para ser entendido. Muitos nativos da Irlanda e de partes de Londres também o trocam por t ou f. Mas, quando a troca cria outra palavra (three e tree), o contexto precisa ajudar, e vale caprichar.',
+                  rotulo: 'Calma'
                 }
               ]
             },
             {
               t: 'escolha',
-              p: 'Um amigo conta que vai morar no Japão. Qual reação combina?',
-              ops: ['No way! That\'s amazing!', 'Never mind.', 'My bad.'],
+              p: 'O que você ouviu?',
+              ouvir: 'think',
+              ops: ['think', 'sink', 'pink'],
               c: 0,
-              exp: 'No way! mostra surpresa.'
-            },
-            {
-              t: 'escolha',
-              p: '"I don\'t like horror movies." Você também não gosta. O que diz?',
-              ops: ['Me neither.', 'Me too.', 'Me no.'],
-              c: 0,
-              exp: 'Para concordar com uma frase negativa, use me neither.'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Eu também não."',
-              r: ['Me neither.', 'Neither do I.', 'Me either.']
-            },
-            {
-              t: 'escolha',
-              p: 'Você esbarrou em alguém sem querer, numa situação informal. O que diz?',
-              ops: ['My bad!', 'Fair enough.', 'Sounds good!'],
-              c: 0,
-              exp: 'My bad é o "foi mal" para coisas pequenas.'
-            },
-            {
-              t: 'escolha',
-              p: 'Alguém pergunta "Pizza at eight?". Você topa. O que responde?',
-              ops: ['Sounds good!', 'Whatever.', 'Never mind.'],
-              c: 0,
-              exp: 'Sounds good! aceita o plano. Whatever soaria como "tanto faz", meio grosseiro.'
+              exp: 'Think tem a língua entre os dentes. Sink começa com um s comum.'
             },
             {
               t: 'escolha',
               p: 'O que você ouviu?',
-              ouvir: 'Fair enough.',
-              ops: ['Fair enough.', 'Fair enough?', 'Fairly enough.'],
+              ouvir: 'three',
+              ops: ['three', 'tree', 'free'],
               c: 0,
-              exp: 'Fair enough aceita o argumento do outro: "justo, faz sentido".'
+              exp: 'Três é three, com th. Tree, com t, é árvore.'
             },
             {
-              t: 'monte',
-              p: 'Monte a frase: "Sem problema, acontece."',
-              r: 'No worries, it happens.',
-              extra: ['problems', 'happen', 'worry']
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'they',
+              ops: ['they', 'day', 'hey'],
+              c: 0,
+              exp: 'They tem o th com voz; day começa com d.'
             },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'You\'re kidding!' }
+            {
+              t: 'escolha',
+              p: 'Como se faz o som do th?',
+              ops: [
+                'A ponta da língua encosta de leve entre os dentes da frente e o ar passa',
+                'Os lábios se fecham, como no f',
+                'A língua toca o céu da boca, como no t'
+              ],
+              c: 0,
+              exp: 'É a única posição de língua do inglês que o português não usa.'
+            },
+            {
+              t: 'escolha',
+              p: 'Em qual destas palavras o th tem voz (a garganta vibra)?',
+              ops: ['mother', '[[math|maths]]', 'thanks'],
+              c: 0,
+              exp: 'Mother, this, the, they: th com voz. [[Math|Maths]], thanks, think: sem voz.'
+            },
+            { t: 'escreva', p: 'Traduza: "Eu acho que sim."', r: ['I think so.'] },
+            {
+              t: 'monte',
+              p: 'Monte: "minha mãe e meu irmão"',
+              r: ['my mother and my brother', 'my mom and my brother'],
+              extra: ['the', 'mom', 'with']
+            },
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'Thank you so much.' }
           ]
         },
         {
           id: 'en6l2',
-          titulo: 'Gírias que você vai ouvir',
+          titulo: 'Vogais curtas e longas',
           pre: ['en6l1'],
           exs: [
             {
               t: 'texto',
-              titulo: 'Do jeito que as pessoas falam',
+              titulo: 'Ship ou sheep?',
               blocos: [
                 {
-                  p: 'Gíria muda rápido e depende muito de idade, região e grupo. As desta lição são as mais estáveis e mais ouvidas, em séries, jogos, redes e conversas. Primeiro, as que você ouve em qualquer lugar:'
+                  p: 'O português tem um i só. O inglês tem dois: um **curto e relaxado**, entre o nosso i e o ê, e um **longo e esticado**, como o nosso i, só que mais comprido. Essa diferença muda a palavra.'
                 },
                 {
-                  vocab: [
-                    ['cool', 'legal'],
-                    ['awesome', 'incrível'],
-                    [
-                      'guys',
-                      'pessoal, galera',
-                      'serve para grupos de qualquer gênero: Hi, guys!'
-                    ],
-                    ['to hang out', 'sair junto, ficar de boa com alguém'],
-                    ['to chill', 'relaxar, ficar de boa'],
-                    ['I\'m down.', 'Topo! / Tô dentro.'],
-                    ['I\'m in.', 'Tô dentro.'],
-                    ['totally', 'totalmente, com certeza'],
-                    ['dude', 'cara', 'bem americano']
+                  pares: [
+                    ['ship', 'sheep', 'navio × ovelha'],
+                    ['live', 'leave', 'morar × sair'],
+                    ['sit', 'seat', 'sentar × assento'],
+                    ['fill', 'feel', 'encher × sentir'],
+                    ['it', 'eat', 'isso × comer']
                   ]
                 },
                 {
-                  p: '**Das redes e dos mais jovens.** Estas aparecem muito em comentários, vídeos e jogos. Entenda todas; use só se combinar com você:'
+                  p: '**Como treinar o curto:** relaxe a boca, sem sorrir, como se fosse falar "ê" e parasse no meio do caminho. **O longo:** sorria um pouco e estique o som. Na escrita, ee e ea costumam ser longos (sheep, leave, eat), e o i sozinho entre consoantes costuma ser curto (ship, live, sit).'
                 },
                 {
-                  vocab: [
-                    [
-                      'lowkey',
-                      'meio que, discretamente',
-                      'I\'m lowkey tired = tô meio cansado'
-                    ],
-                    ['salty', 'chateado, rancoroso', 'ficou salty porque perdeu'],
-                    ['to ghost someone', 'sumir, parar de responder alguém'],
-                    ['the vibe', 'a energia, o clima de um lugar'],
-                    ['no cap', 'sem mentira, papo reto']
-                  ]
+                  dica: 'Brasileiros costumam falar todas essas palavras com o i longo. Cuidado especial com sheet (folha) e beach (praia): elas têm o i longo. Com o i curto, viram palavrões.',
+                  rotulo: 'Atenção'
                 },
-                { p: '**Do Reino Unido.** Algumas são bem diferentes do inglês americano:' },
+                { p: 'O mesmo acontece com o u e com o a:' },
                 {
-                  vocab: [
-                    ['mate', 'amigo, cara', 'Thanks, mate!'],
-                    ['cheers', 'valeu / saúde / tchau'],
-                    ['brilliant', 'ótimo, demais'],
-                    ['rubbish', 'lixo, ruim', 'that film was rubbish'],
-                    ['knackered', 'exausto, morto de cansado'],
-                    ['gutted', 'arrasado, muito decepcionado'],
-                    ['Fancy a coffee?', 'Bora tomar um café?', 'fancy aqui é querer'],
-                    ['innit?', 'né?', 'informal, de Londres']
+                  pares: [
+                    ['full', 'fool', 'cheio × bobo: u curto × u longo'],
+                    ['pull', 'pool', 'puxar × piscina'],
+                    ['bad', 'bed', 'ruim × cama'],
+                    ['man', 'men', 'homem × homens'],
+                    ['sad', 'said', 'triste × disse']
                   ]
                 },
                 {
-                  dialogo: [
-                    [
-                      'Kim',
-                      'Hey guys, wanna hang out later?',
-                      'E aí, galera, bora sair mais tarde?'
-                    ],
-                    ['Tom', 'I\'m down. Where?', 'Topo. Onde?'],
-                    [
-                      'Kim',
-                      'That new café [[downtown|in town]]. It\'s got a really cool vibe.',
-                      'Naquele café novo do centro. Tem uma vibe bem legal.'
-                    ],
-                    ['Tom', 'Awesome. See you there!', 'Demais. Te vejo lá!']
-                  ]
-                },
-                {
-                  dica: 'Gíria em excesso, ou fora do grupo certo, soa forçado em qualquer língua. Comece entendendo; o uso vem naturalmente quando você ouve muito.',
-                  rotulo: 'Na dúvida'
+                  p: 'O a de ((bad)), ((man)) e ((cat)) é um som aberto, entre o nosso a e o é, com a boca bem aberta. É um dos sons mais marcantes do inglês americano.'
                 }
               ]
-            },
-            {
-              t: 'escolha',
-              p: 'O que quer dizer "I\'m down" quando alguém convida você para algo?',
-              ops: ['Topo! Estou dentro.', 'Estou triste.', 'Estou caindo.'],
-              c: 0,
-              exp: 'Down aqui não é triste: é concordar com o plano.'
-            },
-            {
-              t: 'escolha',
-              p: 'Um britânico diz "I\'m knackered." Como ele está?',
-              ops: ['Exausto', 'Animado', 'Bêbado'],
-              c: 0,
-              exp: 'Knackered é morto de cansado, bem britânico.'
-            },
-            {
-              t: 'escolha',
-              p: '"He ghosted me." O que aconteceu?',
-              ops: ['Ele sumiu e parou de responder', 'Ele me assustou', 'Ele me deu um presente'],
-              c: 0,
-              exp: 'Ghost, como verbo, é desaparecer sem explicação.'
             },
             {
               t: 'escolha',
               p: 'O que você ouviu?',
-              ouvir: 'Do you wanna hang out later?',
+              ouvir: 'ship',
+              ops: ['ship', 'sheep', 'shop'],
+              c: 0,
+              exp: 'Ship tem o i curto e relaxado. Sheep tem o i longo.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'leave',
+              ops: ['leave', 'live', 'love'],
+              c: 0,
+              exp: 'Leave (sair) tem o i longo, escrito ea.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'bed',
+              ops: ['bed', 'bad', 'bird'],
+              c: 0,
+              exp: 'Bed (cama) tem um é. Bad (ruim) tem o a bem aberto.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'men',
+              ops: ['men', 'man', 'mean'],
+              c: 0,
+              exp: 'Men, o plural de man, tem o som de é.'
+            },
+            {
+              t: 'escolha',
+              p: 'Qual destas palavras tem o i longo?',
+              ops: ['seat', 'sit', 'city'],
+              c: 0,
+              exp: 'O ea costuma ser i longo: seat, eat, leave.'
+            },
+            {
+              t: 'escolha',
+              p: '"I live in São Paulo" com o i longo vira...',
               ops: [
-                'Do you wanna hang out later?',
-                'Do you wanna hang up later?',
-                'Do you wanna help out later?'
+                '"I leave São Paulo": eu saio de São Paulo',
+                'A mesma frase, só com sotaque',
+                '"Eu amo São Paulo"'
               ],
               c: 0,
-              exp: 'Hang out é sair junto. Hang up é desligar o telefone.'
+              exp: 'Live, com i curto, é morar. Leave, com i longo, é sair, partir.'
             },
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'I live in a big city.' },
             {
               t: 'escreva',
-              p: 'Traduza para o português: "That movie was rubbish."',
-              r: [
-                'Aquele filme era um lixo.',
-                'Aquele filme foi um lixo.',
-                'Esse filme foi um lixo.',
-                'Esse filme era um lixo.',
-                'Aquele filme foi ruim.',
-                'Aquele filme era ruim.',
-                'Esse filme foi ruim.',
-                'O filme foi um lixo.',
-                'O filme era um lixo.',
-                'O filme foi ruim.',
-                'Aquele filme foi horrível.',
-                'Esse filme foi horrível.',
-                'O filme foi horrível.',
-                'Aquele filme foi uma porcaria.',
-                'O filme foi uma porcaria.',
-                'Esse filme foi uma porcaria.'
-              ],
-              lingua: 'pt'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Topo!" (aceitando um convite)',
-              r: ['I\'m down!', 'I\'m in!']
-            },
-            {
-              t: 'monte',
-              p: 'Monte a frase: "Valeu, cara!" (como um britânico)',
-              r: ['Cheers, mate!', 'Thanks, mate!'],
-              extra: ['dude', 'thanks', 'man']
-            },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'That\'s so cool!' }
+              p: 'Traduza: "O navio é grande."',
+              r: ['The ship is big.', 'The ship is large.']
+            }
           ]
         },
         {
           id: 'en6l3',
-          titulo: 'Mensagens: lol, btw, idk',
-          pre: ['en6l2'],
+          titulo: 'O H, o R e o fim das palavras',
+          pre: ['en6l1'],
           exs: [
             {
               t: 'texto',
-              titulo: 'Escrever como se fala',
+              titulo: 'Três sons que entregam o sotaque',
               blocos: [
                 {
-                  p: 'Em mensagens, comentários e jogos on-line, o inglês encurta tudo. Estas abreviações aparecem o tempo todo:'
+                  p: '**O h do inglês** é um sopro suave, como o rr de "carro" ou o r de "rato" em boa parte do Brasil: ((house)), ((hello)), ((happy)). Ele existe, e engolir o h muda palavras: ((hair)) (cabelo) vira ((air)) (ar).'
                 },
                 {
-                  tabela: {
-                    cab: ['Abreviação', 'Por extenso', 'Em português'],
-                    codigo: [],
-                    linhas: [
-                      ['lol', 'laughing out loud', 'kkkk (quase nunca é rir alto de verdade)'],
-                      ['omg', 'oh my god', 'meu deus'],
-                      ['btw', 'by the way', 'aliás, a propósito'],
-                      ['idk', 'I don\'t know', 'não sei'],
-                      ['tbh', 'to be honest', 'pra ser sincero'],
-                      ['imo', 'in my opinion', 'na minha opinião'],
-                      ['brb', 'be right back', 'já volto'],
-                      ['ngl', 'not gonna lie', 'não vou mentir'],
-                      ['ty / thx', 'thank you / thanks', 'obrigado'],
-                      ['np', 'no problem', 'de nada, sem problema'],
-                      ['u, ur, r', 'you, your, are', 'você, seu, é/são'],
-                      ['dm', 'direct message', 'mensagem privada'],
-                      ['asap', 'as soon as possible', 'o quanto antes']
-                    ]
-                  }
+                  p: '**O r do inglês** é outro som: a ponta da língua se curva para trás, sem encostar em nada. E aqui mora uma confusão curiosa: como o nosso r de "rato" soa parecido com o h do inglês, muitos brasileiros falam ((red)) como se fosse ((head)), e ((ready)) como "hédi".'
                 },
-                { p: 'Ouça algumas por extenso, que é como elas aparecem na fala:' },
                 {
-                  vocab: [
-                    ['By the way, are you coming tonight?', 'Aliás, você vem hoje à noite?'],
-                    ['To be honest, I don\'t know.', 'Pra ser sincero, não sei.'],
-                    ['I\'ll be right back.', 'Já volto.']
+                  pares: [
+                    ['red', 'head', 'vermelho × cabeça'],
+                    ['hair', 'air', 'cabelo × ar'],
+                    ['hat', 'at', 'chapéu × em']
                   ]
                 },
                 {
-                  p: '**Um detalhe que pouca gente conta:** em mensagens curtas, o ponto final pode soar seco ou irritado. "ok" é neutro; "ok." pode soar como "tá bom, então." de quem ficou chateado. Muita gente escreve sem ponto justamente por isso.'
+                  p: '**O r depois da vogal** é uma das maiores diferenças entre os sotaques. Nos EUA, ele é pronunciado: ((car)), ((park)), ((her)). No Reino Unido, ele some quando não vem vogal depois: car soa "cá", park soa "páak". Os dois estão certos.'
                 },
                 {
-                  dica: 'Abreviações são para conversas informais. Num e-mail de trabalho, numa candidatura ou para um professor, escreva tudo por extenso e com pontuação.',
-                  rotulo: 'Onde não usar'
+                  p: '**O fim das palavras.** O português quase não termina palavras em consoantes como t, d, k, g ou p. Por isso, brasileiros costumam acrescentar um i no fim: "Facebook-i", "big-i", "internet-chi". Em inglês, a palavra termina na consoante: ((big)), ((book)), ((good)), ((stop)), ((cat)).'
+                },
+                {
+                  p: 'Truque para treinar: ligue a consoante final à próxima palavra, quando ela começa com vogal. ((big apple)) soa como "bi-gápple". Assim o i extra não tem onde entrar.'
+                },
+                {
+                  p: '**E o m final:** em ((I\'m)), ((time)) e ((name)), os lábios se fecham no fim. Em português, "tem" e "bom" não fecham a boca. Em inglês, fecham.'
+                },
+                {
+                  vocab: [
+                    [
+                      'I need a big bag.',
+                      'Preciso de uma bolsa grande.',
+                      'nada de "bigi bégui"'
+                    ],
+                    ['What time is it?', 'Que horas são?', 'feche os lábios no m de time'],
+                    ['Good job!', 'Bom trabalho!']
+                  ]
                 }
               ]
             },
-            { t: 'escreva', p: 'Escreva por extenso: btw', r: ['by the way'] },
-            { t: 'escreva', p: 'Escreva por extenso: idk', r: ['I don\'t know'] },
             {
               t: 'escolha',
-              p: 'O que quer dizer "tbh"?',
-              ops: [
-                'To be honest: pra ser sincero',
-                'To be happy: pra ser feliz',
-                'Thanks, bye, hugs'
-              ],
+              p: 'O que você ouviu?',
+              ouvir: 'red',
+              ops: ['red', 'head', 'bed'],
               c: 0,
-              exp: 'Tbh costuma vir antes de uma opinião sincera.'
+              exp: 'Red começa com o r do inglês, com a língua curvada para trás.'
             },
             {
               t: 'escolha',
-              p: 'Numa mensagem curta, o que "ok." com ponto final pode passar?',
-              ops: [
-                'Que a pessoa está seca ou chateada',
-                'Que ela está muito feliz',
-                'Nada: é sempre neutro'
-              ],
+              p: 'O que você ouviu?',
+              ouvir: 'hair',
+              ops: ['hair', 'air', 'her'],
               c: 0,
-              exp: 'Em mensagens, o ponto final às vezes soa como frieza.'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza a mensagem para o português: "brb, my [[mom|mum]] is calling"',
-              r: [
-                'Já volto, minha mãe está ligando',
-                'Já volto, minha mãe tá ligando',
-                'Volto já, minha mãe está ligando',
-                'Já volto, minha mãe está me ligando',
-                'Já volto, minha mãe tá me ligando',
-                'Já volto, minha mãe está chamando',
-                'Já volto, minha mãe tá chamando',
-                'Já volto, minha mãe está me chamando',
-                'Já volto, minha mãe tá me chamando'
-              ],
-              lingua: 'pt'
+              exp: 'Hair começa com o sopro do h.'
             },
             {
               t: 'escolha',
-              p: 'Onde não é uma boa usar "u" no lugar de "you"?',
+              p: 'Por que tantos brasileiros falam "bigi" para big?',
               ops: [
-                'Num e-mail para uma empresa',
-                'Numa mensagem para um amigo',
-                'Num comentário num jogo'
+                'O português quase não termina palavras em g, t, d ou k, então a boca acrescenta um i',
+                'Porque está na escrita',
+                'Porque é o sotaque britânico'
               ],
               c: 0,
-              exp: 'Em textos formais, sempre por extenso.'
+              exp: 'Em inglês, a palavra termina na própria consoante.'
             },
             {
-              t: 'escreva',
-              p: 'Escreva o que você ouviu',
-              ouvir: 'By the way, are you coming tonight?'
-            }
+              t: 'escolha',
+              p: 'Por que ready às vezes sai como "hédi"?',
+              ops: [
+                'Porque o nosso r de "rato" soa como o h do inglês',
+                'Porque o r de ready é mudo',
+                'Porque é assim no Reino Unido'
+              ],
+              c: 0,
+              exp: 'O r inglês é com a língua curvada para trás, sem encostar, e não um sopro.'
+            },
+            {
+              t: 'escolha',
+              p: 'Como um britânico costuma pronunciar car?',
+              ops: ['Sem o r: "cá"', 'Com o r bem forte no fim', 'Como "quér"'],
+              c: 0,
+              exp: 'No Reino Unido, o r depois de vogal some se não vier outra vogal em seguida.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'What time is it?',
+              ops: ['What time is it?', 'What time it is?', 'What a time it is!'],
+              c: 0
+            },
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'I need a big bag.' }
           ]
         }
       ]
     },
     {
       id: 'enu12',
-      titulo: 'Situações do dia a dia',
-      conceito: 'Can I get...?',
-      desc: 'Pedir no café e no restaurante, pedir ajuda e informação, e os phrasal verbs.',
+      titulo: 'Ritmo e fala conectada',
+      conceito: 'gonna · wanna · ə',
+      desc: 'A sílaba forte, o schwa, as palavras fracas e como as palavras se juntam na fala rápida.',
       licoes: [
         {
           id: 'en6l4',
-          titulo: 'No café e no restaurante',
-          pre: ['en3l5'],
+          titulo: 'Sílaba forte e o schwa',
           exs: [
             {
               t: 'texto',
-              titulo: 'Pedindo com educação',
+              titulo: 'O ritmo do inglês',
               blocos: [
                 {
-                  p: 'Em inglês, a educação está mais na **forma da frase** do que no please. "Give me a coffee, please" soa grosseiro, mesmo com please, porque é uma ordem. O natural é pedir com uma pergunta ou com would like:'
+                  p: 'Toda palavra em inglês tem uma **sílaba forte**, e errar qual é atrapalha mais a compreensão do que errar uma vogal. Repare como ela muda de lugar numa mesma família de palavras:'
                 },
                 {
                   vocab: [
-                    [
-                      'Can I get a coffee, please?',
-                      'Pode me ver um café, por favor?',
-                      'muito comum nos EUA'
-                    ],
-                    [
-                      'Could I have the menu, please?',
-                      'Pode me trazer o cardápio, por favor?',
-                      'educado em qualquer lugar'
-                    ],
-                    [
-                      'I\'d like the chicken, please.',
-                      'Eu queria o frango, por favor.',
-                      'I\'d like = I would like'
-                    ],
-                    ['I\'ll have the soup.', 'Vou querer a sopa.']
+                    ['photograph', 'fotografia (a foto)', 'forte no PHO'],
+                    ['photography', 'fotografia (a arte)', 'forte no TO'],
+                    ['photographer', 'fotógrafo', 'forte no TO'],
+                    ['photographic', 'fotográfico', 'forte no GRA']
                   ]
                 },
                 {
-                  p: '**Por que a pergunta é mais educada?** Ela deixa a outra pessoa com a escolha, ao menos na forma. É a mesma lógica do nosso "você poderia...?". O inglês leva isso mais a sério que o português: pedidos diretos soam como ordens.'
-                },
-                { p: 'O que você vai ouvir:' },
-                {
-                  vocab: [
-                    ['For here or to go?', 'Para comer aqui ou para viagem?', 'EUA'],
-                    ['Eat in or take away?', 'Para comer aqui ou para levar?', 'Reino Unido'],
-                    ['Anything else?', 'Mais alguma coisa?'],
-                    ['That\'s it, thanks.', 'É só isso, obrigado.'],
-                    ['Here you go.', 'Aqui está.'],
-                    ['Enjoy!', 'Bom apetite! / Aproveite!']
-                  ]
+                  p: 'Às vezes, a sílaba forte separa duas palavras: ((desert)) (deserto) é forte no começo; ((dessert)) (sobremesa) é forte no fim.'
                 },
                 {
-                  dialogo: [
-                    ['Barista', 'Hi! What can I get you?', 'Oi! O que vai ser?'],
-                    [
-                      'Leo',
-                      'Can I get a large latte, please?',
-                      'Pode me ver um latte grande, por favor?'
-                    ],
-                    [
-                      'Barista',
-                      'Sure. For here or to go?',
-                      'Claro. Para tomar aqui ou para viagem?'
-                    ],
-                    ['Leo', 'To go, please.', 'Para viagem, por favor.'],
-                    ['Barista', 'Anything else?', 'Mais alguma coisa?'],
-                    ['Leo', 'That\'s it, thanks.', 'É só isso, obrigado.']
-                  ],
-                  titulo: 'Num café',
-                  vozes: ['f', 'm']
+                  p: '**O schwa.** As sílabas fracas do inglês perdem a vogal original e viram um som neutro e curto, parecido com o "â" de "cama" falado bem rápido. Os linguistas chamam esse som de schwa, e ele é **o som mais comum do inglês**. Está no a de ((about)), nos dois a fracos de ((banana)) e no o de ((problem)).'
                 },
                 {
-                  p: 'Para pagar no restaurante: ((Can I have the [[check|bill]], please?)) A conta é check nos EUA e bill no Reino Unido.'
+                  p: '**Palavras fracas.** Numa frase, as palavras de conteúdo (verbos, substantivos, adjetivos) são fortes, e as pequenas (to, for, and, of, can, a, the) ficam fracas, com schwa. ((a cup of coffee)) soa como "a cáp-â cófi". ((fish and chips)) soa como "fish-ân-chips".'
                 },
                 {
-                  dica: 'Nos EUA, a gorjeta não está incluída e é esperada: de 15% a 20% em restaurantes. No Reino Unido, ela costuma ser menor, por volta de 10% a 12,5%, e às vezes já vem na conta como service charge.',
-                  rotulo: 'Gorjeta'
+                  p: '**Can e can\'t:** na frase afirmativa, can é fraco ("kân"). Can\'t é sempre forte. É por isso que ((I can swim)) e ((I can\'t swim)) se diferenciam mais pela força da palavra do que pelo t final, que muitas vezes quase some.'
+                },
+                { pares: [['I can swim.', 'I can\'t swim.', 'can fraco × can\'t forte']] },
+                {
+                  dica: 'O português dá o mesmo tempo para cada sílaba. O inglês corre pelas fracas e se demora nas fortes, como uma música com batidas. Ouvir e imitar o ritmo, e não só os sons, deixa a sua fala muito mais fácil de entender.',
+                  rotulo: 'O segredo do ritmo'
                 }
               ]
             },
             {
               t: 'escolha',
-              p: 'Qual pedido soa mais educado?',
-              ops: ['Could I have a water, please?', 'Give me a water, please.', 'I want water.'],
+              p: 'Em ((photography)), qual é a sílaba forte?',
+              ops: ['TO: pho-TO-gra-phy', 'PHO: PHO-to-gra-phy', 'PHY: pho-to-gra-PHY'],
               c: 0,
-              exp: 'Pedidos em forma de pergunta soam educados; ordens soam grosseiras, mesmo com please.'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Eu queria um café, por favor."',
-              r: [
-                'I\'d like a coffee(, please|).',
-                '(Can|Could|May) I (have|get) a coffee(, please|)?',
-                'A coffee(, please|).'
-              ]
+              exp: 'Repare como ela muda de photograph (PHO) para photography (TO).'
             },
             {
               t: 'escolha',
               p: 'O que você ouviu?',
-              ouvir: 'For here or to go?',
-              ops: ['For here or to go?', 'For her or to go?', 'Four here or two go?'],
+              ouvir: 'dessert',
+              ops: ['dessert', 'desert', 'deserve'],
               c: 0,
-              exp: 'É a pergunta do caixa nos EUA: para comer aqui ou para viagem?'
+              exp: 'Dessert, a sobremesa, é forte no fim. Desert, o deserto, é forte no começo.'
             },
             {
               t: 'escolha',
-              p: 'O atendente pergunta "Anything else?" e você não quer mais nada. O que responde?',
-              ops: ['That\'s it, thanks.', 'Everything.', 'Yes, nothing.'],
+              p: 'Qual é o som mais comum do inglês?',
+              ops: ['O schwa, a vogal fraca e neutra de about', 'O th', 'O i longo'],
               c: 0,
-              exp: 'That\'s it é "é só isso".'
-            },
-            {
-              t: 'monte',
-              p: 'Monte o pedido: "A conta, por favor."',
-              r: 'Can I have the [[check|bill]], please?',
-              extra: ['account', 'count', 'pay'],
-              exp: 'Conta de restaurante é check (EUA) ou bill (Reino Unido), nunca account.'
-            },
-            {
-              t: 'escolha',
-              p: 'Nos EUA, a gorjeta no restaurante...',
-              ops: [
-                'Não vem na conta e é esperada: de 15% a 20%',
-                'É proibida',
-                'Já vem sempre incluída'
-              ],
-              c: 0,
-              exp: 'Em restaurantes americanos, quem atende vive em boa parte da gorjeta.'
-            },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'Here you go. Enjoy!' }
-          ]
-        },
-        {
-          id: 'en6l5',
-          titulo: 'Pedindo ajuda e informação',
-          pre: ['en6l4'],
-          exs: [
-            {
-              t: 'texto',
-              titulo: 'Quando você não entendeu',
-              blocos: [
-                {
-                  p: 'As frases mais úteis para quem está aprendendo são as que salvam a conversa quando você se perde. Decore estas como blocos:'
-                },
-                {
-                  vocab: [
-                    ['Sorry?', 'Como? / Não entendi.', 'com tom de pergunta'],
-                    ['Could you say that again, please?', 'Você pode repetir, por favor?'],
-                    [
-                      'Could you speak more slowly, please?',
-                      'Você pode falar mais devagar, por favor?'
-                    ],
-                    ['What does "awkward" mean?', 'O que quer dizer "awkward"?'],
-                    [
-                      'How do you say "saudade" in English?',
-                      'Como se diz "saudade" em inglês?'
-                    ],
-                    ['How do you spell it?', 'Como se escreve?']
-                  ]
-                },
-                {
-                  p: '**Excuse me ou sorry?** ((Excuse me)) é para chamar a atenção ou pedir licença, antes de incomodar: "Excuse me, where\'s the station?". ((Sorry)) é para pedir desculpas depois. No Reino Unido, sorry também serve para pedir licença e para "como?".'
-                },
-                {
-                  p: 'Repare em ((What does it mean?)): o verbo mean fica na forma básica porque o does já está lá. É a mesma regra das perguntas no presente.'
-                },
-                { p: '**Direções:**' },
-                {
-                  vocab: [
-                    [
-                      'Where\'s the nearest subway station?',
-                      'Onde fica a estação de metrô mais próxima?',
-                      'metrô é subway nos EUA e underground ou tube em Londres'
-                    ],
-                    ['Go straight ahead.', 'Siga em frente.'],
-                    ['Turn left at the corner.', 'Vire à esquerda na esquina.'],
-                    ['It\'s on your right.', 'Fica à sua direita.'],
-                    ['It\'s just around the corner.', 'Fica logo ali, virando a esquina.']
-                  ]
-                },
-                {
-                  dica: 'Dizer que você está aprendendo ajuda muito: Sorry, my English isn\'t very good. Could you speak more slowly? Quase todo mundo fica mais paciente.',
-                  rotulo: 'Uma frase que abre portas'
-                }
-              ]
-            },
-            {
-              t: 'escolha',
-              p: 'Você quer pedir uma informação a um desconhecido na rua. Como começa?',
-              ops: ['Excuse me...', 'Sorry for that...', 'Hey you...'],
-              c: 0,
-              exp: 'Excuse me chama a atenção com educação, antes de pedir algo.'
-            },
-            {
-              t: 'escreva',
-              p: 'Como se diz: "O que quer dizer awkward?"',
-              r: [
-                'What does awkward mean?',
-                'What does "awkward" mean?',
-                'What is the meaning of awkward?'
-              ],
-              exp: 'Com does, mean fica na forma básica.'
-            },
-            {
-              t: 'escreva',
-              p: 'Peça para a pessoa repetir, com educação.',
-              r: [
-                'Could you say that again, please?',
-                'Can you say that again, please?',
-                'Could you repeat that, please?',
-                'Can you repeat that, please?',
-                'Sorry, could you say that again?',
-                'Sorry, could you repeat that?',
-                'Could you say that again?',
-                'Could you repeat that?',
-                'Pardon?',
-                'Sorry?'
-              ]
+              exp: 'Ele aparece em quase toda sílaba fraca.'
             },
             {
               t: 'escolha',
               p: 'O que você ouviu?',
-              ouvir: 'Turn left at the corner.',
-              ops: [
-                'Turn left at the corner.',
-                'Turn right at the corner.',
-                'Turn left after the corner.'
-              ],
-              c: 0
-            },
-            {
-              t: 'monte',
-              p: 'Monte: "Como se diz isso em inglês?"',
-              r: 'How do you say this in English?',
-              extra: ['speak', 'talk', 'does']
+              ouvir: 'I can\'t swim.',
+              ops: ['I can\'t swim.', 'I can swim.'],
+              c: 0,
+              exp: 'Can\'t é forte; can, na afirmativa, é fraco.'
             },
             {
               t: 'escolha',
-              p: 'Qual destas perguntas está certa?',
-              ops: ['What does it mean?', 'What does it means?', 'What it means?'],
+              p: 'Como costuma soar o and em "fish and chips"?',
+              ops: [
+                'Como um "ân" fraco: "fish-ân-chips"',
+                'Como "énd", bem forte',
+                'Ele não é pronunciado'
+              ],
               c: 0,
-              exp: 'Depois de does, o verbo fica na forma básica.'
+              exp: 'Palavras pequenas ficam fracas na frase.'
             },
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'A cup of coffee, please.' },
             {
-              t: 'escreva',
-              p: 'Escreva o que você ouviu',
-              ouvir: 'Could you speak more slowly, please?'
+              t: 'monte',
+              p: 'Monte: "Eu sei nadar."',
+              r: 'I can swim.',
+              extra: ['can\'t', 'know', 'to'],
+              exp: 'Saber fazer algo é can: I can swim.'
             }
           ]
         },
         {
-          id: 'en6l6',
-          titulo: 'Phrasal verbs do dia a dia',
-          pre: ['en6l4'],
+          id: 'en6l5',
+          titulo: 'Fala rápida: wanna, gonna, gotta',
+          pre: ['en4l5', 'en6l4'],
           exs: [
             {
               t: 'texto',
-              titulo: 'Verbo mais uma partícula',
+              titulo: 'O inglês de verdade é mais rápido que o do livro',
               blocos: [
                 {
-                  p: '**Phrasal verbs** são verbos com uma partícula (up, out, off, on, down...) que juntos ganham outro significado. ((give)) é dar; ((give up)) é desistir. ((find)) é encontrar; ((find out)) é descobrir.'
+                  p: 'Na conversa, as palavras se juntam e encolhem. Não é preguiça nem gíria: é como qualquer língua funciona falada rápido. Em português também dizemos "tô", "cê" e "pra". Algumas dessas formas aparecem até na escrita informal:'
                 },
-                {
-                  p: '**Por que os nativos usam tanto?** O inglês tem duas camadas de vocabulário: as palavras germânicas, antigas e do dia a dia, e as latinas, que vieram do francês e soam mais formais. Para quem fala português, as latinas parecem naturais: discover, abandon, continue. Mas na conversa os nativos preferem os phrasal verbs: find out, give up, go on. Usar só as latinas deixa você parecendo um documento oficial.'
-                },
-                { p: 'A partícula costuma dar uma pista do sentido:' },
                 {
                   tabela: {
-                    cab: ['Partícula', 'Ideia', 'Exemplos'],
+                    cab: ['Forma falada', 'Por extenso', 'Exemplo'],
                     codigo: [],
                     linhas: [
-                      [
-                        'up',
-                        'completar, aumentar, para cima',
-                        '((give up)), ((eat up)), ((wake up)), ((pick up))'
-                      ],
-                      [
-                        'out',
-                        'para fora, até o fim, descobrir',
-                        '((find out)), ((figure out)), ((run out of))'
-                      ],
-                      [
-                        'off',
-                        'desligar, se afastar',
-                        '((turn off)), ((take off)), ((log off))'
-                      ],
-                      ['on', 'ligar, continuar', '((turn on)), ((go on)), ((put on))']
+                      ['gonna', 'going to', '((I\'m gonna call you.))'],
+                      ['wanna', 'want to', '((I wanna go home.))'],
+                      ['gotta', 'have got to (ter que)', '((I gotta go.))'],
+                      ['dunno', 'don\'t know', '((I dunno.))'],
+                      ['lemme', 'let me', '((Lemme see.))'],
+                      ['gimme', 'give me', '((Gimme a second.))'],
+                      ['kinda', 'kind of (meio, mais ou menos)', '((I\'m kinda tired.))'],
+                      ['whatcha', 'what are you / what do you', '((Whatcha doing?))']
                     ]
                   }
                 },
                 {
-                  vocab: [
-                    ['wake up', 'acordar'],
-                    ['turn on / turn off', 'ligar / desligar'],
-                    ['look for', 'procurar'],
-                    ['find out', 'descobrir'],
-                    ['figure out', 'entender, resolver'],
-                    ['give up', 'desistir'],
-                    ['come up with', 'ter uma ideia, inventar'],
-                    ['run out of', 'ficar sem'],
-                    ['pick up', 'buscar alguém, pegar'],
-                    ['put on / take off', 'vestir / tirar (roupa); take off também é decolar']
-                  ]
+                  p: '**Use assim:** entenda todas quando ouvir. Fale gonna e wanna à vontade na conversa. Na escrita, só em mensagens informais. Em e-mails de trabalho, redações e provas, escreva por extenso.'
                 },
                 {
-                  p: '**Onde fica o pronome:** com muitos phrasal verbs, o pronome vai **no meio**: ((Turn it off.)) e não "Turn off it". ((I\'ll pick you up at eight.)) (Busco você às oito.)'
+                  p: '**Um erro comum:** gonna substitui going to, e não o verbo to be. Continua sendo ((I\'m gonna)), e não "I gonna".'
                 },
                 {
-                  dica: 'Não tente decorar listas enormes. Aprenda cada phrasal verb numa frase, como nos exemplos, e ele fica.',
-                  rotulo: 'Como aprender'
+                  p: '**Palavras que se ligam.** Quando uma palavra termina em consoante e a seguinte começa com vogal, elas se juntam: ((an apple)) soa "a-népol", ((turn it off)) soa "tur-ni-tóff", ((check it out)) soa "che-ki-dáut".'
+                },
+                {
+                  p: '**O t americano.** Nos EUA, o t entre vogais vira um toque rápido da língua, parecido com o r de "caro": ((water)) soa "uóder", ((better)) soa "béder", ((city)) soa "cídi". No Reino Unido, o t costuma ficar claro, ou vira uma pausa na garganta na fala informal ("wa\'er").'
+                },
+                {
+                  dica: 'Se você ouve uma frase e não entende, mas lendo entende na hora, o problema não é vocabulário: é a fala conectada. Ouvir e repetir frases inteiras, como os ditados deste curso, treina exatamente isso.',
+                  rotulo: 'Por que é difícil entender filme sem legenda'
                 }
               ]
             },
             {
               t: 'escolha',
-              p: 'O que quer dizer "give up"?',
-              ops: ['Desistir', 'Dar para cima', 'Doar'],
+              p: 'O que você ouviu?',
+              ouvir: 'I wanna go home.',
+              ops: ['I wanna go home.', 'I want go home.', 'I won\'t go home.'],
               c: 0,
-              exp: 'Give é dar, mas give up é desistir.'
+              exp: 'Wanna é want to falado rápido.'
             },
-            {
-              t: 'complete',
-              p: 'Complete:',
-              code: 'Can you turn ___ the light? I can\'t sleep.',
-              bank: ['off', 'on', 'out'],
-              c: ['off'],
-              exp: 'Para dormir, desligar a luz: turn off.'
-            },
-            { t: 'escreva', p: 'Traduza: "Eu desisti."', r: ['I gave up.'] },
             {
               t: 'escolha',
-              p: 'Qual está certa?',
-              ops: ['Turn it off.', 'Turn off it.', 'Turn it of.'],
+              p: 'O que quer dizer gotta, em "I gotta go"?',
+              ops: ['Have got to: ter que (preciso ir)', 'Got: consegui', 'Go to: ir para'],
               c: 0,
-              exp: 'O pronome fica no meio: turn it off.'
+              exp: 'I gotta go é "tenho que ir".'
+            },
+            { t: 'escreva', p: 'Escreva por extenso: "I dunno."', r: ['I don\'t know.'] },
+            { t: 'escreva', p: 'Escreva por extenso: "Lemme see."', r: ['Let me see.'] },
+            {
+              t: 'escolha',
+              p: 'Qual destas frases está errada?',
+              ops: ['I gonna travel.', 'I\'m gonna travel.', 'I wanna travel.'],
+              c: 0,
+              exp: 'Gonna substitui going to. O am continua lá: I\'m gonna.'
             },
             {
-              t: 'monte',
-              p: 'Monte a frase: "Nós ficamos sem leite."',
-              r: 'We ran out of milk.',
-              extra: ['run', 'from', 'without']
+              t: 'escolha',
+              p: 'Por que water soa como "uóder" nos EUA?',
+              ops: [
+                'O t entre vogais vira um toque rápido da língua, parecido com o r de "caro"',
+                'Porque a palavra tem um d escondido',
+                'Porque é gíria'
+              ],
+              c: 0,
+              exp: 'É o mesmo que acontece em better, city e party.'
+            },
+            {
+              t: 'escreva',
+              p: 'Escreva o que você ouviu',
+              ouvir: 'I gotta go.',
+              exp: 'Gotta é got to, "ter que". Por extenso, também vale.',
+              r: '(I gotta go|I\'ve got to go|I have got to go|I got to go|I have to go).'
             },
             {
               t: 'escolha',
               p: 'O que você ouviu?',
-              ouvir: 'I\'ll pick you up at eight.',
-              ops: [
-                'I\'ll pick you up at eight.',
-                'I\'ll pick it up at eight.',
-                'I\'ll call you up at eight.'
-              ],
+              ouvir: 'I\'m kinda tired.',
+              ops: ['I\'m kinda tired.', 'I\'m kind and tired.', 'I\'m kinda fired.'],
               c: 0,
-              exp: 'Pick someone up: buscar alguém.'
-            },
-            {
-              t: 'escolha',
-              p: 'Por que os nativos preferem "find out" a "discover" numa conversa?',
-              ops: [
-                'Phrasal verbs são do inglês do dia a dia; as palavras latinas soam mais formais',
-                'Porque discover está errado',
-                'Porque find out é mais curto'
-              ],
-              c: 0,
-              exp: 'As duas existem, mas cada uma combina com um tipo de situação.'
-            },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'I can\'t figure it out.' }
+              exp: 'Kinda é kind of: "meio", "um pouco".'
+            }
           ]
         }
       ]

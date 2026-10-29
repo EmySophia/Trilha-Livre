@@ -30,6 +30,7 @@ nivel({
   n: 1,
   titulo: 'Frações',
   desc: 'Partes de um inteiro.',
+  faixa: 'A2',                // opcional: uma etiqueta curta ao lado do número, como a faixa do Quadro Europeu nos idiomas
   videos: [                   // opcional: aulas gratuitas de outros sites sobre o assunto do nível
     { titulo: 'Frações do zero', canal: 'Nome do canal', obs: 'aulas 1 a 5', url: 'https://...' },
     { tipo: 'texto', titulo: 'Um bom artigo', canal: 'Site', url: 'https://...' }
@@ -346,7 +347,13 @@ npm run audio
 
 Na primeira vez, o modelo da voz (uns 350 MB) é baixado para `ferramentas/.kokoro/`, que não vai para o Git. Depois, só as frases novas são gravadas. `node ferramentas/audio.js` mostra quantas faltam, e `node ferramentas/audio.js --limpar` apaga os arquivos que nenhuma lição usa mais. Se não der para gravar, mande o pull request assim mesmo e avise: quem revisar grava.
 
-**Se a voz pronunciar algo errado**, veja como ela vai falar com `python3 ferramentas/gravar_audio.py --fonemas "My brother lives in London."`, acrescente uma correção na lista `CORRECOES` do `ferramentas/gravar_audio.py` e grave de novo com `python3 ferramentas/gravar_audio.py --refazer "lives in"`. Os casos mais comuns são palavras escritas igual e faladas diferente, como lives (mora × vidas), read (lê × leu) e used to.
+**Se a voz pronunciar algo errado**, veja como ela vai falar com `python3 ferramentas/gravar_audio.py --fonemas "My brother lives in London."`, acrescente uma correção na lista `CORRECOES` do `ferramentas/gravar_audio.py` e grave de novo com `python3 ferramentas/gravar_audio.py --refazer "lives in"`. Os casos mais comuns são palavras escritas igual e faladas diferente, como lives (mora × vidas), read (lê × leu) e used to. Uma correção também pode ser uma expressão regular sobre os fonemas, como a que põe a força no fim de thirteen quando ele termina a frase.
+
+**Escreva os números por extenso nas frases com áudio** (twenty twenty-six, four ninety-nine, seven thirty), porque a voz lê 2026, $4.99 e 7:30 de um jeito estranho. Nas respostas digitadas, aceite também os algarismos: `r: 'in (twenty fifteen|2015)'`.
+
+### Faixa do Quadro Europeu
+
+Cada nível de um curso de idiomas pode ter `faixa: 'A2'` (ou `'A2–B1'`), que aparece na trilha ao lado do número do nível. Use a faixa do conteúdo novo que o nível ensina, pelos descritores do CEFR.
 
 ## Teste da unidade
 

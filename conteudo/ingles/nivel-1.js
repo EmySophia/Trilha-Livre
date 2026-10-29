@@ -1,4 +1,4 @@
-/* Trilha Livre · Inglês do zero · Nível 1: Primeiros passos
+/* Trilha Livre · Inglês do zero · Nível 1: Primeiros passos (A1)
    Conteúdo sob licença CC BY-NC-SA 4.0 (veja conteudo/LICENCA.md). O formato das lições está explicado em CONTRIBUINDO.md.
    ((frase)) tem botão de ouvir; [[americano|britânico]] muda com o sotaque escolhido. */
 
@@ -6,6 +6,7 @@ nivel({
   curso: 'ingles',
   n: 1,
   titulo: 'Primeiros passos',
+  faixa: 'A1',
   desc: 'Como o inglês funciona, cumprimentos do jeito que as pessoas falam de verdade, apresentações e o verbo to be.',
   videos: [
     {
