@@ -72,6 +72,14 @@ console.log(buscaBinaria([2, 5, 8, 12, 16, 23, 38], 23)); // 5`
               exp: '1000 → 500 → 250 → 125 → ... chega a 1 em uns 10 passos.'
             },
             {
+              t: 'escolha',
+              p: 'Numa lista ordenada de {N} itens, quantos passos a busca binária faz, no máximo?',
+              ops: ['{= Math.log2(N + 1) }', '{N}', '{= (N + 1) / 2 }'],
+              c: 0,
+              exp: 'Cada passo corta a lista pela metade: {N} → {= (N - 1) / 2 } → ... até sobrar um.',
+              vars: { N: [15, 31, 63, 127, 255, 1023] }
+            },
+            {
               t: 'codigo',
               p: 'Implemente buscaLinear(lista, alvo): devolve a posição do alvo ou -1',
               start: `function buscaLinear(lista, alvo) {
@@ -92,6 +100,29 @@ console.log(buscaLinear([4, 8, 15], 7));
 console.log(buscaLinear([4, 8, 15, 16, 23, 42], 23));
 console.log(buscaLinear([4, 8, 15], 7));`,
               exp: 'Você acabou de recriar o indexOf.'
+            },
+            {
+              t: 'codigo',
+              p: 'Implemente buscaBinaria(lista, alvo) e mostre a posição de {X} (ou -1)',
+              start: `function buscaBinaria(lista, alvo) {
+  
+}
+console.log(buscaBinaria([2, 5, 8, 12, 16, 23, 38, 56, 72, 91], {X}));
+`,
+              sol: `function buscaBinaria(lista, alvo) {
+  let ini = 0, fim = lista.length - 1;
+  while (ini <= fim) {
+    const meio = Math.floor((ini + fim) / 2);
+    if (lista[meio] === alvo) return meio;
+    if (lista[meio] < alvo) ini = meio + 1;
+    else fim = meio - 1;
+  }
+  return -1;
+}
+console.log(buscaBinaria([2, 5, 8, 12, 16, 23, 38, 56, 72, 91], {X}));`,
+              dica: 'Siga o código da leitura: ini, fim e o meio.',
+              exp: 'Se o alvo não está na lista, ini passa de fim e a função devolve -1.',
+              vars: { X: [2, 23, 72, 91, 40, 5] }
             }
           ]
         },
@@ -159,6 +190,20 @@ console.log([10, 9, 1].sort((a, b) => b - a));  // [10, 9, 1]`
               exp: 'Se a - b for negativo, a vem antes de b.'
             },
             {
+              t: 'escolha',
+              p: 'O que aparece no console?',
+              code: 'console.log([{A}, {B}, {D}].sort());',
+              ops: [
+                '{= JSON.stringify([A, B, D].sort()) }',
+                '{= JSON.stringify([A, B, D].sort((x, y) => x - y)) }',
+                '{= JSON.stringify([A, B, D].sort((x, y) => y - x)) }'
+              ],
+              c: 0,
+              mono: true,
+              exp: 'Sem função, o sort compara como texto: "1" vem antes de "2", então 10 vem antes de 9.',
+              vars: { A: { de: 2, ate: 9 }, B: { de: 10, ate: 99 }, D: { de: 100, ate: 999 } }
+            },
+            {
               t: 'codigo',
               p: 'Implemente ordenar(lista) sem usar .sort()',
               start: `function ordenar(lista) {
@@ -182,6 +227,23 @@ console.log(ordenar([5, 2, 9, 1, 7]));
 }
 console.log(ordenar([5, 2, 9, 1, 7]));`,
               exp: 'Existem ordenações bem mais rápidas, como o merge sort e o quick sort. O sort do JavaScript usa uma delas.'
+            },
+            {
+              t: 'codigo',
+              p: 'Ordene os nomes em ordem alfabética e mostre a lista',
+              start: `const nomes = {L};
+`,
+              sol: `const nomes = {L};
+console.log(nomes.sort());`,
+              dica: 'Para textos, o sort sem função já serve.',
+              exp: 'Com acentos e maiúsculas, use localeCompare: nomes.sort((a, b) => a.localeCompare(b)).',
+              vars: {
+                L: [
+                  '["Rui", "Ana", "Lia"]',
+                  '["Pedro", "Bia", "Caio", "Ana"]',
+                  '["Zé", "Maria", "João"]'
+                ]
+              }
             }
           ]
         },
@@ -253,6 +315,16 @@ console.log(c.a);`,
               exp: 'Com listas grandes, a diferença é enorme.'
             },
             {
+              t: 'escolha',
+              p: 'O que aparece no console?',
+              code: 'console.log(new Set({L}).size);',
+              ops: ['{= new Set(JSON.parse(L)).size }', '{= JSON.parse(L).length }', '0'],
+              c: 0,
+              mono: true,
+              exp: 'O Set guarda cada valor uma vez só.',
+              vars: { L: ['[1, 2, 2, 3]', '[5, 5, 5]', '[4, 1, 4, 1, 9]', '[7, 8]'] }
+            },
+            {
               t: 'codigo',
               p: 'Conte os votos e mostre "opção: quantidade" na ordem em que cada opção aparece',
               start: `const votos = ["sim", "não", "sim", "sim", "abstenção", "não"];
@@ -266,6 +338,35 @@ const cont = {};
 for (const v of votos) cont[v] = (cont[v] || 0) + 1;
 for (const op in cont) console.log(\`\${op}: \${cont[op]}\`);`,
               exp: 'Uma apuração de votação em poucas linhas de código.'
+            },
+            {
+              t: 'codigo',
+              p: 'Conte quantas vezes a letra "{LET}" aparece na palavra',
+              start: `const palavra = "{PAL}";
+`,
+              sol: `const palavra = "{PAL}";
+let cont = 0;
+for (const letra of palavra) {
+  if (letra === "{LET}") cont++;
+}
+console.log(cont);`,
+              dica: 'for...of passa por cada letra de um texto.',
+              exp: 'O for...of funciona com textos também.',
+              vars: {
+                PAL: ['abracadabra', 'banana', 'paralelepipedo', 'arara'],
+                LET: ['a', 'e', 'r']
+              }
+            },
+            {
+              t: 'codigo',
+              p: 'Mostre a lista sem os números repetidos, usando Set',
+              start: `const nums = {L};
+`,
+              sol: `const nums = {L};
+console.log([...new Set(nums)]);`,
+              dica: '[...new Set(nums)]',
+              exp: 'Os três pontinhos transformam o Set de volta em lista.',
+              vars: { L: ['[1, 2, 2, 3, 1]', '[5, 5, 6, 7, 6]', '[9, 8, 9, 8, 7]'] }
             }
           ]
         }
@@ -335,6 +436,19 @@ console.log(f[0]);`,
               exp: 'Ana foi atendida e saiu. Agora a primeira é Bia.'
             },
             {
+              t: 'escolha',
+              p: 'O que aparece no console?',
+              code: `let fila = ["Ana", "Bia", "Caio"];
+fila.push("{NOME}");
+fila.shift();
+console.log(fila[0]);`,
+              ops: ['Bia', 'Ana', '{NOME}'],
+              c: 0,
+              mono: true,
+              exp: 'shift tira do começo: a Ana foi atendida e a Bia é a próxima.',
+              vars: { NOME: ['Davi', 'Eva', 'Fábio'] }
+            },
+            {
               t: 'codigo',
               p: 'Faça balanceado(s): true se todo "(" tiver um ")" correspondente, na ordem certa',
               start: `function balanceado(s) {
@@ -363,6 +477,18 @@ console.log(balanceado("(())"));
 console.log(balanceado("(()"));
 console.log(balanceado(")("));`,
               exp: 'É assim que editores de código avisam que falta fechar um parêntese.'
+            },
+            {
+              t: 'codigo',
+              p: 'Desfaça as últimas {K} ações com pop e mostre a pilha',
+              start: `const pilha = ["digitar", "apagar", "colar", "negrito"];
+`,
+              sol: `const pilha = ["digitar", "apagar", "colar", "negrito"];
+for (let i = 0; i < {K}; i++) pilha.pop();
+console.log(pilha);`,
+              dica: 'Um laço com {K} pops.',
+              exp: 'O desfazer tira sempre o último: pilha.',
+              vars: { K: { de: 1, ate: 3 } }
             }
           ]
         },
@@ -427,6 +553,13 @@ console.log(n * (n + 1) / 2); // 500000500000, na hora`
               exp: 'É O(1): o trabalho não cresce com n.'
             },
             {
+              t: 'escolha',
+              p: 'Uma lista dobrou de tamanho. Um algoritmo O(n²) vai levar cerca de...',
+              ops: ['4 vezes mais tempo', '2 vezes mais tempo', 'O mesmo tempo'],
+              c: 0,
+              exp: '(2n)² = 4n²: dobrar a entrada quadruplica o trabalho.'
+            },
+            {
               t: 'codigo',
               p: 'Mostre a soma de 1 até 1.000.000 usando a fórmula de Gauss',
               start: '',
@@ -435,6 +568,16 @@ console.log(n * (n + 1) / 2); // 500000500000, na hora`
               sol: `const n = 1000000;
 console.log(n * (n + 1) / 2);`,
               exp: 'Matemática também é otimização.'
+            },
+            {
+              t: 'codigo',
+              p: 'Mostre a soma de 1 até {N} pela fórmula de Gauss',
+              start: '',
+              sol: `const n = {N};
+console.log(n * (n + 1) / 2);`,
+              dica: 'n * (n + 1) / 2',
+              exp: 'Uma conta só, qualquer que seja o n.',
+              vars: { N: [100, 500, 1000, 5000, 100000] }
             }
           ]
         },
@@ -494,6 +637,20 @@ console.log(ehPal("radar"), ehPal("rato")); // true false`
               exp: 'As letras em ordem alfabética: a, m, o, r. Ordenar letras é um jeito de testar anagramas.'
             },
             {
+              t: 'escolha',
+              p: 'O que aparece no console?',
+              code: `const t = "{PAL}";
+console.log(t === t.split("").reverse().join(""));`,
+              ops: [
+                '{= PAL === PAL.split("").reverse().join("") ? "true" : "false" }',
+                '{= PAL === PAL.split("").reverse().join("") ? "false" : "true" }'
+              ],
+              c: 0,
+              mono: true,
+              exp: 'Inverta a palavra e compare com a original.',
+              vars: { PAL: ['arara', 'ovo', 'radar', 'rato', 'casa', 'reviver', 'sol'] }
+            },
+            {
               t: 'codigo',
               p: 'Escreva ehPalindromo(frase), ignorando espaços e maiúsculas',
               start: `function ehPalindromo(frase) {
@@ -515,6 +672,39 @@ console.log(ehPalindromo("arara"));
 console.log(ehPalindromo("A base do teto desaba"));
 console.log(ehPalindromo("programar"));`,
               exp: 'Tente também a versão com dois índices e compare as duas.'
+            },
+            {
+              t: 'codigo',
+              p: 'Mostre a palavra de trás para frente',
+              start: `const palavra = "{PAL}";
+`,
+              sol: `const palavra = "{PAL}";
+console.log(palavra.split("").reverse().join(""));`,
+              dica: 'split(""), reverse() e join("").',
+              exp: 'split("") separa letra por letra.',
+              vars: { PAL: ['Brasil', 'trilha', 'algoritmo', 'código'] }
+            },
+            {
+              t: 'codigo',
+              p: 'Escreva ehPal(t) com dois índices, um no começo e outro no fim, sem inverter o texto. Mostre ehPal("{PAL}")',
+              start: `function ehPal(t) {
+  
+}
+console.log(ehPal("{PAL}"));
+`,
+              sol: `function ehPal(t) {
+  let i = 0, j = t.length - 1;
+  while (i < j) {
+    if (t[i] !== t[j]) return false;
+    i++;
+    j--;
+  }
+  return true;
+}
+console.log(ehPal("{PAL}"));`,
+              dica: 'Enquanto i < j, compare t[i] com t[j] e ande com os dois.',
+              exp: 'Ele para na primeira diferença.',
+              vars: { PAL: ['radar', 'rato', 'reviver', 'casa', 'ovo'] }
             }
           ]
         }

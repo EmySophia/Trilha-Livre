@@ -88,6 +88,30 @@ nivel({
               ],
               c: 0,
               exp: 'Não existe nenhuma condição para parar. Em programação isso se chama loop infinito.'
+            },
+            {
+              t: 'ordene',
+              p: 'Coloque em ordem: mandar uma mensagem pelo celular',
+              lines: [
+                'Desbloquear o celular',
+                'Abrir o aplicativo de mensagens',
+                'Escolher o contato',
+                'Digitar a mensagem',
+                'Tocar em enviar'
+              ],
+              exp: 'Cada passo depende do anterior: sem escolher o contato, não tem para quem digitar.',
+              plain: true
+            },
+            {
+              t: 'escolha',
+              p: 'Por que “misture e asse até ficar bom” é um passo ruim para um computador?',
+              ops: [
+                '“Até ficar bom” dá para entender de vários jeitos',
+                'Porque é curto demais',
+                'Porque computador não faz bolo'
+              ],
+              c: 0,
+              exp: 'Um passo claro diria quanto tempo e em que temperatura: “asse por 40 minutos a 180 °C”.'
             }
           ]
         },
@@ -159,6 +183,29 @@ nivel({
               ],
               c: 0,
               exp: 'Calcular a média de notas e a média de gastos do mês usam o mesmo raciocínio.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que é abstração?',
+              ops: [
+                'Focar no que importa e ignorar o que não muda o resultado',
+                'Dividir o problema em partes menores',
+                'Repetir um passo várias vezes'
+              ],
+              c: 0,
+              exp: 'Dividir em partes é a decomposição. Abstração é escolher o que importa: para calcular a média, a cor do caderno do aluno não importa.'
+            },
+            {
+              t: 'ordene',
+              p: 'Decomponha: descobrir se um aluno passou de ano',
+              lines: [
+                'Receber as notas do aluno',
+                'Calcular a média',
+                'Comparar a média com 6',
+                'Mostrar aprovado ou reprovado'
+              ],
+              exp: 'Cada parte é pequena o bastante para virar poucas linhas de código.',
+              plain: true
             }
           ]
         },
@@ -178,7 +225,8 @@ nivel({
                 },
                 {
                   tabela: {
-                    codigo: [0, 1, 2], cab: ['Passo', 'Conta', 'x'],
+                    codigo: [0, 1, 2],
+                    cab: ['Passo', 'Conta', 'x'],
                     linhas: [
                       ['início', '', '2'],
                       ['volta 1', '2 × 3 − 1', '5'],
@@ -240,6 +288,22 @@ para i de 1 até 4, repita:
               p: 'Coloque em ordem para trocar os valores de a e b',
               lines: ['aux recebe a', 'a recebe b', 'b recebe aux'],
               exp: 'Sem a variável auxiliar, o valor de a se perderia no segundo passo. Faça o teste de mesa com a = café e b = leite para conferir.'
+            },
+            {
+              t: 'escolha',
+              p: 'Teste de mesa: x começa valendo {A} e, três vezes seguidas, recebe x × 2 + 1. Qual é o valor final?',
+              ops: ['{= 8 * A + 7 }', '{= 2 * A + 3 }', '{= 6 * A + 1 }'],
+              c: 0,
+              exp: 'Volta 1: {= 2 * A + 1 }. Volta 2: {= 4 * A + 3 }. Volta 3: {= 8 * A + 7 }.',
+              vars: { A: { de: 1, ate: 9 } }
+            },
+            {
+              t: 'escolha',
+              p: 'Teste de mesa: a = {A} e b = {B}. Depois de “a recebe a + b” e, em seguida, “b recebe a − b”, quanto vale b?',
+              ops: ['{A}', '{B}', '{= A - B }'],
+              c: 0,
+              exp: 'Depois do primeiro passo, a vale {= A + B }. Então b = {= A + B } − {B} = {A}.',
+              vars: { A: { de: 2, ate: 9 }, B: { de: 10, ate: 19 } }
             }
           ]
         }
@@ -311,6 +375,33 @@ para i de 1 até 4, repita:
                 'Fim'
               ],
               exp: 'A decisão vem depois de saber o valor e antes de liberar o dinheiro.'
+            },
+            {
+              t: 'escolha',
+              p: 'No fluxograma, que forma marca o início e o fim?',
+              ops: ['O oval', 'O retângulo', 'O losango'],
+              c: 0,
+              exp: 'Retângulo é ação e losango é decisão.'
+            },
+            {
+              t: 'escolha',
+              p: 'Quantos caminhos saem de um losango (decisão)?',
+              ops: ['Dois: sim e não', 'Um só', 'Três'],
+              c: 0,
+              exp: 'A pergunta do losango só tem duas respostas, e cada uma leva para um lado.'
+            },
+            {
+              t: 'ordene',
+              p: 'Monte o fluxo: decidir se leva guarda-chuva',
+              lines: [
+                'Início',
+                'Olhar a previsão do tempo',
+                'Decisão: vai chover?',
+                'Sim: levar o guarda-chuva. Não: sair sem ele',
+                'Fim'
+              ],
+              exp: 'A decisão vem depois de ter a informação: primeiro a previsão.',
+              plain: true
             }
           ]
         },
@@ -354,7 +445,8 @@ if (media >= 6) {
                 { p: 'Se você já estudou Portugol, esta tabela ajuda a traduzir:' },
                 {
                   tabela: {
-                    codigo: [0, 1], cab: ['Portugol', 'JavaScript'],
+                    codigo: [0, 1],
+                    cab: ['Portugol', 'JavaScript'],
                     linhas: [
                       ['escreva("oi")', 'console.log("oi")'],
                       ['x <- 5', 'x = 5'],
@@ -397,6 +489,14 @@ ___ (nota >= 6) {
               exp: '`se` vira `if` e `senao` vira `else`. O `entao` não existe em JavaScript: as chaves fazem esse papel.'
             },
             {
+              t: 'escolha',
+              p: 'Em Portugol, `enquanto x < 10 faca` vira qual código JavaScript?',
+              ops: ['while (x < 10)', 'for (x < 10)', 'if (x < 10)'],
+              c: 0,
+              exp: 'enquanto ... faca ... fimenquanto é o while.',
+              mono: true
+            },
+            {
               t: 'codigo',
               p: 'Traduza este Portugol para JavaScript',
               code: `para i de 1 ate 3 faca
@@ -411,6 +511,27 @@ fimpara`,
   console.log(i);
 }`,
               exp: 'A lógica é a mesma; muda só a forma de escrever.'
+            },
+            {
+              t: 'codigo',
+              p: 'Traduza este Portugol para JavaScript (ele já está nos comentários)',
+              start: `// x <- {A}
+// se x > 10 entao
+//    escreva("grande")
+// senao
+//    escreva("pequeno")
+// fimse
+`,
+              sol: `let x = {A};
+if (x > 10) {
+  console.log("grande");
+} else {
+  console.log("pequeno");
+}`,
+              dica: 'x <- vira let x =, se/senao vira if/else e escreva vira console.log.',
+              exp: 'A lógica é a mesma; só muda a forma de escrever.',
+              vars: { A: { de: 3, ate: 20 } },
+              se: 'A !== 10'
             }
           ]
         },
@@ -509,6 +630,37 @@ fimalgoritmo`,
               bank: ['>=', '<', '2.5', '5', '0'],
               c: ['>=', '2.5'],
               exp: 'Quem tem 65 anos ou mais não paga; estudante paga R$ 2,50; os outros, R$ 5,00. Problema, decomposição, fluxograma, pseudocódigo e código: você fez o caminho inteiro.'
+            },
+            {
+              t: 'escolha',
+              p: 'Uma pessoa de {I} anos que não é estudante paga quanto?',
+              ops: [
+                '{= I >= 65 ? "Nada" : "R$ 5,00" }',
+                '{= I >= 65 ? "R$ 5,00" : "Nada" }',
+                'R$ 2,50'
+              ],
+              c: 0,
+              exp: 'Com 65 anos ou mais, não paga. Abaixo disso e sem ser estudante, paga inteira.',
+              vars: { I: [20, 34, 50, 66, 70, 80] }
+            },
+            {
+              t: 'codigo',
+              p: 'Agora em JavaScript: com idade = {I} e estudante = {EST}, mostre o valor a pagar (0, 2.5 ou 5)',
+              start: `let idade = {I};
+let estudante = {EST};
+`,
+              sol: `let idade = {I};
+let estudante = {EST};
+if (idade >= 65) {
+  console.log(0);
+} else if (estudante) {
+  console.log(2.5);
+} else {
+  console.log(5);
+}`,
+              dica: 'Teste a idade primeiro, como no fluxograma. Depois, se é estudante.',
+              exp: 'É o mesmo algoritmo do Portugol, linha por linha.',
+              vars: { I: [15, 17, 30, 65, 72], EST: ['true', 'false'] }
             }
           ]
         }

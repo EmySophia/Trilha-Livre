@@ -4,12 +4,12 @@
 
 Plataforma gratuita e de código aberto para aprender **programação, matemática, idiomas e política** em português, no estilo dos apps de idiomas: lições curtas, exercícios interativos, sequência de dias e XP. Funciona no navegador, no celular e no computador, sem instalar nada e sem criar conta.
 
-A pessoa escolhe a área e o curso num catálogo. Os cursos prontos são **Lógica de programação com JavaScript** (54 lições), **Sites com HTML e CSS** (42 lições), **Python do zero** (59 lições), **Git e GitHub** (25 lições), **Introdução ao marxismo** (25 lições), **O Capital, de Marx** (24 lições) e **Leitura guiada de O Capital** (39 lições). Uma **biblioteca** reúne livros que dá para ler de graça e de forma legal. Os outros (Matemática básica, Matemática financeira, Inglês e Espanhol) já aparecem no catálogo como "em construção" e ficam disponíveis assim que ganham lições.
+A pessoa escolhe a área e o curso num catálogo. Os cursos prontos são **Lógica de programação com JavaScript** (54 lições), **Sites com HTML e CSS** (42 lições), **Python do zero** (59 lições), **Git e GitHub** (25 lições), **Matemática básica** (46 lições), **Introdução ao marxismo** (25 lições), **O Capital, de Marx** (24 lições) e **Leitura guiada de O Capital** (39 lições). Uma **biblioteca** reúne livros que dá para ler de graça e de forma legal. Os outros (Matemática financeira, Inglês e Espanhol) já aparecem no catálogo como "em construção" e ficam disponíveis assim que ganham lições.
 
 ## O que tem
 
 - **Catálogo de cursos por área**, com o progresso de cada curso guardado separado.
-- No curso de lógica, **7 níveis, 16 unidades e 54 lições**, do primeiro algoritmo a projetos completos:
+- No curso de lógica, **7 níveis, 16 unidades e 54 lições**, com 6 exercícios por lição em média, do primeiro algoritmo a projetos completos:
   1. Pensamento computacional (algoritmos, decomposição, teste de mesa, fluxogramas e uma ponte com o Portugol)
   2. Fundamentos (variáveis, operadores, decisões, laços)
   3. Dados (textos, conversão de tipos, listas, objetos, matrizes)
@@ -17,6 +17,16 @@ A pessoa escolhe a área e o curso num catálogo. Os cursos prontos são **Lógi
   5. Algoritmos clássicos (busca, ordenação, pilhas, filas, eficiência)
   6. Depuração (mensagens de erro, investigação, testes, try/catch)
   7. Projetos (troco, parcelas com juros, validação de CPF, jogo da velha, tabela do campeonato e outros)
+- Na área de matemática, **Matemática básica**, com **9 níveis e 46 lições**, quase todas com contas que mudam a cada vez e **resposta numérica** digitada (com vírgula, frações e sinal de menos) e **fórmulas bem escritas**, com frações empilhadas, potências e raízes:
+  1. Números e operações (as quatro operações, a ordem das contas e os números negativos)
+  2. Múltiplos e divisores (divisibilidade, números primos, MDC e MMC)
+  3. Frações (equivalência, comparação e as quatro operações)
+  4. Decimais e porcentagem (aumentos, descontos, variação percentual e descontos em sequência)
+  5. Razão e proporção (escala, velocidade, densidade e regra de três simples, inversa e composta)
+  6. Potências e raízes (propriedades, notação científica e raízes)
+  7. Equações (1º grau, problemas, sistemas e a fórmula de Bhaskara)
+  8. Medidas e geometria (unidades, tempo, área, círculo, volume e Pitágoras)
+  9. Dados e probabilidade (tabelas, média, mediana e moda, contagem e probabilidade)
 - Na área de política, **Introdução ao marxismo**, com **7 níveis e 25 lições**: Marx e Engels, o Manifesto, socialismo e comunismo, materialismo histórico, dialética e ideologia, o essencial da economia, Rosa Luxemburgo, Lenin e Gramsci, as experiências do século XX (com as conquistas e os crimes), o marxismo no Brasil, as principais críticas e as respostas marxistas, e um guia de estudo com roteiro de leitura.
 - E **O Capital, de Marx**, com **7 níveis e 24 lições**: o Livro I seção por seção (mercadoria, dinheiro, fetichismo, mais-valia, jornada de trabalho, máquinas, salário, acumulação e acumulação primitiva), um panorama dos Livros II e III (circulação, lucro, juros, renda da terra e crises), os debates sobre o livro e um guia de leitura.
 - E a **Leitura guiada de O Capital**, com **7 níveis e 39 lições**, para ler o Livro I junto com o app, capítulo por capítulo: antes de cada capítulo, onde você está no livro e o que observar, com um link direto para o texto no Arquivo Marxista na Internet; depois, os trechos difíceis explicados, perguntas para o grupo de estudo e exercícios. O primeiro nível explica as diferenças entre a tradução portuguesa on-line e as edições brasileiras e traz um método de estudo.
@@ -52,7 +62,7 @@ A pessoa escolhe a área e o curso num catálogo. Os cursos prontos são **Lógi
 - **Teste de nivelamento**: quem já sabe o assunto responde até duas perguntas por nível e pula os níveis que domina.
 - **Liberdade com rede de segurança**: dá para começar por qualquer nível. Se você abrir uma lição sem ter feito a base dela, ou errar muito, o app sugere a lição certa para reforçar e depois traz você de volta.
 - **Revisão espaçada**: cada lição concluída volta depois de 1, 3, 7, 14, 30 e 60 dias. Exercícios errados voltam até você acertar de primeira.
-- **Prática livre** com desafios avulsos em três níveis de dificuldade: 17 de lógica, 16 de HTML e CSS e 22 de Python.
+- **Prática livre** com desafios avulsos em três níveis de dificuldade: 25 de lógica, 16 de HTML e CSS, 22 de Python e 8 de matemática.
 - **Aulas em vídeo e leituras por nível**: os níveis indicam aulas gratuitas em português (Curso em Vídeo, TV Boitempo, Jones Manoel e outros) e textos livres, como os do Arquivo Marxista na Internet.
 - **Projetos guardados**: os projetos do curso de HTML e CSS ficam salvos no app e podem ser baixados prontos para publicar, como um `index.html` ou, no caso do site de várias páginas, um .zip com as páginas, o CSS e as imagens.
 - **Conquistas e meta diária** de XP.
@@ -81,6 +91,7 @@ js/nucleo.js            utilidades, progresso salvo e execução segura do códi
 js/efeitos.js           sons, confete, ajustes de exibição e avisos para leitores de tela
 js/teclado.js           barra de símbolos para digitar código no celular
 js/variaveis.js         exercícios que mudam: sorteia os valores de cada exercício com vars
+js/numeros.js           respostas numéricas (vírgula, frações, margem de erro) e fórmulas nos textos
 js/web.js               exercícios de página: monta, confere e colore HTML e CSS
 js/python.js            Python no navegador (Pyodide): execução, terminal, cores e erros em português
 js/py-worker.js         worker que roda o Python, separado para funcionar sem internet
@@ -98,6 +109,7 @@ conteudo/logica-js/     curso de lógica: nivel-1.js ... nivel-7.js e pratica.js
 conteudo/html-css/      curso de HTML e CSS: nivel-1.js ... nivel-8.js e pratica.js
 conteudo/python/        curso Python do zero: nivel-1.js ... nivel-11.js e pratica.js
 conteudo/git/           curso Git e GitHub: nivel-1.js ... nivel-6.js
+conteudo/mat-basica/    curso Matemática básica: nivel-1.js ... nivel-9.js e pratica.js
 conteudo/marxismo/      curso Introdução ao marxismo: nivel-1.js ... nivel-7.js
 conteudo/o-capital/     curso O Capital, de Marx: nivel-1.js ... nivel-7.js
 conteudo/capital-guiado/ curso Leitura guiada de O Capital: nivel-1.js ... nivel-7.js

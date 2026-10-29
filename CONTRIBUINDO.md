@@ -45,7 +45,9 @@ Os `videos` aparecem na trilha, embaixo do título do nível, numa caixa que abr
 
 Cursos que não são de programação, como os de política, levam `linguagem: 'texto'` no catálogo. Neles, o terminal some, os quadros de texto quebram a linha, o exercício `complete` aparece como "Complete a frase" e o `ordene` como "Coloque em ordem". Os cursos Introdução ao marxismo, O Capital e Leitura guiada de O Capital são bons exemplos.
 
-Os tipos de exercício atuais (escolha, completar, montar, escrever código e montar página) já servem para matemática e idiomas: exercícios de código podem virar contas ou frases para traduzir em escolha e completar. Se um curso precisar de um tipo novo, como áudio para idiomas, abra uma issue antes para combinarmos como fazer.
+Cursos de matemática e de ciências levam `linguagem: 'mat'`: funcionam como os de texto, com um ícone de contas na trilha, e usam a resposta numérica e as fórmulas (veja abaixo). O curso Matemática básica é o exemplo.
+
+Se um curso precisar de um tipo de exercício novo, como áudio para idiomas, abra uma issue antes para combinarmos como fazer.
 
 ## Formato de uma lição
 
@@ -150,6 +152,28 @@ Na saída, aparece a pergunta do `input` seguida do que foi digitado, como num t
 
 NumPy e Matplotlib também funcionam: na primeira vez que um código importa uma delas, o app baixa a biblioteca e guarda para as próximas. Os gráficos de `plt.show()` aparecem como imagem embaixo da saída. Num exercício que pede um gráfico, use `grafico: true`: além da saída certa, a correção exige que o código desenhe pelo menos um gráfico.
 
+### Resposta numérica (`numero`)
+
+Para matemática e ciências. A pessoa faz a conta e digita o resultado. O app aceita vírgula ou ponto nos decimais, ponto nos milhares (1.250,50), sinal de menos e frações como 3/4. No celular, uma barra com −, / e vírgula aparece junto do teclado numérico.
+
+```js
+{ t: 'numero', p: 'Quanto é 15% de 80?',
+  r: 12,                 // a resposta: um número, um texto como '3/4', ou uma expressão {= ...} com vars
+  prefixo: 'R$',         // opcional: aparece antes da caixa (R$)
+  unidade: 'cm',         // opcional: aparece depois da caixa (cm, m², %, °C...)
+  casas: 2,              // opcional: a resposta é arredondada com 2 casas, e vale qualquer valor que arredonde igual
+  tol: 0.01,             // opcional: margem de erro (sem casas nem tol, a resposta precisa ser exata)
+  fracao: true,          // opcional: exige uma fração irredutível, como 3/4 (r também precisa ser irredutível)
+  dica: 'Fica escondida atrás de "Ver uma dica".',
+  exp: 'Explicação mostrada depois da resposta.' }
+```
+
+Quando a pessoa erra, o app mostra a resposta certa no formato brasileiro (1.250,5). O validador confere se a resposta certa é um número e se ela mesma seria aceita.
+
+### Fórmulas
+
+Em qualquer texto (perguntas, opções, leituras, tabelas e linhas de `ordene` com `plain: true`), o que estiver entre `$$` e `$$` vira uma fórmula: `$$3/4$$` é uma fração empilhada, `$$x^2$$` e `$$2^(n+1)$$` são potências, `$$v_0$$` e `$$H_2O$$` têm índice, `$$sqrt(16)$$` é a raiz, `*` vira ·, `<=` vira ≤, `>=` vira ≥ e `!=` vira ≠. Os parênteses em volta do numerador, do denominador e do expoente somem: `$$(a+b)/2$$`. Para dividir sem empilhar, use ÷. Os `$$` andam sempre em pares, e `R$` sozinho continua sendo dinheiro.
+
 ### Digitar um comando (`comando`)
 
 Para cursos de terminal, como o de Git (`linguagem: 'shell'`). A pessoa digita o comando num terminal simulado:
@@ -233,7 +257,7 @@ Um exercício com `vars` ganha valores sorteados cada vez que aparece. Assim, a 
 | `{ de: 0.5, ate: 3, passo: 0.5 }` | de 0.5 a 3, de meio em meio |
 | `['Ana', 'Bia', 'Caio']` | um item da lista (pode ser um texto com código, como `'[3, 8, 5]'`) |
 
-Nos textos do exercício (`p`, `start`, `sol`, `ops`, `bank`, `c`, `lines`, `entrada`, `dica`, `exp` e outros), `{N}` vira o valor sorteado e `{= expressão}` é calculada em JavaScript com as variáveis, como `{= A + B }`. Nas expressões dá para usar `fix(x, casas)`, que fixa as casas decimais, `pyf(x)`, que mostra um número como o Python mostra um float (3 vira 3.0), e tudo do `Math`. Para recusar alguns sorteios, escreva a condição em `se`, em JavaScript: `se: 'A !== B'`.
+Nos textos do exercício (`p`, `start`, `sol`, `ops`, `bank`, `c`, `lines`, `entrada`, `dica`, `exp` e outros), `{N}` vira o valor sorteado e `{= expressão}` é calculada em JavaScript com as variáveis, como `{= A + B }`. Nas expressões dá para usar `fix(x, casas)`, que fixa as casas decimais, `br(x)` ou `br(x, casas)`, que escreve o número do jeito brasileiro (1.250,5), `pyf(x)`, que mostra um número como o Python mostra um float (3 vira 3.0), `mdc(a, b)`, `mmc(a, b)`, `fr(n, d)`, que dá a fração irredutível como texto ("3/4"), e tudo do `Math`. Para recusar alguns sorteios, escreva a condição em `se`, em JavaScript: `se: 'A !== B'`.
 
 Use nomes de variáveis em MAIÚSCULAS. Assim eles não se confundem com as chaves das f-strings do Python nem dos textos do JavaScript: `{N}` é trocado, e `{n}` fica como está. Num exercício `codigo` com `vars`, não escreva `saida`: a saída esperada é a da `sol`, rodada na hora com os mesmos valores. Numa `escolha`, a resposta certa também pode depender dos valores, como `ops: ['{= A * B }', '{= A + B }', '{= A * B + 1 }']`. Se um sorteio deixar duas opções iguais, o app sorteia de novo. O validador confere 12 sorteios de cada exercício.
 
@@ -243,7 +267,7 @@ Toda unidade com pelo menos 2 lições e 6 exercícios ganha, no fim da trilha, 
 
 ## Desafios da prática livre
 
-Ficam no `pratica.js` do curso, dentro de `desafios('<id-do-curso>', [ ... ])`. Mesmo formato de um item `codigo` (ou de um item `web`, com `t: 'web'`), mais estes campos:
+Ficam no `pratica.js` do curso, dentro de `desafios('<id-do-curso>', [ ... ])`. Mesmo formato de um exercício das lições, mais estes campos. Sem `t`, o desafio é de código; com `t: 'web'` ou `t: 'numero'`, é de página ou de resposta numérica. Desafios com `vars` mostram, na lista, os mesmos valores que vão aparecer quando a pessoa abrir:
 
 ```js
 { id: 'p-nome-curto', dif: 'facil', titulo: 'Nome do desafio', temas: ['laços', 'textos'], p: '...', start: '...', saida: '...', dica: '...', sol: '...', exp: '...' }

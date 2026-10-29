@@ -16,6 +16,7 @@ const areaDe = id => AREAS.find(a => a.id === id) || { nome: '' };
 
 // Curso escolhido. Estas variáveis mudam quando a pessoa troca de curso.
 let CURSO, NIVEIS = [], UNITS = [], ALL = [], POS = {}, DESAFIOS = [], NIVEIS_TESTAVEIS = [];
+const VISTAS = {}; // valores sorteados que a lista de desafios mostra, usados quando o desafio abre
 function usarCurso(id) {
   CURSO = CURSOS.find(c => c.id === id && c.disponivel) || CURSOS.find(c => c.disponivel);
   NIVEIS = TRILHA.niveis.filter(n => n.curso === CURSO.id);
@@ -28,7 +29,7 @@ function usarCurso(id) {
   // o último nível (normalmente o de projetos) não entra no teste de nivelamento
   NIVEIS_TESTAVEIS = NIVEIS.length > 1 ? NIVEIS.slice(0, -1).map(n => n.n) : [];
 }
-function temTerminal() { return !['texto', 'shell'].includes(CURSO && CURSO.linguagem); }
+function temTerminal() { return !['texto', 'shell', 'mat'].includes(CURSO && CURSO.linguagem); }
 const INTERVALOS = [1, 3, 7, 14, 30, 60]; // dias até a próxima revisão, por "caixa"
 const DIF = { facil: { nome: 'Fácil', xp: 10 }, medio: { nome: 'Médio', xp: 15 }, dificil: { nome: 'Difícil', xp: 20 } };
 const METAS = [{ xp: 10, nome: 'Leve' }, { xp: 30, nome: 'Normal' }, { xp: 50, nome: 'Puxada' }, { xp: 100, nome: 'Intensa' }];
@@ -222,7 +223,7 @@ function iniciarNivelamento() {
   for (const n of NIVEIS_TESTAVEIS) {
     const candidatos = [];
     for (const l of licoesDoNivel(n)) {
-      l.exs.forEach((ex, i) => { if (['escolha', 'complete', 'ordene'].includes(ex.t) && !ex.plain) candidatos.push({ ex, key: `niv:${l.id}:${i}`, lid: l.id, nivel: n }); });
+      l.exs.forEach((ex, i) => { if (['escolha', 'complete', 'ordene', 'numero'].includes(ex.t) && !ex.plain) candidatos.push({ ex, key: `niv:${l.id}:${i}`, lid: l.id, nivel: n }); });
     }
     // de lições diferentes, para cobrir mais do nível
     const porLicao = {};
@@ -416,7 +417,7 @@ function renderTrilha() {
         html += `<div class="stop${open ? '' : ' locked'}" style="--x:${x}px">
           ${idx === cur ? `<span class="bubble" aria-hidden="true">${doneCount ? 'Continuar' : 'Começar'}</span>` : ''}
           <button class="node${done ? ' done' : ''}" data-idx="${idx}" ${open ? '' : 'disabled'} aria-label="${esc(l.titulo)}${done ? ', concluída. Toque para refazer' : open ? ', disponível' : ', bloqueada'}">
-            ${done ? IC.check : open ? (CURSO.linguagem === 'texto' ? IC.livro : IC.code) : IC.lock}
+            ${done ? IC.check : open ? (CURSO.linguagem === 'texto' ? IC.livro : CURSO.linguagem === 'mat' ? IC.conta : IC.code) : IC.lock}
           </button>
           <span class="label" aria-hidden="true">${esc(l.titulo)}</span>
         </div>`;
@@ -491,9 +492,11 @@ function renderPratica() {
     <div class="desafios">
       ${lista.map(d => {
         const ok = !!S.pratica[d.id];
+        // num desafio que muda, a lista já mostra os valores que vão aparecer ao abrir
+        const ex = exDoDesafio(d), vista = ex.vars ? (VISTAS[d.id] = VISTAS[d.id] || instanciar(ex)) || ex : ex;
         return `<button class="desafio${ok ? ' ok' : ''}" data-desafio="${d.id}">
-          <span class="d-ic" aria-hidden="true">${ok ? IC.check : IC.code}</span>
-          <span class="d-txt"><b>${esc(d.titulo)}</b><span class="d-p">${inlineMd(d.p)}</span><span class="temas">${d.temas.map(t => `<i>${esc(t)}</i>`).join('')}</span></span>
+          <span class="d-ic" aria-hidden="true">${ok ? IC.check : CURSO.linguagem === 'mat' ? IC.conta : IC.code}</span>
+          <span class="d-txt"><b>${esc(d.titulo)}</b><span class="d-p">${inlineMd(vista.p)}</span><span class="temas">${d.temas.map(t => `<i>${esc(t)}</i>`).join('')}</span></span>
           <span class="dif dif-${d.dif}">${DIF[d.dif].nome}<small>${ok ? 'resolvido' : '+' + DIF[d.dif].xp + ' XP'}</small></span>
         </button>`;
       }).join('')}
@@ -901,13 +904,17 @@ document.addEventListener('click', e => {
   const b = e.target.closest('[data-base]');
   if (b) irParaBase(b.dataset.base, +b.dataset.retorno);
 });
+// o desafio é um exercício como os das lições, mais id, dif, titulo, temas e curso; sem t, é de código
+function exDoDesafio(d) {
+  const { id: _id, dif: _dif, titulo: _titulo, temas: _temas, curso: _curso, ...resto } = d;
+  return { t: 'codigo', ...resto };
+}
 function startDesafio(id) {
   const d = DESAFIOS.find(x => x.id === id);
   if (!d) return;
-  const ex = d.t === 'web'
-    ? { t: 'web', p: d.p, html: d.html, css: d.css, regras: d.regras, solHtml: d.solHtml, solCss: d.solCss, dica: d.dica, exp: d.exp }
-    : { t: 'codigo', p: d.p, start: d.start, saida: d.saida, entrada: d.entrada, vars: d.vars, se: d.se, grafico: d.grafico, dica: d.dica, sol: d.sol, exp: d.exp };
-  iniciar({ tipo: 'pratica', desafio: d, itens: [{ ex, key: 'p:' + d.id }] });
+  const proxInst = VISTAS[d.id] || null;
+  delete VISTAS[d.id]; // na próxima vez, valores novos
+  iniciar({ tipo: 'pratica', desafio: d, itens: [{ ex: exDoDesafio(d), key: 'p:' + d.id, proxInst }] });
 }
 const item = () => L.itens[L.queue[0]];
 const cur = () => { const it = item(); return it.inst || it.ex; }; // it.inst: a versão com os valores sorteados (js/variaveis.js)
@@ -927,8 +934,8 @@ function updateProg() {
 }
 
 function rotulo(ex) {
-  const texto = lingDe(ex) === 'texto';
-  const tipo = { escolha: 'Escolha a resposta', complete: texto ? 'Complete a frase' : lingDe(ex) === 'shell' ? 'Complete o comando' : 'Complete o código', ordene: ex.plain || texto ? 'Coloque em ordem' : ['js', 'py'].includes(lingDe(ex)) ? 'Monte o programa' : lingDe(ex) === 'shell' ? 'Coloque os comandos em ordem' : 'Monte o código', codigo: 'Escreva o código', web: ex.conserte ? 'Conserte a página' : 'Monte a página', comando: 'Digite o comando' }[ex.t];
+  const texto = ['texto', 'mat'].includes(lingDe(ex));
+  const tipo = { escolha: 'Escolha a resposta', complete: texto ? 'Complete a frase' : lingDe(ex) === 'shell' ? 'Complete o comando' : 'Complete o código', ordene: ex.plain || texto ? 'Coloque em ordem' : ['js', 'py'].includes(lingDe(ex)) ? 'Monte o programa' : lingDe(ex) === 'shell' ? 'Coloque os comandos em ordem' : 'Monte o código', codigo: 'Escreva o código', web: ex.conserte ? 'Conserte a página' : 'Monte a página', comando: 'Digite o comando', numero: 'Calcule e responda' }[ex.t];
   if (L.tipo === 'revisao') return `${tipo} · revisão de ${esc(LICAO[item().lid].titulo)}`;
   if (L.tipo === 'pratica') return `Desafio · ${DIF[L.desafio.dif].nome} · ${esc(L.desafio.titulo)}`;
   if (L.tipo === 'nivelamento') return `Teste de nivelamento · Nível ${item().nivel}`;
@@ -942,7 +949,9 @@ function focarPergunta() { const h = $('exArea').querySelector('.prompt'); if (h
 
 function renderEx() {
   const it = item();
-  it.inst = it.ex.vars ? instanciar(it.ex) : null; // valores novos a cada vez que o exercício aparece
+  // valores novos a cada vez que o exercício aparece (no desafio, a primeira vez usa os da lista)
+  it.inst = it.proxInst || (it.ex.vars ? instanciar(it.ex) : null);
+  it.proxInst = null;
   const ex = cur();
   L.checked = false; L.attempts = 0; L.ans = null;
   $('actions').classList.remove('ok', 'bad'); $('fb').hidden = true;
@@ -995,6 +1004,17 @@ function renderEx() {
       ${tecladoHTML('cmdIn', 'shell')}
       ${ex.dica ? `<details class="dica-cmd"><summary>Ver uma dica</summary><p>${inlineMd(ex.dica)}</p></details>` : ''}
       <p class="atalho">Digite o comando e aperte Enter.</p>`;
+    setMain('check', false);
+  }
+  if (ex.t === 'numero') {
+    body.innerHTML = `<div class="num-linha">
+        ${ex.prefixo ? `<span class="num-un" aria-hidden="true">${esc(ex.prefixo)}</span>` : ''}
+        <input id="numIn" class="num-in" type="text" inputmode="decimal" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="done" placeholder="${ex.fracao ? 'Ex.: 3/4' : 'Sua resposta'}" aria-label="Sua resposta${ex.prefixo ? ', em ' + esc(ex.prefixo) : ''}${ex.unidade ? ', em ' + esc(ex.unidade) : ''}">
+        ${ex.unidade ? `<span class="num-un" aria-hidden="true">${esc(ex.unidade)}</span>` : ''}
+      </div>
+      ${tecladoHTML('numIn', 'num')}
+      ${ex.dica ? `<details class="dica-cmd dica-num"><summary>Ver uma dica</summary><p>${inlineMd(ex.dica)}</p></details>` : ''}
+      <p class="atalho">${ex.fracao ? 'Responda com uma fração simplificada, como 3/4.' : ex.casas != null ? `Use vírgula para os decimais. Arredonde com ${ex.casas} ${ex.casas === 1 ? 'casa' : 'casas'}.` : 'Use vírgula para os decimais.'}</p>`;
     setMain('check', false);
   }
   if (ex.t === 'web') {
@@ -1248,7 +1268,7 @@ function renderTexto(ex) {
     if (b.tabela) { // "codigo" diz quais colunas são código (fonte mono, sem quebrar); por padrão, só a primeira
       const cod = b.tabela.codigo || [0];
       return `<div class="tab-wrap"><table class="tab"><thead><tr>${b.tabela.cab.map(c => `<th scope="col">${esc(c)}</th>`).join('')}</tr></thead><tbody>${
-        b.tabela.linhas.map(r => `<tr>${r.map((c, i) => `<td${cod.includes(i) ? ' class="cod"' : ''}>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+        b.tabela.linhas.map(r => `<tr>${r.map((c, i) => `<td${cod.includes(i) ? ' class="cod"' : ''}>${cod.includes(i) ? esc(c) : inlineMd(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
     }
     if (b.fluxo) {
       const descricao = b.fluxo.map(n => n.k === 'dec' ? `pergunta "${n.s}": se sim, ${n.sim}; se não, ${n.nao}` : n.s).join(', depois ');
@@ -1295,10 +1315,10 @@ function renderComplete() {
 
 function renderOrdene() {
   const ex = cur();
-  const fmtL = s => ex.plain ? esc(s) : hl(s, lingDe(ex));
+  const fmtL = s => ex.plain ? inlineMd(s) : hl(s, lingDe(ex));
   const pc = ex.plain ? ' plain' : '';
-  const placed = L.ans.map((li, pos) => `<button class="line in${pc}" data-pos="${pos}" aria-label="Linha ${pos + 1}: ${esc(ex.lines[li])}. Toque para tirar">${fmtL(ex.lines[li])}</button>`).join('');
-  const pool = L.order.filter(li => !L.ans.includes(li)).map(li => `<button class="line${pc}" data-li="${li}" aria-label="Colocar: ${esc(ex.lines[li])}">${fmtL(ex.lines[li])}</button>`).join('');
+  const placed = L.ans.map((li, pos) => `<button class="line in${pc}" data-pos="${pos}" aria-label="Linha ${pos + 1}: ${esc(semFormula(ex.lines[li]))}. Toque para tirar">${fmtL(ex.lines[li])}</button>`).join('');
+  const pool = L.order.filter(li => !L.ans.includes(li)).map(li => `<button class="line${pc}" data-li="${li}" aria-label="Colocar: ${esc(semFormula(ex.lines[li]))}">${fmtL(ex.lines[li])}</button>`).join('');
   $('exBody').innerHTML = `<div class="answer-box" role="group" aria-label="Sua resposta">${placed || '<span class="empty-msg">Toque nas linhas abaixo, na ordem certa.</span>'}</div><div class="pool" role="group" aria-label="Linhas para colocar">${pool}</div>`;
   setMain('check', L.ans.length === ex.lines.length);
 }
@@ -1362,7 +1382,7 @@ function comandoOk(digitado, ex) {
   return [ex.sol, ...(ex.aceita || [])].some(a => /^\/.+\/$/.test(a) ? new RegExp(a.slice(1, -1)).test(d) : normCmd(a) === d);
 }
 $('exArea').addEventListener('input', e => {
-  if (e.target.id === 'cmdIn' && L && !L.checked) setMain('check', e.target.value.trim() !== '');
+  if (['cmdIn', 'numIn'].includes(e.target.id) && L && !L.checked) setMain('check', e.target.value.trim() !== '');
 });
 
 // roda o código do aluno na linguagem do exercício; no Python, avisa enquanto ele é baixado
@@ -1472,6 +1492,12 @@ async function check() {
     linha.outerHTML = `<div class="sh-cmd"><span class="sh-pr" aria-hidden="true">${esc(ex.pasta || '~')} $</span> <span${ok ? '' : ' class="sh-errado"'}>${esc(inp.value)}</span></div>`
       + (ok && ex.saida ? ex.saida.replace('{msg}', msg).split('\n').map(l => `<div class="sh-out">${esc(l)}</div>`).join('') : '');
   }
+  if (ex.t === 'numero') {
+    const inp = $('numIn');
+    ok = respostaNumericaOk(inp.value, ex);
+    correct = (ex.prefixo ? ex.prefixo + ' ' : '') + respostaNumericaTexto(ex) + (ex.unidade ? (/^[%°]/.test(ex.unidade) ? '' : ' ') + ex.unidade : '');
+    inp.readOnly = true; inp.classList.add(ok ? 'certo' : 'errado');
+  }
   if (ex.t === 'web') {
     $('mainBtn').disabled = true;
     clearTimeout(previaT);
@@ -1515,7 +1541,12 @@ function feedback(ok, ex, correct, r) {
   const titulo = ok ? pick(['Mandou bem!', 'Isso aí!', 'Certinho!', 'Perfeito!']) : 'Ainda não.';
   let h = `<p class="fb-title">${titulo}</p>`;
   let falado = titulo;
-  if (!ok && !isCode) { h += `<p class="fb-label">Resposta certa</p><pre class="fb-ans">${esc(correct)}</pre>`; falado += ' Resposta certa: ' + correct + '.'; }
+  if (!ok && !isCode) {
+    // respostas em texto (com fórmulas) aparecem formatadas; código continua em fonte de código
+    const formatada = (ex.t === 'escolha' && !ex.mono) || (ex.t === 'ordene' && ex.plain);
+    h += `<p class="fb-label">Resposta certa</p>${formatada ? `<p class="fb-ans fb-txt">${correct.split('\n').map(inlineMd).join('<br>')}</p>` : `<pre class="fb-ans">${esc(correct)}</pre>`}`;
+    falado += ' Resposta certa: ' + semFormula(correct) + '.';
+  }
   if (!ok && ex.t === 'web') {
     const falhas = r.falhas.slice(0, 4);
     h += `<p class="fb-label">${ex.conserte ? 'O que ainda precisa de conserto' : 'O que falta na página'}</p><ul class="fb-dicas">${falhas.map(d => `<li>${inlineMd(d)}</li>`).join('')}</ul>`;
@@ -1532,7 +1563,7 @@ function feedback(ok, ex, correct, r) {
     L.attempts++;
     if (L.attempts >= 2 && ex.sol) h += `<button class="sol-btn" id="solBtn">Ver uma solução</button>`;
   }
-  if ((ok || !isCode) && ex.exp) { h += `<p class="fb-exp">${inlineMd(ex.exp)}</p>`; falado += ' ' + ex.exp.replace(/`/g, ''); }
+  if ((ok || !isCode) && ex.exp) { h += `<p class="fb-exp">${inlineMd(ex.exp)}</p>`; falado += ' ' + semFormula(ex.exp); }
   if (!ok && nivelamento) h += `<p class="fb-exp">O teste termina aqui. Veja o resultado em seguida.</p>`;
   if (!ok && L.tipo === 'licao' && !L.sugeriuBase && L.errors + 1 >= limiteErros(L)) {
     const sug = basesParaSugerir(L.les);

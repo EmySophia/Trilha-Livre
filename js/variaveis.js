@@ -6,14 +6,20 @@
      se: 'a % b !== 0'                         condição para aceitar o sorteio (em JavaScript)
    Nos textos do exercício, {a} vira o valor de a, e {= expressão} é calculada em JavaScript com as variáveis.
    Funções que dá para usar nas expressões: pyf(x) mostra um número como o Python mostra um float (3 vira 3.0),
-   fix(x, casas) fixa as casas decimais, e tudo do Math (Math.floor, Math.round...).
+   fix(x, casas) fixa as casas decimais, br(x) escreve o número do jeito brasileiro (2,5 e 1.250) e tudo do Math.
    Nos exercícios de código sem "saida", a saída esperada é a da solução, rodada na hora.
    Este arquivo também é usado pelo validador (Node), por isso não usa nada da página.
    SPDX-License-Identifier: AGPL-3.0-or-later · Copyright (C) 2026 Contribuidores do Trilha Livre */
 
 const AJUDA_VARS = {
   pyf: x => Number.isInteger(x) ? x.toFixed(1) : String(x),
-  fix: (x, casas) => Number(x).toFixed(casas)
+  fix: (x, casas) => Number(x).toFixed(casas),
+  // número escrito do jeito brasileiro: br(1250.5) dá 1.250,5; br(2, 2) dá 2,00
+  br: (x, casas) => Number(x).toLocaleString('pt-BR', casas == null ? { maximumFractionDigits: 6 } : { minimumFractionDigits: casas, maximumFractionDigits: casas }),
+  // para a matemática: mdc(12, 18) dá 6; mmc(4, 6) dá 12; fr(6, 8) dá a fração irredutível "3/4" (ou "2", se for inteira)
+  mdc: (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a; },
+  mmc: (a, b) => Math.abs(a * b) / AJUDA_VARS.mdc(a, b),
+  fr: (n, d) => { const m = AJUDA_VARS.mdc(n, d) * (d < 0 ? -1 : 1); return d / m === 1 ? String(n / m) : `${n / m}/${d / m}`; }
 };
 function sortearVar(def, rnd) {
   if (Array.isArray(def)) return def[Math.floor(rnd() * def.length)];
@@ -31,7 +37,7 @@ function trocarVars(txt, vals) {
   return txt.replace(/\{=([^{}]+)\}/g, (_, e) => String(avaliarVars(e, vals)))
     .replace(/\{([A-Za-z_]\w*)\}/g, (m, k) => (k in vals ? String(vals[k]) : m));
 }
-const CAMPOS_VARS = ['p', 'code', 'start', 'sol', 'saida', 'dica', 'exp', 'ops', 'bank', 'c', 'lines', 'entrada', 'antes', 'aceita'];
+const CAMPOS_VARS = ['p', 'code', 'start', 'sol', 'saida', 'dica', 'exp', 'ops', 'bank', 'c', 'lines', 'entrada', 'antes', 'aceita', 'r', 'prefixo', 'unidade'];
 const repetidos = lista => Array.isArray(lista) && new Set(lista).size !== lista.length;
 function instanciar(ex, rnd = Math.random) {
   if (!ex.vars) return ex;

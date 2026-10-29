@@ -90,6 +90,38 @@ R$ 1: 1`,
 }
 troco(146);`,
               exp: '146 = 100 + 20 + 20 + 5 + 1.'
+            },
+            {
+              t: 'codigo',
+              p: 'Mostre quantas notas de 100 cabem em {V} reais e, na linha de baixo, quanto sobra',
+              start: '',
+              sol: `console.log(Math.floor({V} / 100));
+console.log({V} % 100);`,
+              dica: 'Math.floor para a parte inteira e % para o que sobra.',
+              exp: 'São os dois passos de cada volta do troco.',
+              vars: { V: { de: 101, ate: 999 } }
+            },
+            {
+              t: 'codigo',
+              p: 'Complete troco(valor) e chame troco({V})',
+              start: `function troco(valor) {
+  const notas = [200, 100, 50, 20, 10, 5, 2, 1];
+  
+}
+troco({V});
+`,
+              sol: `function troco(valor) {
+  const notas = [200, 100, 50, 20, 10, 5, 2, 1];
+  for (const nota of notas) {
+    const qtd = Math.floor(valor / nota);
+    valor = valor % nota;
+    if (qtd > 0) console.log(\`R$ \${nota}: \${qtd}\`);
+  }
+}
+troco({V});`,
+              dica: 'Para cada nota: quantidade com Math.floor, sobra com %, e mostre se a quantidade for maior que zero.',
+              exp: 'O mesmo código serve para qualquer valor.',
+              vars: { V: { de: 11, ate: 499 } }
             }
           ]
         },
@@ -168,6 +200,18 @@ console.log(parcela(2400, 0.02, 12));
 console.log(parcela(1000, 0.03, 10));
 console.log(parcela(2400, 0.02, 12));`,
               exp: 'Multiplique a parcela pelos meses e compare com o valor original para ver quanto custam os juros.'
+            },
+            {
+              t: 'codigo',
+              p: 'Mostre o total pago (parcela vezes meses) com duas casas',
+              start: `const valor = {V}, taxa = {TX}, meses = {M};
+`,
+              sol: `const valor = {V}, taxa = {TX}, meses = {M};
+const p = valor * taxa / (1 - (1 + taxa) ** -meses);
+console.log((p * meses).toFixed(2));`,
+              dica: 'Calcule a parcela pela fórmula e multiplique por meses.',
+              exp: 'A diferença entre o total e o valor emprestado são os juros.',
+              vars: { V: [1000, 1500, 2000], TX: [0.01, 0.02, 0.03], M: [6, 10, 12] }
             }
           ]
         },
@@ -265,6 +309,38 @@ console.log(converter(250, 5.40));
 console.log(converter(100, 5.40));
 console.log(converter(250, 5.40));`,
               exp: 'Para converter de volta, multiplique pela cotação.'
+            },
+            {
+              t: 'codigo',
+              p: 'Mostre o total gasto na categoria "{CAT}"',
+              start: `const gastos = [
+  { desc: "Feira", cat: "mercado", valor: 300 },
+  { desc: "Ônibus", cat: "transporte", valor: 120 },
+  { desc: "Cinema", cat: "lazer", valor: 50 },
+  { desc: "Padaria", cat: "mercado", valor: 150 },
+  { desc: "Show", cat: "lazer", valor: 30 }
+];
+`,
+              sol: `const gastos = [
+  { desc: "Feira", cat: "mercado", valor: 300 },
+  { desc: "Ônibus", cat: "transporte", valor: 120 },
+  { desc: "Cinema", cat: "lazer", valor: 50 },
+  { desc: "Padaria", cat: "mercado", valor: 150 },
+  { desc: "Show", cat: "lazer", valor: 30 }
+];
+console.log(gastos.filter(g => g.cat === "{CAT}").reduce((s, g) => s + g.valor, 0));`,
+              dica: 'filter pela categoria e reduce para somar.',
+              exp: 'filter e reduce juntos respondem quase toda pergunta sobre gastos.',
+              vars: { CAT: ['mercado', 'transporte', 'lazer'] }
+            },
+            {
+              t: 'codigo',
+              p: 'Converta {R} reais para dólar com a cotação {COT} e mostre com duas casas',
+              start: '',
+              sol: 'console.log(({R} / {COT}).toFixed(2));',
+              dica: 'Reais divididos pela cotação, com toFixed(2).',
+              exp: 'A cotação é um exemplo: num app de verdade, ela viria da internet.',
+              vars: { R: [50, 100, 250, 1000], COT: [5.1, 5.4, 5.65] }
             }
           ]
         },
@@ -364,6 +440,20 @@ console.log(mesesAte(10000, 500, 0.006));
 console.log(mesesAte(5000, 300, 0.006));
 console.log(mesesAte(10000, 500, 0.006));`,
               exp: 'for quando você sabe quantas voltas; while quando depende de uma condição.'
+            },
+            {
+              t: 'codigo',
+              p: 'Simule {M} meses guardando {A} por mês, com rendimento de 0,5% ao mês, e mostre o saldo com duas casas',
+              start: `let saldo = 0;
+`,
+              sol: `let saldo = 0;
+for (let mes = 1; mes <= {M}; mes++) {
+  saldo = saldo * 1.005 + {A};
+}
+console.log(saldo.toFixed(2));`,
+              dica: 'Em cada mês: saldo vezes 1.005, mais o depósito.',
+              exp: 'Compare com {M} × {A} = {= M * A }: a diferença é o rendimento.',
+              vars: { M: [6, 12, 24], A: [50, 100, 200] }
             }
           ]
         }
@@ -428,6 +518,17 @@ console.log(resto < 2 ? 0 : 11 - resto); // 2, o primeiro dígito verificador`
               exp: 'Só os pontos foram removidos. O traço continua.'
             },
             {
+              t: 'escolha',
+              p: 'Por que nunca colocar CPFs de pessoas reais em código público?',
+              ops: [
+                'Porque é dado pessoal, protegido pela LGPD',
+                'Porque deixa o código mais lento',
+                'Porque CPFs reais não passam na validação'
+              ],
+              c: 0,
+              exp: 'A Lei Geral de Proteção de Dados protege informações como o CPF. Use sempre números de exemplo.'
+            },
+            {
               t: 'codigo',
               p: 'Escreva validaCPF(cpf) para 11 dígitos sem pontuação',
               start: `function validaCPF(cpf) {
@@ -456,6 +557,21 @@ console.log(validaCPF("52998224725"));
 console.log(validaCPF("52998224726"));
 console.log(validaCPF("11111111111"));`,
               exp: 'CNPJ, cartões de crédito e códigos de barras usam ideias parecidas.'
+            },
+            {
+              t: 'codigo',
+              p: 'Calcule o primeiro dígito verificador para os 9 números {D}',
+              start: `const base = "{D}";
+`,
+              sol: `const base = "{D}";
+const d = base.split("").map(Number);
+let soma = 0;
+for (let i = 0; i < 9; i++) soma += d[i] * (10 - i);
+const resto = soma % 11;
+console.log(resto < 2 ? 0 : 11 - resto);`,
+              dica: 'Siga o código da leitura: pesos de 10 a 2, resto por 11.',
+              exp: 'O segundo dígito usa a mesma ideia, com os 10 primeiros números.',
+              vars: { D: { de: 100000000, ate: 999999999 } }
             }
           ]
         },
@@ -494,6 +610,13 @@ console.log(secreto); // muda a cada execução`
               exp: 'Sem o +1 seria de 0 a 9.'
             },
             {
+              t: 'escolha',
+              p: 'Com a estratégia de chutar sempre o meio, qual é o primeiro palpite para um número de 1 a 100?',
+              ops: ['50', '1', '100'],
+              c: 0,
+              exp: 'É a busca binária: cada palpite descarta metade do que sobrou.'
+            },
+            {
               t: 'codigo',
               p: 'Complete jogar(secreto, palpites). Para cada palpite mostre "N: é maior", "N: é menor" ou "N: acertou em X tentativas!" e pare ao acertar.',
               start: `function jogar(secreto, palpites) {
@@ -517,6 +640,31 @@ jogar(37, [50, 25, 37, 40]);
 }
 jogar(37, [50, 25, 37, 40]);`,
               exp: 'Repare que o 40 nunca foi usado: o jogo acabou antes.'
+            },
+            {
+              t: 'codigo',
+              p: 'Complete jogar(secreto, palpites) e chame jogar({S}, [50, {= S < 50 ? 25 : 75 }, {S}])',
+              start: `function jogar(secreto, palpites) {
+  
+}
+jogar({S}, [50, {= S < 50 ? 25 : 75 }, {S}]);
+`,
+              sol: `function jogar(secreto, palpites) {
+  let tentativas = 0;
+  for (const p of palpites) {
+    tentativas++;
+    if (p === secreto) {
+      console.log(\`\${p}: acertou em \${tentativas} tentativas!\`);
+      return;
+    }
+    console.log(p < secreto ? \`\${p}: é maior\` : \`\${p}: é menor\`);
+  }
+}
+jogar({S}, [50, {= S < 50 ? 25 : 75 }, {S}]);`,
+              dica: '"é maior" quer dizer que o secreto é maior que o palpite.',
+              exp: 'O return sai da função no acerto, e os palpites seguintes nem são olhados.',
+              vars: { S: { de: 1, ate: 100 } },
+              se: 'S !== 50 && S !== 25 && S !== 75'
             }
           ]
         },
@@ -556,6 +704,14 @@ console.log(linhas.length); // 8`
               exp: '3 linhas + 3 colunas + 2 diagonais.'
             },
             {
+              t: 'escolha',
+              p: 'Qual destas é uma das diagonais do tabuleiro?',
+              ops: ['[0,0], [1,1], [2,2]', '[0,0], [0,1], [0,2]', '[0,2], [1,2], [2,2]'],
+              c: 0,
+              exp: 'Na diagonal, a linha e a coluna andam juntas.',
+              mono: true
+            },
+            {
               t: 'codigo',
               p: 'Escreva vencedor(t) que devolve "X", "O" ou "ninguém"',
               start: `function vencedor(t) {
@@ -585,6 +741,28 @@ console.log(vencedor([["X","X","X"],["O","O",""],["","",""]]));
 console.log(vencedor([["X","O","X"],["X","O",""],["","O",""]]));
 console.log(vencedor([["X","O","X"],["X","O","O"],["O","X","X"]]));`,
               exp: 'Com isso e uma tela de botões, você tem o jogo completo.'
+            },
+            {
+              t: 'codigo',
+              p: 'Escreva cheio(t), que devolve true se não houver nenhuma casa vazia (""), e mostre o resultado para os dois tabuleiros',
+              start: `function cheio(t) {
+  
+}
+console.log(cheio([["X","O","X"],["O","X","O"],["O","X","O"]]));
+console.log(cheio([["X","O",""],["","X","O"],["O","","X"]]));
+`,
+              sol: `function cheio(t) {
+  for (const linha of t) {
+    for (const casa of linha) {
+      if (casa === "") return false;
+    }
+  }
+  return true;
+}
+console.log(cheio([["X","O","X"],["O","X","O"],["O","X","O"]]));
+console.log(cheio([["X","O",""],["","X","O"],["O","","X"]]));`,
+              dica: 'Percorra as linhas e as casas; achou uma vazia, devolva false.',
+              exp: 'Tabuleiro cheio e sem vencedor é empate: deu velha.'
             }
           ]
         },
@@ -644,6 +822,14 @@ console.log(times[0].nome); // B`
               exp: 'b − a coloca os maiores primeiro.'
             },
             {
+              t: 'escolha',
+              p: 'Um time tem {V} vitórias, {EMP} empates e {D} derrotas. Quantos pontos tem?',
+              ops: ['{= 3 * V + EMP }', '{= V + EMP }', '{= 3 * V + EMP - D }'],
+              c: 0,
+              exp: 'Vitória vale 3, empate vale 1 e derrota vale 0.',
+              vars: { V: { de: 2, ate: 12 }, EMP: { de: 2, ate: 8 }, D: { de: 1, ate: 8 } }
+            },
+            {
               t: 'codigo',
               p: 'Monte a classificação no formato "1. Time X pts, saldo Y"',
               start: `const jogos = [
@@ -684,6 +870,27 @@ const lista = Object.values(tabela);
 lista.sort((a, b) => b.pontos - a.pontos || b.saldo - a.saldo);
 lista.forEach((t, i) => console.log(\`\${i + 1}. \${t.nome} \${t.pontos} pts, saldo \${t.saldo}\`));`,
               exp: 'Vale e Cerrado empataram em pontos; o saldo de gols decidiu.'
+            },
+            {
+              t: 'codigo',
+              p: 'Mostre os pontos de cada time no formato "Nome: pontos"',
+              start: `const times = [
+  { nome: "Ventania", v: {A}, e: 2 },
+  { nome: "Serrano", v: 3, e: {B} },
+  { nome: "Cerrado", v: 1, e: 4 }
+];
+`,
+              sol: `const times = [
+  { nome: "Ventania", v: {A}, e: 2 },
+  { nome: "Serrano", v: 3, e: {B} },
+  { nome: "Cerrado", v: 1, e: 4 }
+];
+for (const t of times) {
+  console.log(\`\${t.nome}: \${3 * t.v + t.e}\`);
+}`,
+              dica: 'Pontos = 3 × vitórias + empates.',
+              exp: 'Os times são fictícios; a regra é a do Brasileirão.',
+              vars: { A: { de: 0, ate: 6 }, B: { de: 0, ate: 6 } }
             }
           ]
         },
@@ -713,6 +920,17 @@ console.log(lista);`
                   dica: 'Parabéns por chegar até aqui. Você já sabe as bases da lógica que servem para qualquer linguagem, inclusive Python.'
                 }
               ]
+            },
+            {
+              t: 'escolha',
+              p: 'Quais são as quatro operações que quase todo app faz com dados?',
+              ops: [
+                'Criar, ler, atualizar e apagar',
+                'Somar, subtrair, multiplicar e dividir',
+                'Abrir, fechar, salvar e sair'
+              ],
+              c: 0,
+              exp: 'Em inglês, a sigla é CRUD: create, read, update e delete.'
             },
             {
               t: 'codigo',
@@ -759,6 +977,38 @@ compras = remover(compras, "Feijão");
 console.log("Itens: " + compras.length);
 console.log("Total: " + total(compras));`,
               exp: 'Você terminou a trilha. Agora é construir seus próprios projetos.'
+            },
+            {
+              t: 'codigo',
+              p: 'Escreva atualizarPreco(lista, nome, novoPreco) e mostre o total depois de mudar o preço do Café para {P}',
+              start: `function atualizarPreco(lista, nome, novoPreco) {
+  
+}
+const compras = [{ nome: "Arroz", preco: 25 }, { nome: "Café", preco: 18 }];
+atualizarPreco(compras, "Café", {P});
+console.log(compras.reduce((s, i) => s + i.preco, 0));
+`,
+              sol: `function atualizarPreco(lista, nome, novoPreco) {
+  const item = lista.find(i => i.nome === nome);
+  if (item) item.preco = novoPreco;
+}
+const compras = [{ nome: "Arroz", preco: 25 }, { nome: "Café", preco: 18 }];
+atualizarPreco(compras, "Café", {P});
+console.log(compras.reduce((s, i) => s + i.preco, 0));`,
+              dica: 'Ache o item com find e mude o preço dele.',
+              exp: 'find devolve o próprio objeto da lista: mudar ele muda a lista.',
+              vars: { P: { de: 12, ate: 30 } }
+            },
+            {
+              t: 'codigo',
+              p: 'Mostre os nomes dos itens com preço maior que {K}, usando filter e map',
+              start: `const lista = [{ nome: "Arroz", preco: 25 }, { nome: "Café", preco: 18 }, { nome: "Pão", preco: 9 }, { nome: "Queijo", preco: 32 }];
+`,
+              sol: `const lista = [{ nome: "Arroz", preco: 25 }, { nome: "Café", preco: 18 }, { nome: "Pão", preco: 9 }, { nome: "Queijo", preco: 32 }];
+console.log(lista.filter(i => i.preco > {K}).map(i => i.nome));`,
+              dica: 'Primeiro filter pelo preço, depois map para pegar só o nome.',
+              exp: 'Encadear filter e map é muito comum em apps de verdade.',
+              vars: { K: [10, 15, 20, 30] }
             }
           ]
         }

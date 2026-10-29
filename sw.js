@@ -15,11 +15,12 @@ const ARQUIVOS = [
   'conteudo/html-css/nivel-1.js', 'conteudo/html-css/nivel-2.js', 'conteudo/html-css/nivel-3.js', 'conteudo/html-css/nivel-4.js', 'conteudo/html-css/nivel-5.js', 'conteudo/html-css/nivel-6.js', 'conteudo/html-css/nivel-7.js', 'conteudo/html-css/nivel-8.js', 'conteudo/html-css/pratica.js',
   'conteudo/python/nivel-1.js', 'conteudo/python/nivel-2.js', 'conteudo/python/nivel-3.js', 'conteudo/python/nivel-4.js', 'conteudo/python/nivel-5.js', 'conteudo/python/nivel-6.js', 'conteudo/python/nivel-7.js', 'conteudo/python/nivel-8.js', 'conteudo/python/nivel-9.js', 'conteudo/python/nivel-10.js', 'conteudo/python/nivel-11.js', 'conteudo/python/pratica.js',
   'conteudo/git/nivel-1.js', 'conteudo/git/nivel-2.js', 'conteudo/git/nivel-3.js', 'conteudo/git/nivel-4.js', 'conteudo/git/nivel-5.js', 'conteudo/git/nivel-6.js',
+  'conteudo/mat-basica/nivel-1.js', 'conteudo/mat-basica/nivel-2.js', 'conteudo/mat-basica/nivel-3.js', 'conteudo/mat-basica/nivel-4.js', 'conteudo/mat-basica/nivel-5.js', 'conteudo/mat-basica/nivel-6.js', 'conteudo/mat-basica/nivel-7.js', 'conteudo/mat-basica/nivel-8.js', 'conteudo/mat-basica/nivel-9.js', 'conteudo/mat-basica/pratica.js',
   'conteudo/marxismo/nivel-1.js', 'conteudo/marxismo/nivel-2.js', 'conteudo/marxismo/nivel-3.js', 'conteudo/marxismo/nivel-4.js', 'conteudo/marxismo/nivel-5.js', 'conteudo/marxismo/nivel-6.js', 'conteudo/marxismo/nivel-7.js', 'conteudo/o-capital/nivel-1.js', 'conteudo/o-capital/nivel-2.js', 'conteudo/o-capital/nivel-3.js', 'conteudo/o-capital/nivel-4.js', 'conteudo/o-capital/nivel-5.js', 'conteudo/o-capital/nivel-6.js', 'conteudo/o-capital/nivel-7.js',
   'conteudo/capital-guiado/nivel-1.js', 'conteudo/capital-guiado/nivel-2.js', 'conteudo/capital-guiado/nivel-3.js', 'conteudo/capital-guiado/nivel-4.js', 'conteudo/capital-guiado/nivel-5.js', 'conteudo/capital-guiado/nivel-6.js', 'conteudo/capital-guiado/nivel-7.js',
   // imagens usadas nos exercícios de HTML e CSS
   'imagens/biblioteca.jpg', 'imagens/computadores.jpg', 'imagens/feira.jpg', 'imagens/gato.jpg', 'imagens/horta.jpg', 'imagens/icone.png', 'imagens/livros.jpg', 'imagens/logo.png', 'imagens/mapa.png', 'imagens/pessoa.jpg', 'imagens/praia.jpg', 'imagens/quadra.jpg',
-  'js/nucleo.js', 'js/efeitos.js', 'js/teclado.js', 'js/variaveis.js', 'js/web.js', 'js/python.js', 'js/py-worker.js', 'js/terminal.js', 'js/pwa.js', 'js/app.js',
+  'js/nucleo.js', 'js/efeitos.js', 'js/teclado.js', 'js/variaveis.js', 'js/numeros.js', 'js/web.js', 'js/python.js', 'js/py-worker.js', 'js/terminal.js', 'js/pwa.js', 'js/app.js',
   'icones/icone-192.png', 'icones/icone-512.png', 'icones/icone-maskable-512.png', 'icones/apple-touch-icon.png', 'icones/favicon-32.png'
 ];
 

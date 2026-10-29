@@ -233,6 +233,7 @@ pre.code, .code-inline {
 .ok .fb-title { color: var(--ok); } .bad .fb-title { color: var(--bad); }
 .fb-label { margin: 4px 0 0; font-size: 12px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); }
 .fb-ans { margin: 0; font-family: var(--f-mono); font-size: 15px; white-space: pre-wrap; }
+.fb-ans.fb-txt { font-family: var(--f-body); font-size: 17px; white-space: normal; }
 .fb-exp { margin: 0; font-size: 15px; }
 .btn-main {
   width: 100%; border: 0; border-radius: 14px; padding: 15px; font-family: var(--f-display); font-weight: 800; font-size: 18px; letter-spacing: .02em;
@@ -719,6 +720,30 @@ a:focus-visible, .opt:focus-visible, .chip:focus-visible, .line:focus-visible, .
 .sh-in input:focus-visible { outline: none; border-bottom-color: var(--t-k); }
 .sh-errado { text-decoration: line-through; text-decoration-color: var(--term-err); }
 .dica-cmd { margin-top: 10px; font-size: 15px; }
+.dica-num p { font-family: inherit; font-size: 16px; }
+
+/* resposta numérica */
+.num-linha { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+.num-in {
+  flex: 1; min-width: 0; max-width: 260px; font: 700 22px/1.2 var(--f-mono); color: var(--ink); background: var(--surface);
+  border: 2px solid var(--line-deep); border-radius: 14px; padding: 12px 14px; box-shadow: 0 3px 0 var(--line);
+}
+.num-in:focus-visible { outline: none; border-color: var(--accent); }
+.num-in.certo { border-color: var(--ok); background: var(--ok-soft); }
+.num-in.errado { border-color: var(--bad); background: var(--bad-soft); }
+.num-un { font: 700 20px/1 var(--f-body); color: var(--muted); }
+.num-linha + .teclas { margin-top: 10px; }
+
+/* fórmulas: \( 3/4 \) nos textos */
+.fx { white-space: normal; }
+.fx i { font-family: Georgia, "Times New Roman", serif; font-size: 1.08em; }
+.fx sup, .fx sub { font-size: .72em; }
+.fx-op { margin: 0 .22em; }
+.fx-fr { display: inline-flex; flex-direction: column; align-items: stretch; vertical-align: middle; text-align: center; margin: 0 .12em; font-size: .9em; line-height: 1.15; }
+.fx-num { border-bottom: 1.5px solid currentColor; padding: 0 .18em .05em; }
+.fx-den { padding: .05em .18em 0; }
+.fx-raiz { white-space: nowrap; }
+.fx-rad { border-top: 1.5px solid currentColor; padding: 0 .1em; margin-left: .05em; }
 .dica-cmd summary { cursor: pointer; font-weight: 700; color: var(--accent); }
 .dica-cmd p { margin: 6px 0 0; font-family: var(--f-mono); font-size: 14px; }
 

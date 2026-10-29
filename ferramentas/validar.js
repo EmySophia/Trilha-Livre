@@ -39,6 +39,7 @@ function rodar(codigo) {
 const tarefasPy = [];
 const { PY_PRELUDIO, PY_VERSAO } = require(path.join(raiz, 'js', 'python.js'));
 const { instanciar } = require(path.join(raiz, 'js', 'variaveis.js'));
+const { lerNumero, respostaNumericaOk, respostaNumericaTexto } = require(path.join(raiz, 'js', 'numeros.js'));
 // sorteio com semente fixa, para o validador conferir sempre os mesmos valores
 function semente(n) { return () => { n |= 0; n = n + 0x6D2B79F5 | 0; let t = Math.imul(n ^ n >>> 15, 1 | n); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
 const SORTEIOS = 12; // quantas versões de cada exercício que muda o validador confere
@@ -126,7 +127,9 @@ function validarExercicio(onde, ex) {
     }
     return;
   }
-  if (!ex.vars) for (const campo of ['p', 'code', 'start', 'sol', 'saida', 'exp']) if (typeof ex[campo] === 'string' && /\{=[^}]*\}/.test(ex[campo])) erro(onde, `sobrou uma expressão {= ...} em ${campo}: faltou declarar vars?`);
+  if (!ex.vars) for (const campo of ['p', 'code', 'start', 'sol', 'saida', 'exp', 'dica', 'r', 'ops', 'lines', 'bank', 'c', 'prefixo', 'unidade']) {
+    for (const v of [].concat(ex[campo] == null ? [] : ex[campo])) if (typeof v === 'string' && /\{=[^}]*\}/.test(v)) erro(onde, `sobrou uma expressão {= ...} em ${campo}: faltou declarar vars?`);
+  }
   switch (ex.t) {
     case 'texto':
       if (!ex.titulo || !Array.isArray(ex.blocos) || !ex.blocos.length) erro(onde, 'texto precisa de titulo e blocos');
@@ -175,10 +178,22 @@ function validarExercicio(onde, ex) {
         else if (/^\/.+\/$/.test(a)) { try { new RegExp(a.slice(1, -1)); } catch (e) { erro(onde, `expressão regular inválida em aceita: ${a}`); } }
       }
       break;
+    case 'numero': {
+      // a resposta certa precisa ser um número (ou uma fração) e precisa ser aceita quando digitada
+      if (ex.r == null || lerNumero(ex.r) == null) { erro(onde, `a resposta r (${JSON.stringify(ex.r)}) não é um número nem uma fração`); break; }
+      if (ex.casas != null && !(Number.isInteger(ex.casas) && ex.casas >= 0 && ex.casas <= 6)) erro(onde, 'casas precisa ser um inteiro de 0 a 6');
+      if (ex.tol != null && !(+ex.tol >= 0)) erro(onde, 'tol precisa ser um número maior ou igual a 0');
+      if (!respostaNumericaOk(respostaNumericaTexto(ex), ex)) erro(onde, `a resposta mostrada como certa (${respostaNumericaTexto(ex)}) não seria aceita${ex.fracao ? ': com fracao, r precisa ser uma fração irredutível, como 3/4, ou um inteiro' : ''}`);
+      break;
+    }
     default:
       erro(onde, `tipo de exercício desconhecido: ${ex.t}`);
   }
   if (ex.t !== 'texto' && !ex.p) erro(onde, 'falta a pergunta (p)');
+  // fórmulas: os $$ andam em pares, fora dos trechos de código
+  for (const txt of [ex.p, ex.exp, ex.dica, ...(ex.ops || []), ...((ex.blocos || []).flatMap(b => [b.p, b.dica, ...(b.passos || [])]))]) {
+    if (typeof txt === 'string' && (txt.replace(/`[^`]+`/g, '').match(/\$\$/g) || []).length % 2) erro(onde, `fórmula sem fechar: os $$ andam em pares, em "${txt.slice(0, 60)}"`);
+  }
 }
 
 const ids = new Set();
@@ -239,7 +254,7 @@ for (const d of TRILHA.desafios) {
   if (!idsCurso.has(d.curso)) erro(d.id, `curso desconhecido: ${d.curso}`);
   if (!['facil', 'medio', 'dificil'].includes(d.dif)) erro(d.id, `dif inválida: ${d.dif}`);
   if (!Array.isArray(d.temas)) erro(d.id, 'falta a lista de temas');
-  if (d.t === 'web') validarWeb(d.id, d); else validarCodigo(d.id, d, (TRILHA.cursos.find(c => c.id === d.curso) || {}).linguagem || 'js');
+  if (d.t && d.t !== 'codigo') validarExercicio(d.id, d); else validarCodigo(d.id, d, (TRILHA.cursos.find(c => c.id === d.curso) || {}).linguagem || 'js');
 }
 
 // biblioteca

@@ -77,6 +77,17 @@ console.log(p.includes("sil")); // true`
               exp: 'Pega das posições 0 a 4. A posição 5 fica de fora.'
             },
             {
+              t: 'escolha',
+              p: 'O que aparece no console?',
+              code: `let p = "{PAL}";
+console.log(p.length);`,
+              ops: ['{= PAL.length }', '{= PAL.length - 1 }', '{= PAL.length + 1 }'],
+              c: 0,
+              mono: true,
+              exp: 'length conta todas as letras, inclusive as com acento.',
+              vars: { PAL: ['Brasil', 'Paraná', 'Fortaleza', 'Teresina', 'Macapá', 'Rio'] }
+            },
+            {
               t: 'codigo',
               p: 'Conte quantas letras a existem na frase',
               start: `let frase = "programar é para todo mundo";
@@ -92,6 +103,17 @@ for (let i = 0; i < frase.length; i++) {
 }
 console.log(conta);`,
               exp: 'Percorrer um texto letra por letra é a base de muitos algoritmos.'
+            },
+            {
+              t: 'codigo',
+              p: 'Mostre a primeira e a última letra da palavra, juntas',
+              start: `let palavra = "{PAL}";
+`,
+              sol: `let palavra = "{PAL}";
+console.log(palavra[0] + palavra[palavra.length - 1]);`,
+              dica: 'A última está em palavra.length - 1.',
+              exp: 'A posição da última letra muda com o tamanho da palavra: por isso o length.',
+              vars: { PAL: ['Brasil', 'Paraná', 'Fortaleza', 'Teresina', 'Macapá', 'Salvador'] }
             }
           ]
         },
@@ -163,6 +185,16 @@ console.log(___(idade) + 1);`,
               exp: 'O JavaScript não entende números escritos por extenso.'
             },
             {
+              t: 'escolha',
+              p: 'O que aparece no console?',
+              code: 'console.log("{A}" + {B});',
+              ops: ['{A}{B}', '{= A + B }', 'NaN'],
+              c: 0,
+              mono: true,
+              exp: 'Com um lado texto, o + junta.',
+              vars: { A: { de: 1, ate: 9 }, B: { de: 1, ate: 9 } }
+            },
+            {
               t: 'codigo',
               p: 'a e b chegaram como texto. Mostre a soma deles: 10',
               start: `let a = "7";
@@ -174,6 +206,17 @@ let b = "3";
 let b = "3";
 console.log(Number(a) + Number(b));`,
               exp: 'Sem a conversão, o resultado seria "73".'
+            },
+            {
+              t: 'codigo',
+              p: 'A idade chegou como texto. Mostre a idade daqui a {K} anos',
+              start: `let idade = "{I}";
+`,
+              sol: `let idade = "{I}";
+console.log(Number(idade) + {K});`,
+              dica: 'Converta com Number() antes de somar.',
+              exp: 'Sem converter, "{I}" + {K} daria {I}{K}.',
+              vars: { I: { de: 12, ate: 60 }, K: { de: 2, ate: 10 } }
             }
           ]
         }
@@ -262,6 +305,29 @@ lista.___("feijão");`,
               exp: 'O acumulador nasce antes do laço e é mostrado depois dele.'
             },
             {
+              t: 'escolha',
+              p: 'O que aparece no console?',
+              code: `let l = {L};
+console.log(l[{I}]);`,
+              ops: [
+                '{= JSON.parse(L)[I] }',
+                '{= JSON.parse(L)[I + 1] }',
+                '{= JSON.parse(L)[I - 1] }'
+              ],
+              c: 0,
+              mono: true,
+              exp: 'As posições começam do zero: l[{I}] é o item número {= I + 1 }.',
+              vars: {
+                L: [
+                  '[3, 8, 5, 12, 7]',
+                  '[10, 4, 7, 2, 9]',
+                  '[6, 15, 2, 11, 4]',
+                  '[20, 13, 8, 17, 1]'
+                ],
+                I: { de: 1, ate: 3 }
+              }
+            },
+            {
               t: 'codigo',
               p: 'Mostre a maior temperatura da lista, sem usar Math.max',
               start: `let temps = [28, 35, 31, 22, 33];
@@ -277,6 +343,21 @@ for (const t of temps) {
 }
 console.log(maior);`,
               exp: 'Esse padrão serve para menor valor, palavra mais longa, produto mais caro e muito mais.'
+            },
+            {
+              t: 'codigo',
+              p: 'Mostre a média das notas da lista',
+              start: `let notas = {L};
+`,
+              sol: `let notas = {L};
+let soma = 0;
+for (const n of notas) {
+  soma = soma + n;
+}
+console.log(soma / notas.length);`,
+              dica: 'Some com um for...of e divida por notas.length.',
+              exp: 'Usando length, o código funciona com listas de qualquer tamanho.',
+              vars: { L: ['[7, 8, 9]', '[5, 6, 10, 7]', '[10, 8, 6, 4, 2]', '[9, 3]'] }
             }
           ]
         },
@@ -339,6 +420,21 @@ console.log(maiores); // 2`
               exp: 'includes sempre responde true ou false.'
             },
             {
+              t: 'escolha',
+              p: 'O que aparece no console?',
+              code: `let l = ["SP", "RJ", "MG", "BA"];
+console.log(l.indexOf("{UF}"));`,
+              ops: [
+                '{= ["SP", "RJ", "MG", "BA"].indexOf(UF) }',
+                '{= ["SP", "RJ", "MG", "BA"].indexOf(UF) + 1 }',
+                'false'
+              ],
+              c: 0,
+              mono: true,
+              exp: 'indexOf dá a posição, começando do zero, ou -1 se não achar.',
+              vars: { UF: ['RJ', 'MG', 'BA', 'PE'] }
+            },
+            {
               t: 'codigo',
               p: 'Conte quantas pessoas têm 18 anos ou mais',
               start: `let idades = [15, 22, 17, 30, 16, 41];
@@ -352,6 +448,36 @@ for (const idade of idades) {
 }
 console.log(conta);`,
               exp: '22, 30 e 41.'
+            },
+            {
+              t: 'codigo',
+              p: 'Conte quantas notas são maiores ou iguais a {M}',
+              start: `let notas = [4, 7.5, 9, 6, 3, 8, 5.5];
+`,
+              sol: `let notas = [4, 7.5, 9, 6, 3, 8, 5.5];
+let cont = 0;
+for (const n of notas) {
+  if (n >= {M}) cont++;
+}
+console.log(cont);`,
+              dica: 'Um laço, um if e um contador.',
+              exp: 'É o mesmo padrão da contagem de maiores de idade.',
+              vars: { M: [5, 6, 7] }
+            },
+            {
+              t: 'codigo',
+              p: 'Mostre "achou" se {X} estiver na lista, e "não achou" se não estiver',
+              start: `let numeros = [3, 8, 15, 21, 42];
+`,
+              sol: `let numeros = [3, 8, 15, 21, 42];
+if (numeros.includes({X})) {
+  console.log("achou");
+} else {
+  console.log("não achou");
+}`,
+              dica: 'includes devolve true ou false.',
+              exp: 'includes responde sim ou não; indexOf diz também onde.',
+              vars: { X: [8, 10, 21, 30, 42] }
             }
           ]
         },
@@ -422,6 +548,23 @@ console.log(cep.___("-", "")); // 12345678`,
               exp: 'replace troca a primeira ocorrência; replaceAll troca todas.'
             },
             {
+              t: 'escolha',
+              p: 'O que aparece no console?',
+              code: 'console.log("{FR}".split(" ").length);',
+              ops: ['{= FR.split(" ").length }', '{= FR.length }', '1'],
+              c: 0,
+              mono: true,
+              exp: 'split(" ") corta nos espaços: cada pedaço é uma palavra.',
+              vars: {
+                FR: [
+                  'o rato roeu a roupa',
+                  'bom dia',
+                  'programar é para todo mundo',
+                  'trilha livre'
+                ]
+              }
+            },
+            {
               t: 'codigo',
               p: 'Transforme o nome nas iniciais com ponto: M.C.S.',
               start: `let nome = "Maria Clara Souza";
@@ -435,6 +578,17 @@ for (const palavra of nome.split(" ")) {
 }
 console.log(iniciais);`,
               exp: 'Com map, que aparece no Nível 4, dá para fazer isso em uma linha só.'
+            },
+            {
+              t: 'codigo',
+              p: 'Troque todos os espaços do nome do arquivo por "_" e mostre',
+              start: `let arquivo = "{ARQ}";
+`,
+              sol: `let arquivo = "{ARQ}";
+console.log(arquivo.replaceAll(" ", "_"));`,
+              dica: 'replaceAll(" ", "_")',
+              exp: 'Nomes de arquivo sem espaço evitam problema em sites e no terminal.',
+              vars: { ARQ: ['meu trabalho final.pdf', 'foto da viagem.jpg', 'lista de compras.txt'] }
             }
           ]
         },
@@ -511,6 +665,21 @@ const c = [___a, ...b];`,
               exp: 'São exatamente três pontos.'
             },
             {
+              t: 'escolha',
+              p: 'O que aparece no console?',
+              code: `const l = [10, 20, 30, 40, 50];
+console.log(l.slice({A}, {B}));`,
+              ops: [
+                '{= JSON.stringify([10, 20, 30, 40, 50].slice(A, B)) }',
+                '{= JSON.stringify([10, 20, 30, 40, 50].slice(A, B + 1)) }',
+                '{= JSON.stringify([10, 20, 30, 40, 50].slice(A - 1, B)) }'
+              ],
+              c: 0,
+              mono: true,
+              exp: 'slice pega do início até antes do fim.',
+              vars: { A: { de: 1, ate: 2 }, B: { de: 3, ate: 4 } }
+            },
+            {
               t: 'codigo',
               p: 'Mostre os três primeiros colocados, sem mudar a lista original',
               start: `const chegada = ["Ana", "Bruno", "Caio", "Davi", "Eva"];
@@ -520,6 +689,19 @@ const c = [___a, ...b];`,
               sol: `const chegada = ["Ana", "Bruno", "Caio", "Davi", "Eva"];
 console.log(chegada.slice(0, 3));`,
               exp: 'O pódio sem estragar a classificação completa.'
+            },
+            {
+              t: 'codigo',
+              p: 'Junte as duas listas numa só, com os três pontinhos, e mostre',
+              start: `const a = {LA};
+const b = {LB};
+`,
+              sol: `const a = {LA};
+const b = {LB};
+console.log([...a, ...b]);`,
+              dica: '[...a, ...b]',
+              exp: 'O spread espalha os itens das duas listas dentro de uma nova.',
+              vars: { LA: ['[1, 2]', '[5, 6, 7]', '[10]'], LB: ['[3, 4]', '[8]', '[20, 30]'] }
             }
           ]
         }
@@ -589,6 +771,17 @@ console.log(carro.ano);`,
               exp: 'Chaves { }, dois-pontos entre nome e valor, vírgula entre as informações.'
             },
             {
+              t: 'escolha',
+              p: 'O que aparece no console?',
+              code: `let carro = { modelo: "{MOD}", ano: {ANO} };
+console.log(carro.ano);`,
+              ops: ['{ANO}', '{MOD}', 'undefined'],
+              c: 0,
+              mono: true,
+              exp: 'carro.ano pega o valor da chave ano.',
+              vars: { MOD: ['Uno', 'Gol', 'Kombi', 'Fusca'], ANO: { de: 1970, ate: 2015 } }
+            },
+            {
               t: 'codigo',
               p: 'Mostre o total da compra',
               start: `let produtos = [
@@ -610,6 +803,18 @@ for (const p of produtos) {
 }
 console.log(total);`,
               exp: 'Esse é o coração de qualquer carrinho de compras.'
+            },
+            {
+              t: 'codigo',
+              p: 'Aumente o preço do produto em {P} e mostre o objeto inteiro',
+              start: `let produto = { nome: "Café", preco: {V} };
+`,
+              sol: `let produto = { nome: "Café", preco: {V} };
+produto.preco += {P};
+console.log(produto);`,
+              dica: 'produto.preco += {P}',
+              exp: 'Os atalhos como += funcionam com as informações de um objeto.',
+              vars: { V: { de: 10, ate: 30 }, P: { de: 1, ate: 5 } }
             }
           ]
         },
@@ -666,6 +871,18 @@ console.log(m[1][0]);`,
               exp: 'As posições vão de 0 a 2, então o meio é 1.'
             },
             {
+              t: 'escolha',
+              p: 'O que aparece no console?',
+              code: `let m = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+console.log(m[{L}][{C}]);`,
+              ops: ['{= L * 3 + C + 1 }', '{= C * 3 + L + 1 }', '{= L + C }'],
+              c: 0,
+              mono: true,
+              exp: 'Primeiro a linha {L}, depois a coluna {C}, contando do zero.',
+              vars: { L: { de: 0, ate: 2 }, C: { de: 0, ate: 2 } },
+              se: 'L !== C'
+            },
+            {
               t: 'codigo',
               p: 'Mostre a soma de todos os números da matriz',
               start: `let m = [
@@ -689,6 +906,38 @@ for (const linha of m) {
 }
 console.log(soma);`,
               exp: 'Planilhas, imagens e mapas de jogos são matrizes por dentro.'
+            },
+            {
+              t: 'codigo',
+              p: 'Mostre a soma de cada linha da matriz, uma por linha',
+              start: `let m = {M};
+`,
+              sol: `let m = {M};
+for (const linha of m) {
+  let soma = 0;
+  for (const n of linha) soma += n;
+  console.log(soma);
+}`,
+              dica: 'Para cada linha, comece uma soma em zero e some os números dela.',
+              exp: 'O acumulador começa de novo em cada linha, por isso fica dentro do laço de fora.',
+              vars: {
+                M: [
+                  '[[1, 2], [3, 4], [5, 6]]',
+                  '[[10, 20, 30], [4, 5, 6]]',
+                  '[[2, 4, 6], [1, 3, 5], [7, 8, 9]]'
+                ]
+              }
+            },
+            {
+              t: 'codigo',
+              p: 'Mostre a diagonal principal da matriz numa lista: m[0][0], m[1][1] e m[2][2]',
+              start: `let m = [[{A}, 2, 3], [4, {B}, 6], [7, 8, {D}]];
+`,
+              sol: `let m = [[{A}, 2, 3], [4, {B}, 6], [7, 8, {D}]];
+console.log([m[0][0], m[1][1], m[2][2]]);`,
+              dica: 'Na diagonal principal, a linha e a coluna são iguais.',
+              exp: 'Dá para fazer com um laço também: m[i][i].',
+              vars: { A: { de: 10, ate: 99 }, B: { de: 10, ate: 99 }, D: { de: 10, ate: 99 } }
             }
           ]
         },
@@ -746,6 +995,17 @@ console.log(a.notas[2]);`,
               exp: 'notas é uma lista dentro do objeto; a posição 2 é o 7.'
             },
             {
+              t: 'escolha',
+              p: 'Por que guardar cada aluno como um objeto, com nome e notas?',
+              ops: [
+                'Para manter juntas as informações de cada aluno',
+                'Porque listas não guardam números',
+                'Para o código rodar mais rápido'
+              ],
+              c: 0,
+              exp: 'Com o objeto, o nome nunca se separa das notas dele.'
+            },
+            {
               t: 'codigo',
               p: 'Mostre o boletim no formato "Nome: média - situação"',
               start: `const turma = [
@@ -774,6 +1034,47 @@ for (const a of turma) {
   console.log(\`\${a.nome}: \${media.toFixed(1)} - \${situacao}\`);
 }`,
               exp: 'Listas, objetos, laços e decisões juntos num programa só.'
+            },
+            {
+              t: 'codigo',
+              p: 'Mostre a média de {NOME} com uma casa decimal',
+              start: `const aluno = { nome: "{NOME}", notas: {L} };
+`,
+              sol: `const aluno = { nome: "{NOME}", notas: {L} };
+let soma = 0;
+for (const n of aluno.notas) soma += n;
+console.log((soma / aluno.notas.length).toFixed(1));`,
+              dica: 'Some aluno.notas, divida pela quantidade e use toFixed(1).',
+              exp: 'toFixed(1) arredonda e mostra sempre uma casa: 7 vira 7.0.',
+              vars: {
+                NOME: ['Ana', 'Bruno', 'Carla', 'Davi', 'Elis', 'Fábio', 'Gal', 'Hugo'],
+                L: ['[8, 6, 7]', '[5, 4, 3]', '[9, 7, 10, 6]', '[6.5, 8, 7]']
+              }
+            },
+            {
+              t: 'codigo',
+              p: 'Mostre quantos alunos tiveram média 6 ou mais',
+              start: `const turma = [
+  { nome: "Lia", notas: [8, 6, 7] },
+  { nome: "Rui", notas: [5, 4, {N}] },
+  { nome: "Bia", notas: [6, 6, 6] }
+];
+`,
+              sol: `const turma = [
+  { nome: "Lia", notas: [8, 6, 7] },
+  { nome: "Rui", notas: [5, 4, {N}] },
+  { nome: "Bia", notas: [6, 6, 6] }
+];
+let aprovados = 0;
+for (const aluno of turma) {
+  let soma = 0;
+  for (const n of aluno.notas) soma += n;
+  if (soma / aluno.notas.length >= 6) aprovados++;
+}
+console.log(aprovados);`,
+              dica: 'Para cada aluno, calcule a média; se for 6 ou mais, conte.',
+              exp: 'Bia tem média exatamente 6: o >= faz ela contar.',
+              vars: { N: [3, 7, 9, 10] }
             }
           ]
         }
