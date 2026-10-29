@@ -71,7 +71,8 @@ function novoEstado() {
     curso: null, // id do curso escolhido no catálogo
     projetos: {}, // páginas feitas nos projetos do curso de HTML e CSS: { id: { titulo, html, css, dia } }
     nivelamentos: {}, // resultado do teste de nivelamento por curso: { idDoCurso: { nivel, dia } }
-    biblioteca: {} // estante pessoal: { idDoLivro: { st: 'quero' | 'lendo' | 'lido', dia, nota } }
+    biblioteca: {}, // estante pessoal: { idDoLivro: { st: 'quero' | 'lendo' | 'lido', dia, nota } }
+    provas: {} // melhor nota no teste de cada unidade: { idDaUnidade: { nota, dia } }
   };
 }
 function load() {

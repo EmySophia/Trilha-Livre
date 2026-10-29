@@ -132,6 +132,8 @@ h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; line-
 .node:active:not(:disabled) { transform: translateY(5px); box-shadow: 0 2px 0 var(--accent-deep); }
 .node.done { background: var(--sun); color: var(--sun-ink); box-shadow: 0 7px 0 var(--sun-deep); }
 .node.done:active { box-shadow: 0 2px 0 var(--sun-deep); }
+.node-prova { border-radius: 22px; background: var(--azul); color: var(--azul-ink); box-shadow: 0 7px 0 color-mix(in srgb, var(--azul) 60%, #000); }
+.node-prova:active:not(:disabled) { box-shadow: 0 2px 0 color-mix(in srgb, var(--azul) 60%, #000); }
 .node:disabled { background: var(--line); color: var(--muted); box-shadow: 0 7px 0 var(--line-deep); cursor: not-allowed; }
 .stop .label { font-weight: 700; font-size: 15px; text-align: center; max-width: 16ch; }
 .stop.locked .label { color: var(--muted); font-weight: 400; }
@@ -697,6 +699,7 @@ a:focus-visible, .opt:focus-visible, .chip:focus-visible, .line:focus-visible, .
 .perguntas code { font-family: var(--f-mono); font-size: .86em; }
 
 /* ---------- Python: entrada do programa ---------- */
+.figura { display: block; max-width: 100%; height: auto; margin-top: 8px; border-radius: 10px; background: #fff; }
 .entrada { margin: 0 0 10px; font-size: 15px; color: var(--muted); }
 .entrada code { font-family: var(--f-mono); font-size: 14px; background: var(--accent-soft); color: var(--ink); padding: 1px 7px; border-radius: 6px; }
 

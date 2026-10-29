@@ -146,7 +146,9 @@ A correção compara a saída do console com `saida`. Listas e objetos aparecem 
   sol: 'nome = input("Qual é o seu nome? ")\nprint(f"Olá, {nome}!")' }
 ```
 
-Na saída, aparece a pergunta do `input` seguida do que foi digitado, como num terminal. O programa pode criar e ler arquivos com `open()`: eles ficam numa memória temporária durante a execução. Exemplos de Python nas leituras rodam no validador; os que usam `input()` ou bibliotecas de fora, como NumPy, precisam de `semTeste: true`.
+Na saída, aparece a pergunta do `input` seguida do que foi digitado, como num terminal. O programa pode criar e ler arquivos com `open()` e `pathlib`: cada execução começa numa pasta vazia, que some no fim. Exemplos de Python nas leituras rodam no validador; os que usam `input()` precisam de `semTeste: true`.
+
+NumPy e Matplotlib também funcionam: na primeira vez que um código importa uma delas, o app baixa a biblioteca e guarda para as próximas. Os gráficos de `plt.show()` aparecem como imagem embaixo da saída. Num exercício que pede um gráfico, use `grafico: true`: além da saída certa, a correção exige que o código desenhe pelo menos um gráfico.
 
 ### Digitar um comando (`comando`)
 
@@ -213,6 +215,31 @@ Nas leituras, o bloco `{ web: '<h1>Oi</h1>', css: 'h1 { color: red; }' }` mostra
 **Projetos.** Um item `web` com `projeto: { id: 'cartao', titulo: 'Cartão de visita' }` guarda o código do aluno quando ele acerta numa lição. Os projetos guardados aparecem na aba Perfil, em "Meus projetos", e em qualquer leitura que tenha o bloco `{ projetos: true }`. Nos dois lugares, o aluno pode baixar um `index.html` completo, com o CSS dentro de uma tag `style`, ou copiar o código. O `id` precisa ser único no curso: um projeto feito de novo substitui a versão anterior.
 
 Para um site com várias páginas, cada etapa usa o mesmo `id` e diz qual arquivo ela monta: `projeto: { id: 'biblioteca', titulo: 'Site da biblioteca', arquivo: 'atividades.html', herdaCss: true }`. Com `herdaCss`, a aba CSS já começa com o CSS que a pessoa escreveu na etapa anterior, porque o site tem um `estilo.css` só. O app junta as páginas, o `estilo.css` e as imagens usadas num arquivo .zip para baixar.
+
+## Exercícios que mudam (`vars`)
+
+Um exercício com `vars` ganha valores sorteados cada vez que aparece. Assim, a pessoa pratica de novo sem decorar a resposta, e no teste da unidade os números são outros:
+
+```js
+{ t: 'codigo', p: 'Mostre a tabuada do {N}',
+  start: 'n = {N}\n',
+  sol: 'n = {N}\nfor i in range(1, 11):\n    print(f"{n} x {i} = {n * i}")',
+  vars: { N: { de: 2, ate: 9 } } }
+```
+
+| Forma | Sorteia |
+|---|---|
+| `{ de: 2, ate: 9 }` | um inteiro de 2 a 9 |
+| `{ de: 0.5, ate: 3, passo: 0.5 }` | de 0.5 a 3, de meio em meio |
+| `['Ana', 'Bia', 'Caio']` | um item da lista (pode ser um texto com código, como `'[3, 8, 5]'`) |
+
+Nos textos do exercício (`p`, `start`, `sol`, `ops`, `bank`, `c`, `lines`, `entrada`, `dica`, `exp` e outros), `{N}` vira o valor sorteado e `{= expressão}` é calculada em JavaScript com as variáveis, como `{= A + B }`. Nas expressões dá para usar `fix(x, casas)`, que fixa as casas decimais, `pyf(x)`, que mostra um número como o Python mostra um float (3 vira 3.0), e tudo do `Math`. Para recusar alguns sorteios, escreva a condição em `se`, em JavaScript: `se: 'A !== B'`.
+
+Use nomes de variáveis em MAIÚSCULAS. Assim eles não se confundem com as chaves das f-strings do Python nem dos textos do JavaScript: `{N}` é trocado, e `{n}` fica como está. Num exercício `codigo` com `vars`, não escreva `saida`: a saída esperada é a da `sol`, rodada na hora com os mesmos valores. Numa `escolha`, a resposta certa também pode depender dos valores, como `ops: ['{= A * B }', '{= A + B }', '{= A * B + 1 }']`. Se um sorteio deixar duas opções iguais, o app sorteia de novo. O validador confere 12 sorteios de cada exercício.
+
+## Teste da unidade
+
+Toda unidade com pelo menos 2 lições e 6 exercícios ganha, no fim da trilha, um teste com até 10 perguntas das lições dela, de preferência as que mudam de valores. O teste libera quando a pessoa termina as lições da unidade. Cada pergunta vale uma vez: com 70% de acertos de primeira, a unidade fica dominada. Os erros entram na revisão, como nas lições. Não é preciso escrever nada para ganhar o teste, basta a unidade ter exercícios suficientes.
 
 ## Desafios da prática livre
 

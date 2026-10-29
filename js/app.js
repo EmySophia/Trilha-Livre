@@ -107,6 +107,8 @@ const CONQUISTAS = [
   { id: 'pratica-1', titulo: 'Treino livre', desc: 'Resolva um desafio da prática', ic: 'code', ok: () => nPraticaTotal() >= 1 },
   { id: 'pratica-10', titulo: 'Dez desafios', desc: 'Resolva 10 desafios da prática', ic: 'code', ok: () => nPraticaTotal() >= 10 },
   { id: 'pratica-todos', titulo: 'Banco zerado', desc: 'Resolva todos os desafios da prática', ic: 'trophy', ok: () => TODOS_DESAFIOS.length > 0 && nPraticaTotal() === TODOS_DESAFIOS.length },
+  { id: 'prova-1', titulo: 'Unidade dominada', desc: 'Tire 70% ou mais num teste de unidade', ic: 'trophy', ok: () => Object.values(S.provas || {}).some(p => p.nota >= NOTA_PROVA) },
+  { id: 'prova-10', titulo: 'Dez unidades dominadas', desc: 'Domine 10 unidades nos testes', ic: 'trophy', ok: () => Object.values(S.provas || {}).filter(p => p.nota >= NOTA_PROVA).length >= 10 },
   { id: 'terminal-10', titulo: 'Mão no terminal', desc: 'Rode 10 comandos no terminal', ic: 'term', ok: () => S.termCmds >= 10 },
   { id: 'terminal-100', titulo: 'Terminal raiz', desc: 'Rode 100 comandos no terminal', ic: 'term', ok: () => S.termCmds >= 100 }
 ];
@@ -176,6 +178,38 @@ function iniciarRevisao(livre) {
   if (!final.length) return;
   const presentes = new Set(final.map(it => it.lid));
   iniciar({ tipo: 'revisao', livre, dueLids: livre ? [] : rv.due.filter(id => presentes.has(id)), itens: final });
+}
+
+/* =========================================================
+   Teste da unidade
+   No fim de cada unidade: até 10 perguntas das lições dela, uma de cada lição por vez,
+   de preferência as que mudam de valores. Cada pergunta vale uma vez; com 70% de acertos
+   de primeira, a unidade fica dominada. Os erros entram na revisão, como nas lições.
+   ========================================================= */
+const NOTA_PROVA = 70;
+const exerciciosDe = u => u.licoes.flatMap(l => l.exs.map((ex, i) => ({ ex, key: `${l.id}:${i}`, lid: l.id }))).filter(c => c.ex.t !== 'texto');
+const provaDisponivel = u => u.licoes.length >= 2 && exerciciosDe(u).length >= 6;
+function iniciarProva(uid) {
+  const u = UNITS.find(x => x.id === uid);
+  if (!u) return;
+  // por lição: primeiro os exercícios que mudam, depois os outros, embaralhados
+  const filas = u.licoes.map(l => { const cs = exerciciosDe({ licoes: [l] }); return [...shuffle(cs.filter(c => c.ex.vars)), ...shuffle(cs.filter(c => !c.ex.vars))]; });
+  const escolhidos = [];
+  let codigos = 0, achou = true;
+  while (escolhidos.length < 10 && achou) {
+    achou = false;
+    for (const f of shuffle(filas)) {
+      while (f.length) {
+        const c = f.shift();
+        if (['codigo', 'web'].includes(c.ex.t) && codigos >= 3) continue; // código demora mais: no máximo 3 por teste
+        if (['codigo', 'web'].includes(c.ex.t)) codigos++;
+        escolhidos.push(c); achou = true;
+        break;
+      }
+      if (escolhidos.length >= 10) break;
+    }
+  }
+  if (escolhidos.length) iniciar({ tipo: 'prova', unit: u, itens: shuffle(escolhidos) });
 }
 
 /* =========================================================
@@ -376,6 +410,7 @@ function renderTrilha() {
           <p>${esc(u.desc)}</p>
         </div>
         <div class="path">`;
+      const prova = provaDisponivel(u);
       st.forEach(({ l, idx, done, open }) => {
         const x = offsets[k++ % offsets.length];
         html += `<div class="stop${open ? '' : ' locked'}" style="--x:${x}px">
@@ -386,6 +421,14 @@ function renderTrilha() {
           <span class="label" aria-hidden="true">${esc(l.titulo)}</span>
         </div>`;
       });
+      if (prova) {
+        const x = offsets[k++ % offsets.length], aberta = st.every(s => s.done), r = S.provas[u.id];
+        const dominada = r && r.nota >= NOTA_PROVA;
+        html += `<div class="stop prova${aberta ? '' : ' locked'}" style="--x:${x}px">
+          <button class="node node-prova${dominada ? ' done' : ''}" data-prova="${esc(u.id)}" ${aberta ? '' : 'disabled'} aria-label="Teste da unidade ${esc(u.titulo)}${r ? `, melhor nota ${r.nota}%` : ''}${aberta ? '' : ', libera quando você terminar as lições da unidade'}">${IC.trophy}</button>
+          <span class="label" aria-hidden="true">${r ? `Teste: ${r.nota}%` : 'Teste da unidade'}</span>
+        </div>`;
+      }
       html += `</div></section>`;
     });
     html += `</section>`;
@@ -413,6 +456,8 @@ function materiaisHTML(nv) {
 $('tela-trilha').addEventListener('click', e => {
   const g = e.target.closest('[data-goto]');
   if (g) { const el = $(g.dataset.goto); if (el) el.scrollIntoView({ behavior: semMovimento() ? 'auto' : 'smooth' }); return; }
+  const pv = e.target.closest('[data-prova]');
+  if (pv && !pv.disabled) { iniciarProva(pv.dataset.prova); return; }
   const n = e.target.closest('.node');
   if (n && !n.disabled) { startLesson(+n.dataset.idx); return; }
   const r = e.target.closest('[data-revisar]');
@@ -861,11 +906,11 @@ function startDesafio(id) {
   if (!d) return;
   const ex = d.t === 'web'
     ? { t: 'web', p: d.p, html: d.html, css: d.css, regras: d.regras, solHtml: d.solHtml, solCss: d.solCss, dica: d.dica, exp: d.exp }
-    : { t: 'codigo', p: d.p, start: d.start, saida: d.saida, dica: d.dica, sol: d.sol, exp: d.exp };
+    : { t: 'codigo', p: d.p, start: d.start, saida: d.saida, entrada: d.entrada, vars: d.vars, se: d.se, grafico: d.grafico, dica: d.dica, sol: d.sol, exp: d.exp };
   iniciar({ tipo: 'pratica', desafio: d, itens: [{ ex, key: 'p:' + d.id }] });
 }
 const item = () => L.itens[L.queue[0]];
-const cur = () => item().ex;
+const cur = () => { const it = item(); return it.inst || it.ex; }; // it.inst: a versão com os valores sorteados (js/variaveis.js)
 
 function setMain(mode, enabled, label) {
   L.mode = mode;
@@ -887,6 +932,7 @@ function rotulo(ex) {
   if (L.tipo === 'revisao') return `${tipo} · revisão de ${esc(LICAO[item().lid].titulo)}`;
   if (L.tipo === 'pratica') return `Desafio · ${DIF[L.desafio.dif].nome} · ${esc(L.desafio.titulo)}`;
   if (L.tipo === 'nivelamento') return `Teste de nivelamento · Nível ${item().nivel}`;
+  if (L.tipo === 'prova') return `Teste da unidade · ${tipo}`;
   return tipo;
 }
 // linguagem usada no destaque de código: a do exercício, a do curso ou JavaScript
@@ -895,6 +941,8 @@ const lingDe = ex => (ex && ex.lang) || (CURSO && CURSO.linguagem) || 'js';
 function focarPergunta() { const h = $('exArea').querySelector('.prompt'); if (h) h.focus({ preventScroll: true }); }
 
 function renderEx() {
+  const it = item();
+  it.inst = it.ex.vars ? instanciar(it.ex) : null; // valores novos a cada vez que o exercício aparece
   const ex = cur();
   L.checked = false; L.attempts = 0; L.ans = null;
   $('actions').classList.remove('ok', 'bad'); $('fb').hidden = true;
@@ -1297,6 +1345,16 @@ $('exArea').addEventListener('click', async e => {
   if (ex.t === 'codigo' && t.closest('#runBtn')) showOut(await executar($('editor').value, ex));
 });
 
+// sem "saida" (nos exercícios que mudam), a saída esperada é a da solução, rodada uma vez e guardada
+async function saidaEsperada(ex) {
+  if (ex.saida != null) return ex.saida;
+  if (ex._esperada == null) {
+    const r = await executar(ex.sol, ex);
+    ex._esperada = r.err || r.timeout || r.falha ? null : (r.out || []).join('\n');
+  }
+  return ex._esperada;
+}
+
 // confere um comando de terminal: ignora espaços repetidos e aceita aspas curvas e o travessão que o celular coloca no lugar de --
 const normCmd = s => String(s).trim().replace(/\s+/g, ' ').replace(/[\u201c\u201d]/g, '"').replace(/[\u2018\u2019']/g, '"').replace(/[\u2014\u2013]/g, '--');
 function comandoOk(digitado, ex) {
@@ -1310,11 +1368,13 @@ $('exArea').addEventListener('input', e => {
 // roda o código do aluno na linguagem do exercício; no Python, avisa enquanto ele é baixado
 function executar(code, ex) {
   if (lingDe(ex) !== 'py') return runCode(code);
-  return rodarPython(code, { entrada: ex.entrada, aoCarregar: () => {
-    const o = $('out');
-    if (o) { o.textContent = 'Preparando o Python... Na primeira vez ele é baixado da internet, o que pode levar alguns segundos. Depois fica guardado no aparelho.'; o.className = 'out muted'; }
-  } });
+  const avisar = txt => { const o = $('out'); if (o) { o.textContent = txt; o.className = 'out muted'; } };
+  return rodarPython(code, { entrada: ex.entrada,
+    aoCarregar: () => avisar('Preparando o Python... Na primeira vez ele é baixado da internet, o que pode levar alguns segundos. Depois fica guardado no aparelho.'),
+    aoPacotes: ps => avisar(`Baixando ${ps.map(p => ({ numpy: 'NumPy', matplotlib: 'Matplotlib' }[p] || p)).join(' e ')}... Só na primeira vez: são alguns megabytes.`) });
 }
+// gráficos do Matplotlib, desenhados pelo Python como imagens
+const figurasHTML = r => (r.imagens || []).map((b, i) => `<img class="figura" src="data:image/png;base64,${b}" alt="Gráfico ${i + 1} desenhado pelo seu código">`).join('');
 
 $('exArea').addEventListener('keydown', e => {
   const ta = e.target;
@@ -1345,9 +1405,12 @@ function showOut(r) {
   let txt = r.timeout ? 'O programa demorou demais e foi parado. Confira se algum laço nunca termina.' : (r.out || []).join('\n');
   if (r.falha) txt = `Não consegui abrir o Python (${r.falha}). Na primeira vez, ele precisa de internet. Confira a conexão e tente de novo.`;
   if (r.err) txt += (txt ? '\n' : '') + traduzErro(r.err, py ? 'py' : 'js');
-  if (!txt) txt = py ? '(nada foi mostrado: use print para ver algo aqui)' : '(nada foi mostrado: use console.log para ver algo aqui)';
+  if (!txt) txt = (r.imagens || []).length ? '(o gráfico aparece aqui embaixo)' : py ? '(nada foi mostrado: use print para ver algo aqui)' : '(nada foi mostrado: use console.log para ver algo aqui)';
   o.textContent = txt;
   o.className = 'out' + (r.err || r.timeout || r.falha ? ' err' : '');
+  const box = o.closest('.console');
+  box.querySelectorAll('.figura').forEach(f => f.remove());
+  if (r.imagens && r.imagens.length) o.insertAdjacentHTML('afterend', figurasHTML(r));
 }
 
 /* ---------- comparação linha a linha da saída ---------- */
@@ -1359,7 +1422,8 @@ function compararSaida(r, esperada) {
   const esperadas = norm(esperada).split('\n');
   const dicas = [];
   if (r.err) dicas.push(traduzErro(r.err, py ? 'py' : 'js'));
-  if (!obtidas.length && !r.err) dicas.push(py ? 'Seu código não mostrou nada. Faltou um print?' : 'Seu código não mostrou nada. Faltou um console.log?');
+  if (!obtidas.length && !r.err && norm(esperada)) dicas.push(py ? 'Seu código não mostrou nada. Faltou um print?' : 'Seu código não mostrou nada. Faltou um console.log?');
+  if (cur().grafico && !r.err && !(r.imagens || []).length) dicas.push('Seu código não desenhou nenhum gráfico. Use plt.plot (ou plt.bar) e plt.show().');
   const juntas = s => s.join('\n');
   if (obtidas.length) {
     if (juntas(obtidas).toLowerCase() === juntas(esperadas).toLowerCase()) dicas.push('A diferença está só nas letras maiúsculas e minúsculas.');
@@ -1421,8 +1485,10 @@ async function check() {
     $('mainBtn').disabled = true;
     r = await executar($('editor').value, ex);
     showOut(r);
-    ok = !r.timeout && !r.err && !r.falha && norm((r.out || []).join('\n')) === norm(ex.saida);
-    correct = ex.saida;
+    const esperada = await saidaEsperada(ex);
+    ok = !r.timeout && !r.err && !r.falha && esperada != null && norm((r.out || []).join('\n')) === norm(esperada)
+      && (!ex.grafico || (r.imagens || []).length > 0);
+    correct = esperada;
   }
   feedback(ok, ex, correct, r);
 }
@@ -1459,7 +1525,7 @@ function feedback(ok, ex, correct, r) {
     if (L.attempts >= 2 && ex.solHtml != null) h += `<button class="sol-btn" id="solBtn">Ver uma solução</button>`;
   }
   if (!ok && ex.t === 'codigo') {
-    const cmp = compararSaida(r, ex.saida);
+    const cmp = compararSaida(r, correct || '');
     if (cmp.dicas.length) h += `<ul class="fb-dicas">${cmp.dicas.map(d => `<li>${esc(d)}</li>`).join('')}</ul>`;
     h += cmp.html;
     falado += ' ' + cmp.dicas.join(' ');
@@ -1488,6 +1554,9 @@ function feedback(ok, ex, correct, r) {
     L.errors++; L.queue = []; L.done = L.total; updateProg(); setMain('next', true, 'Ver resultado');
   } else if (isCode) {
     L.errors++; setMain('retry', true);
+  } else if (L.tipo === 'prova') {
+    L.checked = true; $('exArea').classList.add('locked');
+    L.errors++; L.queue.shift(); L.done++; updateProg(); setMain('next', true);
   } else {
     L.checked = true; $('exArea').classList.add('locked');
     L.errors++; L.queue.push(L.queue.shift()); setMain('next', true);
@@ -1572,6 +1641,20 @@ function finish() {
     titulo = 'Revisão concluída';
     sub = perfeita ? 'Tudo certo de primeira. Essas lições só voltam daqui a mais tempo.' : 'O que você errou volta numa próxima revisão.';
     botoes = `<button class="btn-main" data-acao="voltar">Voltar à trilha</button>`;
+  } else if (s.tipo === 'prova') {
+    const certos = s.itens.filter(it => !s.errKeys.has(it.key)).length;
+    const nota = Math.round(100 * certos / s.itens.length);
+    const passou = nota >= NOTA_PROVA;
+    const antes = S.provas[s.unit.id];
+    if (!antes || nota > antes.nota) S.provas[s.unit.id] = { nota, dia: hoje() };
+    s.nota = nota;
+    xp = passou ? 20 : 10;
+    festa = passou;
+    eyebrow = 'Teste da unidade · ' + s.unit.titulo;
+    titulo = passou ? 'Unidade dominada' : 'Quase lá';
+    sub = passou ? `Você acertou ${certos} de ${s.itens.length} de primeira.` : `Você acertou ${certos} de ${s.itens.length} de primeira. Com ${NOTA_PROVA}%, a unidade fica dominada. O que você errou volta na revisão.`;
+    botoes = `<button class="btn-main" data-acao="voltar">Voltar à trilha</button>`
+      + `<button class="btn-sec" data-acao="prova" data-id="${esc(s.unit.id)}">${passou ? 'Treinar de novo' : 'Tentar de novo'}</button>`;
   } else if (s.tipo === 'nivelamento') {
     const n = niveisDispensados(s.certos);
     for (const l of ALL) if (l.unit.nivel <= n && !S.done[l.id]) S.done[l.id] = 'nivelamento';
@@ -1597,7 +1680,7 @@ function finish() {
   const novas = verificarConquistas();
   save();
 
-  const acc = s.q ? Math.round(100 * (s.tipo === 'nivelamento' ? Object.values(s.certos).filter(Boolean).length / Math.max(1, Object.keys(s.certos).length) : s.q / (s.q + s.errors))) : 100;
+  const acc = s.tipo === 'prova' ? s.nota : s.q ? Math.round(100 * (s.tipo === 'nivelamento' ? Object.values(s.certos).filter(Boolean).length / Math.max(1, Object.keys(s.certos).length) : s.q / (s.q + s.errors))) : 100;
   const xh = xpHoje();
   $('fim').innerHTML = `<div class="fim">
       <div class="trophy" aria-hidden="true">${IC.trophy}</div>
@@ -1628,6 +1711,7 @@ $('fim').addEventListener('click', e => {
   const a = b.dataset.acao;
   if (a === 'licao') startLesson(+b.dataset.idx);
   else if (a === 'desafio') startDesafio(b.dataset.id);
+  else if (a === 'prova') iniciarProva(b.dataset.id);
   else if (a === 'nivel') voltar('trilha', 'niv-' + b.dataset.n);
   else voltar($('fim').dataset.voltar);
 });

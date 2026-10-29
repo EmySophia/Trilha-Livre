@@ -7,11 +7,30 @@
 
 const PY_VERSAO = '0.29.5';
 const PY_URL = `https://cdn.jsdelivr.net/npm/pyodide@${PY_VERSAO}/`;
+// bibliotecas como NumPy e Matplotlib: só são baixadas quando um código faz import delas
+const PY_PACOTES = `https://cdn.jsdelivr.net/pyodide/v${PY_VERSAO}/full/`;
 const PY_PRAZO = 5000; // ms de execução antes de parar o programa (laço infinito)
 
-// Código Python que prepara a execução: captura o print, simula o input e acha a linha do erro.
+// Código Python que prepara a execução: captura o print, simula o input, acha a linha do erro
+// e transforma os gráficos do Matplotlib em imagens.
 const PY_PRELUDIO = String.raw`
-import sys, io, ast, traceback
+import sys, io, ast, traceback, os, warnings, logging, tempfile, shutil
+os.environ['MPLBACKEND'] = 'Agg'
+warnings.filterwarnings('ignore', message='.*non-interactive.*')
+logging.getLogger('matplotlib').setLevel(logging.ERROR)
+
+def _tl_figuras():
+    if 'matplotlib.pyplot' not in sys.modules:
+        return []
+    import base64
+    plt = sys.modules['matplotlib.pyplot']
+    imagens = []
+    for n in plt.get_fignums():
+        buf = io.BytesIO()
+        plt.figure(n).savefig(buf, format='png', dpi=96, bbox_inches='tight')
+        imagens.append(base64.b64encode(buf.getvalue()).decode())
+    plt.close('all')
+    return imagens
 
 def _tl_novo_ns():
     return {'__name__': '__main__'}
@@ -30,6 +49,11 @@ def _tl_rodar(src, ns, repl=False, entrada=None):
         return valor
     ns['input'] = _input
     nome = '<terminal>' if repl else '<seu código>'
+    # cada programa roda numa pasta vazia, para os arquivos de uma execução não aparecerem na outra
+    pasta_antes = os.getcwd()
+    pasta = None if repl else tempfile.mkdtemp()
+    if pasta:
+        os.chdir(pasta)
     velho_out, velho_err = sys.stdout, sys.stderr
     sys.stdout = sys.stderr = out
     erro = None
@@ -56,19 +80,39 @@ def _tl_rodar(src, ns, repl=False, entrada=None):
         erro = f'{type(e).__name__}: {e}' + (f' (linha {linha})' if linha else '')
     finally:
         sys.stdout, sys.stderr = velho_out, velho_err
-    return out.getvalue(), erro, mostrado
+        if pasta:
+            os.chdir(pasta_antes)
+            shutil.rmtree(pasta, ignore_errors=True)
+    try:
+        imagens = _tl_figuras()
+    except Exception:
+        imagens = []
+    return out.getvalue(), erro, mostrado, imagens
 `;
 
 // Corpo do worker. Precisa ser independente: no modo de arquivo único (file://), vira um Blob.
 function pyWorkerMain(cfg) {
   let py = null, ns = null;
+  const carregados = new Set();
   self.onmessage = async e => {
     const { id, code, repl, entrada, limpar } = e.data;
     try {
       if (!py) {
         importScripts(cfg.url + 'pyodide.js');
-        py = await loadPyodide({ indexURL: cfg.url });
+        py = await loadPyodide({ indexURL: cfg.url, packageBaseUrl: cfg.pacotes });
         py.runPython(cfg.preludio);
+      }
+      // bibliotecas importadas pelo código (NumPy, Matplotlib...): baixa antes de rodar, avisando a página
+      if (code) {
+        let novos = [];
+        try { novos = py.pyodide_py.code.find_imports(code).toJs().filter(m => !carregados.has(m) && ['numpy', 'matplotlib', 'pandas', 'scipy', 'sympy'].includes(m)); } catch (x) { novos = []; }
+        if (novos.length) {
+          self.postMessage({ id, pacotes: novos });
+          await py.loadPackagesFromImports(code);
+          novos.forEach(m => carregados.add(m));
+          // o primeiro import do Matplotlib demora alguns segundos: é feito aqui, fora do prazo do programa
+          for (const m of novos) { try { py.runPython('import ' + (m === 'matplotlib' ? 'matplotlib.pyplot' : m)); } catch (x) { /* o programa mostra o erro */ } }
+        }
       }
     } catch (err) {
       self.postMessage({ id, falha: String((err && err.message) || err) });
@@ -82,10 +126,10 @@ function pyWorkerMain(cfg) {
       const alvo = repl ? ns : py.globals.get('_tl_novo_ns')();
       const ent = py.toPy(entrada || []);
       const r = py.globals.get('_tl_rodar')(code, alvo, !!repl, ent);
-      const [out, err, valor] = r.toJs();
+      const [out, err, valor, imagens] = r.toJs();
       r.destroy(); ent.destroy();
       if (!repl) alvo.destroy();
-      self.postMessage({ id, out, err: err || null, valor: valor == null ? null : valor });
+      self.postMessage({ id, out, err: err || null, valor: valor == null ? null : valor, imagens: imagens || [] });
     } catch (err) {
       self.postMessage({ id, out: '', err: 'Error: ' + String((err && err.message) || err) });
     }
@@ -101,7 +145,7 @@ function pyMatar() {
 }
 function pyWorker() {
   if (PY.w) return PY.w;
-  const cfg = { url: PY_URL, preludio: PY_PRELUDIO };
+  const cfg = { url: PY_URL, pacotes: PY_PACOTES, preludio: PY_PRELUDIO };
   let w = null;
   // um worker com arquivo próprio passa pelo service worker e funciona sem internet depois da primeira vez
   if (PY.arquivo && /^https?:$/.test(location.protocol)) { try { w = new Worker('js/py-worker.js'); } catch (e) { w = null; } }
@@ -109,6 +153,12 @@ function pyWorker() {
   w.onmessage = e => {
     const p = PY.pend, d = e.data;
     if (!p || d.id !== p.id) return;
+    if (d.pacotes) { // baixando NumPy, Matplotlib...: pode levar um tempo na primeira vez
+      clearTimeout(p.t);
+      p.t = setTimeout(() => { pyMatar(); p.res({ out: [], falha: 'as bibliotecas demoraram demais para baixar' }); }, 180000);
+      if (p.aoPacotes) p.aoPacotes(d.pacotes);
+      return;
+    }
     if (d.pronto) {
       PY.pronto = true;
       clearTimeout(p.t);
@@ -117,7 +167,7 @@ function pyWorker() {
     }
     clearTimeout(p.t); PY.pend = null;
     if (d.falha) { pyMatar(); p.res({ out: [], falha: d.falha }); return; }
-    p.res({ out: d.out ? d.out.replace(/\n$/, '').split('\n') : [], err: d.err, valor: d.valor });
+    p.res({ out: d.out ? d.out.replace(/\n$/, '').split('\n') : [], err: d.err, valor: d.valor, imagens: d.imagens || [] });
   };
   w.onerror = e => {
     if (e.preventDefault) e.preventDefault();
@@ -138,11 +188,11 @@ function enviarPy(p) {
   p.t = setTimeout(() => { pyMatar(); p.res({ out: [], falha: 'o Python demorou demais para baixar' }); }, PY.pronto ? PY_PRAZO + 2000 : 90000);
   w.postMessage({ id: p.id, code: p.code, repl: p.repl, entrada: p.entrada, limpar: p.limpar });
 }
-// opts: { repl, entrada, limpar, aoCarregar } → { out: [linhas], err, valor (no terminal), timeout, falha }
+// opts: { repl, entrada, limpar, aoCarregar, aoPacotes } → { out: [linhas], err, valor (no terminal), imagens (PNG em base64), timeout, falha }
 function rodarPython(code, opts = {}) {
   const tarefa = () => new Promise(res => {
     if (!PY.pronto && opts.aoCarregar) opts.aoCarregar();
-    enviarPy({ id: ++PY.id, code, repl: !!opts.repl, entrada: opts.entrada || [], limpar: !!opts.limpar, res });
+    enviarPy({ id: ++PY.id, code, repl: !!opts.repl, entrada: opts.entrada || [], limpar: !!opts.limpar, aoPacotes: opts.aoPacotes, res });
   });
   const r = PY.fila.then(tarefa, tarefa);
   PY.fila = r.catch(() => {});
@@ -190,9 +240,10 @@ function traduzPy(err) {
   if ((m = /^KeyError: (.+?)(?: \(linha \d+\))?$/.exec(s))) return `Erro${naLinha}: a chave ${m[1]} não existe no dicionário. Use .get() se ela puder faltar.`;
   if ((m = /^AttributeError: '(\w+)' object has no attribute '(\w+)'/.exec(s))) return `Erro${naLinha}: valores do tipo ${m[1]} não têm "${m[2]}". Confira o nome, maiúsculas e minúsculas e o tipo do valor.`;
   if (/^RecursionError/.test(s)) return `Erro${naLinha}: a função chamou a si mesma vezes demais. Será que falta o caso base?`;
+  if ((m = /^ModuleNotFoundError: No module named '([\w.]+)'/.exec(s))) return `Erro${naLinha}: a biblioteca "${m[1]}" não está disponível aqui. No app funcionam a biblioteca padrão do Python, o NumPy e o Matplotlib.`;
   if (/^FileNotFoundError/.test(s)) return `Erro${naLinha}: o arquivo não existe. Confira o nome e se ele foi criado antes de ser lido.`;
   if (/^EOFError/.test(s)) return `Erro${naLinha}: ${s.replace(/^EOFError: /, '').replace(/ \(linha \d+\)$/, '')}.`;
   return 'Erro: ' + s;
 }
 
-if (typeof module !== 'undefined' && module.exports) module.exports = { PY_VERSAO, PY_PRELUDIO, traduzPy };
+if (typeof module !== 'undefined' && module.exports) module.exports = { PY_VERSAO, PY_PACOTES, PY_PRELUDIO, traduzPy };
