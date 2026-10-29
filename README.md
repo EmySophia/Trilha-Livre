@@ -52,7 +52,8 @@ A pessoa escolhe a área e o curso num catálogo. Os cursos prontos são **Lógi
   6. Site de verdade (editor de código, pastas e caminhos, várias páginas com um CSS só, prévia no Google e no WhatsApp, Google Fonts, vídeos e mapas)
   7. Achando e consertando erros (os erros mais comuns de HTML e CSS e o Inspecionar do navegador)
   8. Projetos (cartão de visita, página completa e um site de três páginas, que o app entrega num .zip; publicação de graça no GitHub Pages e em outros serviços, ou com domínio próprio)
-- **Exercícios** de múltipla escolha, completar código, montar o programa e escrever código de verdade, corrigido na hora, e de **montar e consertar páginas com HTML e CSS vendo o resultado ao vivo**, conferidas automaticamente. Quando a saída do código está errada, o app mostra linha por linha onde ela difere da esperada e dá uma dica.
+- **Exercícios** de múltipla escolha, completar código, montar o programa e escrever código de verdade, corrigido na hora, de **montar e consertar páginas com HTML e CSS vendo o resultado ao vivo**, conferidas automaticamente, e de **resposta numérica**, em que a pessoa faz a conta e digita o resultado (com vírgula, frações ou sinal de menos). Quando a saída do código está errada, o app mostra linha por linha onde ela difere da esperada e dá uma dica.
+- **Fórmulas e gráficos**: frações empilhadas, potências e raízes aparecem bem escritas nos textos, e o próprio app desenha gráficos de funções e figuras de geometria, sem imagens, no tema claro e no escuro e sem internet.
 - No curso de Python, **11 níveis e 59 lições**, com o **Python de verdade rodando no navegador** (Pyodide), inclusive **NumPy e gráficos do Matplotlib**, até no celular e sem internet depois da primeira vez:
   1. Primeiros passos (print, contas, variáveis, textos e input)
   2. Decisões (comparações, if, elif, else, match e o recuo)
@@ -67,14 +68,14 @@ A pessoa escolhe a área e o curso num catálogo. Os cursos prontos são **Lógi
   11. Projetos (jogo de adivinhação, controle de estoque com JSON, notas da turma com gráfico e uma viga biapoiada, do momento fletor ao dimensionamento)
 - No curso de Git e GitHub, **6 níveis e 25 lições**, com um **terminal simulado** em que a pessoa digita os comandos: terminal básico, commits, voltar no tempo (restore, revert, reset), ramos e conflitos, GitHub (push, clone, pull, README, GitHub Pages) e colaboração (fork, pull request, issues e como contribuir com o próprio Trilha Livre).
 - **Terminal integrado**, em JavaScript ou em Python, conforme o curso, que guarda as variáveis entre um comando e outro.
-- **Teclado de código no celular**: uma barra com `( ) { } [ ] " ; = =>` e outros símbolos, que aparece em telas de toque. No Python, a barra traz os símbolos da linguagem e o editor mantém o recuo sozinho.
+- **Teclado de código no celular**: uma barra com `( ) { } [ ] " ; = =>` e outros símbolos, que aparece em telas de toque. No Python, a barra traz os símbolos da linguagem e o editor mantém o recuo sozinho. Nas respostas numéricas, ela traz o sinal de menos, a barra de fração e a vírgula.
 - **Exercícios que mudam**: muitos exercícios sorteiam valores novos cada vez que aparecem, para dar para praticar de novo sem decorar a resposta.
 - **Teste da unidade**: no fim de cada unidade, até 10 perguntas das lições dela. Com 70% de acertos de primeira, a unidade fica dominada.
 - **Teste de nivelamento**: quem já sabe o assunto responde até duas perguntas por nível e pula os níveis que domina.
 - **Liberdade com rede de segurança**: dá para começar por qualquer nível. Se você abrir uma lição sem ter feito a base dela, ou errar muito, o app sugere a lição certa para reforçar e depois traz você de volta.
 - **Revisão espaçada**: cada lição concluída volta depois de 1, 3, 7, 14, 30 e 60 dias. Exercícios errados voltam até você acertar de primeira.
-- **Prática livre** com desafios avulsos em três níveis de dificuldade: 25 de lógica, 16 de HTML e CSS, 22 de Python e 8 de matemática.
-- **Aulas em vídeo e leituras por nível**: os níveis indicam aulas gratuitas em português (Curso em Vídeo, TV Boitempo, Jones Manoel e outros) e textos livres, como os do Arquivo Marxista na Internet.
+- **Prática livre** com desafios avulsos em três níveis de dificuldade: 25 de lógica, 16 de HTML e CSS, 22 de Python e 16 de matemática (8 da básica e 8 do ensino médio).
+- **Aulas em vídeo e leituras por nível**: os níveis indicam aulas gratuitas em português (Curso em Vídeo, Professor Ferretto, Matemática Rio, Gis com Giz, Khan Academy, TV Boitempo, Jones Manoel e outros) e textos livres, como os do Arquivo Marxista na Internet.
 - **Projetos guardados**: os projetos do curso de HTML e CSS ficam salvos no app e podem ser baixados prontos para publicar, como um `index.html` ou, no caso do site de várias páginas, um .zip com as páginas, o CSS e as imagens.
 - **Conquistas e meta diária** de XP.
 - **Funciona sem internet e pode ser instalado** como app no celular e no computador, depois de aberto uma vez no site publicado.
@@ -111,7 +112,7 @@ js/pwa.js               instalação como app e registro do modo offline
 js/app.js               telas, lições, revisão, nivelamento, prática, biblioteca, perfil e backup
 sw.js                   service worker: guarda o app no aparelho para funcionar sem internet
 manifest.webmanifest    nome, cores e ícones do app instalado
-icones/                 ícones do app
+icones/                 ícones do app e a imagem que aparece quando alguém compartilha o link
 imagens/                ilustrações livres usadas nos exercícios de HTML e CSS
 conteudo/_registro.js   funções areas(), cursos(), nivel(), desafios(), estantes(), livros() e acervos(), que registram o conteúdo
 conteudo/catalogo.js    áreas e cursos do catálogo
