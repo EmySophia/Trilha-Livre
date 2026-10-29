@@ -1,7 +1,7 @@
 {
   "name": "Trilha Livre: lógica de programação",
   "short_name": "Trilha Livre",
-  "description": "Plataforma de ensino gratuita e de código aberto: cursos curtos de programação, web e política, e uma biblioteca de livros livres.",
+  "description": "Plataforma de ensino gratuita e de código aberto: cursos curtos de programação, matemática e política, e uma biblioteca de livros livres.",
   "lang": "pt-BR",
   "start_url": "./",
   "scope": "./",
