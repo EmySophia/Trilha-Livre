@@ -16,7 +16,7 @@ function cursos(lista) {
 }
 
 function nivel(def) {
-  TRILHA.niveis.push({ curso: def.curso, n: def.n, titulo: def.titulo, desc: def.desc, videos: def.videos || [] });
+  TRILHA.niveis.push({ curso: def.curso, n: def.n, titulo: def.titulo, ...(def.faixa ? { faixa: def.faixa } : {}), desc: def.desc, videos: def.videos || [] });
   for (const u of def.unidades) TRILHA.unidades.push({ ...u, curso: def.curso, nivel: def.n });
 }
 

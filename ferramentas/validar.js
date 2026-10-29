@@ -40,6 +40,7 @@ const tarefasPy = [];
 const { PY_PRELUDIO, PY_VERSAO } = require(path.join(raiz, 'js', 'python.js'));
 const { instanciar } = require(path.join(raiz, 'js', 'variaveis.js'));
 const { lerNumero, respostaNumericaOk, respostaNumericaTexto, problemasPlano } = require(path.join(raiz, 'js', 'numeros.js'));
+const fala = require(path.join(raiz, 'js', 'fala.js'));
 // sorteio com semente fixa, para o validador conferir sempre os mesmos valores
 function semente(n) { return () => { n |= 0; n = n + 0x6D2B79F5 | 0; let t = Math.imul(n ^ n >>> 15, 1 | n); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
 const SORTEIOS = 12; // quantas versões de cada exercício que muda o validador confere
@@ -117,6 +118,9 @@ function conferirImagens(onde, txt) {
 }
 
 let ling = 'js'; // linguagem do curso que está sendo conferido
+let cursoAtual = null, cursoFala = null; // nos cursos de idiomas, a configuração do áudio
+const audiosFaltando = new Map();
+function faltaAudio(arquivo, texto) { if (!fs.existsSync(path.join(raiz, arquivo))) audiosFaltando.set(arquivo, texto); }
 function validarExercicio(onde, ex) {
   if (ex.vars && ex.t !== 'codigo') { // exercício que muda: confere várias versões sorteadas
     if (typeof ex.vars !== 'object') { erro(onde, 'vars precisa ser um objeto'); return; }
@@ -134,7 +138,12 @@ function validarExercicio(onde, ex) {
     case 'texto':
       if (!ex.titulo || !Array.isArray(ex.blocos) || !ex.blocos.length) erro(onde, 'texto precisa de titulo e blocos');
       for (const b of ex.blocos || []) {
-        const tipos = ['p', 'code', 'dica', 'passos', 'fluxo', 'tabela', 'web', 'projetos', 'leia', 'trecho', 'perguntas', 'plano'].filter(k => k in b);
+        const tipos = ['p', 'code', 'dica', 'passos', 'fluxo', 'tabela', 'web', 'projetos', 'leia', 'trecho', 'perguntas', 'plano', 'fala', 'dialogo', 'vocab', 'pares'].filter(k => k in b);
+        if (b.fala != null && typeof b.fala !== 'string') erro(onde, 'fala precisa ser um texto (em inglês)');
+        if (b.dialogo && !(Array.isArray(b.dialogo) && b.dialogo.length && b.dialogo.every(l => Array.isArray(l) && l.length >= 2 && l.every(x => typeof x === 'string')))) erro(onde, 'dialogo precisa ser uma lista de [quem, fala, tradução]');
+        if (b.vocab && !(Array.isArray(b.vocab) && b.vocab.every(l => Array.isArray(l) && l.length >= 2 && l.every(x => typeof x === 'string')))) erro(onde, 'vocab precisa ser uma lista de [palavra, tradução, nota]');
+        if (b.pares && !(Array.isArray(b.pares) && b.pares.every(l => Array.isArray(l) && l.length >= 2 && l.every(x => typeof x === 'string')))) erro(onde, 'pares precisa ser uma lista de [palavra, outra palavra, legenda]');
+        if ((b.fala != null || b.dialogo || b.vocab || b.pares) && !cursoFala) erro(onde, 'blocos com áudio (fala, dialogo, vocab, pares) só funcionam em cursos com "fala" no catálogo');
         if (b.plano) for (const p of problemasPlano(b.plano)) erro(onde, `gráfico: ${p}`);
         if (tipos.length !== 1) erro(onde, `bloco com formato desconhecido: ${JSON.stringify(Object.keys(b))}`);
         if (b.leia && (!b.leia.titulo || !/^https:\/\//.test(b.leia.url || ''))) erro(onde, 'o bloco leia precisa de titulo e de url com https://');
@@ -187,8 +196,39 @@ function validarExercicio(onde, ex) {
       if (!respostaNumericaOk(respostaNumericaTexto(ex), ex)) erro(onde, `a resposta mostrada como certa (${respostaNumericaTexto(ex)}) não seria aceita${ex.fracao ? ': com fracao, r precisa ser uma fração irredutível, como 3/4, ou um inteiro' : ''}`);
       break;
     }
+    case 'escreva': {
+      if (ex.r == null && !ex.ouvir) { erro(onde, 'escreva precisa da resposta (r) ou de uma frase para ouvir (ouvir)'); break; }
+      const rs = [].concat(ex.r != null ? ex.r : ex.ouvir);
+      if (!rs.length || !rs.every(r => typeof r === 'string' && r.trim())) erro(onde, 'r precisa ser um texto ou uma lista de textos');
+      if (ex.lingua != null && !['en', 'pt'].includes(ex.lingua)) erro(onde, 'lingua precisa ser "en" ou "pt"');
+      // cada resposta aceita precisa ser aceita por ela mesma (confere as contrações e as variantes)
+      for (const r of rs) for (const v of fala.alternativas(r).slice(0, 24).flatMap(fala.variantes)) if (!fala.conferirResposta(v, rs, { lingua: ex.lingua, exato: true }).ok) erro(onde, `a resposta "${v}" não seria aceita`);
+      break;
+    }
+    case 'monte': {
+      const rs = [].concat(ex.r == null ? [] : ex.r);
+      if (!rs.length || !rs.every(r => typeof r === 'string' && r.trim())) { erro(onde, 'monte precisa da frase certa (r)'); break; }
+      for (const sot of ['us', 'uk']) {
+        const pal = fala.palavrasDaFrase(fala.variante(fala.primeiraForma(rs[0]), sot));
+        if (pal.length < 2) erro(onde, 'a frase de monte precisa ter pelo menos 2 palavras');
+        if (!fala.conferirResposta(pal.join(' '), rs, { lingua: ex.lingua, exato: true }).ok) erro(onde, `montando as palavras de "${rs[0]}" na ordem, a resposta não é aceita`);
+        // uma palavra extra igual a uma da frase deixaria duas iguais no banco, sem problema; mas extra precisa ser texto
+      }
+      if (ex.extra != null && !(Array.isArray(ex.extra) && ex.extra.every(w => typeof w === 'string' && !/\s/.test(w.trim())))) erro(onde, 'extra precisa ser uma lista de palavras soltas');
+      break;
+    }
     default:
       erro(onde, `tipo de exercício desconhecido: ${ex.t}`);
+  }
+  if (ex.ouvir != null && (typeof ex.ouvir !== 'string' || !cursoFala)) erro(onde, 'ouvir precisa ser um texto, num curso com "fala" no catálogo');
+  if (cursoFala) for (const f of fala.falasDoExercicio(ex)) {
+    if (/\{[A-Z=]/.test(f.texto)) erro(onde, `frase com áudio não pode ter valores sorteados: "${f.texto}"`);
+    if (/^\(/.test(f.texto)) erro(onde, `((...)) dentro de parênteses confunde a marcação: "${f.texto}". Tire o parêntese de fora`);
+    if (f.sotaque && !cursoFala.vozes[f.sotaque]) erro(onde, `sotaque desconhecido: ${f.sotaque}`);
+    for (const sot of f.sotaque ? [f.sotaque] : Object.keys(cursoFala.vozes)) {
+      const texto = fala.textoFalado(fala.variante(f.texto, sot));
+      faltaAudio(fala.arquivoFala(cursoAtual, texto, fala.vozDaFala(texto, cursoFala, sot, f.papel)), texto);
+    }
   }
   if (ex.t !== 'texto' && !ex.p) erro(onde, 'falta a pergunta (p)');
   if (ex.plano && !ex.vars) for (const p of problemasPlano(ex.plano)) erro(onde, `gráfico: ${p}`);
@@ -212,9 +252,15 @@ for (const c of TRILHA.cursos) {
   idsCurso.add(c.id);
   if (!idsArea.has(c.area)) erro(onde, `área desconhecida: ${c.area}`);
   if (!c.sigla || c.sigla.length > 3) erro(onde, 'a sigla precisa ter de 1 a 3 caracteres');
+  if (c.fala) {
+    const v = c.fala.vozes || {};
+    if (!Object.keys(v).length || !Object.values(v).every(l => Array.isArray(l) && l.length === 2)) erro(onde, 'fala.vozes precisa ter, para cada sotaque, duas vozes: a feminina e a masculina');
+    for (const k of Object.keys(v)) if (!(c.fala.kokoro || {})[k] || !(c.fala.lang || {})[k]) erro(onde, `fala precisa de kokoro e lang para o sotaque ${k}`);
+  }
 }
 for (const nv of TRILHA.niveis) {
   if (!idsCurso.has(nv.curso)) erro(`nível ${nv.n}`, `curso desconhecido: ${nv.curso}`);
+  if (nv.faixa != null && !(typeof nv.faixa === 'string' && nv.faixa.trim() && nv.faixa.length <= 12)) erro(`${nv.curso} nível ${nv.n}`, 'faixa precisa ser um texto curto, como A2 ou B1–B2');
   for (const v of nv.videos || []) {
     if (!v.titulo || !v.canal || !/^https:\/\//.test(v.url || '')) erro(`${nv.curso} nível ${nv.n}`, 'cada vídeo precisa de titulo, canal e url com https://');
     if (v.tipo != null && !['video', 'texto'].includes(v.tipo)) erro(`${nv.curso} nível ${nv.n}`, `tipo de material desconhecido: ${v.tipo}`);
@@ -232,7 +278,9 @@ for (const u of TRILHA.unidades) {
     nLicoes++;
     usarId(l.id, `lição ${l.titulo}`);
     if (!l.exs.length || l.exs[0].t !== 'texto') erro(l.id, 'toda lição deve começar com uma leitura (t: "texto")');
-    ling = (TRILHA.cursos.find(c => c.id === u.curso) || {}).linguagem || 'js';
+    const cursoDaUnidade = TRILHA.cursos.find(c => c.id === u.curso) || {};
+    ling = cursoDaUnidade.linguagem || 'js';
+    cursoAtual = cursoDaUnidade.id; cursoFala = cursoDaUnidade.fala || null;
     l.exs.forEach((ex, i) => { nItens++; validarExercicio(`${l.id} item ${i + 1}`, ex); });
   }
 }
@@ -256,6 +304,8 @@ for (const d of TRILHA.desafios) {
   if (!idsCurso.has(d.curso)) erro(d.id, `curso desconhecido: ${d.curso}`);
   if (!['facil', 'medio', 'dificil'].includes(d.dif)) erro(d.id, `dif inválida: ${d.dif}`);
   if (!Array.isArray(d.temas)) erro(d.id, 'falta a lista de temas');
+  const cursoDoDesafio = TRILHA.cursos.find(c => c.id === d.curso) || {};
+  cursoAtual = cursoDoDesafio.id; cursoFala = cursoDoDesafio.fala || null;
   if (d.t && d.t !== 'codigo') validarExercicio(d.id, d); else validarCodigo(d.id, d, (TRILHA.cursos.find(c => c.id === d.curso) || {}).linguagem || 'js');
 }
 
@@ -321,6 +371,7 @@ const comConteudo = TRILHA.cursos.filter(c => TRILHA.niveis.some(nv => nv.curso 
 console.log(`${TRILHA.areas.length} áreas · ${TRILHA.cursos.length} cursos (${comConteudo.length} com conteúdo: ${comConteudo.map(c => c.id).join(', ')})`);
 console.log(`${TRILHA.niveis.length} níveis · ${TRILHA.unidades.length} unidades · ${nLicoes} lições · ${nItens} itens · ${TRILHA.desafios.length} desafios`);
 console.log(`Biblioteca: ${TRILHA.estantes.length} estantes · ${TRILHA.livros.length} livros · ${TRILHA.acervos.length} acervos`);
+if (audiosFaltando.size) console.log(`Aviso: faltam ${audiosFaltando.size} áudios das frases dos cursos de idiomas. Sem eles, o app usa a voz do navegador. Para gravar, veja "Áudio" no CONTRIBUINDO.md (npm run audio).`);
 if (problemas.length) {
   console.log(`\n${problemas.length} problema(s):`);
   problemas.forEach(p => console.log('  - ' + p));

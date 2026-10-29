@@ -1,10 +1,11 @@
 {
   "name": "trilha-livre",
   "version": "1.0.0",
-  "description": "Plataforma de ensino gratuita e de código aberto, em português: programação, web, política e uma biblioteca de livros livres.",
+  "description": "Plataforma de ensino gratuita e de código aberto, em português: programação, matemática, idiomas, política e uma biblioteca de livros livres.",
   "private": true,
   "scripts": {
-    "validar": "node ferramentas/validar.js"
+    "validar": "node ferramentas/validar.js",
+    "audio": "python3 ferramentas/gravar_audio.py"
   },
   "license": "AGPL-3.0-or-later",
   "devDependencies": {

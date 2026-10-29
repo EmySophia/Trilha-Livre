@@ -1,1 +1,4 @@
 node_modules/
+# modelo da voz usado para gravar o áudio dos cursos de idiomas (npm run audio)
+ferramentas/.kokoro/
+__pycache__/
