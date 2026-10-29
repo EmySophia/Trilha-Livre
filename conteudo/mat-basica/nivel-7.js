@@ -96,7 +96,7 @@ nivel({
             },
             {
               t: 'numero',
-              p: 'Simplifique $${A}x + {B}x − {C}x$$. Qual é o número que acompanha o x?',
+              p: 'Simplifique $${A}x + {B}x − {= cf(C, "x") }$$. Qual é o número que acompanha o x?',
               r: '{= A + B - C }',
               exp: 'Termos semelhantes: some e subtraia os números da frente.',
               vars: { A: { de: 2, ate: 9 }, B: { de: 2, ate: 9 }, C: { de: 1, ate: 9 } }
@@ -161,9 +161,9 @@ nivel({
             },
             {
               t: 'numero',
-              p: 'Resolva: $${A}x − {B} = {C}x + {= (A - C) * X - B }$$',
+              p: 'Resolva: $${A}x − {B} = {= cf(C, "x") } {= sn((A - C) * X - B) }$$',
               r: '{X}',
-              exp: 'Junte os x de um lado e os números do outro: {= A - C }x = {= (A - C) * X }.',
+              exp: 'Junte os x de um lado e os números do outro: $${= cf(A - C, "x") } = {= (A - C) * X }$$.',
               vars: {
                 A: { de: 4, ate: 9 },
                 B: { de: 1, ate: 15 },

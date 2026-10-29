@@ -25,6 +25,8 @@ cursos([
     desc: 'Guarde as versões do seu código, publique no GitHub e contribua com projetos abertos, praticando os comandos num terminal simulado.' },
   { id: 'mat-basica', area: 'matematica', sigla: '+−', linguagem: 'mat', titulo: 'Matemática básica',
     desc: 'Das quatro operações à geometria: frações, porcentagem, regra de três, potências, equações e gráficos, com contas que mudam a cada vez. A base para o Enem.' },
+  { id: 'mat-medio', area: 'matematica', sigla: 'x²', linguagem: 'mat', titulo: 'Matemática do ensino médio',
+    desc: 'Funções, exponencial e logaritmo, PA e PG, trigonometria, geometria, combinatória, probabilidade, estatística e matrizes, do jeito que cai no Enem, com gráficos desenhados na tela.' },
   { id: 'mat-financeira', area: 'matematica', sigla: 'R$', titulo: 'Matemática financeira',
     desc: 'Juros, parcelas, inflação e investimentos sem mistério.' },
   { id: 'ingles', area: 'idiomas', sigla: 'EN', titulo: 'Inglês para iniciantes',

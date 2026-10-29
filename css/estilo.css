@@ -744,6 +744,24 @@ a:focus-visible, .opt:focus-visible, .chip:focus-visible, .line:focus-visible, .
 .fx-den { padding: .05em .18em 0; }
 .fx-raiz { white-space: nowrap; }
 .fx-rad { border-top: 1.5px solid currentColor; padding: 0 .1em; margin-left: .05em; }
+
+/* gráficos e figuras desenhados pelo app (bloco plano) */
+.plano { display: block; width: 100%; max-width: 420px; height: auto; margin: 14px auto; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; }
+.pl-grade { fill: none; stroke: var(--line); stroke-width: 1; }
+.pl-fina { stroke-width: 0.6; opacity: 0.6; }
+.pl-eixo { fill: none; stroke: var(--muted); stroke-width: 1.4; }
+.pl-num { font: 10px var(--f-body); fill: var(--muted); }
+.pl-nome { font-style: italic; font-size: 12px; }
+.pl-f { fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.pl-f0 { stroke: var(--accent); } .pl-f1 { stroke: var(--azul); } .pl-f2 { stroke: var(--sun-deep); }
+.pl-txt { font: 700 13px var(--f-body); fill: var(--ink); }
+.pl-txt.pl-f0t { fill: var(--accent); } .pl-txt.pl-f1t { fill: var(--azul); } .pl-txt.pl-f2t { fill: var(--sun-deep); }
+.pl-txt, .pl-num { paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
+.pl-pt { fill: var(--rubro); stroke: var(--surface); stroke-width: 1.5; }
+.pl-pol { fill: color-mix(in srgb, var(--accent) 12%, transparent); stroke: var(--ink); stroke-width: 2; stroke-linejoin: round; }
+.pl-seg { fill: none; stroke: var(--ink); stroke-width: 1.6; }
+.pl-trac { stroke-dasharray: 5 4; }
+.pl-reto { fill: none; stroke: var(--ink); stroke-width: 1.4; }
 .dica-cmd summary { cursor: pointer; font-weight: 700; color: var(--accent); }
 .dica-cmd p { margin: 6px 0 0; font-family: var(--f-mono); font-size: 14px; }
 

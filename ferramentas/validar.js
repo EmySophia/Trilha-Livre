@@ -39,7 +39,7 @@ function rodar(codigo) {
 const tarefasPy = [];
 const { PY_PRELUDIO, PY_VERSAO } = require(path.join(raiz, 'js', 'python.js'));
 const { instanciar } = require(path.join(raiz, 'js', 'variaveis.js'));
-const { lerNumero, respostaNumericaOk, respostaNumericaTexto } = require(path.join(raiz, 'js', 'numeros.js'));
+const { lerNumero, respostaNumericaOk, respostaNumericaTexto, problemasPlano } = require(path.join(raiz, 'js', 'numeros.js'));
 // sorteio com semente fixa, para o validador conferir sempre os mesmos valores
 function semente(n) { return () => { n |= 0; n = n + 0x6D2B79F5 | 0; let t = Math.imul(n ^ n >>> 15, 1 | n); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
 const SORTEIOS = 12; // quantas versões de cada exercício que muda o validador confere
@@ -134,7 +134,8 @@ function validarExercicio(onde, ex) {
     case 'texto':
       if (!ex.titulo || !Array.isArray(ex.blocos) || !ex.blocos.length) erro(onde, 'texto precisa de titulo e blocos');
       for (const b of ex.blocos || []) {
-        const tipos = ['p', 'code', 'dica', 'passos', 'fluxo', 'tabela', 'web', 'projetos', 'leia', 'trecho', 'perguntas'].filter(k => k in b);
+        const tipos = ['p', 'code', 'dica', 'passos', 'fluxo', 'tabela', 'web', 'projetos', 'leia', 'trecho', 'perguntas', 'plano'].filter(k => k in b);
+        if (b.plano) for (const p of problemasPlano(b.plano)) erro(onde, `gráfico: ${p}`);
         if (tipos.length !== 1) erro(onde, `bloco com formato desconhecido: ${JSON.stringify(Object.keys(b))}`);
         if (b.leia && (!b.leia.titulo || !/^https:\/\//.test(b.leia.url || ''))) erro(onde, 'o bloco leia precisa de titulo e de url com https://');
         if (b.trecho && (!b.trecho.onde || !b.trecho.explica)) erro(onde, 'o bloco trecho precisa de onde e explica');
@@ -190,6 +191,7 @@ function validarExercicio(onde, ex) {
       erro(onde, `tipo de exercício desconhecido: ${ex.t}`);
   }
   if (ex.t !== 'texto' && !ex.p) erro(onde, 'falta a pergunta (p)');
+  if (ex.plano && !ex.vars) for (const p of problemasPlano(ex.plano)) erro(onde, `gráfico: ${p}`);
   // fórmulas: os $$ andam em pares, fora dos trechos de código
   for (const txt of [ex.p, ex.exp, ex.dica, ...(ex.ops || []), ...((ex.blocos || []).flatMap(b => [b.p, b.dica, ...(b.passos || [])]))]) {
     if (typeof txt === 'string' && (txt.replace(/`[^`]+`/g, '').match(/\$\$/g) || []).length % 2) erro(onde, `fórmula sem fechar: os $$ andam em pares, em "${txt.slice(0, 60)}"`);

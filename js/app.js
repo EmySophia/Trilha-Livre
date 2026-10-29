@@ -960,7 +960,8 @@ function renderEx() {
   const area = $('exArea');
   area.classList.remove('locked');
   area.innerHTML = `<p class="kind">${rotulo(ex)}</p><h2 class="prompt" tabindex="-1">${inlineMd(ex.p)}</h2>` +
-    (ex.code && ex.t !== 'complete' ? `<pre class="code${lingDe(ex) === 'texto' ? ' quebra' : ''}">${hl(ex.code, lingDe(ex))}</pre>` : '') + `<div id="exBody"></div>`;
+    (ex.code && ex.t !== 'complete' ? `<pre class="code${lingDe(ex) === 'texto' ? ' quebra' : ''}">${hl(ex.code, lingDe(ex))}</pre>` : '') +
+    (ex.plano ? planoSVG(ex.plano) : '') + `<div id="exBody"></div>`;
   const body = $('exBody');
   setMain('check', false);
 
@@ -1279,6 +1280,7 @@ function renderTexto(ex) {
         return `${seta}<div class="f-${n.k === 'acao' ? 'acao' : 'oval'}">${esc(n.s)}</div>`;
       }).join('')}</div>`;
     }
+    if (b.plano) return planoSVG(b.plano);
     if (b.dica) return `<aside class="dica"><span class="lab">Dica</span><p>${inlineMd(b.dica)}</p></aside>`;
     if (b.leia) return `<a class="leia" href="${esc(b.leia.url)}" target="_blank" rel="noopener">
       <span class="leia-ic" aria-hidden="true">${IC.livro}</span>

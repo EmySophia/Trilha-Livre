@@ -174,6 +174,29 @@ Quando a pessoa erra, o app mostra a resposta certa no formato brasileiro (1.250
 
 Em qualquer texto (perguntas, opções, leituras, tabelas e linhas de `ordene` com `plain: true`), o que estiver entre `$$` e `$$` vira uma fórmula: `$$3/4$$` é uma fração empilhada, `$$x^2$$` e `$$2^(n+1)$$` são potências, `$$v_0$$` e `$$H_2O$$` têm índice, `$$sqrt(16)$$` é a raiz, `*` vira ·, `<=` vira ≤, `>=` vira ≥ e `!=` vira ≠. Os parênteses em volta do numerador, do denominador e do expoente somem: `$$(a+b)/2$$`. Para dividir sem empilhar, use ÷. Os `$$` andam sempre em pares, e `R$` sozinho continua sendo dinheiro.
 
+### Gráficos e figuras (`plano`)
+
+O app desenha gráficos no plano cartesiano e figuras de geometria, sem imagens. O mesmo `plano` serve como bloco de uma leitura (`{ plano: { ... } }`) e como campo de qualquer exercício, e aí o desenho aparece embaixo da pergunta:
+
+```js
+{ t: 'numero', p: 'Pelo gráfico, qual é o y do vértice?', r: '{K}',
+  plano: {
+    x: [-6, 6], y: [-10, 10],                        // o pedaço do plano que aparece
+    f: ['(x - ({H}))^2 + ({K})'],                    // funções de x: ^ é potência; vale sqrt, abs, log10, sin, PI...
+    pontos: [['{H}', '{K}']],                        // [x, y] ou [x, y, 'rótulo']
+    alt: 'Parábola com a boca para cima'             // o que um leitor de tela fala
+  },
+  vars: { H: { de: -3, ate: 3 }, K: { de: -6, ate: 6 } } }
+```
+
+- `f` aceita textos ou objetos `{ e: 'x^2', nome: 'f', em: 2, cor: 0 }`: `nome` escreve o nome perto do fim da curva (ou no x de `em`), e `cor` (0, 1 ou 2) deixa duas curvas da mesma cor, como as duas metades de uma figura. Sem `cor`, cada curva ganha uma cor. `-x^2` é o oposto de x², como na matemática.
+- `circulos: [{ centro: [2, 0], raio: 2 }]` desenha circunferências.
+- `segmentos: [{ de: [0, 0], ate: [3, 4], rotulo: 'd = 5', tracejado: true }]` liga dois pontos.
+- `poligonos: [{ pts: [[0, 0], [4, 0], [4, 3]], lados: ['4', '3', '5'], vertices: ['α'], reto: 1 }]` desenha um polígono. Os rótulos dos lados ficam do lado de fora (o lado 0 vai do ponto 0 ao ponto 1, e assim por diante), e `reto` marca o ângulo reto no vértice dessa posição.
+- `eixos: false` tira os eixos e a grade, e usa a mesma escala na horizontal e na vertical: é o jeito de fazer figuras de geometria sem distorcer.
+
+Os valores sorteados em `vars` funcionam dentro do `plano`, como no exemplo. Escolha `x` e `y` para que o que importa caia sobre a grade: o app escolhe o espaço entre as marcas (0,5, 1, 2, 5, 10...) pelo tamanho do pedaço e, quando as marcas vão de 2 em 2 ou de 5 em 5, põe linhas finas de 1 em 1 se couber. Num gráfico normal, a escala de x e a de y podem ser diferentes; para um círculo ficar redondo, use faixas na proporção de 4 para 3, como `x: [-4, 4], y: [-3, 3]`. O validador avisa sobre funções com erro de escrita ou que não aparecem no pedaço escolhido.
+
 ### Digitar um comando (`comando`)
 
 Para cursos de terminal, como o de Git (`linguagem: 'shell'`). A pessoa digita o comando num terminal simulado:
@@ -257,7 +280,7 @@ Um exercício com `vars` ganha valores sorteados cada vez que aparece. Assim, a 
 | `{ de: 0.5, ate: 3, passo: 0.5 }` | de 0.5 a 3, de meio em meio |
 | `['Ana', 'Bia', 'Caio']` | um item da lista (pode ser um texto com código, como `'[3, 8, 5]'`) |
 
-Nos textos do exercício (`p`, `start`, `sol`, `ops`, `bank`, `c`, `lines`, `entrada`, `dica`, `exp` e outros), `{N}` vira o valor sorteado e `{= expressão}` é calculada em JavaScript com as variáveis, como `{= A + B }`. Nas expressões dá para usar `fix(x, casas)`, que fixa as casas decimais, `br(x)` ou `br(x, casas)`, que escreve o número do jeito brasileiro (1.250,5), `pyf(x)`, que mostra um número como o Python mostra um float (3 vira 3.0), `mdc(a, b)`, `mmc(a, b)`, `fr(n, d)`, que dá a fração irredutível como texto ("3/4"), e tudo do `Math`. Para recusar alguns sorteios, escreva a condição em `se`, em JavaScript: `se: 'A !== B'`.
+Nos textos do exercício (`p`, `start`, `sol`, `ops`, `bank`, `c`, `lines`, `entrada`, `dica`, `exp` e outros), `{N}` vira o valor sorteado e `{= expressão}` é calculada em JavaScript com as variáveis, como `{= A + B }`. Nas expressões dá para usar `fix(x, casas)`, que fixa as casas decimais, `br(x)` ou `br(x, casas)`, que escreve o número do jeito brasileiro (1.250,5), `pyf(x)`, que mostra um número como o Python mostra um float (3 vira 3.0), `mdc(a, b)`, `mmc(a, b)`, `fr(n, d)`, que dá a fração irredutível como texto ("3/4"), `sn(n)`, que põe o sinal na frente ("+ 5", "- 5"), `cf(a, 'x')` e `tm(a, 'x')`, que escrevem um termo sem o coeficiente 1 ("x", "-x", "+ 3x"), `pr(n)`, que põe um número negativo entre parênteses ("(-5)"), e tudo do `Math`. Para recusar alguns sorteios, escreva a condição em `se`, em JavaScript: `se: 'A !== B'`.
 
 Use nomes de variáveis em MAIÚSCULAS. Assim eles não se confundem com as chaves das f-strings do Python nem dos textos do JavaScript: `{N}` é trocado, e `{n}` fica como está. Num exercício `codigo` com `vars`, não escreva `saida`: a saída esperada é a da `sol`, rodada na hora com os mesmos valores. Numa `escolha`, a resposta certa também pode depender dos valores, como `ops: ['{= A * B }', '{= A + B }', '{= A * B + 1 }']`. Se um sorteio deixar duas opções iguais, o app sorteia de novo. O validador confere 12 sorteios de cada exercício.
 

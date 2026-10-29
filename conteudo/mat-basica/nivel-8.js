@@ -316,7 +316,7 @@ nivel({
               t: 'numero',
               p: 'Uma pizza tem {D} cm de diâmetro. Qual é a área dela? Use π = 3,14',
               r: '{= 3.14 * (D / 2) ** 2 }',
-              exp: 'O raio é a metade do diâmetro: {= D / 2 } cm.',
+              exp: 'O raio é a metade do diâmetro: {= br(D / 2) } cm.',
               unidade: 'cm²',
               casas: 2,
               vars: { D: [25, 30, 35, 40] }

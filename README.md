@@ -4,7 +4,7 @@
 
 Plataforma gratuita e de código aberto para aprender **programação, matemática, idiomas e política** em português, no estilo dos apps de idiomas: lições curtas, exercícios interativos, sequência de dias e XP. Funciona no navegador, no celular e no computador, sem instalar nada e sem criar conta.
 
-A pessoa escolhe a área e o curso num catálogo. Os cursos prontos são **Lógica de programação com JavaScript** (54 lições), **Sites com HTML e CSS** (42 lições), **Python do zero** (59 lições), **Git e GitHub** (25 lições), **Matemática básica** (46 lições), **Introdução ao marxismo** (25 lições), **O Capital, de Marx** (24 lições) e **Leitura guiada de O Capital** (39 lições). Uma **biblioteca** reúne livros que dá para ler de graça e de forma legal. Os outros (Matemática financeira, Inglês e Espanhol) já aparecem no catálogo como "em construção" e ficam disponíveis assim que ganham lições.
+A pessoa escolhe a área e o curso num catálogo. Os cursos prontos são **Lógica de programação com JavaScript** (54 lições), **Sites com HTML e CSS** (42 lições), **Python do zero** (59 lições), **Git e GitHub** (25 lições), **Matemática básica** (46 lições), **Matemática do ensino médio** (38 lições), **Introdução ao marxismo** (25 lições), **O Capital, de Marx** (24 lições) e **Leitura guiada de O Capital** (39 lições). Uma **biblioteca** reúne livros que dá para ler de graça e de forma legal. Os outros (Matemática financeira, Inglês e Espanhol) já aparecem no catálogo como "em construção" e ficam disponíveis assim que ganham lições.
 
 ## O que tem
 
@@ -27,6 +27,17 @@ A pessoa escolhe a área e o curso num catálogo. Os cursos prontos são **Lógi
   7. Equações (1º grau, problemas, sistemas e a fórmula de Bhaskara)
   8. Medidas e geometria (unidades, tempo, área, círculo, volume e Pitágoras)
   9. Dados e probabilidade (tabelas, média, mediana e moda, contagem e probabilidade)
+- E **Matemática do ensino médio**, com **10 níveis e 38 lições**, do jeito que cai no Enem, com **gráficos e figuras desenhados na tela** (retas, parábolas, exponenciais, triângulos, circunferências) que também mudam a cada vez:
+  1. Funções (conjuntos e intervalos, leitura de gráficos, função afim e inequações)
+  2. Função quadrática (parábola, vértice, problemas de máximo e mínimo e estudo do sinal)
+  3. Exponencial e logaritmo (crescimento, equações exponenciais, logaritmo e suas propriedades)
+  4. Sequências (PA e PG, somas e juros compostos)
+  5. Trigonometria (seno, cosseno e tangente, ângulos notáveis, radianos e lei dos cossenos)
+  6. Geometria (semelhança e Tales, áreas, prismas, cilindros, pirâmides, cones e esferas)
+  7. Contagem e probabilidade (permutações, arranjos, combinações e probabilidade condicional)
+  8. Estatística (médias, dispersão e gráficos que enganam)
+  9. Geometria analítica (distância, ponto médio, equação da reta e circunferência)
+  10. Matrizes e sistemas (operações, multiplicação, determinantes e sistemas)
 - Na área de política, **Introdução ao marxismo**, com **7 níveis e 25 lições**: Marx e Engels, o Manifesto, socialismo e comunismo, materialismo histórico, dialética e ideologia, o essencial da economia, Rosa Luxemburgo, Lenin e Gramsci, as experiências do século XX (com as conquistas e os crimes), o marxismo no Brasil, as principais críticas e as respostas marxistas, e um guia de estudo com roteiro de leitura.
 - E **O Capital, de Marx**, com **7 níveis e 24 lições**: o Livro I seção por seção (mercadoria, dinheiro, fetichismo, mais-valia, jornada de trabalho, máquinas, salário, acumulação e acumulação primitiva), um panorama dos Livros II e III (circulação, lucro, juros, renda da terra e crises), os debates sobre o livro e um guia de leitura.
 - E a **Leitura guiada de O Capital**, com **7 níveis e 39 lições**, para ler o Livro I junto com o app, capítulo por capítulo: antes de cada capítulo, onde você está no livro e o que observar, com um link direto para o texto no Arquivo Marxista na Internet; depois, os trechos difíceis explicados, perguntas para o grupo de estudo e exercícios. O primeiro nível explica as diferenças entre a tradução portuguesa on-line e as edições brasileiras e traz um método de estudo.
@@ -91,7 +102,7 @@ js/nucleo.js            utilidades, progresso salvo e execução segura do códi
 js/efeitos.js           sons, confete, ajustes de exibição e avisos para leitores de tela
 js/teclado.js           barra de símbolos para digitar código no celular
 js/variaveis.js         exercícios que mudam: sorteia os valores de cada exercício com vars
-js/numeros.js           respostas numéricas (vírgula, frações, margem de erro) e fórmulas nos textos
+js/numeros.js           respostas numéricas (vírgula, frações, margem de erro), fórmulas nos textos e gráficos e figuras em SVG
 js/web.js               exercícios de página: monta, confere e colore HTML e CSS
 js/python.js            Python no navegador (Pyodide): execução, terminal, cores e erros em português
 js/py-worker.js         worker que roda o Python, separado para funcionar sem internet
@@ -110,6 +121,7 @@ conteudo/html-css/      curso de HTML e CSS: nivel-1.js ... nivel-8.js e pratica
 conteudo/python/        curso Python do zero: nivel-1.js ... nivel-11.js e pratica.js
 conteudo/git/           curso Git e GitHub: nivel-1.js ... nivel-6.js
 conteudo/mat-basica/    curso Matemática básica: nivel-1.js ... nivel-9.js e pratica.js
+conteudo/mat-medio/     curso Matemática do ensino médio: nivel-1.js ... nivel-10.js e pratica.js
 conteudo/marxismo/      curso Introdução ao marxismo: nivel-1.js ... nivel-7.js
 conteudo/o-capital/     curso O Capital, de Marx: nivel-1.js ... nivel-7.js
 conteudo/capital-guiado/ curso Leitura guiada de O Capital: nivel-1.js ... nivel-7.js

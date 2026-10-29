@@ -16,6 +16,13 @@ const AJUDA_VARS = {
   fix: (x, casas) => Number(x).toFixed(casas),
   // número escrito do jeito brasileiro: br(1250.5) dá 1.250,5; br(2, 2) dá 2,00
   br: (x, casas) => Number(x).toLocaleString('pt-BR', casas == null ? { maximumFractionDigits: 6 } : { minimumFractionDigits: casas, maximumFractionDigits: casas }),
+  // sinal para montar fórmulas: sn(5) dá "+ 5" e sn(-5) dá "- 5" (dentro de $$ $$ vira −)
+  sn: n => (n < 0 ? '- ' + -n : '+ ' + n),
+  // termos de fórmulas sem o coeficiente 1: cf(1, 'x') dá "x", cf(-1, 'x') dá "-x" e cf(3, 'x') dá "3x";
+  // tm(-1, 'x') dá "- x", tm(4, 'x') dá "+ 4x" e tm(0, 'x') some; pr(-5) dá "(-5)", para o número negativo vir entre parênteses
+  cf: (a, v) => (a === 1 ? v : a === -1 ? '-' + v : a + v),
+  tm: (a, v) => (a === 0 ? '' : (a < 0 ? '- ' : '+ ') + (Math.abs(a) === 1 ? v : Math.abs(a) + v)),
+  pr: n => (n < 0 ? '(' + n + ')' : String(n)),
   // para a matemática: mdc(12, 18) dá 6; mmc(4, 6) dá 12; fr(6, 8) dá a fração irredutível "3/4" (ou "2", se for inteira)
   mdc: (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b) [a, b] = [b, a % b]; return a; },
   mmc: (a, b) => Math.abs(a * b) / AJUDA_VARS.mdc(a, b),
@@ -37,7 +44,11 @@ function trocarVars(txt, vals) {
   return txt.replace(/\{=([^{}]+)\}/g, (_, e) => String(avaliarVars(e, vals)))
     .replace(/\{([A-Za-z_]\w*)\}/g, (m, k) => (k in vals ? String(vals[k]) : m));
 }
-const CAMPOS_VARS = ['p', 'code', 'start', 'sol', 'saida', 'dica', 'exp', 'ops', 'bank', 'c', 'lines', 'entrada', 'antes', 'aceita', 'r', 'prefixo', 'unidade'];
+const CAMPOS_VARS = ['p', 'code', 'start', 'sol', 'saida', 'dica', 'exp', 'ops', 'bank', 'c', 'lines', 'entrada', 'antes', 'aceita', 'r', 'prefixo', 'unidade', 'plano'];
+// troca as variáveis em textos, listas e objetos (como o plano de um gráfico)
+const trocarFundo = (v, vals) => typeof v === 'string' ? trocarVars(v, vals)
+  : Array.isArray(v) ? v.map(x => trocarFundo(x, vals))
+  : v && typeof v === 'object' ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, trocarFundo(x, vals)])) : v;
 const repetidos = lista => Array.isArray(lista) && new Set(lista).size !== lista.length;
 function instanciar(ex, rnd = Math.random) {
   if (!ex.vars) return ex;
@@ -48,7 +59,7 @@ function instanciar(ex, rnd = Math.random) {
     const inst = { ...ex, valores: vals };
     for (const campo of CAMPOS_VARS) {
       if (ex[campo] == null) continue;
-      inst[campo] = Array.isArray(ex[campo]) ? ex[campo].map(x => trocarVars(x, vals)) : trocarVars(ex[campo], vals);
+      inst[campo] = trocarFundo(ex[campo], vals);
     }
     // um sorteio que deixa duas opções ou duas linhas iguais confunde: tenta de novo
     if (repetidos(inst.ops) || repetidos(inst.lines)) continue;
