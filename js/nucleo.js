@@ -16,6 +16,9 @@ const IC = {
   play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l12.5-7.5z"/></svg>',
   trophy: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 3h10v2h3v3a5 5 0 0 1-4.3 4.9A5 5 0 0 1 13 15.8V18h3v3H8v-3h3v-2.2a5 5 0 0 1-2.7-2.9A5 5 0 0 1 4 8V5h3zm10 4v3.8A3 3 0 0 0 18 8V7zM6 7v1a3 3 0 0 0 1 2.8V7z"/></svg>',
   refresh: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8M4 4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16M20 20v-4h-4"/></svg>',
+  som: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9.5v5h3.8L12 19V5L6.8 9.5zm12.2 2.5a3.6 3.6 0 0 0-2-3.2v6.4a3.6 3.6 0 0 0 2-3.2zm-2-7.6v2a6.5 6.5 0 0 1 0 11.2v2a8.4 8.4 0 0 0 0-15.2z"/></svg>',
+  lento: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.5 15.5a7 6 0 0 1 14 0zM18.6 15.5c.2-1.6 1.4-2.8 2.9-2.8a1.5 1.5 0 0 1 0 3zM5 16.5h2.4l-.8 2.5H4.4zM13 16.5h2.4l-.8 2.5h-2.2z"/></svg>',
+  fala: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v10H10l-4.5 4v-4H4z"/><path d="M8 9.5h8M8 12.5h5"/></svg>',
   alvo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg>'
 };
 
@@ -32,7 +35,7 @@ const inlineMd = s => esc(s).split(/(`[^`]+`)/g).map(p => /^`[^`]+`$/.test(p) ? 
 
 // destaque de sintaxe: JavaScript aqui; HTML e CSS em js/web.js; Python em js/python.js
 function hl(src, lang) {
-  if (lang === 'texto' || lang === 'mat') return esc(src);
+  if (lang === 'texto' || lang === 'mat' || lang === 'en') return esc(src);
   if (lang === 'py' && typeof hlPy === 'function') return hlPy(src);
   if (lang === 'shell') return hlShell(src);
   if (lang === 'html' && typeof hlHtml === 'function') return hlHtml(src);
@@ -75,7 +78,8 @@ function novoEstado() {
     projetos: {}, // páginas feitas nos projetos do curso de HTML e CSS: { id: { titulo, html, css, dia } }
     nivelamentos: {}, // resultado do teste de nivelamento por curso: { idDoCurso: { nivel, dia } }
     biblioteca: {}, // estante pessoal: { idDoLivro: { st: 'quero' | 'lendo' | 'lido', dia, nota } }
-    provas: {} // melhor nota no teste de cada unidade: { idDaUnidade: { nota, dia } }
+    provas: {}, // melhor nota no teste de cada unidade: { idDaUnidade: { nota, dia } }
+    sotaques: {} // sotaque do áudio nos cursos de idiomas: { idDoCurso: 'us' | 'uk' }
   };
 }
 function load() {

@@ -47,7 +47,9 @@ Cursos que não são de programação, como os de política, levam `linguagem: '
 
 Cursos de matemática e de ciências levam `linguagem: 'mat'`: funcionam como os de texto, com um ícone de contas na trilha, e usam a resposta numérica e as fórmulas (veja abaixo). O curso Matemática básica é o exemplo.
 
-Se um curso precisar de um tipo de exercício novo, como áudio para idiomas, abra uma issue antes para combinarmos como fazer.
+Cursos de idiomas levam `linguagem: 'en'` e uma configuração `fala` no catálogo, com as vozes do áudio. O Inglês do zero é o exemplo, e a seção [Cursos de idiomas](#cursos-de-idiomas) explica os blocos e exercícios com áudio.
+
+Se um curso precisar de um tipo de exercício novo, abra uma issue antes para combinarmos como fazer.
 
 ## Formato de uma lição
 
@@ -283,6 +285,68 @@ Um exercício com `vars` ganha valores sorteados cada vez que aparece. Assim, a 
 Nos textos do exercício (`p`, `start`, `sol`, `ops`, `bank`, `c`, `lines`, `entrada`, `dica`, `exp` e outros), `{N}` vira o valor sorteado e `{= expressão}` é calculada em JavaScript com as variáveis, como `{= A + B }`. Nas expressões dá para usar `fix(x, casas)`, que fixa as casas decimais, `br(x)` ou `br(x, casas)`, que escreve o número do jeito brasileiro (1.250,5), `pyf(x)`, que mostra um número como o Python mostra um float (3 vira 3.0), `mdc(a, b)`, `mmc(a, b)`, `fr(n, d)`, que dá a fração irredutível como texto ("3/4"), `sn(n)`, que põe o sinal na frente ("+ 5", "- 5"), `cf(a, 'x')` e `tm(a, 'x')`, que escrevem um termo sem o coeficiente 1 ("x", "-x", "+ 3x"), `pr(n)`, que põe um número negativo entre parênteses ("(-5)"), e tudo do `Math`. Para recusar alguns sorteios, escreva a condição em `se`, em JavaScript: `se: 'A !== B'`.
 
 Use nomes de variáveis em MAIÚSCULAS. Assim eles não se confundem com as chaves das f-strings do Python nem dos textos do JavaScript: `{N}` é trocado, e `{n}` fica como está. Num exercício `codigo` com `vars`, não escreva `saida`: a saída esperada é a da `sol`, rodada na hora com os mesmos valores. Numa `escolha`, a resposta certa também pode depender dos valores, como `ops: ['{= A * B }', '{= A + B }', '{= A * B + 1 }']`. Se um sorteio deixar duas opções iguais, o app sorteia de novo. O validador confere 12 sorteios de cada exercício.
+
+## Cursos de idiomas
+
+Nos cursos de idiomas, as frases em inglês têm áudio. As gravações são feitas antes, com uma voz aberta (o [Kokoro](https://github.com/thewh1teagle/kokoro-onnx), licença Apache 2.0), e ficam em `audio/<curso>/`. O nome de cada arquivo sai do próprio texto, então a mesma frase em lições diferentes usa o mesmo arquivo. Sem o arquivo, o app usa a voz do navegador, que funciona, mas é pior.
+
+### No catálogo
+
+```js
+{ id: 'ingles', area: 'idiomas', sigla: 'EN', linguagem: 'en', titulo: 'Inglês do zero', desc: '...',
+  fala: {
+    sotaques: { us: 'Americano', uk: 'Britânico' },                                // aparece na trilha para a pessoa escolher
+    vozes: { us: ['af_heart', 'am_michael'], uk: ['bf_emma', 'bm_george'] },        // feminina e masculina de cada sotaque
+    lang: { us: 'en-US', uk: 'en-GB' },                                            // voz do navegador, se faltar o arquivo
+    kokoro: { us: 'en-us', uk: 'en-gb' }                                            // língua para a gravação
+  } }
+```
+
+### Blocos de leitura com áudio
+
+```js
+{ fala: 'How are you?', trad: 'Tudo bem?', nota: 'Uma explicação curta, opcional.' },
+{ dialogo: [['Lia', 'Hey! How are you?', 'Oi! Tudo bem?'], ['Sam', 'Good, you?', 'Tudo, e você?']], titulo: 'No corredor' },
+{ vocab: [['Hi!', 'Oi!', 'o mais comum'], ['Hey!', 'E aí!']] },                 // lista com botão de ouvir em cada linha
+{ pares: [['ship', 'sheep', 'navio × ovelha']] },                               // pares de palavras para comparar o som
+{ pares: [['water', 'water', 'o t']], sotaques: ['us', 'uk'] }                  // cada lado num sotaque fixo
+```
+
+No diálogo, a primeira pessoa que fala usa a voz feminina e a segunda, a masculina. Para trocar, use `vozes: ['m', 'f']`. Num bloco `fala`, `voz: 'm'` escolhe a voz masculina, e `sotaque: 'uk'` fixa o sotaque.
+
+Em qualquer texto (parágrafos, dicas, tabelas, perguntas, opções e explicações), `((How are you?))` vira um trecho em inglês com botão de ouvir, e `**palavra**` fica em negrito. Não coloque `((...))` dentro de parênteses: escreva `como em ((I can swim.)) (sei nadar)`.
+
+### Americano e britânico
+
+`[[apartment|flat]]` mostra a primeira forma no sotaque americano e a segunda no britânico, no texto e no áudio. Use para palavras e grafias que mudam: `[[color|colour]]`, `[[mom|mum]]`, `[[soccer|football]]`. Nas respostas, as duas formas são aceitas, misturadas ou não.
+
+### Exercícios
+
+```js
+{ t: 'escreva', p: 'Traduza: "Estou com fome."', r: ["I'm hungry."] },           // a pessoa digita a resposta
+{ t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'See you later!' },         // ditado: sem r, a resposta é o que se ouve
+{ t: 'escreva', p: 'Traduza para o português: "I\'m tired."', r: ['Estou cansado.', 'Estou cansada.'], lingua: 'pt' },
+{ t: 'monte', p: 'Monte: "De onde você é?"', r: 'Where are you from?', extra: ['is', 'do'] },   // banco de palavras
+{ t: 'escolha', p: 'O que você ouviu?', ouvir: 'ship', ops: ['ship', 'sheep', 'shop'], c: 0 }    // qualquer exercício pode ter ouvir
+```
+
+- **Na correção de escreva**, maiúsculas, pontuação e acentos não contam, contrações valem como a forma completa (I'm = I am, don't = do not) e um pequeno erro de digitação é aceito com um aviso. Erros que são de gramática, como trocar works por work, não passam por erro de digitação. Use `exato: true` para não aceitar nem o errinho.
+- **Respostas alternativas:** `(a|b|c)` aceita qualquer uma das opções, e `(a|)` deixa um trecho opcional: `"(Hi|Hey|Hello)! How are you( doing|)?"`. A primeira forma é a que aparece como resposta certa.
+- **No monte**, as palavras da primeira resposta viram fichas, junto com as de `extra`. Confira se as fichas não formam outra frase certa que não está em `r`.
+- **Com ouvir**, a frase toca sozinha quando o exercício aparece, e há um botão para ouvir devagar. `voz` e `sotaque` funcionam como nos blocos.
+
+### Áudio
+
+Depois de escrever ou mudar frases, grave o que falta:
+
+```
+pip install kokoro-onnx soundfile lameenc
+npm run audio
+```
+
+Na primeira vez, o modelo da voz (uns 350 MB) é baixado para `ferramentas/.kokoro/`, que não vai para o Git. Depois, só as frases novas são gravadas. `node ferramentas/audio.js` mostra quantas faltam, e `node ferramentas/audio.js --limpar` apaga os arquivos que nenhuma lição usa mais. Se não der para gravar, mande o pull request assim mesmo e avise: quem revisar grava.
+
+**Se a voz pronunciar algo errado**, veja como ela vai falar com `python3 ferramentas/gravar_audio.py --fonemas "My brother lives in London."`, acrescente uma correção na lista `CORRECOES` do `ferramentas/gravar_audio.py` e grave de novo com `python3 ferramentas/gravar_audio.py --refazer "lives in"`. Os casos mais comuns são palavras escritas igual e faladas diferente, como lives (mora × vidas), read (lê × leu) e used to.
 
 ## Teste da unidade
 

@@ -29,8 +29,11 @@ cursos([
     desc: 'Funções, exponencial e logaritmo, PA e PG, trigonometria, geometria, combinatória, probabilidade, estatística e matrizes, do jeito que cai no Enem, com gráficos desenhados na tela.' },
   { id: 'mat-financeira', area: 'matematica', sigla: 'R$', titulo: 'Matemática financeira',
     desc: 'Juros, parcelas, inflação e investimentos sem mistério.' },
-  { id: 'ingles', area: 'idiomas', sigla: 'EN', titulo: 'Inglês para iniciantes',
-    desc: 'Vocabulário e frases do dia a dia, com atenção ao inglês da tecnologia.' },
+  { id: 'ingles', area: 'idiomas', sigla: 'EN', linguagem: 'en', titulo: 'Inglês do zero',
+    desc: 'Do zero à conversa, com o porquê de cada regra, pronúncia com áudio em inglês americano ou britânico e as expressões que as pessoas usam de verdade no dia a dia.',
+    // áudio (js/fala.js): vozes do Kokoro para cada sotaque, a primeira feminina e a segunda masculina
+    fala: { sotaques: { us: 'Americano', uk: 'Britânico' }, vozes: { us: ['af_heart', 'am_michael'], uk: ['bf_emma', 'bm_george'] },
+      lang: { us: 'en-US', uk: 'en-GB' }, kokoro: { us: 'en-us', uk: 'en-gb' }, exemplo: "Hi! How's it going?" } },
   { id: 'espanhol', area: 'idiomas', sigla: 'ES', titulo: 'Espanhol para iniciantes',
     desc: 'Conversação básica para estudar, trabalhar e viajar pela América Latina.' },
   { id: 'marxismo', area: 'politica', sigla: 'Mx', linguagem: 'texto', titulo: 'Introdução ao marxismo',

@@ -29,7 +29,33 @@ function usarCurso(id) {
   // o último nível (normalmente o de projetos) não entra no teste de nivelamento
   NIVEIS_TESTAVEIS = NIVEIS.length > 1 ? NIVEIS.slice(0, -1).map(n => n.n) : [];
 }
-function temTerminal() { return !['texto', 'shell', 'mat'].includes(CURSO && CURSO.linguagem); }
+function temTerminal() { return !['texto', 'shell', 'mat', 'en'].includes(CURSO && CURSO.linguagem); }
+/* ---------- áudio dos cursos de idiomas (js/fala.js) ---------- */
+const temFala = () => !!(CURSO && CURSO.fala);
+const sotaqueAtual = () => (S.sotaques || {})[CURSO.id] || Object.keys(CURSO.fala.vozes)[0];
+// botão de ouvir: leva as falas no próprio botão ([{ texto, papel }]); o clique é tratado lá embaixo, num lugar só
+const atributoFalas = falas => `data-falas="${esc(JSON.stringify(falas.map(f => ({ texto: f.texto, papel: f.papel || undefined, sotaque: f.sotaque || undefined }))))}"`;
+function botaoFala(falas, { classe = '', devagar = false, rotulo = '' } = {}) {
+  const lista = [].concat(falas).map(f => typeof f === 'string' ? { texto: f } : f);
+  const nome = rotulo || (devagar ? 'Ouvir devagar' : 'Ouvir') + ': ' + textoFalado(lista.map(f => f.texto).join(' '));
+  return `<button type="button" class="falar ${classe}" ${atributoFalas(lista)}${devagar ? ' data-devagar="1"' : ''} aria-label="${esc(nome)}">${devagar ? IC.lento : IC.som}</button>`;
+}
+// texto com **negrito** e ((trecho em inglês que dá para ouvir)), só nos cursos de idiomas
+function mdF(s) {
+  if (!temFala()) return inlineMd(s);
+  return String(s).split(/(\(\(.+?\)\))/g).map(p => {
+    const m = /^\(\((.+)\)\)$/.exec(p);
+    if (m) return `<button type="button" class="fala-in" lang="en" ${atributoFalas([{ texto: m[1] }])} aria-label="Ouvir: ${esc(textoFalado(m[1]))}">${inlineMd(m[1]).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>')}${IC.som}</button>`;
+    return inlineMd(p).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+  }).join('');
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-falas]');
+  if (!b || !temFala()) return;
+  if (b.classList.contains('falando')) { pararFala(); return; }
+  let falas; try { falas = JSON.parse(b.dataset.falas); } catch (err) { return; }
+  tocarFalas(CURSO.id, CURSO.fala, sotaqueAtual(), falas, { devagar: !!b.dataset.devagar, botao: b });
+});
 const INTERVALOS = [1, 3, 7, 14, 30, 60]; // dias até a próxima revisão, por "caixa"
 const DIF = { facil: { nome: 'Fácil', xp: 10 }, medio: { nome: 'Médio', xp: 15 }, dificil: { nome: 'Difícil', xp: 20 } };
 const METAS = [{ xp: 10, nome: 'Leve' }, { xp: 30, nome: 'Normal' }, { xp: 50, nome: 'Puxada' }, { xp: 100, nome: 'Intensa' }];
@@ -223,7 +249,7 @@ function iniciarNivelamento() {
   for (const n of NIVEIS_TESTAVEIS) {
     const candidatos = [];
     for (const l of licoesDoNivel(n)) {
-      l.exs.forEach((ex, i) => { if (['escolha', 'complete', 'ordene', 'numero'].includes(ex.t) && !ex.plain) candidatos.push({ ex, key: `niv:${l.id}:${i}`, lid: l.id, nivel: n }); });
+      l.exs.forEach((ex, i) => { if (['escolha', 'complete', 'ordene', 'numero', 'escreva', 'monte'].includes(ex.t) && !ex.plain) candidatos.push({ ex, key: `niv:${l.id}:${i}`, lid: l.id, nivel: n }); });
     }
     // de lições diferentes, para cobrir mais do nível
     const porLicao = {};
@@ -388,6 +414,7 @@ function renderTrilha() {
       <p>${esc(CURSO.desc)} São ${NIVEIS.length} ${NIVEIS.length === 1 ? 'nível' : 'níveis'} de lições curtas, para fazer no celular ou no computador.</p>
       <div class="overall"><div class="bar" aria-hidden="true"><i style="width:${(doneCount / ALL.length) * 100}%"></i></div><span>${doneCount} de ${ALL.length} lições</span></div>
     </div>
+    ${sotaqueHTML()}
     ${painelHTML()}
     <nav class="niv-nav" aria-label="Ir para um nível">
       ${NIVEIS.map(nv => `<button class="niv-chip${nivelCompleto(nv.n) ? ' full' : ''}" data-goto="niv-${nv.n}"><b aria-hidden="true">${nv.n}</b><span class="sr">Nível ${nv.n}:</span>${esc(nv.titulo)}</button>`).join('')}
@@ -417,7 +444,7 @@ function renderTrilha() {
         html += `<div class="stop${open ? '' : ' locked'}" style="--x:${x}px">
           ${idx === cur ? `<span class="bubble" aria-hidden="true">${doneCount ? 'Continuar' : 'Começar'}</span>` : ''}
           <button class="node${done ? ' done' : ''}" data-idx="${idx}" ${open ? '' : 'disabled'} aria-label="${esc(l.titulo)}${done ? ', concluída. Toque para refazer' : open ? ', disponível' : ', bloqueada'}">
-            ${done ? IC.check : open ? (CURSO.linguagem === 'texto' ? IC.livro : CURSO.linguagem === 'mat' ? IC.conta : IC.code) : IC.lock}
+            ${done ? IC.check : open ? (CURSO.linguagem === 'texto' ? IC.livro : CURSO.linguagem === 'mat' ? IC.conta : CURSO.linguagem === 'en' ? IC.fala : IC.code) : IC.lock}
           </button>
           <span class="label" aria-hidden="true">${esc(l.titulo)}</span>
         </div>`;
@@ -440,6 +467,24 @@ function renderTrilha() {
     </footer>`;
   $('tela-trilha').innerHTML = html;
 }
+
+// cursos de idiomas com mais de um sotaque: a pessoa escolhe qual quer ouvir (e pode trocar quando quiser)
+function sotaqueHTML() {
+  if (!temFala() || !CURSO.fala.sotaques) return '';
+  const atual = sotaqueAtual(), nomes = CURSO.fala.sotaques;
+  return `<section class="sotaque" aria-labelledby="sotT">
+    <div><h2 id="sotT">Qual inglês você quer ouvir?</h2><p>Muda as vozes e as palavras que são diferentes nos dois países, como <i lang="en">apartment</i> e <i lang="en">flat</i>. A gramática é a mesma, e dá para trocar quando quiser.</p></div>
+    <div class="sot-ops" role="group" aria-label="Sotaque">${Object.entries(nomes).map(([k, nome]) =>
+      `<button type="button" class="sot-op" data-sotaque="${esc(k)}" aria-pressed="${k === atual}">${esc(nome)}</button>`).join('')}
+      ${botaoFala([{ texto: CURSO.fala.exemplo || 'Hi! How are you doing today?' }], { classe: 'mini', rotulo: 'Ouvir um exemplo' })}</div>
+  </section>`;
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-sotaque]');
+  if (!b || !temFala()) return;
+  S.sotaques = { ...(S.sotaques || {}), [CURSO.id]: b.dataset.sotaque }; save();
+  document.querySelectorAll('.sot-op').forEach(x => x.setAttribute('aria-pressed', x === b));
+});
 
 // aulas em vídeo (e leituras) de outros sites sobre o assunto do nível, para quem aprende melhor assim
 function materiaisHTML(nv) {
@@ -917,7 +962,7 @@ function startDesafio(id) {
   iniciar({ tipo: 'pratica', desafio: d, itens: [{ ex: exDoDesafio(d), key: 'p:' + d.id, proxInst }] });
 }
 const item = () => L.itens[L.queue[0]];
-const cur = () => { const it = item(); return it.inst || it.ex; }; // it.inst: a versão com os valores sorteados (js/variaveis.js)
+const cur = () => { const it = item(); return it.vis || it.inst || it.ex; }; // it.inst: a versão com os valores sorteados (js/variaveis.js); it.vis: com o sotaque escolhido (js/fala.js)
 
 function setMain(mode, enabled, label) {
   L.mode = mode;
@@ -934,8 +979,9 @@ function updateProg() {
 }
 
 function rotulo(ex) {
-  const texto = ['texto', 'mat'].includes(lingDe(ex));
-  const tipo = { escolha: 'Escolha a resposta', complete: texto ? 'Complete a frase' : lingDe(ex) === 'shell' ? 'Complete o comando' : 'Complete o código', ordene: ex.plain || texto ? 'Coloque em ordem' : ['js', 'py'].includes(lingDe(ex)) ? 'Monte o programa' : lingDe(ex) === 'shell' ? 'Coloque os comandos em ordem' : 'Monte o código', codigo: 'Escreva o código', web: ex.conserte ? 'Conserte a página' : 'Monte a página', comando: 'Digite o comando', numero: 'Calcule e responda' }[ex.t];
+  const texto = ['texto', 'mat', 'en'].includes(lingDe(ex));
+  const tipo = { escreva: ex.ouvir ? 'Ouça e escreva' : ex.lingua === 'pt' ? 'Escreva em português' : 'Escreva em inglês', monte: ex.ouvir ? 'Ouça e monte a frase' : 'Monte a frase',
+    escolha: ex.ouvir ? 'Ouça e escolha' : 'Escolha a resposta', complete: texto ? 'Complete a frase' : lingDe(ex) === 'shell' ? 'Complete o comando' : 'Complete o código', ordene: ex.plain || texto ? 'Coloque em ordem' : ['js', 'py'].includes(lingDe(ex)) ? 'Monte o programa' : lingDe(ex) === 'shell' ? 'Coloque os comandos em ordem' : 'Monte o código', codigo: 'Escreva o código', web: ex.conserte ? 'Conserte a página' : 'Monte a página', comando: 'Digite o comando', numero: 'Calcule e responda' }[ex.t];
   if (L.tipo === 'revisao') return `${tipo} · revisão de ${esc(LICAO[item().lid].titulo)}`;
   if (L.tipo === 'pratica') return `Desafio · ${DIF[L.desafio.dif].nome} · ${esc(L.desafio.titulo)}`;
   if (L.tipo === 'nivelamento') return `Teste de nivelamento · Nível ${item().nivel}`;
@@ -952,15 +998,19 @@ function renderEx() {
   // valores novos a cada vez que o exercício aparece (no desafio, a primeira vez usa os da lista)
   it.inst = it.proxInst || (it.ex.vars ? instanciar(it.ex) : null);
   it.proxInst = null;
+  pararFala();
+  it.vis = temFala() ? comSotaque(it.inst || it.ex, sotaqueAtual()) : null;
   const ex = cur();
+  L.quase = null;
   L.checked = false; L.attempts = 0; L.ans = null;
   $('actions').classList.remove('ok', 'bad'); $('fb').hidden = true;
   updateProg();
   if (ex.t === 'texto') { renderTexto(ex); focarPergunta(); return; }
   const area = $('exArea');
   area.classList.remove('locked');
-  area.innerHTML = `<p class="kind">${rotulo(ex)}</p><h2 class="prompt" tabindex="-1">${inlineMd(ex.p)}</h2>` +
-    (ex.code && ex.t !== 'complete' ? `<pre class="code${lingDe(ex) === 'texto' ? ' quebra' : ''}">${hl(ex.code, lingDe(ex))}</pre>` : '') +
+  area.innerHTML = `<p class="kind">${rotulo(ex)}</p><h2 class="prompt" tabindex="-1">${mdF(ex.p)}</h2>` +
+    (ex.ouvir ? `<div class="ouvir">${botaoFala([{ texto: ex.ouvir, papel: ex.voz, sotaque: ex.sotaque }], { classe: 'grande', rotulo: 'Ouvir de novo' })}${botaoFala([{ texto: ex.ouvir, papel: ex.voz, sotaque: ex.sotaque }], { classe: 'lento', devagar: true, rotulo: 'Ouvir devagar' })}</div>` : '') +
+    (ex.code && ex.t !== 'complete' ? `<pre class="code${['texto', 'en'].includes(lingDe(ex)) ? ' quebra' : ''}">${hl(ex.code, lingDe(ex))}</pre>` : '') +
     (ex.plano ? planoSVG(ex.plano) : '') + `<div id="exBody"></div>`;
   const body = $('exBody');
   setMain('check', false);
@@ -968,7 +1018,7 @@ function renderEx() {
   if (ex.t === 'escolha') {
     L.order = shuffle(ex.ops.map((_, i) => i));
     body.innerHTML = `<div class="opts" role="group" aria-label="Opções">${L.order.map((i, k) =>
-      `<button class="opt${ex.mono ? ' mono' : ''}" data-i="${i}" aria-pressed="false"><span class="key" aria-hidden="true">${k + 1}</span><span class="txt">${ex.mono ? esc(ex.ops[i]) : inlineMd(ex.ops[i])}</span></button>`).join('')}</div>
+      `<button class="opt${ex.mono ? ' mono' : ''}" data-i="${i}" aria-pressed="false"><span class="key" aria-hidden="true">${k + 1}</span><span class="txt">${ex.mono ? esc(ex.ops[i]) : mdF(ex.ops[i])}</span></button>`).join('')}</div>
       <p class="atalho">No teclado: números escolhem, Enter verifica.</p>`;
   }
   if (ex.t === 'complete') {
@@ -1007,6 +1057,20 @@ function renderEx() {
       <p class="atalho">Digite o comando e aperte Enter.</p>`;
     setMain('check', false);
   }
+  if (ex.t === 'escreva') {
+    const pt = ex.lingua === 'pt';
+    body.innerHTML = `<textarea id="escIn" class="esc-in" rows="2" lang="${pt ? 'pt-BR' : 'en'}" spellcheck="false" autocapitalize="sentences" autocomplete="off" autocorrect="off" enterkeyhint="done"
+        placeholder="${pt ? 'Escreva em português' : 'Escreva em inglês'}" aria-label="Sua resposta, ${pt ? 'em português' : 'em inglês'}"></textarea>
+      ${ex.dica ? `<details class="dica-cmd"><summary>Ver uma dica</summary><p>${mdF(ex.dica)}</p></details>` : ''}
+      <p class="atalho">Maiúsculas e pontuação não contam. Enter verifica.</p>`;
+    setMain('check', false);
+  }
+  if (ex.t === 'monte') {
+    const certa = palavrasDaFrase(variante(primeiraForma([].concat(ex.r)[0]), sotaqueAtual()));
+    L.palavras = shuffle([...certa, ...(ex.extra || []).map(w => variante(w, sotaqueAtual()))]);
+    L.ans = [];
+    renderMonte();
+  }
   if (ex.t === 'numero') {
     body.innerHTML = `<div class="num-linha">
         ${ex.prefixo ? `<span class="num-un" aria-hidden="true">${esc(ex.prefixo)}</span>` : ''}
@@ -1040,6 +1104,17 @@ function renderEx() {
     setMain('check', true);
   }
   focarPergunta();
+  // nos exercícios de ouvir, a frase toca sozinha (o app foi aberto por um toque, então o navegador deixa)
+  if (ex.ouvir) { const b = area.querySelector('.ouvir .grande'); if (b) b.click(); }
+}
+
+// monte a frase: as palavras escolhidas vão para a caixa de cima, na ordem dos toques
+function renderMonte() {
+  const pal = L.palavras;
+  const postas = L.ans.map((i, pos) => `<button class="chip pal in" data-pos="${pos}" lang="en" aria-label="${esc(pal[i])}. Toque para tirar">${esc(pal[i])}</button>`).join('');
+  $('exBody').innerHTML = `<div class="answer-box frase" role="group" aria-label="Sua frase">${postas || '<span class="empty-msg">Toque nas palavras abaixo, na ordem da frase.</span>'}</div>
+    <div class="bank pal-bank" role="group" aria-label="Palavras">${pal.map((w, i) => `<button class="chip pal" data-w="${i}" lang="en" ${L.ans.includes(i) ? 'disabled' : ''}>${esc(w)}</button>`).join('')}</div>`;
+  setMain('check', L.ans.length > 0);
 }
 
 /* ---------- pré-visualização de páginas (curso de HTML e CSS) ----------
@@ -1256,7 +1331,20 @@ function renderTexto(ex) {
   area.classList.remove('locked');
   L.codes = [];
   const corpo = ex.blocos.map(b => {
-    if (b.p) return `<p>${inlineMd(b.p)}</p>`;
+    if (b.p) return `<p>${mdF(b.p)}</p>`;
+    if (b.fala != null) return `<div class="fala">${botaoFala([{ texto: b.fala, papel: b.voz, sotaque: b.sotaque }])}<div class="fala-txt"><p class="fala-en" lang="en">${mdF(b.fala)}</p>${b.trad ? `<p class="fala-pt">${mdF(b.trad)}</p>` : ''}${b.nota ? `<p class="fala-nota">${mdF(b.nota)}</p>` : ''}</div></div>`;
+    if (b.dialogo) {
+      const quem = [];
+      const falas = b.dialogo.map(([q, f]) => { if (!quem.includes(q)) quem.push(q); const k = quem.indexOf(q); return { texto: f, papel: (b.vozes || [])[k] || (k % 2 ? 'm' : 'f'), k }; });
+      return `<figure class="dialogo">${b.titulo ? `<figcaption>${mdF(b.titulo)}</figcaption>` : ''}
+        <div class="dl-topo">${botaoFala(falas, { classe: 'tudo', rotulo: 'Ouvir o diálogo inteiro' })}<span>Ouvir o diálogo inteiro</span></div>
+        ${b.dialogo.map(([q, f, t], i) => `<div class="dl-linha dl-${falas[i].k % 2}"><span class="dl-quem">${esc(q)}</span>${botaoFala([falas[i]])}<div class="fala-txt"><p class="fala-en" lang="en">${mdF(f)}</p>${t ? `<p class="fala-pt">${mdF(t)}</p>` : ''}</div></div>`).join('')}</figure>`;
+    }
+    if (b.vocab) return `<ul class="vocab">${b.vocab.map(([en, pt, nota]) => `<li>${botaoFala([{ texto: en }])}<span class="vc-en" lang="en">${mdF(en)}</span><span class="vc-pt">${mdF(pt || '')}${nota ? `<small>${mdF(nota)}</small>` : ''}</span></li>`).join('')}</ul>`;
+    if (b.pares) {
+      const [s1, s2] = b.sotaques || [], nome = k => k ? ` <small class="par-sot">${esc(CURSO.fala.sotaques[k] || k)}</small>` : '';
+      return `<ul class="pares">${b.pares.map(([a, c, leg]) => `<li><span class="par">${botaoFala([{ texto: a, sotaque: s1 }])}<span lang="en">${esc(a)}</span>${nome(s1)}</span><span class="par-x" aria-hidden="true">×</span><span class="par">${botaoFala([{ texto: c, sotaque: s2 }])}<span lang="en">${esc(c)}</span>${nome(s2)}</span>${leg ? `<small>${mdF(leg)}</small>` : ''}</li>`).join('')}</ul>`;
+    }
     if (b.code) {
       const lang = b.lang || lingDe(null);
       if (b.semTeste || !['js', 'py'].includes(lang) || lang !== termLang()) return `<pre class="code${lang === 'texto' ? ' quebra' : ''}">${hl(b.code, lang)}</pre>`;
@@ -1265,11 +1353,11 @@ function renderTexto(ex) {
     }
     if (b.web != null) return exemploWeb(b.web, b.css);
     if (b.projetos) return projetosHTML();
-    if (b.passos) return `<ol class="passos">${b.passos.map(x => `<li>${inlineMd(x)}</li>`).join('')}</ol>`;
+    if (b.passos) return `<ol class="passos">${b.passos.map(x => `<li>${mdF(x)}</li>`).join('')}</ol>`;
     if (b.tabela) { // "codigo" diz quais colunas são código (fonte mono, sem quebrar); por padrão, só a primeira
-      const cod = b.tabela.codigo || [0];
+      const cod = b.tabela.codigo || (temFala() ? [] : [0]);
       return `<div class="tab-wrap"><table class="tab"><thead><tr>${b.tabela.cab.map(c => `<th scope="col">${esc(c)}</th>`).join('')}</tr></thead><tbody>${
-        b.tabela.linhas.map(r => `<tr>${r.map((c, i) => `<td${cod.includes(i) ? ' class="cod"' : ''}>${cod.includes(i) ? esc(c) : inlineMd(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+        b.tabela.linhas.map(r => `<tr>${r.map((c, i) => `<td${cod.includes(i) ? ' class="cod"' : ''}>${cod.includes(i) ? esc(c) : mdF(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
     }
     if (b.fluxo) {
       const descricao = b.fluxo.map(n => n.k === 'dec' ? `pergunta "${n.s}": se sim, ${n.sim}; se não, ${n.nao}` : n.s).join(', depois ');
@@ -1281,7 +1369,7 @@ function renderTexto(ex) {
       }).join('')}</div>`;
     }
     if (b.plano) return planoSVG(b.plano);
-    if (b.dica) return `<aside class="dica"><span class="lab">Dica</span><p>${inlineMd(b.dica)}</p></aside>`;
+    if (b.dica) return `<aside class="dica"><span class="lab">${esc(b.rotulo || 'Dica')}</span><p>${mdF(b.dica)}</p></aside>`;
     if (b.leia) return `<a class="leia" href="${esc(b.leia.url)}" target="_blank" rel="noopener">
       <span class="leia-ic" aria-hidden="true">${IC.livro}</span>
       <span class="leia-txt"><span class="lab">${esc(b.leia.rotulo || 'Para ler agora')}</span><b>${esc(b.leia.titulo)}</b>${b.leia.obs ? `<small>${inlineMd(b.leia.obs)}</small>` : ''}</span>
@@ -1310,7 +1398,7 @@ function renderComplete() {
       ? `<button class="slot" data-k="${k}" aria-label="Lacuna ${k + 1}, vazia">&nbsp;</button>`
       : `<button class="slot filled" data-k="${k}" aria-label="Lacuna ${k + 1}: ${esc(ex.bank[L.ans[k]])}. Toque para tirar">${esc(ex.bank[L.ans[k]])}</button>`)
     : '')).join('');
-  $('exBody').innerHTML = `<pre class="code${lingDe(ex) === 'texto' ? ' quebra' : ''}">${code}</pre>
+  $('exBody').innerHTML = `<pre class="code${lingDe(ex) === 'texto' ? ' quebra' : lingDe(ex) === 'en' ? ' quebra frase-en' : ''}"${lingDe(ex) === 'en' ? ' lang="en"' : ''}>${code}</pre>
     <div class="bank" role="group" aria-label="Opções para as lacunas">${L.bankOrder.map(b => `<button class="chip" data-b="${b}" ${L.ans.includes(b) ? 'disabled' : ''}>${esc(ex.bank[b])}</button>`).join('')}</div>`;
   setMain('check', L.ans.every(x => x != null));
 }
@@ -1358,6 +1446,12 @@ $('exArea').addEventListener('click', async e => {
       if (k !== -1) { L.ans[k] = +ch.dataset.b; renderComplete(); const prox = $('exBody').querySelector('.chip:not([disabled])') || $('mainBtn'); prox.focus(); }
     } else if (sl && L.ans[+sl.dataset.k] != null) { L.ans[+sl.dataset.k] = null; renderComplete(); }
   }
+  if (ex.t === 'monte') {
+    const ch = t.closest('.pal'); if (!ch) return;
+    if (ch.dataset.w != null) { if (!ch.disabled) L.ans.push(+ch.dataset.w); } else L.ans.splice(+ch.dataset.pos, 1);
+    renderMonte();
+    const prox = $('exBody').querySelector('.pal-bank .pal:not([disabled])') || $('mainBtn'); prox.focus();
+  }
   if (ex.t === 'ordene') {
     const ln = t.closest('.line'); if (!ln) return;
     if (ln.dataset.li != null) L.ans.push(+ln.dataset.li); else L.ans.splice(+ln.dataset.pos, 1);
@@ -1384,7 +1478,7 @@ function comandoOk(digitado, ex) {
   return [ex.sol, ...(ex.aceita || [])].some(a => /^\/.+\/$/.test(a) ? new RegExp(a.slice(1, -1)).test(d) : normCmd(a) === d);
 }
 $('exArea').addEventListener('input', e => {
-  if (['cmdIn', 'numIn'].includes(e.target.id) && L && !L.checked) setMain('check', e.target.value.trim() !== '');
+  if (['cmdIn', 'numIn', 'escIn'].includes(e.target.id) && L && !L.checked) setMain('check', e.target.value.trim() !== '');
 });
 
 // roda o código do aluno na linguagem do exercício; no Python, avisa enquanto ele é baixado
@@ -1494,6 +1588,14 @@ async function check() {
     linha.outerHTML = `<div class="sh-cmd"><span class="sh-pr" aria-hidden="true">${esc(ex.pasta || '~')} $</span> <span${ok ? '' : ' class="sh-errado"'}>${esc(inp.value)}</span></div>`
       + (ok && ex.saida ? ex.saida.replace('{msg}', msg).split('\n').map(l => `<div class="sh-out">${esc(l)}</div>`).join('') : '');
   }
+  if (ex.t === 'escreva' || ex.t === 'monte') {
+    const aceitas = ex.r != null ? ex.r : ex.ouvir;
+    const digitada = ex.t === 'monte' ? L.ans.map(i => L.palavras[i]).join(' ') : $('escIn').value;
+    const res = conferirResposta(digitada, aceitas, { lingua: ex.lingua, exato: ex.exato || ex.t === 'monte' });
+    ok = res.ok; correct = variante(res.certa, sotaqueAtual());
+    if (res.quase) L.quase = { acento: res.acento };
+    if (ex.t === 'escreva') { const inp = $('escIn'); inp.readOnly = true; inp.classList.add(ok ? 'certo' : 'errado'); }
+  }
   if (ex.t === 'numero') {
     const inp = $('numIn');
     ok = respostaNumericaOk(inp.value, ex);
@@ -1540,14 +1642,22 @@ function feedback(ok, ex, correct, r) {
   if (ok && ex.t === 'web' && ex.projeto && L.tipo === 'licao') guardarProjeto(ex.projeto);
   save();
 
-  const titulo = ok ? pick(['Mandou bem!', 'Isso aí!', 'Certinho!', 'Perfeito!']) : 'Ainda não.';
+  const titulo = ok ? (L.quase ? 'Quase perfeito!' : pick(['Mandou bem!', 'Isso aí!', 'Certinho!', 'Perfeito!'])) : 'Ainda não.';
   let h = `<p class="fb-title">${titulo}</p>`;
   let falado = titulo;
+  const idioma = ex.t === 'escreva' || ex.t === 'monte';
+  // em inglês, a resposta certa ganha botão de ouvir
+  const ouvirCerta = idioma && ex.lingua !== 'pt' ? botaoFala([{ texto: correct, papel: ex.voz }], { classe: 'mini', rotulo: 'Ouvir a resposta certa' }) : '';
   if (!ok && !isCode) {
     // respostas em texto (com fórmulas) aparecem formatadas; código continua em fonte de código
-    const formatada = (ex.t === 'escolha' && !ex.mono) || (ex.t === 'ordene' && ex.plain);
-    h += `<p class="fb-label">Resposta certa</p>${formatada ? `<p class="fb-ans fb-txt">${correct.split('\n').map(inlineMd).join('<br>')}</p>` : `<pre class="fb-ans">${esc(correct)}</pre>`}`;
+    const formatada = (ex.t === 'escolha' && !ex.mono) || (ex.t === 'ordene' && ex.plain) || idioma || (ex.t === 'complete' && lingDe(ex) === 'en');
+    h += `<p class="fb-label">Resposta certa</p>${formatada ? `<p class="fb-ans fb-txt"${idioma && ex.lingua !== 'pt' ? ' lang="en"' : ''}>${correct.split('\n').map(mdF).join('<br>')}${ouvirCerta}</p>` : `<pre class="fb-ans">${esc(correct)}</pre>`}`;
     falado += ' Resposta certa: ' + semFormula(correct) + '.';
+  } else if (ok && L.quase) {
+    h += `<p class="fb-label">${L.quase.acento ? 'Repare nos acentos' : 'Repare na escrita'}</p><p class="fb-ans fb-txt"${ex.lingua !== 'pt' ? ' lang="en"' : ''}>${mdF(correct)}${ouvirCerta}</p>`;
+    falado += (L.quase.acento ? ' Repare nos acentos: ' : ' Repare na escrita: ') + correct + '.';
+  } else if (ok && idioma && ouvirCerta) {
+    h += `<p class="fb-ans fb-txt fb-ouvir" lang="en">${mdF(correct)}${ouvirCerta}</p>`;
   }
   if (!ok && ex.t === 'web') {
     const falhas = r.falhas.slice(0, 4);
@@ -1565,7 +1675,7 @@ function feedback(ok, ex, correct, r) {
     L.attempts++;
     if (L.attempts >= 2 && ex.sol) h += `<button class="sol-btn" id="solBtn">Ver uma solução</button>`;
   }
-  if ((ok || !isCode) && ex.exp) { h += `<p class="fb-exp">${inlineMd(ex.exp)}</p>`; falado += ' ' + semFormula(ex.exp); }
+  if ((ok || !isCode) && ex.exp) { h += `<p class="fb-exp">${mdF(ex.exp)}</p>`; falado += ' ' + semFormula(textoFalado(ex.exp)); }
   if (!ok && nivelamento) h += `<p class="fb-exp">O teste termina aqui. Veja o resultado em seguida.</p>`;
   if (!ok && L.tipo === 'licao' && !L.sugeriuBase && L.errors + 1 >= limiteErros(L)) {
     const sug = basesParaSugerir(L.les);
@@ -1618,12 +1728,13 @@ async function principal() {
   else if (L.mode === 'retry') { $('actions').classList.remove('bad'); $('fb').hidden = true; setMain('check', true); ($('editor') || $('editorHtml')).focus(); }
 }
 $('mainBtn').addEventListener('click', principal);
-$('closeBtn').addEventListener('click', () => voltar(L ? L.voltar : viewAtual));
+$('closeBtn').addEventListener('click', () => { pararFala(); voltar(L ? L.voltar : viewAtual); });
 
 // atalhos de teclado durante a lição
 document.addEventListener('keydown', e => {
   if (!L || $('lesson').hidden || !$('term').hidden) return;
   if (e.key === 'Escape') { voltar(L.voltar); return; }
+  if (e.target.id === 'escIn' && e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); if (!$('mainBtn').disabled) principal(); return; }
   if (e.target.tagName === 'TEXTAREA') {
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter' && !$('mainBtn').disabled) { e.preventDefault(); principal(); }
     return;

@@ -1,6 +1,6 @@
 # Licença do conteúdo
 
-O conteúdo das lições, dos desafios e das descrições da biblioteca do Trilha Livre (todos os arquivos desta pasta `conteudo`) e as ilustrações da pasta `imagens`, usadas nos exercícios, estão licenciados sob a
+O conteúdo das lições, dos desafios e das descrições da biblioteca do Trilha Livre (todos os arquivos desta pasta `conteudo`), as ilustrações da pasta `imagens`, usadas nos exercícios, e os áudios da pasta `audio`, gravados para os cursos de idiomas, estão licenciados sob a
 **Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional (CC BY-NC-SA 4.0)**.
 
 Texto completo da licença: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.pt
