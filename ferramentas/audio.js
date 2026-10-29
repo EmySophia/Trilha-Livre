@@ -27,6 +27,7 @@ for (const curso of TRILHA.cursos.filter(c => c.fala)) {
     ...TRILHA.unidades.filter(u => u.curso === curso.id).flatMap(u => u.licoes.flatMap(l => l.exs)),
     ...TRILHA.desafios.filter(d => d.curso === curso.id)
   ];
+  const exemplo = curso.fala.exemplo ? [{ falas: [{ texto: curso.fala.exemplo }] }] : []; // a frase de exemplo da escolha do sotaque
   for (const ex of exercicios) for (const f of fala.falasDoExercicio(ex)) {
     for (const sot of f.sotaque ? [f.sotaque] : Object.keys(curso.fala.vozes)) {
       const texto = fala.textoFalado(fala.variante(f.texto, sot));
@@ -34,6 +35,11 @@ for (const curso of TRILHA.cursos.filter(c => c.fala)) {
       const arquivo = fala.arquivoFala(curso.id, texto, voz);
       todas.set(arquivo, { arquivo, texto, voz, lang: curso.fala.kokoro[sot] });
     }
+  }
+  for (const { falas } of exemplo) for (const f of falas) for (const sot of Object.keys(curso.fala.vozes)) {
+    const texto = fala.textoFalado(f.texto), voz = fala.vozDaFala(texto, curso.fala, sot);
+    const arquivo = fala.arquivoFala(curso.id, texto, voz);
+    todas.set(arquivo, { arquivo, texto, voz, lang: curso.fala.kokoro[sot] });
   }
 }
 const faltando = [...todas.values()].filter(a => !fs.existsSync(path.join(raiz, a.arquivo)));
