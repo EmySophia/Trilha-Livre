@@ -190,7 +190,7 @@ desafios('ingles', [
     titulo: 'O estádio',
     temas: ['voz passiva'],
     p: 'Passe para a voz passiva: "They built this stadium in 2014."',
-    r: 'This stadium was built in (2014|twenty fourteen|two thousand fourteen|two thousand and fourteen).',
+    r: 'This stadium was built in (twenty fourteen|2014|two thousand fourteen|two thousand and fourteen).',
     dica: 'To be no passado + particípio de build.',
     exp: 'Built é o passado e o particípio de build. Quem construiu não importa, então they some.'
   },
@@ -204,5 +204,86 @@ desafios('ingles', [
     r: 'She said (that |)she couldn\'t come because she was working.',
     dica: 'O tempo volta um passo: can vira could, e am working vira was working.',
     exp: 'She said she couldn\'t come because she was working. O I de quem falou vira she.'
+  },
+  {
+    id: 'en-p-colocacao',
+    t: 'escolha',
+    dif: 'medio',
+    titulo: 'Fazer um erro?',
+    temas: ['collocations'],
+    p: 'Qual frase soa natural em inglês?',
+    ops: ['I made a mistake.', 'I did a mistake.', 'I took a mistake.'],
+    c: 0,
+    exp: 'Errar é make a mistake. Make é criar algo; do é realizar uma tarefa.'
+  },
+  {
+    id: 'en-p-deducao',
+    t: 'escolha',
+    dif: 'medio',
+    titulo: 'Ele sempre responde',
+    temas: ['deduções', 'modais'],
+    p: 'Seu amigo, que sempre responde rápido, não respondeu às mensagens o dia todo. O que você diz?',
+    ops: ['He must have lost his phone.', 'He must lose his phone.', 'He can\'t have a phone.'],
+    c: 0,
+    exp: 'Dedução sobre o passado: must have + particípio.'
+  },
+  {
+    id: 'en-p-supposed',
+    t: 'escreva',
+    dif: 'medio',
+    titulo: 'Era para ela chegar',
+    temas: ['be supposed to'],
+    p: 'Escreva em inglês: "Era para ela chegar às oito."',
+    r: 'She was supposed to (arrive|get here|be here|come) at eight.',
+    dica: 'O que era esperado, mas talvez não aconteceu: be supposed to.',
+    exp: 'Be supposed to fala do combinado. O português não tem uma expressão igual.'
+  },
+  {
+    id: 'en-p-terceira',
+    t: 'escreva',
+    dif: 'dificil',
+    titulo: 'Se eu tivesse estudado',
+    temas: ['condicionais'],
+    p: 'Escreva em inglês: "Se eu tivesse estudado, teria passado."',
+    r: 'If I had studied, I would have passed( the (exam|test)|).',
+    dica: 'O passado que não aconteceu: had + particípio na condição, would have + particípio no resultado.',
+    exp: 'Na fala, vira If I\'d studied, I\'d have passed.'
+  },
+  {
+    id: 'en-p-email',
+    t: 'monte',
+    dif: 'dificil',
+    titulo: 'Aguardo seu retorno',
+    temas: ['escrita formal'],
+    p: 'Monte o fecho de um e-mail formal: "Aguardo seu retorno."',
+    r: 'I look forward to hearing from you.',
+    extra: ['hear', 'waiting', 'return'],
+    exp: 'O to de look forward to é preposição, então vem -ing: hearing.'
+  },
+  {
+    id: 'en-p-inversao',
+    t: 'escreva',
+    dif: 'dificil',
+    titulo: 'Nunca vi nada igual',
+    temas: ['inversão'],
+    p: 'Reescreva com inversão, começando com "Never": "I have never seen such a beautiful place."',
+    r: 'Never have I seen such a beautiful place.',
+    dica: 'Depois de never no começo, a frase fica na ordem de pergunta.',
+    exp: 'Never have I seen: o auxiliar vem antes do sujeito, para dar ênfase.'
+  },
+  {
+    id: 'en-p-sarcasmo',
+    t: 'escolha',
+    dif: 'dificil',
+    titulo: 'Que maravilha',
+    temas: ['ironia', 'conversa'],
+    p: 'Você e um amigo esperam o ônibus há uma hora, e começa a chover. Ele diz: "Oh, perfect. This day just keeps getting better." Como ele está?',
+    ops: [
+      'Irritado, sendo sarcástico',
+      'Feliz de verdade com a chuva',
+      'Esperançoso com o resto do dia'
+    ],
+    c: 0,
+    exp: 'Uma frase positiva demais para uma situação ruim é o sinal clássico do sarcasmo.'
   }
 ]);

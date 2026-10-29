@@ -42,6 +42,7 @@ CORRECOES = [
     (r"\b(could|that I) read\b", [('ɹˈiːd', 'ɹˈɛd')]),                            # read no passado soa "réd"
     (r"\bRecife\b", [('ɹᵻsˈaɪf', 'ɹɛsˈiːfi'), ('ɹɪsˈaɪf', 'ɹɛsˈiːfi')]),
     (r"\binnit\b", [('ɪnnˈɪt', 'ˈɪnɪt')]),
+    (r"\bMs\b", [('ˌɛmˈɛs.', 'mˈɪz'), ('ˌɛmˈɛs', 'mˈɪz')]),                     # Ms. soa "miz", e não "M S"
     # 13 a 19 no fim da frase: a sílaba forte é a do -teen (thirTEEN), para não soar como thirty, forty...
     (r"\b(thir|four|fif|six|seven|eigh|nine)teen\b", TEEN),
 ]
