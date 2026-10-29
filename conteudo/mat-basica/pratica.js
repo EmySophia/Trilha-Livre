@@ -1,0 +1,115 @@
+/* Trilha Livre · Matemática básica · Prática livre: problemas avulsos, fora da trilha.
+   dif: 'facil', 'medio' ou 'dificil'. Conteúdo sob licença CC BY-NC-SA 4.0 (veja conteudo/LICENCA.md). */
+
+desafios('mat-basica', [
+  {
+    id: 'mb-p-troco',
+    t: 'numero',
+    dif: 'facil',
+    titulo: 'Troco certo',
+    temas: ['operações'],
+    p: 'Você comprou {A} pães de R$ {= br(P, 2) } e um litro de leite de R$ {= br(L, 2) }, e pagou com R$ 50,00. Quanto recebe de troco?',
+    r: '{= 50 - A * P - L }',
+    prefixo: 'R$',
+    casas: 2,
+    dica: 'Some a compra e tire de 50.',
+    exp: 'Conta de padaria também é matemática.',
+    vars: { A: { de: 2, ate: 10 }, P: [0.75, 0.8, 0.9, 1], L: [4.5, 4.99, 5.49, 6] }
+  },
+  {
+    id: 'mb-p-pizza',
+    t: 'numero',
+    dif: 'facil',
+    titulo: 'Pizza dividida',
+    temas: ['frações'],
+    p: 'Uma pizza de {F} fatias foi dividida: Ana comeu $$1/{A}$$ dela e Beto, $$1/{B}$$. Quantas fatias sobraram?',
+    r: '{= F - F / A - F / B }',
+    dica: 'Calcule as fatias de cada um: {F} ÷ {A} e {F} ÷ {B}.',
+    exp: 'Frações de uma quantidade viram números inteiros quando o denominador divide o total.',
+    vars: { F: [8, 12, 24], A: [2, 3, 4], B: [4, 6, 8] },
+    se: 'F % A === 0 && F % B === 0 && A !== B && F - F / A - F / B > 0'
+  },
+  {
+    id: 'mb-p-black-friday',
+    t: 'numero',
+    dif: 'medio',
+    titulo: 'Black Friday',
+    temas: ['porcentagem'],
+    p: 'Um produto custava R$ {= br(V) }. Antes da promoção, a loja aumentou o preço em {P}% e depois anunciou “{Q}% de desconto”. Qual foi a variação real em relação ao preço original, em porcentagem? (negativo é desconto)',
+    r: '{= ((1 + P / 100) * (1 - Q / 100) - 1) * 100 }',
+    unidade: '%',
+    casas: 1,
+    dica: 'Multiplique os fatores: {= br(1 + P / 100) } × {= br(1 - Q / 100) }.',
+    exp: 'Desconto sobre preço inflado: por isso vale a pena acompanhar os preços antes.',
+    vars: { V: [200, 500, 1000], P: [20, 30, 40, 50], Q: [20, 30, 40, 50] }
+  },
+  {
+    id: 'mb-p-gasolina',
+    t: 'numero',
+    dif: 'medio',
+    titulo: 'Álcool ou gasolina?',
+    temas: ['razão', 'porcentagem'],
+    p: 'O etanol custa R$ {= br(E, 2) } e a gasolina, R$ {= br(G, 2) }. Qual é a razão entre os preços (etanol ÷ gasolina), em porcentagem? (Abaixo de 70%, costuma compensar o etanol.)',
+    r: '{= E / G * 100 }',
+    unidade: '%',
+    casas: 1,
+    dica: 'Divida o preço do etanol pelo da gasolina e multiplique por 100.',
+    exp: 'O etanol rende cerca de 70% da gasolina por litro, por isso a regra dos 70%.',
+    vars: { E: [3.59, 3.89, 4.19, 4.49], G: [5.69, 5.99, 6.29, 6.49] }
+  },
+  {
+    id: 'mb-p-escada',
+    t: 'numero',
+    dif: 'medio',
+    titulo: 'A escada do bombeiro',
+    temas: ['Pitágoras'],
+    p: 'A escada de um caminhão de bombeiros tem {E} m e a base dela fica a {B} m da parede de um prédio. Até que altura da parede ela alcança, com 1 casa?',
+    r: '{= Math.sqrt(E * E - B * B) }',
+    unidade: 'm',
+    casas: 1,
+    dica: 'A escada é a hipotenusa.',
+    exp: '$$h = sqrt({E}^2 − {B}^2)$$.',
+    vars: { E: [20, 25, 30], B: [5, 6, 7, 8] }
+  },
+  {
+    id: 'mb-p-financiamento',
+    t: 'numero',
+    dif: 'dificil',
+    titulo: 'Juros compostos',
+    temas: ['porcentagem', 'potências'],
+    p: 'Uma dívida de R$ {= br(D) } no cartão cresce {J}% ao mês, com juros compostos. Quanto ela vale depois de {M} meses sem pagar?',
+    r: '{= D * (1 + J / 100) ** M }',
+    prefixo: 'R$',
+    casas: 2,
+    dica: 'Multiplique por {= br(1 + J / 100) } a cada mês: {= br(1 + J / 100) } elevado a {M}.',
+    exp: 'Juros do rotativo do cartão estão entre os mais altos do mercado: em um ano, a dívida pode mais que triplicar.',
+    vars: { D: [500, 1000, 2000], J: [8, 10, 12, 14], M: [6, 12] }
+  },
+  {
+    id: 'mb-p-mediana',
+    t: 'numero',
+    dif: 'medio',
+    titulo: 'Média ou mediana?',
+    temas: ['estatística'],
+    p: 'Numa empresa, {N} pessoas ganham R$ {= br(S) } e o dono ganha R$ {= br(R) }. Quanto é a média dos salários, contando o dono?',
+    r: '{= (N * S + R) / (N + 1) }',
+    prefixo: 'R$',
+    casas: 2,
+    dica: 'Some todos os salários e divida pelo número de pessoas, {= N + 1 }.',
+    exp: 'A mediana aqui é R$ {= br(S) }: bem mais perto do que quase todos ganham.',
+    vars: { N: [4, 6, 9], S: [1800, 2200, 2500], R: [30000, 50000, 80000] }
+  },
+  {
+    id: 'mb-p-dados',
+    t: 'numero',
+    dif: 'dificil',
+    titulo: 'Dois dados',
+    temas: ['probabilidade', 'contagem'],
+    p: 'Lançando dois dados, qual é a probabilidade de a soma dar {S}? Responda em fração irredutível',
+    r: '{= fr(6 - Math.abs(7 - S), 36) }',
+    fracao: true,
+    dica: 'São 36 resultados possíveis. Conte os pares que somam {S}.',
+    exp: 'O 7 é a soma mais provável: sai de 6 jeitos diferentes.',
+    vars: { S: [3, 4, 5, 6, 7, 8, 9, 10] }
+  }
+]);

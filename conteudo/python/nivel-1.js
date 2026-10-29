@@ -57,7 +57,7 @@ print("Python roda no seu celular")  # e aqui também`
             },
             {
               t: 'escolha',
-              p: 'O que o comando print faz?',
+              p: 'O que o comando `print` faz?',
               ops: ['Mostra um valor na tela', 'Imprime numa impressora', 'Apaga a tela'],
               c: 0,
               exp: 'Apesar do nome, print só mostra o valor na saída do programa.'
@@ -71,6 +71,21 @@ print("Python roda no seu celular")  # e aqui também`
               exp: 'Em Python, é print. console.log é do JavaScript.'
             },
             {
+              t: 'escolha',
+              p: 'Qual destas linhas mostra Olá na tela?',
+              ops: ['print("Olá")', 'print(Olá)', 'Print("Olá")'],
+              c: 0,
+              mono: true,
+              exp: 'Sem aspas, o Python acha que Olá é o nome de uma variável. E print é com letra minúscula.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que acontece com a linha `# print("oi")`?',
+              ops: ['Nada: ela é um comentário', 'Mostra oi', 'Dá erro'],
+              c: 0,
+              exp: 'O # transforma a linha inteira em comentário.'
+            },
+            {
               t: 'codigo',
               p: 'Escreva um programa que mostre: Eu vou aprender Python',
               start: `# escreva seu código aqui
@@ -82,15 +97,27 @@ print("Python roda no seu celular")  # e aqui também`
             },
             {
               t: 'codigo',
-              p: 'Mostre duas linhas: primeiro Trilha Livre e depois Python do zero',
-              start: `# um print para cada linha
+              p: 'Mostre exatamente: Meu nome é {NOME}',
+              start: `# escreva seu código aqui
 `,
-              saida: `Trilha Livre
-Python do zero`,
-              sol: `print("Trilha Livre")
-print("Python do zero")`,
+              sol: 'print("Meu nome é {NOME}")',
+              dica: 'O texto vai inteiro entre aspas.',
+              exp: 'Cada vez que este exercício aparece, o nome muda.',
+              vars: { NOME: ['Ana', 'Bruno', 'Carla', 'Davi', 'Elis', 'Fábio', 'Gal', 'Hugo'] }
+            },
+            {
+              t: 'codigo',
+              p: 'Mostre uma moldura: uma linha com 10 sinais de igual, a palavra Python e outra linha com 10 sinais de igual',
+              start: `# três prints, um para cada linha
+`,
+              saida: `==========
+Python
+==========`,
+              sol: `print("==========")
+print("Python")
+print("==========")`,
               dica: 'Cada print mostra uma linha.',
-              exp: 'Cada print termina com uma quebra de linha.'
+              exp: 'Dá para fazer desenhos e telas simples só com print.'
             }
           ]
         },
@@ -119,7 +146,7 @@ print("Python do zero")`,
                   }
                 },
                 {
-                  p: 'A divisão com `/` sempre dá um número com vírgula (o Python usa ponto): `6 / 2` dá `3.0`. Use `//` quando quiser só a parte inteira.'
+                  p: 'A divisão com `/` sempre dá um número com vírgula (o Python usa ponto): `6 / 2` dá `3.0`. Use `//` quando quiser só a parte inteira, e `%` para o que sobra.'
                 },
                 {
                   p: 'A ordem é a da matemática: primeiro `**`, depois `*`, `/`, `//` e `%`, e por último `+` e `-`. Parênteses mudam a ordem.'
@@ -134,17 +161,37 @@ print(round(10 / 3, 2))`
             },
             {
               t: 'escolha',
-              p: 'Quanto dá 7 // 2?',
-              ops: ['3', '3.5', '1'],
+              p: 'Quanto dá `{A} // {B}`?',
+              ops: ['{= Math.floor(A / B) }', '{= pyf(A / B) }', '{= A % B }'],
               c: 0,
-              exp: 'A divisão inteira joga fora a parte depois do ponto.'
+              exp: 'A divisão inteira joga fora a parte depois do ponto.',
+              vars: { A: { de: 7, ate: 30 }, B: { de: 2, ate: 6 } },
+              se: 'A % B !== 0'
             },
             {
               t: 'escolha',
-              p: 'Quanto dá 2 ** 3?',
-              ops: ['8', '6', '5'],
+              p: 'Quanto dá `{A} % {B}`?',
+              ops: ['{= A % B }', '{= Math.floor(A / B) }', '{= A * B }'],
               c: 0,
-              exp: '2 elevado a 3: 2 × 2 × 2.'
+              exp: 'O % dá o resto da divisão.',
+              vars: { A: { de: 7, ate: 30 }, B: { de: 2, ate: 6 } }
+            },
+            {
+              t: 'escolha',
+              p: 'Quanto dá `2 ** {N}`?',
+              ops: ['{= 2 ** N }', '{= 2 * N }', '{= N ** 2 }'],
+              c: 0,
+              exp: '2 elevado a {N}: 2 multiplicado por ele mesmo {N} vezes.',
+              vars: { N: { de: 3, ate: 8 } },
+              se: 'N !== 4'
+            },
+            {
+              t: 'complete',
+              p: 'Complete para mostrar o resto da divisão de 10 por 3',
+              code: 'print(10 ___ 3)',
+              bank: ['%', '//', '/', '**'],
+              c: ['%'],
+              exp: '10 dividido por 3 dá 3 e sobra 1.'
             },
             {
               t: 'codigo',
@@ -166,6 +213,33 @@ print(12 + 8 / 4)
               sol: 'print(round((7 + 8.5 + 6) / 3, 2))',
               dica: 'Some entre parênteses, divida por 3 e use round(valor, 2).',
               exp: 'Sem o round, apareceriam muitas casas depois do ponto.'
+            },
+            {
+              t: 'codigo',
+              p: 'Uma pizza tem {F} fatias para {P} pessoas. Mostre quantas fatias inteiras cada pessoa come e, na linha de baixo, quantas sobram',
+              start: `fatias = {F}
+pessoas = {P}
+`,
+              sol: `fatias = {F}
+pessoas = {P}
+print(fatias // pessoas)
+print(fatias % pessoas)`,
+              dica: 'Divisão inteira para as fatias de cada um e resto para as que sobram.',
+              exp: '// e % andam juntos: um dá quantas vezes cabe, o outro o que sobra.',
+              vars: { F: { de: 8, ate: 16 }, P: { de: 3, ate: 5 } }
+            },
+            {
+              t: 'codigo',
+              p: 'R$ {CAP} rendem {TX}% ao mês, com juros compostos. Mostre quanto ficam depois de 12 meses, com 2 casas',
+              start: `capital = {CAP}
+taxa = {TX}
+`,
+              sol: `capital = {CAP}
+taxa = {TX}
+print(round(capital * (1 + taxa / 100) ** 12, 2))`,
+              dica: 'Juros compostos: capital vezes (1 + taxa/100) elevado ao número de meses.',
+              exp: 'É só um exemplo de conta, não uma recomendação de investimento.',
+              vars: { CAP: [500, 1000, 1500, 2000], TX: [1, 2] }
             }
           ]
         }
@@ -203,6 +277,9 @@ pontos = pontos + 5
 print(pontos)`
                 },
                 {
+                  p: 'O `print` aceita vários valores separados por vírgula e coloca um espaço entre eles: `print("Total:", total)`.'
+                },
+                {
                   p: 'Regras dos nomes: letras, números e `_`, sem começar com número e sem espaço. O costume em Python é escrever com minúsculas e `_` entre as palavras, como `nota_final`.'
                 },
                 {
@@ -224,10 +301,32 @@ print(type("oi"))`
             },
             {
               t: 'escolha',
-              p: 'Depois de x = 10 e x = x + 5, quanto vale x?',
-              ops: ['15', '10', '5'],
+              p: 'Depois de `x = {A}` e `x = x + {B}`, quanto vale x?',
+              ops: ['{= A + B }', '{A}', '{B}'],
               c: 0,
-              exp: 'Primeiro calcula x + 5 com o valor antigo, depois guarda.'
+              exp: 'Primeiro calcula x + {B} com o valor antigo, depois guarda.',
+              vars: { A: { de: 2, ate: 20 }, B: { de: 2, ate: 9 } }
+            },
+            {
+              t: 'escolha',
+              p: 'Qual é o tipo de `3.0`?',
+              ops: ['float', 'int', 'str'],
+              c: 0,
+              exp: 'Tem ponto, então é float, mesmo sendo um número redondo.'
+            },
+            {
+              t: 'escolha',
+              p: 'Depois de `x = {A}`, `y = x * 2` e `x = 1`, quanto vale y?',
+              ops: ['{= A * 2 }', '2', '{= A + 2 }'],
+              c: 0,
+              exp: 'y guardou o resultado da conta na hora; mudar x depois não muda y.',
+              vars: { A: { de: 3, ate: 9 } }
+            },
+            {
+              t: 'ordene',
+              p: 'Monte o programa que calcula o troco',
+              lines: ['preco = 37.5', 'pago = 50', 'troco = pago - preco', 'print("Troco:", troco)'],
+              exp: 'Uma variável precisa existir antes de ser usada.'
             },
             {
               t: 'codigo',
@@ -240,6 +339,33 @@ quantidade = 200
 print(preco * quantidade)`,
               dica: 'Crie a variável quantidade e mostre preco * quantidade.',
               exp: 'Variáveis com bons nomes deixam a conta fácil de entender.'
+            },
+            {
+              t: 'codigo',
+              p: 'Um carro rodou {KM} km com {L} litros. Mostre quantos km ele faz por litro, com 1 casa',
+              start: `km = {KM}
+litros = {L}
+`,
+              sol: `km = {KM}
+litros = {L}
+print(round(km / litros, 1))`,
+              dica: 'Divida km por litros e arredonde com round(..., 1).',
+              exp: 'Consumo é distância dividida pelo combustível.',
+              vars: { KM: { de: 300, ate: 600, passo: 25 }, L: { de: 25, ate: 45 } }
+            },
+            {
+              t: 'codigo',
+              p: 'Converta {S} segundos em horas, minutos e segundos, no formato 1 h 2 min 3 s',
+              start: `s = {S}
+`,
+              sol: `s = {S}
+h = s // 3600
+m = s % 3600 // 60
+seg = s % 60
+print(h, "h", m, "min", seg, "s")`,
+              dica: 'Horas: s // 3600. Minutos: o que sobra das horas (s % 3600), dividido por 60. Segundos: s % 60.',
+              exp: 'O print com vírgulas põe os espaços sozinho.',
+              vars: { S: { de: 3700, ate: 20000 } }
             }
           ]
         },
@@ -271,10 +397,12 @@ print(f"{nome} tem {idade} anos")`
                       ['len("Brasil")', 'quantidade de caracteres', '6'],
                       ['"Brasil".upper()', 'tudo maiúsculo', 'BRASIL'],
                       ['"Brasil".lower()', 'tudo minúsculo', 'brasil'],
+                      ['"ana lima".title()', 'maiúscula no começo de cada palavra', 'Ana Lima'],
                       ['"  oi  ".strip()', 'tira espaços das pontas', 'oi'],
                       ['"Brasil"[0]', 'primeiro caractere', 'B'],
                       ['"Brasil"[-1]', 'último caractere', 'l'],
-                      ['"Brasil"[0:3]', 'do 0 até antes do 3', 'Bra']
+                      ['"Brasil"[0:3]', 'do 0 até antes do 3', 'Bra'],
+                      ['"Brasil"[3:]', 'do 3 até o fim', 'sil']
                     ]
                   }
                 },
@@ -285,45 +413,85 @@ print(f"{nome} tem {idade} anos")`
             },
             {
               t: 'escolha',
-              p: 'O que "Recife"[0] devolve?',
+              p: 'O que `"Recife"[0]` devolve?',
               ops: ['R', 'e', 'Recife'],
               c: 0,
               exp: 'A primeira posição é a 0.'
             },
             {
               t: 'escolha',
-              p: 'O que "Recife"[-1] devolve?',
+              p: 'O que `"Recife"[-1]` devolve?',
               ops: ['e', 'R', 'f'],
               c: 0,
               exp: '-1 é o último caractere.'
             },
             {
+              t: 'escolha',
+              p: 'Quanto dá `len("{PAL}")`?',
+              ops: ['{= PAL.length }', '{= PAL.length + 1 }', '{= PAL.length - 1 }'],
+              c: 0,
+              exp: 'len conta os caracteres.',
+              vars: {
+                PAL: ['Python', 'Brasil', 'engenharia', 'dado', 'Recife', 'computador', 'Amazonas']
+              }
+            },
+            {
+              t: 'escolha',
+              p: 'O que `"{PAL}"[0:3]` devolve?',
+              ops: ['{= PAL.slice(0, 3) }', '{= PAL.slice(0, 2) }', '{= PAL.slice(1, 4) }'],
+              c: 0,
+              exp: 'Da posição 0 até antes da 3: três caracteres.',
+              vars: { PAL: ['Python', 'Brasil', 'engenharia', 'Recife', 'computador', 'Amazonas'] }
+            },
+            {
+              t: 'complete',
+              p: 'Complete a f-string',
+              code: 'print(___"Olá, {nome}!")',
+              bank: ['f', 'r', 's', '$'],
+              c: ['f'],
+              exp: 'O f antes das aspas liga as chaves.'
+            },
+            {
               t: 'codigo',
-              p: 'Usando as variáveis, mostre exatamente: Ana tem 20 anos e mora em Recife',
-              start: `nome = "Ana"
-idade = 20
-cidade = "Recife"
+              p: 'Usando as variáveis, mostre exatamente: {NOME} tem {I} anos e mora em {CID}',
+              start: `nome = "{NOME}"
+idade = {I}
+cidade = "{CID}"
 `,
-              saida: 'Ana tem 20 anos e mora em Recife',
-              sol: `nome = "Ana"
-idade = 20
-cidade = "Recife"
+              sol: `nome = "{NOME}"
+idade = {I}
+cidade = "{CID}"
 print(f"{nome} tem {idade} anos e mora em {cidade}")`,
               dica: 'Use uma f-string: f"{nome} tem ...".',
-              exp: 'Com f-string, não precisa converter o número para texto.'
+              exp: 'Com f-string, não precisa converter o número para texto.',
+              vars: {
+                NOME: ['Ana', 'Bruno', 'Carla', 'Davi', 'Elis', 'Fábio', 'Gal', 'Hugo'],
+                I: { de: 16, ate: 70 },
+                CID: ['Recife', 'Manaus', 'Belém', 'Natal', 'Curitiba', 'Goiânia']
+              }
             },
             {
               t: 'codigo',
               p: 'Mostre a cidade em letras maiúsculas e, na linha de baixo, quantas letras ela tem',
-              start: `cidade = "manaus"
+              start: `cidade = "{CID}"
 `,
-              saida: `MANAUS
-6`,
-              sol: `cidade = "manaus"
+              sol: `cidade = "{CID}"
 print(cidade.upper())
 print(len(cidade))`,
               dica: 'Use .upper() e len().',
-              exp: 'upper() cria um texto novo; a variável continua em minúsculas.'
+              exp: 'upper() cria um texto novo; a variável continua em minúsculas.',
+              vars: { CID: ['manaus', 'recife', 'teresina', 'palmas', 'salvador'] }
+            },
+            {
+              t: 'codigo',
+              p: 'Mostre o texto com as 3 primeiras letras em maiúsculas e o resto como está',
+              start: `t = "{PAL}"
+`,
+              sol: `t = "{PAL}"
+print(t[:3].upper() + t[3:])`,
+              dica: 'Pegue t[:3], ponha em maiúsculas e junte com t[3:].',
+              exp: 'Fatias e + combinam pedaços de texto.',
+              vars: { PAL: ['paralelepipedo', 'computador', 'engenharia', 'bicicleta'] }
             }
           ]
         },
@@ -359,40 +527,89 @@ print(idade + 1)`,
             },
             {
               t: 'escolha',
-              p: 'O que input devolve quando a pessoa digita 42?',
+              p: 'O que `input` devolve quando a pessoa digita 42?',
               ops: ['O texto "42"', 'O número 42', 'Nada'],
               c: 0,
               exp: 'Para virar número, use int() ou float().'
             },
             {
+              t: 'escolha',
+              p: 'Qual função converte o texto "3.5" em número com ponto?',
+              ops: ['float()', 'int()', 'str()'],
+              c: 0,
+              exp: 'int("3.5") daria erro: int só aceita números inteiros.'
+            },
+            {
+              t: 'complete',
+              p: 'Complete para converter a idade digitada em número inteiro',
+              code: 'idade = ___(input("Idade: "))',
+              bank: ['int', 'str', 'print', 'len'],
+              c: ['int'],
+              exp: 'int transforma o texto num número inteiro.'
+            },
+            {
               t: 'codigo',
-              p: 'Peça o nome com input("Qual é o seu nome? ") e cumprimente: Olá, nome!',
+              p: 'Peça o nome com `input("Qual é o seu nome? ")` e cumprimente: Olá, nome!',
               start: `# peça o nome e mostre o cumprimento
 `,
-              saida: `Qual é o seu nome? Maria
-Olá, Maria!`,
               sol: `nome = input("Qual é o seu nome? ")
 print(f"Olá, {nome}!")`,
               dica: 'Guarde o que input devolve numa variável e use uma f-string.',
               exp: 'Repare que a pergunta e o que foi digitado aparecem na saída.',
-              entrada: ['Maria']
+              entrada: ['{NOME}'],
+              vars: { NOME: ['Ana', 'Bruno', 'Carla', 'Davi', 'Elis', 'Fábio', 'Gal', 'Hugo'] }
             },
             {
               t: 'codigo',
-              p: 'Este programa deveria somar dois números, mas mostra 75. Conserte',
+              p: 'Este programa deveria somar dois números, mas junta os dois como texto. Conserte',
               start: `a = input("Primeiro número: ")
 b = input("Segundo número: ")
 print(a + b)
 `,
-              saida: `Primeiro número: 7
-Segundo número: 5
-12`,
               sol: `a = int(input("Primeiro número: "))
 b = int(input("Segundo número: "))
 print(a + b)`,
               dica: 'Converta cada input com int().',
               exp: 'Agora o + soma números, e não junta textos.',
-              entrada: ['7', '5']
+              entrada: ['{A}', '{B}'],
+              vars: { A: { de: 2, ate: 50 }, B: { de: 2, ate: 50 } }
+            },
+            {
+              t: 'codigo',
+              p: 'Peça um número com `int(input("Número: "))` e mostre o dobro dele',
+              start: `# peça o número
+`,
+              sol: `n = int(input("Número: "))
+print(n * 2)`,
+              dica: 'Converta com int e multiplique por 2.',
+              exp: 'Sempre que for fazer conta com o que foi digitado, converta.',
+              entrada: ['{N}'],
+              vars: { N: { de: 2, ate: 99 } }
+            },
+            {
+              t: 'codigo',
+              p: 'Peça a largura e o comprimento de uma sala, em metros, com `float(input(...))`, e mostre a área',
+              start: `# largura = float(input("Largura: "))
+`,
+              sol: `largura = float(input("Largura: "))
+comprimento = float(input("Comprimento: "))
+print(largura * comprimento)`,
+              dica: 'Duas entradas convertidas com float e a multiplicação.',
+              exp: 'float aceita medidas com ponto, como 3.5.',
+              entrada: ['{L}', '{M}'],
+              vars: { L: { de: 2, ate: 6, passo: 0.5 }, M: { de: 3, ate: 8, passo: 0.5 } }
+            },
+            {
+              t: 'codigo',
+              p: 'Peça a temperatura com `float(input("Temperatura em °C: "))` e mostre em Fahrenheit (C × 1.8 + 32), com 1 casa',
+              start: `# peça a temperatura
+`,
+              sol: `t = float(input("Temperatura em °C: "))
+print(round(t * 1.8 + 32, 1))`,
+              dica: 'Converta, faça a conta e arredonde com round(..., 1).',
+              exp: 'Os Estados Unidos ainda usam Fahrenheit no dia a dia.',
+              entrada: ['{T}'],
+              vars: { T: { de: -10, ate: 40 } }
             }
           ]
         }

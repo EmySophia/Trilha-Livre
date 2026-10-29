@@ -27,7 +27,8 @@ nivel({
                 },
                 {
                   tabela: {
-                    codigo: [0, 2], cab: ['Tipo', 'O que quer dizer', 'Exemplo'],
+                    codigo: [0, 2],
+                    cab: ['Tipo', 'O que quer dizer', 'Exemplo'],
                     linhas: [
                       [
                         'SyntaxError',
@@ -79,6 +80,16 @@ x();`,
               exp: 'x é um número, não uma função. Não dá para chamar.'
             },
             {
+              t: 'escolha',
+              p: 'Qual erro este código causa?',
+              ops: ['TypeError', 'SyntaxError', 'ReferenceError'],
+              c: 0,
+              exp: 'Mudar uma const dá TypeError: “Assignment to constant variable”.',
+              code: `const total = 10;
+total = 20;`,
+              mono: true
+            },
+            {
               t: 'codigo',
               p: 'Este código tem um erro. Conserte para mostrar: Total: 40',
               start: `let preco = 50;
@@ -91,6 +102,20 @@ console.log("Total: " + (preco - Desconto));
 let desconto = 10;
 console.log("Total: " + (preco - desconto));`,
               exp: 'Desconto com D maiúsculo não é a mesma variável que desconto.'
+            },
+            {
+              t: 'codigo',
+              p: 'Conserte o erro de escrita para mostrar a soma de a e b',
+              start: `let a = {A};
+let b = {B};
+console.log(a + b;
+`,
+              sol: `let a = {A};
+let b = {B};
+console.log(a + b);`,
+              dica: 'Falta fechar um parêntese.',
+              exp: 'Parêntese sem fechar é SyntaxError: o código nem começa a rodar.',
+              vars: { A: { de: 1, ate: 50 }, B: { de: 1, ate: 50 } }
             }
           ]
         },
@@ -172,6 +197,46 @@ console.log(media([6, 8, 10]));
 }
 console.log(media([6, 8, 10]));`,
               exp: 'O laço começava em 1 e pulava o primeiro item. Off-by-one de novo.'
+            },
+            {
+              t: 'codigo',
+              p: 'somar(n) deveria somar de 1 até n, mas está deixando o último de fora. Conserte',
+              start: `function somar(n) {
+  let s = 0;
+  for (let i = 1; i < n; i++) s += i;
+  return s;
+}
+console.log(somar({N}));
+`,
+              sol: `function somar(n) {
+  let s = 0;
+  for (let i = 1; i <= n; i++) s += i;
+  return s;
+}
+console.log(somar({N}));`,
+              dica: 'É um erro de off-by-one: olhe o < do for.',
+              exp: 'Com <=, o próprio n entra na soma.',
+              vars: { N: { de: 5, ate: 50 } }
+            },
+            {
+              t: 'codigo',
+              p: 'O código deveria contar as notas 6 ou mais, mas está contando a menos. Conserte',
+              start: `const notas = {L};
+let aprovados = 0;
+for (const n of notas) {
+  if (n > 6) aprovados++;
+}
+console.log(aprovados);
+`,
+              sol: `const notas = {L};
+let aprovados = 0;
+for (const n of notas) {
+  if (n >= 6) aprovados++;
+}
+console.log(aprovados);`,
+              dica: 'Quem tirou exatamente 6 está ficando de fora.',
+              exp: '> e >= diferem justamente no valor da fronteira.',
+              vars: { L: ['[6, 7, 5, 6, 9]', '[4, 6, 8, 6]', '[6, 6, 3, 10]'] }
             }
           ]
         },
@@ -225,6 +290,17 @@ teste("dobro de -2", dobro(-2), -4);`
               exp: 'Cobre par, ímpar, zero e negativo.'
             },
             {
+              t: 'escolha',
+              p: 'maior(lista) passa em todos os testes com números positivos. Que teste ainda vale fazer?',
+              ops: [
+                'Uma lista só com números negativos',
+                'Outra lista com números positivos',
+                'Nenhum, já está testado'
+              ],
+              c: 0,
+              exp: 'Se a função começa supondo que o maior é 0, ela erra com negativos: é um caso de borda.'
+            },
+            {
               t: 'codigo',
               p: 'Escreva ehPar(n) para que todos os testes mostrem OK',
               start: `function teste(nome, obtido, esperado) {
@@ -255,6 +331,40 @@ teste("0 é par", ehPar(0), true);
 teste("7 é ímpar", ehPar(7), false);
 teste("-4 é par", ehPar(-4), true);`,
               exp: 'Escrever o teste antes da função tem nome: TDD, desenvolvimento guiado por testes.'
+            },
+            {
+              t: 'codigo',
+              p: 'Escreva maiorDaLista(lista) para todos os testes mostrarem OK',
+              start: `function teste(nome, obtido, esperado) {
+  console.log((obtido === esperado ? "OK " : "FALHOU ") + nome);
+}
+
+function maiorDaLista(lista) {
+  
+}
+
+teste("positivos", maiorDaLista([3, 9, 2]), 9);
+teste("negativos", maiorDaLista([-5, -2, -8]), -2);
+teste("um só", maiorDaLista([{A}]), {A});
+`,
+              sol: `function teste(nome, obtido, esperado) {
+  console.log((obtido === esperado ? "OK " : "FALHOU ") + nome);
+}
+
+function maiorDaLista(lista) {
+  let maior = lista[0];
+  for (const n of lista) {
+    if (n > maior) maior = n;
+  }
+  return maior;
+}
+
+teste("positivos", maiorDaLista([3, 9, 2]), 9);
+teste("negativos", maiorDaLista([-5, -2, -8]), -2);
+teste("um só", maiorDaLista([{A}]), {A});`,
+              dica: 'Comece com o primeiro item da lista, e não com 0.',
+              exp: 'Começando com lista[0], os negativos funcionam.',
+              vars: { A: { de: -20, ate: 20 } }
             }
           ]
         },
@@ -329,6 +439,20 @@ if (x = 10) {
               exp: 'x = 10 guarda 10 em x, e 10 conta como verdadeiro. Era para ser ===.'
             },
             {
+              t: 'escolha',
+              p: 'O que aparece no console?',
+              code: `let x = 5;
+if (x = 10) {
+  console.log("dez");
+} else {
+  console.log("não é dez");
+}`,
+              ops: ['dez', 'não é dez', 'Erro'],
+              c: 0,
+              mono: true,
+              exp: 'O = guarda 10 em x, e 10 conta como verdadeiro no if. O certo seria ===.'
+            },
+            {
               t: 'codigo',
               p: 'categoria(8) deveria dar "criança", mas dá "adulto". Conserte',
               start: `function categoria(idade) {
@@ -359,6 +483,29 @@ console.log(categoria(8));
 console.log(categoria(15));
 console.log(categoria(30));`,
               exp: 'Sem o return, a função seguia até o fim e devolvia "adulto".'
+            },
+            {
+              t: 'codigo',
+              p: 'Conserte para a lista original não mudar: a primeira linha deve mostrar a original e a segunda, a ordenada',
+              start: `const original = {L};
+const ordenada = original.sort((a, b) => a - b);
+console.log(original);
+console.log(ordenada);
+`,
+              sol: `const original = {L};
+const ordenada = [...original].sort((a, b) => a - b);
+console.log(original);
+console.log(ordenada);`,
+              dica: 'Copie antes de ordenar: [...original].',
+              exp: 'O sort muda a própria lista; a cópia protege a original.',
+              vars: {
+                L: [
+                  '[3, 8, 5, 12, 7]',
+                  '[10, 4, 7, 2, 9]',
+                  '[6, 15, 2, 11, 4]',
+                  '[20, 13, 8, 17, 1]'
+                ]
+              }
             }
           ]
         },
@@ -440,6 +587,21 @@ try {
               exp: 'try e catch andam sempre juntos.'
             },
             {
+              t: 'escolha',
+              p: 'Quantas linhas este código mostra?',
+              ops: ['2', '3', '1'],
+              c: 0,
+              exp: 'Depois do throw, o resto do try é pulado e o catch roda.',
+              code: `try {
+  console.log("a");
+  throw new Error("ops");
+  console.log("b");
+} catch (e) {
+  console.log(e.message);
+}`,
+              mono: true
+            },
+            {
               t: 'codigo',
               p: 'Faça dividir(a, b) lançar o erro "Divisão por zero" quando b for 0',
               start: `function dividir(a, b) {
@@ -466,6 +628,33 @@ try {
   console.log("Erro: " + erro.message);
 }`,
               exp: 'Sem o throw, 1 / 0 daria Infinity, um valor que ninguém espera numa conta de dinheiro.'
+            },
+            {
+              t: 'codigo',
+              p: 'Faça idadeValida(i) lançar o erro "Idade inválida" se i for negativa, e devolver i se não for',
+              start: `function idadeValida(i) {
+  
+}
+try {
+  console.log(idadeValida({A}));
+  console.log(idadeValida(-{B}));
+} catch (erro) {
+  console.log("Erro: " + erro.message);
+}
+`,
+              sol: `function idadeValida(i) {
+  if (i < 0) throw new Error("Idade inválida");
+  return i;
+}
+try {
+  console.log(idadeValida({A}));
+  console.log(idadeValida(-{B}));
+} catch (erro) {
+  console.log("Erro: " + erro.message);
+}`,
+              dica: 'if (i < 0) throw new Error("Idade inválida");',
+              exp: 'Quem chamou a função decide o que fazer com o erro.',
+              vars: { A: { de: 1, ate: 90 }, B: { de: 1, ate: 20 } }
             }
           ]
         }

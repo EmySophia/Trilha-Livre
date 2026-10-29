@@ -78,6 +78,43 @@ console.log(dobro(4));`,
               p: 'Monte o programa que mostra a área de um quadrado de lado 3',
               lines: ['function area(l) {', '  return l * l;', '}', 'console.log(area(3));'],
               exp: 'Primeiro a função é criada, depois ela é usada.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que aparece no console?',
+              code: `function triplo(n) {
+  return n * 3;
+}
+console.log(triplo({A}) + 1);`,
+              ops: ['{= A * 3 + 1 }', '{= (A + 1) * 3 }', '{= A * 3 }'],
+              c: 0,
+              mono: true,
+              exp: 'A função devolve {= A * 3 }, e o + 1 é feito depois.',
+              vars: { A: { de: 2, ate: 20 } }
+            },
+            {
+              t: 'codigo',
+              p: 'Crie a função areaRetangulo(base, altura) e mostre areaRetangulo({B}, {H})',
+              start: '',
+              sol: `function areaRetangulo(base, altura) {
+  return base * altura;
+}
+console.log(areaRetangulo({B}, {H}));`,
+              dica: 'function, dois parâmetros e return base * altura.',
+              exp: 'Com a função pronta, calcular outra área é só chamar de novo.',
+              vars: { B: { de: 2, ate: 20 }, H: { de: 2, ate: 20 } }
+            },
+            {
+              t: 'codigo',
+              p: 'Crie saudacao(nome), que devolve "Bom dia, NOME!", e mostre saudacao("{NOME}")',
+              start: '',
+              sol: `function saudacao(nome) {
+  return \`Bom dia, \${nome}!\`;
+}
+console.log(saudacao("{NOME}"));`,
+              dica: 'Use return com crases.',
+              exp: 'A função devolve o texto; quem mostra é o console.log de fora.',
+              vars: { NOME: ['Ana', 'Bruno', 'Carla', 'Davi', 'Elis', 'Fábio', 'Gal', 'Hugo'] }
             }
           ]
         },
@@ -141,6 +178,47 @@ false`,
 console.log(podeVotar(20));
 console.log(podeVotar(15));`,
               exp: 'Uma comparação já é um valor true ou false, então dá para devolvê-la direto.'
+            },
+            {
+              t: 'codigo',
+              p: 'Crie maior(a, b), que devolve o maior dos dois, e mostre maior({A}, {B})',
+              start: '',
+              sol: `function maior(a, b) {
+  if (a > b) return a;
+  return b;
+}
+console.log(maior({A}, {B}));`,
+              dica: 'Compare a com b e devolva o maior.',
+              exp: 'O return termina a função: o segundo return só roda se o primeiro não rodou.',
+              vars: { A: { de: 1, ate: 99 }, B: { de: 1, ate: 99 } },
+              se: 'A !== B'
+            },
+            {
+              t: 'codigo',
+              p: 'Crie contarAte(n), que mostra os números de 1 até n, e chame contarAte({N})',
+              start: '',
+              sol: `function contarAte(n) {
+  for (let i = 1; i <= n; i++) {
+    console.log(i);
+  }
+}
+contarAte({N});`,
+              dica: 'Um for dentro da função, usando o parâmetro n.',
+              exp: 'Essa função mostra em vez de devolver: por isso é chamada sem console.log.',
+              vars: { N: { de: 3, ate: 8 } }
+            },
+            {
+              t: 'codigo',
+              p: 'Crie ehPositivo(n), que devolve true se n for maior que zero. Mostre ehPositivo({A}) e depois ehPositivo(-{B})',
+              start: '',
+              sol: `function ehPositivo(n) {
+  return n > 0;
+}
+console.log(ehPositivo({A}));
+console.log(ehPositivo(-{B}));`,
+              dica: 'A comparação n > 0 já é true ou false: dá para devolver direto.',
+              exp: 'return n > 0 é mais curto que um if com dois returns.',
+              vars: { A: { de: 1, ate: 50 }, B: { de: 1, ate: 50 } }
             }
           ]
         }
@@ -218,6 +296,20 @@ console.log(total);`,
               exp: 'Na arrow function, o que vem depois da seta é devolvido automaticamente.'
             },
             {
+              t: 'escolha',
+              p: 'O que aparece no console?',
+              code: `let x = 10;
+function muda() {
+  let x = 20;
+  return x;
+}
+console.log(muda(), x);`,
+              ops: ['20 10', '20 20', '10 10'],
+              c: 0,
+              mono: true,
+              exp: 'O x de dentro da função é outra variável, que só existe lá dentro.'
+            },
+            {
               t: 'codigo',
               p: 'Crie a arrow function areaRet(b, h) e mostre areaRet(4, 5)',
               start: '',
@@ -226,6 +318,26 @@ console.log(total);`,
               sol: `const areaRet = (b, h) => b * h;
 console.log(areaRet(4, 5));`,
               exp: 'Curta e direta.'
+            },
+            {
+              t: 'codigo',
+              p: 'Crie a arrow function quadrado(n) e mostre quadrado({A})',
+              start: '',
+              sol: `const quadrado = n => n * n;
+console.log(quadrado({A}));`,
+              dica: 'const quadrado = n => n * n;',
+              exp: 'Com um parâmetro só, nem precisa de parênteses.',
+              vars: { A: { de: 2, ate: 30 } }
+            },
+            {
+              t: 'codigo',
+              p: 'Escreva soma3(a, b, c) como arrow function de uma linha e mostre soma3({A}, {B}, {D})',
+              start: '',
+              sol: `const soma3 = (a, b, c) => a + b + c;
+console.log(soma3({A}, {B}, {D}));`,
+              dica: 'Com mais de um parâmetro, eles vão entre parênteses.',
+              exp: 'Sem chaves, o resultado da conta é devolvido sozinho.',
+              vars: { A: { de: 1, ate: 20 }, B: { de: 1, ate: 20 }, D: { de: 1, ate: 20 } }
             }
           ]
         },
@@ -289,6 +401,28 @@ console.log(precos.reduce((soma, p) => soma + p, 0)); // 75`
               exp: 'reduce reduz a lista a um valor: 12.'
             },
             {
+              t: 'escolha',
+              p: 'O que aparece no console?',
+              code: 'console.log({L}.filter(n => n > {K}));',
+              ops: [
+                '{= JSON.stringify(JSON.parse(L).filter(n => n > K)) }',
+                '{= JSON.stringify(JSON.parse(L).filter(n => n <= K)) }',
+                '{= JSON.parse(L).filter(n => n > K).length }'
+              ],
+              c: 0,
+              mono: true,
+              exp: 'filter fica só com os que passam no teste.',
+              vars: {
+                L: [
+                  '[3, 8, 5, 12, 7]',
+                  '[10, 4, 7, 2, 9]',
+                  '[6, 15, 2, 11, 4]',
+                  '[20, 13, 8, 17, 1]'
+                ],
+                K: { de: 5, ate: 10 }
+              }
+            },
+            {
               t: 'codigo',
               p: 'Use map para dar 10% de desconto em cada preço e mostre a lista nova',
               start: `let precos = [10, 25, 40];
@@ -298,6 +432,42 @@ console.log(precos.reduce((soma, p) => soma + p, 0)); // 75`
               sol: `let precos = [10, 25, 40];
 console.log(precos.map(p => p * 0.9));`,
               exp: 'A lista original continua igual; map cria uma nova.'
+            },
+            {
+              t: 'codigo',
+              p: 'Use filter para ficar só com os números pares e mostre a lista nova',
+              start: `const nums = {L};
+`,
+              sol: `const nums = {L};
+console.log(nums.filter(n => n % 2 === 0));`,
+              dica: 'filter(n => n % 2 === 0)',
+              exp: 'A lista original continua igual: filter cria outra.',
+              vars: {
+                L: [
+                  '[3, 8, 5, 12, 7]',
+                  '[10, 4, 7, 2, 9]',
+                  '[6, 15, 2, 11, 4]',
+                  '[20, 13, 8, 17, 1]'
+                ]
+              }
+            },
+            {
+              t: 'codigo',
+              p: 'Use reduce para somar os preços e mostre o total',
+              start: `const precos = {L};
+`,
+              sol: `const precos = {L};
+console.log(precos.reduce((soma, p) => soma + p, 0));`,
+              dica: 'reduce((soma, p) => soma + p, 0)',
+              exp: 'O 0 é o começo da soma.',
+              vars: {
+                L: [
+                  '[3, 8, 5, 12, 7]',
+                  '[10, 4, 7, 2, 9]',
+                  '[6, 15, 2, 11, 4]',
+                  '[20, 13, 8, 17, 1]'
+                ]
+              }
             }
           ]
         },
@@ -385,6 +555,40 @@ console.log(fib(10));
 }
 console.log(fib(10));`,
               exp: 'Essa versão é elegante, mas lenta para números grandes. No Nível 5 você vai entender por quê.'
+            },
+            {
+              t: 'codigo',
+              p: 'Escreva somaAte(n) recursiva, que soma de 1 até n, e mostre somaAte({N})',
+              start: `function somaAte(n) {
+  
+}
+console.log(somaAte({N}));
+`,
+              sol: `function somaAte(n) {
+  if (n <= 0) return 0;
+  return n + somaAte(n - 1);
+}
+console.log(somaAte({N}));`,
+              dica: 'Caso base: n <= 0 devolve 0. Senão, n + somaAte(n - 1).',
+              exp: 'É o fatorial com soma no lugar da multiplicação.',
+              vars: { N: { de: 5, ate: 100 } }
+            },
+            {
+              t: 'codigo',
+              p: 'Escreva potencia(b, e) recursiva, sem usar **, e mostre potencia({B}, {EX})',
+              start: `function potencia(b, e) {
+  
+}
+console.log(potencia({B}, {EX}));
+`,
+              sol: `function potencia(b, e) {
+  if (e === 0) return 1;
+  return b * potencia(b, e - 1);
+}
+console.log(potencia({B}, {EX}));`,
+              dica: 'Caso base: expoente 0 dá 1. Senão, b vezes potencia(b, e - 1).',
+              exp: 'b elevado a e é b vezes b elevado a e − 1.',
+              vars: { B: { de: 2, ate: 5 }, EX: { de: 2, ate: 8 } }
             }
           ]
         },
@@ -454,6 +658,20 @@ console.log(produtos[0].nome); // Cabo, o mais barato`
               exp: 'O 7 é maior que 5, e basta um.'
             },
             {
+              t: 'escolha',
+              p: 'O que aparece no console?',
+              code: `const idades = {L};
+console.log(idades.every(i => i >= 18));`,
+              ops: [
+                '{= JSON.parse(L).every(i => i >= 18) ? "true" : "false" }',
+                '{= JSON.parse(L).every(i => i >= 18) ? "false" : "true" }'
+              ],
+              c: 0,
+              mono: true,
+              exp: 'every só é true se todos passarem.',
+              vars: { L: ['[18, 25, 40]', '[17, 30, 22]', '[19, 18, 65]', '[12, 15, 50]'] }
+            },
+            {
               t: 'codigo',
               p: 'Ordene por preço e mostre o nome do mais barato e depois o do mais caro',
               start: `const produtos = [
@@ -474,6 +692,35 @@ produtos.sort((a, b) => a.preco - b.preco);
 console.log(produtos[0].nome);
 console.log(produtos[produtos.length - 1].nome);`,
               exp: 'É exatamente o que acontece quando você escolhe "menor preço" numa loja online.'
+            },
+            {
+              t: 'codigo',
+              p: 'Usando find, mostre o primeiro número da lista maior que {K}',
+              start: `const nums = [3, 8, 12, 5, 20, 7];
+`,
+              sol: `const nums = [3, 8, 12, 5, 20, 7];
+console.log(nums.find(n => n > {K}));`,
+              dica: 'find(n => n > {K})',
+              exp: 'find para no primeiro que passa.',
+              vars: { K: [4, 9, 10, 15] }
+            },
+            {
+              t: 'codigo',
+              p: 'Ordene do maior para o menor e mostre a lista',
+              start: `const pontos = {L};
+`,
+              sol: `const pontos = {L};
+console.log(pontos.sort((a, b) => b - a));`,
+              dica: 'sort((a, b) => b - a)',
+              exp: 'Trocando a ordem da subtração, inverte a ordenação.',
+              vars: {
+                L: [
+                  '[3, 8, 5, 12, 7]',
+                  '[10, 4, 7, 2, 9]',
+                  '[6, 15, 2, 11, 4]',
+                  '[20, 13, 8, 17, 1]'
+                ]
+              }
             }
           ]
         },
@@ -530,6 +777,19 @@ console.log(soma / somaPesos); // 750`
               exp: '(10 × 1 + 4 × 2) / (1 + 2) = 18 / 3 = 6. A média simples daria 7.'
             },
             {
+              t: 'escolha',
+              p: 'Notas 700 (peso {P1}) e 900 (peso {P2}). Qual é a média ponderada?',
+              ops: [
+                '{= ((700 * P1 + 900 * P2) / (P1 + P2)).toFixed(1) }',
+                '800.0',
+                '{= ((700 * P2 + 900 * P1) / (P1 + P2)).toFixed(1) }'
+              ],
+              c: 0,
+              exp: '(700 × {P1} + 900 × {P2}) ÷ ({P1} + {P2}).',
+              vars: { P1: [1, 2, 3], P2: [1, 2, 3] },
+              se: 'P1 !== P2'
+            },
+            {
               t: 'codigo',
               p: 'Complete mediaPonderada(notas, pesos) e mostre a nota para os dois cursos',
               start: `const notas = { linguagens: 600, humanas: 640, natureza: 560, matematica: 720, redacao: 900 };
@@ -560,6 +820,29 @@ function mediaPonderada(notas, pesos) {
 console.log("Engenharia: " + mediaPonderada(notas, engenharia).toFixed(1));
 console.log("Direito: " + mediaPonderada(notas, direito).toFixed(1));`,
               exp: 'Mesmas notas, resultados diferentes: os pesos mudam tudo. Uma função bem feita resolve para qualquer curso.'
+            },
+            {
+              t: 'codigo',
+              p: 'Mostre a média ponderada de matemática ({M}, peso {PM}) e redação ({R}, peso {PR}), com uma casa decimal',
+              start: `const notas = { matematica: {M}, redacao: {R} };
+const pesos = { matematica: {PM}, redacao: {PR} };
+`,
+              sol: `const notas = { matematica: {M}, redacao: {R} };
+const pesos = { matematica: {PM}, redacao: {PR} };
+let soma = 0, somaPesos = 0;
+for (const area in notas) {
+  soma += notas[area] * pesos[area];
+  somaPesos += pesos[area];
+}
+console.log((soma / somaPesos).toFixed(1));`,
+              dica: 'É o laço for...in da leitura, com toFixed(1) no fim.',
+              exp: 'O mesmo código serve para quantas áreas existirem.',
+              vars: {
+                M: { de: 500, ate: 900, passo: 20 },
+                R: { de: 500, ate: 980, passo: 20 },
+                PM: [2, 3, 4],
+                PR: [1, 2]
+              }
             }
           ]
         }

@@ -8,6 +8,7 @@ const IC = {
   flame: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 3.6 5.5 6 5.5 11a5.5 5.5 0 0 1-11 0c0-2.6 1.4-4.3 2.6-5.6.3 1.6 1 2.7 2.1 3.2C10.6 7.6 11.4 4.6 12 2z"/></svg>',
   check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
   lock: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 10V8a5 5 0 0 1 10 0v2h1a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1zm2 0h6V8a3 3 0 0 0-6 0z"/></svg>',
+  conta: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7.5 4v7M4 7.5h7M13.5 7.5h6.5M4.8 14.8l5.4 5.4M10.2 14.8l-5.4 5.4M13.5 15.5h6.5M13.5 19.5h6.5"/></svg>',
   livro: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10 5 6.5 4.6 3.5 5v13c3-.4 6.5 0 8.5 1.5 2-1.5 5.5-1.9 8.5-1.5V5c-3-.4-6.5 0-8.5 1.5zM12 6.5v13"/></svg>',
   externo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
   code: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5"/></svg>',
@@ -25,11 +26,13 @@ const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { c
 const pick = a => a[Math.floor(Math.random() * a.length)];
 const norm = s => String(s).replace(/\r/g, '').split('\n').map(l => l.trimEnd()).join('\n').trim();
 // `crases` no meio de um texto viram <code>
-const inlineMd = s => esc(s).replace(/`([^`]+)`/g, '<code>$1</code>');
+// `código` vira código; $$3/4$$ vira uma fórmula (js/numeros.js)
+const inlineMd = s => esc(s).split(/(`[^`]+`)/g).map(p => /^`[^`]+`$/.test(p) ? `<code>${p.slice(1, -1)}</code>`
+  : typeof formula === 'function' ? p.replace(/\$\$(.+?)\$\$/g, (_, f) => formula(f)) : p).join('');
 
 // destaque de sintaxe: JavaScript aqui; HTML e CSS em js/web.js; Python em js/python.js
 function hl(src, lang) {
-  if (lang === 'texto') return esc(src);
+  if (lang === 'texto' || lang === 'mat') return esc(src);
   if (lang === 'py' && typeof hlPy === 'function') return hlPy(src);
   if (lang === 'shell') return hlShell(src);
   if (lang === 'html' && typeof hlHtml === 'function') return hlHtml(src);
@@ -71,7 +74,8 @@ function novoEstado() {
     curso: null, // id do curso escolhido no catálogo
     projetos: {}, // páginas feitas nos projetos do curso de HTML e CSS: { id: { titulo, html, css, dia } }
     nivelamentos: {}, // resultado do teste de nivelamento por curso: { idDoCurso: { nivel, dia } }
-    biblioteca: {} // estante pessoal: { idDoLivro: { st: 'quero' | 'lendo' | 'lido', dia, nota } }
+    biblioteca: {}, // estante pessoal: { idDoLivro: { st: 'quero' | 'lendo' | 'lido', dia, nota } }
+    provas: {} // melhor nota no teste de cada unidade: { idDaUnidade: { nota, dia } }
   };
 }
 function load() {

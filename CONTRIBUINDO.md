@@ -45,7 +45,9 @@ Os `videos` aparecem na trilha, embaixo do título do nível, numa caixa que abr
 
 Cursos que não são de programação, como os de política, levam `linguagem: 'texto'` no catálogo. Neles, o terminal some, os quadros de texto quebram a linha, o exercício `complete` aparece como "Complete a frase" e o `ordene` como "Coloque em ordem". Os cursos Introdução ao marxismo, O Capital e Leitura guiada de O Capital são bons exemplos.
 
-Os tipos de exercício atuais (escolha, completar, montar, escrever código e montar página) já servem para matemática e idiomas: exercícios de código podem virar contas ou frases para traduzir em escolha e completar. Se um curso precisar de um tipo novo, como áudio para idiomas, abra uma issue antes para combinarmos como fazer.
+Cursos de matemática e de ciências levam `linguagem: 'mat'`: funcionam como os de texto, com um ícone de contas na trilha, e usam a resposta numérica e as fórmulas (veja abaixo). O curso Matemática básica é o exemplo.
+
+Se um curso precisar de um tipo de exercício novo, como áudio para idiomas, abra uma issue antes para combinarmos como fazer.
 
 ## Formato de uma lição
 
@@ -146,7 +148,54 @@ A correção compara a saída do console com `saida`. Listas e objetos aparecem 
   sol: 'nome = input("Qual é o seu nome? ")\nprint(f"Olá, {nome}!")' }
 ```
 
-Na saída, aparece a pergunta do `input` seguida do que foi digitado, como num terminal. O programa pode criar e ler arquivos com `open()`: eles ficam numa memória temporária durante a execução. Exemplos de Python nas leituras rodam no validador; os que usam `input()` ou bibliotecas de fora, como NumPy, precisam de `semTeste: true`.
+Na saída, aparece a pergunta do `input` seguida do que foi digitado, como num terminal. O programa pode criar e ler arquivos com `open()` e `pathlib`: cada execução começa numa pasta vazia, que some no fim. Exemplos de Python nas leituras rodam no validador; os que usam `input()` precisam de `semTeste: true`.
+
+NumPy e Matplotlib também funcionam: na primeira vez que um código importa uma delas, o app baixa a biblioteca e guarda para as próximas. Os gráficos de `plt.show()` aparecem como imagem embaixo da saída. Num exercício que pede um gráfico, use `grafico: true`: além da saída certa, a correção exige que o código desenhe pelo menos um gráfico.
+
+### Resposta numérica (`numero`)
+
+Para matemática e ciências. A pessoa faz a conta e digita o resultado. O app aceita vírgula ou ponto nos decimais, ponto nos milhares (1.250,50), sinal de menos e frações como 3/4. No celular, uma barra com −, / e vírgula aparece junto do teclado numérico.
+
+```js
+{ t: 'numero', p: 'Quanto é 15% de 80?',
+  r: 12,                 // a resposta: um número, um texto como '3/4', ou uma expressão {= ...} com vars
+  prefixo: 'R$',         // opcional: aparece antes da caixa (R$)
+  unidade: 'cm',         // opcional: aparece depois da caixa (cm, m², %, °C...)
+  casas: 2,              // opcional: a resposta é arredondada com 2 casas, e vale qualquer valor que arredonde igual
+  tol: 0.01,             // opcional: margem de erro (sem casas nem tol, a resposta precisa ser exata)
+  fracao: true,          // opcional: exige uma fração irredutível, como 3/4 (r também precisa ser irredutível)
+  dica: 'Fica escondida atrás de "Ver uma dica".',
+  exp: 'Explicação mostrada depois da resposta.' }
+```
+
+Quando a pessoa erra, o app mostra a resposta certa no formato brasileiro (1.250,5). O validador confere se a resposta certa é um número e se ela mesma seria aceita.
+
+### Fórmulas
+
+Em qualquer texto (perguntas, opções, leituras, tabelas e linhas de `ordene` com `plain: true`), o que estiver entre `$$` e `$$` vira uma fórmula: `$$3/4$$` é uma fração empilhada, `$$x^2$$` e `$$2^(n+1)$$` são potências, `$$v_0$$` e `$$H_2O$$` têm índice, `$$sqrt(16)$$` é a raiz, `*` vira ·, `<=` vira ≤, `>=` vira ≥ e `!=` vira ≠. Os parênteses em volta do numerador, do denominador e do expoente somem: `$$(a+b)/2$$`. Para dividir sem empilhar, use ÷. Os `$$` andam sempre em pares, e `R$` sozinho continua sendo dinheiro.
+
+### Gráficos e figuras (`plano`)
+
+O app desenha gráficos no plano cartesiano e figuras de geometria, sem imagens. O mesmo `plano` serve como bloco de uma leitura (`{ plano: { ... } }`) e como campo de qualquer exercício, e aí o desenho aparece embaixo da pergunta:
+
+```js
+{ t: 'numero', p: 'Pelo gráfico, qual é o y do vértice?', r: '{K}',
+  plano: {
+    x: [-6, 6], y: [-10, 10],                        // o pedaço do plano que aparece
+    f: ['(x - ({H}))^2 + ({K})'],                    // funções de x: ^ é potência; vale sqrt, abs, log10, sin, PI...
+    pontos: [['{H}', '{K}']],                        // [x, y] ou [x, y, 'rótulo']
+    alt: 'Parábola com a boca para cima'             // o que um leitor de tela fala
+  },
+  vars: { H: { de: -3, ate: 3 }, K: { de: -6, ate: 6 } } }
+```
+
+- `f` aceita textos ou objetos `{ e: 'x^2', nome: 'f', em: 2, cor: 0 }`: `nome` escreve o nome perto do fim da curva (ou no x de `em`), e `cor` (0, 1 ou 2) deixa duas curvas da mesma cor, como as duas metades de uma figura. Sem `cor`, cada curva ganha uma cor. `-x^2` é o oposto de x², como na matemática.
+- `circulos: [{ centro: [2, 0], raio: 2 }]` desenha circunferências.
+- `segmentos: [{ de: [0, 0], ate: [3, 4], rotulo: 'd = 5', tracejado: true }]` liga dois pontos.
+- `poligonos: [{ pts: [[0, 0], [4, 0], [4, 3]], lados: ['4', '3', '5'], vertices: ['α'], reto: 1 }]` desenha um polígono. Os rótulos dos lados ficam do lado de fora (o lado 0 vai do ponto 0 ao ponto 1, e assim por diante), e `reto` marca o ângulo reto no vértice dessa posição.
+- `eixos: false` tira os eixos e a grade, e usa a mesma escala na horizontal e na vertical: é o jeito de fazer figuras de geometria sem distorcer.
+
+Os valores sorteados em `vars` funcionam dentro do `plano`, como no exemplo. Escolha `x` e `y` para que o que importa caia sobre a grade: o app escolhe o espaço entre as marcas (0,5, 1, 2, 5, 10...) pelo tamanho do pedaço e, quando as marcas vão de 2 em 2 ou de 5 em 5, põe linhas finas de 1 em 1 se couber. Num gráfico normal, a escala de x e a de y podem ser diferentes; para um círculo ficar redondo, use faixas na proporção de 4 para 3, como `x: [-4, 4], y: [-3, 3]`. O validador avisa sobre funções com erro de escrita ou que não aparecem no pedaço escolhido.
 
 ### Digitar um comando (`comando`)
 
@@ -214,9 +263,34 @@ Nas leituras, o bloco `{ web: '<h1>Oi</h1>', css: 'h1 { color: red; }' }` mostra
 
 Para um site com várias páginas, cada etapa usa o mesmo `id` e diz qual arquivo ela monta: `projeto: { id: 'biblioteca', titulo: 'Site da biblioteca', arquivo: 'atividades.html', herdaCss: true }`. Com `herdaCss`, a aba CSS já começa com o CSS que a pessoa escreveu na etapa anterior, porque o site tem um `estilo.css` só. O app junta as páginas, o `estilo.css` e as imagens usadas num arquivo .zip para baixar.
 
+## Exercícios que mudam (`vars`)
+
+Um exercício com `vars` ganha valores sorteados cada vez que aparece. Assim, a pessoa pratica de novo sem decorar a resposta, e no teste da unidade os números são outros:
+
+```js
+{ t: 'codigo', p: 'Mostre a tabuada do {N}',
+  start: 'n = {N}\n',
+  sol: 'n = {N}\nfor i in range(1, 11):\n    print(f"{n} x {i} = {n * i}")',
+  vars: { N: { de: 2, ate: 9 } } }
+```
+
+| Forma | Sorteia |
+|---|---|
+| `{ de: 2, ate: 9 }` | um inteiro de 2 a 9 |
+| `{ de: 0.5, ate: 3, passo: 0.5 }` | de 0.5 a 3, de meio em meio |
+| `['Ana', 'Bia', 'Caio']` | um item da lista (pode ser um texto com código, como `'[3, 8, 5]'`) |
+
+Nos textos do exercício (`p`, `start`, `sol`, `ops`, `bank`, `c`, `lines`, `entrada`, `dica`, `exp` e outros), `{N}` vira o valor sorteado e `{= expressão}` é calculada em JavaScript com as variáveis, como `{= A + B }`. Nas expressões dá para usar `fix(x, casas)`, que fixa as casas decimais, `br(x)` ou `br(x, casas)`, que escreve o número do jeito brasileiro (1.250,5), `pyf(x)`, que mostra um número como o Python mostra um float (3 vira 3.0), `mdc(a, b)`, `mmc(a, b)`, `fr(n, d)`, que dá a fração irredutível como texto ("3/4"), `sn(n)`, que põe o sinal na frente ("+ 5", "- 5"), `cf(a, 'x')` e `tm(a, 'x')`, que escrevem um termo sem o coeficiente 1 ("x", "-x", "+ 3x"), `pr(n)`, que põe um número negativo entre parênteses ("(-5)"), e tudo do `Math`. Para recusar alguns sorteios, escreva a condição em `se`, em JavaScript: `se: 'A !== B'`.
+
+Use nomes de variáveis em MAIÚSCULAS. Assim eles não se confundem com as chaves das f-strings do Python nem dos textos do JavaScript: `{N}` é trocado, e `{n}` fica como está. Num exercício `codigo` com `vars`, não escreva `saida`: a saída esperada é a da `sol`, rodada na hora com os mesmos valores. Numa `escolha`, a resposta certa também pode depender dos valores, como `ops: ['{= A * B }', '{= A + B }', '{= A * B + 1 }']`. Se um sorteio deixar duas opções iguais, o app sorteia de novo. O validador confere 12 sorteios de cada exercício.
+
+## Teste da unidade
+
+Toda unidade com pelo menos 2 lições e 6 exercícios ganha, no fim da trilha, um teste com até 10 perguntas das lições dela, de preferência as que mudam de valores. O teste libera quando a pessoa termina as lições da unidade. Cada pergunta vale uma vez: com 70% de acertos de primeira, a unidade fica dominada. Os erros entram na revisão, como nas lições. Não é preciso escrever nada para ganhar o teste, basta a unidade ter exercícios suficientes.
+
 ## Desafios da prática livre
 
-Ficam no `pratica.js` do curso, dentro de `desafios('<id-do-curso>', [ ... ])`. Mesmo formato de um item `codigo` (ou de um item `web`, com `t: 'web'`), mais estes campos:
+Ficam no `pratica.js` do curso, dentro de `desafios('<id-do-curso>', [ ... ])`. Mesmo formato de um exercício das lições, mais estes campos. Sem `t`, o desafio é de código; com `t: 'web'` ou `t: 'numero'`, é de página ou de resposta numérica. Desafios com `vars` mostram, na lista, os mesmos valores que vão aparecer quando a pessoa abrir:
 
 ```js
 { id: 'p-nome-curto', dif: 'facil', titulo: 'Nome do desafio', temas: ['laços', 'textos'], p: '...', start: '...', saida: '...', dica: '...', sol: '...', exp: '...' }

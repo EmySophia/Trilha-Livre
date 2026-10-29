@@ -464,5 +464,169 @@ console.log(achatar([[], ["a"]]));
 console.log(achatar([[1, 2], [3], [4, 5, 6]]));
 console.log(achatar([[], ["a"]]));`,
     exp: 'Desafio extra: faça funcionar com listas dentro de listas dentro de listas, usando recursão.'
+  },
+  {
+    id: 'p-media-lista',
+    dif: 'facil',
+    titulo: 'Média da lista',
+    temas: ['listas', 'laços'],
+    p: 'Mostre a média dos números da lista, com uma casa decimal',
+    start: `const nums = {L};
+`,
+    sol: `const nums = {L};
+let soma = 0;
+for (const n of nums) soma += n;
+console.log((soma / nums.length).toFixed(1));`,
+    dica: 'Some, divida por nums.length e use toFixed(1).',
+    exp: 'A média resume uma lista inteira num número só.',
+    vars: { L: ['[3, 8, 5, 12, 7]', '[10, 4, 7, 2, 9]', '[6, 15, 2, 11, 4]', '[20, 13, 8, 17, 1]'] }
+  },
+  {
+    id: 'p-potencias2',
+    dif: 'facil',
+    titulo: 'Potências de 2',
+    temas: ['laços'],
+    p: 'Mostre as {N} primeiras potências de 2, começando em 1, uma por linha',
+    start: '',
+    sol: `let p = 1;
+for (let i = 0; i < {N}; i++) {
+  console.log(p);
+  p *= 2;
+}`,
+    dica: 'Comece com 1 e dobre a cada volta.',
+    exp: 'Potências de 2 aparecem em tudo na computação: 1024 bytes são 1 KB.',
+    vars: { N: { de: 5, ate: 12 } }
+  },
+  {
+    id: 'p-collatz',
+    dif: 'medio',
+    titulo: 'Conjectura de Collatz',
+    temas: ['laços', 'decisões'],
+    p: 'Começando em {N}: se o número for par, divida por 2; se for ímpar, faça 3n + 1. Mostre quantos passos leva até chegar a 1',
+    start: `let n = {N};
+let passos = 0;
+`,
+    sol: `let n = {N};
+let passos = 0;
+while (n !== 1) {
+  if (n % 2 === 0) n = n / 2;
+  else n = 3 * n + 1;
+  passos++;
+}
+console.log(passos);`,
+    dica: 'Um while até n chegar a 1, com um if para par ou ímpar.',
+    exp: 'Ninguém provou que todo número chega a 1, mas nenhum computador achou um que não chegue.',
+    vars: { N: { de: 6, ate: 99 } }
+  },
+  {
+    id: 'p-binario',
+    dif: 'medio',
+    titulo: 'Para binário',
+    temas: ['laços', 'textos'],
+    p: 'Mostre o número {N} em binário, sem usar toString(2)',
+    start: `let n = {N};
+`,
+    sol: `let n = {N};
+let bits = "";
+while (n > 0) {
+  bits = (n % 2) + bits;
+  n = Math.floor(n / 2);
+}
+console.log(bits);`,
+    dica: 'Divida por 2 e guarde os restos, de trás para frente.',
+    exp: 'É assim que o computador guarda números: em zeros e uns.',
+    vars: { N: { de: 5, ate: 1000 } }
+  },
+  {
+    id: 'p-cesar',
+    dif: 'medio',
+    titulo: 'Cifra de César',
+    temas: ['textos', 'laços'],
+    p: 'Troque cada letra pela que está {K} posições adiante no alfabeto (depois do z, volta para o a). Mantenha os espaços',
+    start: `const frase = "{FR}";
+const k = {K};
+`,
+    sol: `const frase = "{FR}";
+const k = {K};
+let cifrada = "";
+for (const c of frase) {
+  if (c === " ") cifrada += c;
+  else cifrada += String.fromCharCode((c.charCodeAt(0) - 97 + k) % 26 + 97);
+}
+console.log(cifrada);`,
+    dica: '"a".charCodeAt(0) é 97. Some k à posição da letra e use % 26 para dar a volta.',
+    exp: 'Júlio César usava k = 3. Hoje ela é quebrada em segundos: só existem 25 chaves.',
+    vars: {
+      K: { de: 2, ate: 25 },
+      FR: [
+        'ataque ao amanhecer',
+        'o rato roeu a roupa do rei',
+        'trilha livre',
+        'vamos estudar juntos'
+      ]
+    }
+  },
+  {
+    id: 'p-mmc',
+    dif: 'medio',
+    titulo: 'MMC',
+    temas: ['laços', 'funções'],
+    p: 'Escreva mmc(a, b), o menor múltiplo comum, e mostre mmc({A}, {B})',
+    start: `function mmc(a, b) {
+  
+}
+console.log(mmc({A}, {B}));
+`,
+    sol: `function mmc(a, b) {
+  let m = Math.max(a, b);
+  while (m % a !== 0 || m % b !== 0) m++;
+  return m;
+}
+console.log(mmc({A}, {B}));`,
+    dica: 'Comece no maior dos dois e suba até achar um número divisível pelos dois.',
+    exp: 'Com o MDC de Euclides, dá para fazer mais rápido: a × b ÷ mdc(a, b).',
+    vars: { A: { de: 4, ate: 20 }, B: { de: 4, ate: 20 } },
+    se: 'A !== B'
+  },
+  {
+    id: 'p-pascal',
+    dif: 'dificil',
+    titulo: 'Triângulo de Pascal',
+    temas: ['listas', 'laços aninhados'],
+    p: 'Mostre as {N} primeiras linhas do triângulo de Pascal, uma lista por linha',
+    start: '',
+    sol: `let linha = [1];
+for (let i = 0; i < {N}; i++) {
+  console.log(linha);
+  const nova = [1];
+  for (let j = 1; j < linha.length; j++) nova.push(linha[j - 1] + linha[j]);
+  nova.push(1);
+  linha = nova;
+}`,
+    dica: 'Cada número é a soma dos dois de cima. Toda linha começa e termina com 1.',
+    exp: 'As linhas do triângulo dão os coeficientes de (a + b) elevado a n.',
+    vars: { N: { de: 4, ate: 8 } }
+  },
+  {
+    id: 'p-sequencia',
+    dif: 'dificil',
+    titulo: 'Maior sequência',
+    temas: ['listas', 'laços'],
+    p: 'Mostre o tamanho da maior sequência de números iguais seguidos na lista',
+    start: `const l = {L};
+`,
+    sol: `const l = {L};
+let maior = 1, atual = 1;
+for (let i = 1; i < l.length; i++) {
+  if (l[i] === l[i - 1]) atual++;
+  else atual = 1;
+  if (atual > maior) maior = atual;
+}
+console.log(maior);`,
+    dica: 'Guarde o tamanho da sequência atual e o da maior. Quando o número muda, a atual volta para 1.',
+    exp: 'Esse padrão de “contador que reinicia” aparece muito em análise de dados.',
+    vars: {
+      L: ['[1, 1, 2, 2, 2, 3]', '[5, 5, 5, 5, 1, 5]', '[7, 8, 8, 9, 9, 9, 9]', '[4, 2, 2, 4, 4]']
+    }
   }
 ]);

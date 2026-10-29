@@ -61,11 +61,16 @@ const TECLAS_SHELL = [
   { l: ':', nome: 'dois-pontos' }, { l: '@', nome: 'arroba' }, { l: '_', nome: 'sublinhado' }, { l: '^', nome: 'circunflexo' },
   { l: '←', mover: -1, nome: 'cursor para a esquerda' }, { l: '→', mover: 1, nome: 'cursor para a direita' }
 ];
-const CONJUNTOS = { js: TECLAS, web: TECLAS_WEB, py: TECLAS_PY, shell: TECLAS_SHELL };
+// respostas numéricas: o teclado numérico do celular não tem sinal de menos nem barra
+const TECLAS_NUM = [
+  { l: '\u2212', ins: '-', nome: 'sinal de menos' }, { l: '/', nome: 'barra de fração' }, { l: ',', nome: 'vírgula' },
+  { l: '←', mover: -1, nome: 'cursor para a esquerda' }, { l: '→', mover: 1, nome: 'cursor para a direita' }
+];
+const CONJUNTOS = { js: TECLAS, web: TECLAS_WEB, py: TECLAS_PY, shell: TECLAS_SHELL, num: TECLAS_NUM };
 
 function tecladoHTML(alvo, conjunto) {
   const nome = CONJUNTOS[conjunto] ? conjunto : 'js';
-  return `<div class="teclas" role="toolbar" aria-label="Símbolos de código" data-alvo="${alvo}" data-conjunto="${nome}">${
+  return `<div class="teclas" role="toolbar" aria-label="${nome === 'num' ? 'Símbolos para a resposta' : 'Símbolos de código'}" data-alvo="${alvo}" data-conjunto="${nome}">${
     CONJUNTOS[nome].map((t, i) => `<button type="button" class="tecla" data-t="${i}" aria-label="${esc(t.nome)}">${esc(t.l)}</button>`).join('')}</div>`;
 }
 const teclaDe = b => CONJUNTOS[b.closest('.teclas').dataset.conjunto || 'js'][+b.dataset.t];

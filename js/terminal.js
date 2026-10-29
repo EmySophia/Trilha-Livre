@@ -163,11 +163,14 @@ async function tSubmit() {
 async function tSubmitPy(code) {
   tBusy = true;
   let aviso = null;
-  const r = await rodarPython(code, { repl: true, aoCarregar: () => { aviso = tLine('Preparando o Python. Na primeira vez ele é baixado da internet, o que pode levar alguns segundos.', 'info'); tScroll(); } });
+  const r = await rodarPython(code, { repl: true,
+    aoCarregar: () => { aviso = tLine('Preparando o Python. Na primeira vez ele é baixado da internet, o que pode levar alguns segundos.', 'info'); tScroll(); },
+    aoPacotes: ps => { if (aviso) aviso.remove(); aviso = tLine(`Baixando ${ps.join(' e ')}. Só na primeira vez: são alguns megabytes.`, 'info'); tScroll(); } });
   tBusy = false;
   if (aviso) aviso.remove();
   if (typeof aoUsarTerminal === 'function') aoUsarTerminal();
   (r.out || []).forEach(s => tLine(s, 'log'));
+  (r.imagens || []).forEach((b, i) => { const im = document.createElement('img'); im.className = 'figura'; im.alt = `Gráfico ${i + 1}`; im.src = 'data:image/png;base64,' + b; tLog.appendChild(im); });
   if (r.timeout) tLine('Parei a execução: demorou mais de 5 segundos. Algum laço nunca termina?\nO Python foi reiniciado e as variáveis foram apagadas.', 'err');
   else if (r.falha) tLine('Não consegui abrir o Python (' + r.falha + '). Na primeira vez, ele precisa de internet.', 'err');
   else if (r.err) tLine(traduzPy(r.err), 'err');
