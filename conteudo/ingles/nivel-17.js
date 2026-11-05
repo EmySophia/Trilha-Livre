@@ -32,7 +32,7 @@ nivel({
     {
       id: 'enu28',
       titulo: 'Deduzir',
-      conceito: 'must be · can\'t have',
+      conceito: 'must be, can\'t have',
       desc: 'Dizer o quanto você tem certeza, sobre agora e sobre o passado.',
       licoes: [
         {
@@ -292,7 +292,7 @@ nivel({
     {
       id: 'enu29',
       titulo: 'O futuro em detalhe',
-      conceito: 'I\'ll be working · I\'ll have finished',
+      conceito: 'I\'ll be working, I\'ll have finished',
       desc: 'O que vai estar acontecendo, o que já vai estar pronto e o que era para acontecer.',
       licoes: [
         {

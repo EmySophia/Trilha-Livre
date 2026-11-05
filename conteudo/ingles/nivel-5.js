@@ -6,7 +6,7 @@ nivel({
   curso: 'ingles',
   n: 5,
   titulo: 'O passado',
-  faixa: 'A1–A2',
+  faixa: 'A1 a A2',
   desc: 'O passado simples, o som do -ed, os irregulares mais usados, did, was e were, used to, o past continuous e duas histórias para ouvir.',
   videos: [
     {
@@ -32,7 +32,7 @@ nivel({
     {
       id: 'enu9',
       titulo: 'O passado simples',
-      conceito: 'worked · went · did',
+      conceito: 'worked, went, did',
       desc: 'Os verbos regulares e o som do -ed, os irregulares e o ajudante did.',
       licoes: [
         {
@@ -42,7 +42,7 @@ nivel({
           exs: [
             {
               t: 'texto',
-              titulo: 'O -ed e os seus três sons',
+              titulo: 'O -ed na escrita',
               blocos: [
                 {
                   p: 'O passado dos verbos regulares é o verbo com **-ed**, igual para todas as pessoas: ((I worked)), ((she worked)), ((they worked)). Sem -s da terceira pessoa, sem conjugação. Aqui o inglês é mais fácil que o português.'
@@ -61,7 +61,34 @@ nivel({
                       ]
                     ]
                   }
-                },
+                }
+              ]
+            },
+            {
+              t: 'complete',
+              p: 'Complete com o passado:',
+              code: 'Yesterday I ___ my room and ___ a movie.',
+              bank: ['cleaned', 'watched', 'clean', 'watch'],
+              c: ['cleaned', 'watched'],
+              exp: 'Yesterday pede o passado: cleaned e watched.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Ela estudou ontem."',
+              r: ['She studied yesterday.'],
+              exp: 'Study, com consoante + y, vira studied.'
+            },
+            {
+              t: 'monte',
+              p: 'Monte a frase: "Nós moramos em Recife por dois anos."',
+              r: 'We lived in Recife for two years.',
+              extra: ['live', 'during', 'by'],
+              exp: 'For indica quanto tempo durou: for two years.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Os três sons do -ed',
+              blocos: [
                 {
                   p: '**A pronúncia é o que mais importa aqui.** Quase todo brasileiro pronuncia o -ed como "id": "uórk-id", "plêi-id". Na maioria das vezes, o -ed **não cria sílaba nenhuma**. Ele tem três sons:'
                 },
@@ -118,35 +145,6 @@ nivel({
               exp: 'A sílaba extra só aparece depois de t ou d. Need termina em d.'
             },
             {
-              t: 'complete',
-              p: 'Complete com o passado:',
-              code: 'Yesterday I ___ my room and ___ a movie.',
-              bank: ['cleaned', 'watched', 'clean', 'watch'],
-              c: ['cleaned', 'watched'],
-              exp: 'Yesterday pede o passado: cleaned e watched.'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Ela estudou ontem."',
-              r: ['She studied yesterday.'],
-              exp: 'Study, com consoante + y, vira studied.'
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'I walked to work.',
-              ops: ['I walked to work.', 'I walk to work.', 'I worked at home.'],
-              c: 0,
-              exp: 'Walked soa "uókt": o -ed vira só um t.'
-            },
-            {
-              t: 'monte',
-              p: 'Monte a frase: "Nós moramos em Recife por dois anos."',
-              r: 'We lived in Recife for two years.',
-              extra: ['live', 'during', 'by'],
-              exp: 'For indica quanto tempo durou: for two years.'
-            },
-            {
               t: 'escolha',
               p: 'Por que dizer "uórk-id" para worked soa errado?',
               ops: [
@@ -156,6 +154,14 @@ nivel({
               ],
               c: 0,
               exp: 'Na maioria dos verbos, o -ed gruda no final: worked, liked, stopped.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'I walked to work.',
+              ops: ['I walked to work.', 'I walk to work.', 'I worked at home.'],
+              c: 0,
+              exp: 'Walked soa "uókt": o -ed vira só um t.'
             },
             { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'They started at nine.' }
           ]
@@ -192,7 +198,38 @@ nivel({
                     ['tell, told', 'contar, contei'],
                     ['leave, left', 'sair, deixar']
                   ]
-                },
+                }
+              ]
+            },
+            {
+              t: 'complete',
+              p: 'Complete:',
+              code: 'Last year I ___ to Chile and ___ a lot of photos.',
+              bank: ['went', 'took', 'go', 'taked'],
+              c: ['went', 'took'],
+              exp: 'Go vira went e take vira took: os dois são irregulares. Last year (no ano passado) pede o passado.'
+            },
+            { t: 'escreva', p: 'Escreva o passado de go.', r: ['went'], exp: 'Go é irregular: o passado é went, que veio de outro verbo antigo, wend.' },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'She said no.',
+              ops: ['She said no.', 'She says no.', 'She said so.'],
+              c: 0,
+              exp: 'Said soa "séd", com e aberto curto. Não rima com paid.'
+            },
+            {
+              t: 'monte',
+              p: 'Monte a frase: "Eu vi um filme ótimo ontem."',
+              r: ['I saw a great movie yesterday.', 'I watched a great movie yesterday.'],
+              extra: ['see', 'seen', 'watched'],
+              exp: 'See vira saw no passado. I watched a great movie também está certo: watch a movie é assistir a um filme.'
+            },
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'We had a great time.' },
+            {
+              t: 'texto',
+              titulo: 'Grupos com o mesmo som',
+              blocos: [
                 {
                   p: '**Um truque:** muitos irregulares andam em grupos com o mesmo som. Aprender o grupo é mais fácil do que decorar um por um.'
                 },
@@ -217,11 +254,11 @@ nivel({
               ]
             },
             {
-              t: 'complete',
-              p: 'Complete:',
-              code: 'Last year I ___ to Chile and ___ a lot of photos.',
-              bank: ['went', 'took', 'go', 'taked'],
-              c: ['went', 'took']
+              t: 'escolha',
+              p: 'Qual é o passado de think?',
+              ops: ['thought', 'thinked', 'thank'],
+              c: 0,
+              exp: 'Think, thought: do grupo do -ought, junto com bought e brought.'
             },
             {
               t: 'escreva',
@@ -231,38 +268,16 @@ nivel({
                 'I bought a new cell phone.',
                 'I bought a new mobile.',
                 'I bought a new mobile phone.'
-              ]
+              ],
+              exp: 'Buy (comprar) é irregular: o passado é bought, do mesmo grupo de thought e brought.'
             },
-            {
-              t: 'escolha',
-              p: 'Qual é o passado de think?',
-              ops: ['thought', 'thinked', 'thank'],
-              c: 0,
-              exp: 'Think, thought: do grupo do -ought, junto com bought e brought.'
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'She said no.',
-              ops: ['She said no.', 'She says no.', 'She said so.'],
-              c: 0,
-              exp: 'Said soa "séd", com e aberto curto. Não rima com paid.'
-            },
-            {
-              t: 'monte',
-              p: 'Monte a frase: "Eu vi um filme ótimo ontem."',
-              r: ['I saw a great movie yesterday.', 'I watched a great movie yesterday.'],
-              extra: ['see', 'seen', 'watched']
-            },
-            { t: 'escreva', p: 'Escreva o passado de go.', r: ['went'] },
             {
               t: 'escolha',
               p: 'Ouça ((knew)). Que palavra tem exatamente o mesmo som?',
               ops: ['new', 'now', 'know'],
               c: 0,
               exp: 'O k de knew é mudo, como o de know. Knew e new soam igual.'
-            },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'We had a great time.' }
+            }
           ]
         },
         {
@@ -297,7 +312,47 @@ nivel({
                 },
                 {
                   p: '"Did you went?" e "I didn\'t saw" são erros muito comuns, porque o passado apareceria duas vezes: no did e no verbo. Uma vez só basta, e quem carrega é o did.'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Qual está certa?',
+              ops: ['I didn\'t see him.', 'I didn\'t saw him.', 'I don\'t saw him.'],
+              c: 0,
+              exp: 'Depois de didn\'t, o verbo fica na forma básica: see.'
+            },
+            {
+              t: 'escreva',
+              p: 'Transforme em pergunta: "You went to the party."',
+              r: ['Did you go to the party?'],
+              exp: 'O did leva o passado; went volta a ser go.'
+            },
+            {
+              t: 'complete',
+              p: 'Complete:',
+              code: 'She ___ come yesterday. ___ she call you?',
+              bank: ['didn\'t', 'Did', 'doesn\'t', 'Does'],
+              c: ['didn\'t', 'Did'],
+              exp: 'Yesterday pede o passado: didn\'t e Did.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'Did you call her?',
+              ops: ['Did you call her?', 'Do you call her?', 'Did you tell her?'],
+              c: 0
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Eu não entendi."',
+              r: ['I didn\'t understand.', 'I didn\'t get it.'],
+              exp: 'Na conversa, I didn\'t get it é muito comum para "não entendi".'
+            },
+            {
+              t: 'texto',
+              titulo: 'Respostas curtas e perguntas com where e what',
+              blocos: [
                 {
                   p: '**Respostas curtas:** ((Did you like the movie?)) → ((Yes, I did.)) / ((No, I didn\'t.))'
                 },
@@ -328,17 +383,11 @@ nivel({
               ]
             },
             {
-              t: 'escreva',
-              p: 'Transforme em pergunta: "You went to the party."',
-              r: ['Did you go to the party?'],
-              exp: 'O did leva o passado; went volta a ser go.'
-            },
-            {
               t: 'escolha',
-              p: 'Qual está certa?',
-              ops: ['I didn\'t see him.', 'I didn\'t saw him.', 'I don\'t saw him.'],
+              p: 'Resposta curta para "Did you like the movie?"',
+              ops: ['Yes, I did.', 'Yes, I liked.', 'Yes, I do.'],
               c: 0,
-              exp: 'Depois de didn\'t, o verbo fica na forma básica: see.'
+              exp: 'A resposta curta repete o ajudante: did.'
             },
             {
               t: 'monte',
@@ -347,35 +396,8 @@ nivel({
                 'What did you do [[on the weekend|at the weekend]]?',
                 'What did you do last weekend?'
               ],
-              extra: ['does', 'made', 'done']
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'Did you call her?',
-              ops: ['Did you call her?', 'Do you call her?', 'Did you tell her?'],
-              c: 0
-            },
-            {
-              t: 'complete',
-              p: 'Complete:',
-              code: 'She ___ come yesterday. ___ she call you?',
-              bank: ['didn\'t', 'Did', 'doesn\'t', 'Does'],
-              c: ['didn\'t', 'Did'],
-              exp: 'Yesterday pede o passado: didn\'t e Did.'
-            },
-            {
-              t: 'escolha',
-              p: 'Resposta curta para "Did you like the movie?"',
-              ops: ['Yes, I did.', 'Yes, I liked.', 'Yes, I do.'],
-              c: 0,
-              exp: 'A resposta curta repete o ajudante: did.'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Eu não entendi."',
-              r: ['I didn\'t understand.', 'I didn\'t get it.'],
-              exp: 'Na conversa, I didn\'t get it é muito comum para "não entendi".'
+              extra: ['does', 'made', 'done'],
+              exp: 'Palavra de pergunta, ajudante, sujeito e verbo: What did you do? O did é o ajudante no passado, e o do do fim é o verbo fazer.'
             },
             {
               t: 'escreva',
@@ -389,7 +411,7 @@ nivel({
     {
       id: 'enu10',
       titulo: 'Contando uma história',
-      conceito: 'was · used to · was doing',
+      conceito: 'was, used to, was doing',
       desc: 'O passado do to be, there was, ago, used to, o past continuous e as palavras que costuram uma história.',
       licoes: [
         {
@@ -410,7 +432,28 @@ nivel({
                 },
                 {
                   p: 'As perguntas e negativas funcionam como no presente, sem ajudante: ((Were you at home?)) ((She wasn\'t there.)) ((We weren\'t ready.))'
-                },
+                }
+              ]
+            },
+            {
+              t: 'complete',
+              p: 'Complete:',
+              code: 'I ___ at home yesterday, but my parents ___ at work.',
+              bank: ['was', 'were', 'are', 'is'],
+              c: ['was', 'were'],
+              exp: 'I usa was; my parents, que são they, usa were.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'It wasn\'t my fault.',
+              ops: ['It wasn\'t my fault.', 'It isn\'t my fault.', 'It was my fault.'],
+              c: 0
+            },
+            {
+              t: 'texto',
+              titulo: 'Nascer, there was e o ago',
+              blocos: [
                 {
                   p: '**Nascer é passivo.** Em inglês, você não "nasce": você **foi nascido**, como se a ação fosse da sua mãe. Por isso é ((I was born in 2005.)), sempre com was ou were. "I born" e "I am born" estão errados.'
                 },
@@ -451,13 +494,6 @@ nivel({
               ]
             },
             {
-              t: 'complete',
-              p: 'Complete:',
-              code: 'I ___ at home yesterday, but my parents ___ at work.',
-              bank: ['was', 'were', 'are', 'is'],
-              c: ['was', 'were']
-            },
-            {
               t: 'escreva',
               p: 'Traduza: "Eu nasci em 2005."',
               r: ['I was born in 2005.'],
@@ -474,14 +510,8 @@ nivel({
               t: 'monte',
               p: 'Monte a frase: "Tinha muita gente na festa."',
               r: 'There were a lot of people at the party.',
-              extra: ['was', 'had', 'in']
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'It wasn\'t my fault.',
-              ops: ['It wasn\'t my fault.', 'It isn\'t my fault.', 'It was my fault.'],
-              c: 0
+              extra: ['was', 'had', 'in'],
+              exp: 'Muita gente é plural, então there were. E na festa é at the party.'
             },
             {
               t: 'escreva',
@@ -494,7 +524,8 @@ nivel({
                 'Onde você esteve ontem à noite?',
                 'Onde você tava ontem à noite?'
               ],
-              lingua: 'pt'
+              lingua: 'pt',
+              exp: 'Were é o passado de are: onde você estava. E last night é "ontem à noite".'
             },
             { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'I was born in Brazil.' }
           ]
@@ -506,14 +537,49 @@ nivel({
           exs: [
             {
               t: 'texto',
-              titulo: 'Antigamente, e depois',
+              titulo: 'Antigamente: used to',
               blocos: [
                 {
                   p: 'Para hábitos do passado que não existem mais, o inglês usa **used to**: ((I used to play [[soccer|football]].)) (Eu jogava futebol.) É o nosso imperfeito, o "jogava", "morava", "ia". A ideia é: era assim, não é mais.'
                 },
                 {
                   p: 'Na fala, used to soa como "iúst-tu", com som de s, e não de z. Na pergunta e na negativa, o did assume o passado: ((Did you use to live here?)) ((I didn\'t use to like coffee.))'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'O que quer dizer "We used to go there every summer"?',
+              ops: [
+                'A gente ia lá todo verão (e hoje não vai mais)',
+                'A gente vai lá todo verão',
+                'A gente se acostumou a ir lá'
+              ],
+              c: 0,
+              exp: 'Used to fala de um hábito do passado que acabou.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'I used to play the guitar.',
+              ops: [
+                'I used to play the guitar.',
+                'I use to play the guitar.',
+                'I used to pay the guitar.'
+              ],
+              c: 0,
+              exp: 'Used to soa "iúst-tu": o d some na fala, mas na escrita ele fica.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Eu morava em Salvador."',
+              r: ['I used to live in Salvador.', 'I lived in Salvador.'],
+              exp: 'Para um hábito do passado que acabou, use used to: I used to live in Salvador. I lived in Salvador também está certo.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Palavras para contar e uma história',
+              blocos: [
                 { p: 'Para contar uma história, estas palavras costuram as partes:' },
                 {
                   vocab: [
@@ -547,45 +613,6 @@ nivel({
               ]
             },
             {
-              t: 'escolha',
-              p: 'Na história, por que eles foram a um café?',
-              ops: [
-                'Porque começou a chover',
-                'Porque estavam com fome',
-                'Porque o trânsito estava ruim'
-              ],
-              c: 0,
-              exp: 'When we finally arrived, it started to rain! So we found a small café...'
-            },
-            {
-              t: 'escolha',
-              p: 'O que quer dizer "We used to go there every summer"?',
-              ops: [
-                'A gente ia lá todo verão (e hoje não vai mais)',
-                'A gente vai lá todo verão',
-                'A gente se acostumou a ir lá'
-              ],
-              c: 0,
-              exp: 'Used to fala de um hábito do passado que acabou.'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Eu morava em Salvador."',
-              r: ['I used to live in Salvador.', 'I lived in Salvador.']
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'I used to play the guitar.',
-              ops: [
-                'I used to play the guitar.',
-                'I use to play the guitar.',
-                'I used to pay the guitar.'
-              ],
-              c: 0,
-              exp: 'Used to soa "iúst-tu": o d some na fala, mas na escrita ele fica.'
-            },
-            {
               t: 'monte',
               p: 'Monte a frase: "Primeiro nós comemos, depois fomos ao cinema."',
               r: [
@@ -599,7 +626,19 @@ nivel({
               t: 'escreva',
               p: 'Traduza para o português: "Suddenly, it started to rain."',
               r: ['De repente, começou a chover.', 'De repente começou a chover.'],
-              lingua: 'pt'
+              lingua: 'pt',
+              exp: 'Suddenly é "de repente", e started to rain é "começou a chover".'
+            },
+            {
+              t: 'escolha',
+              p: 'Na história, por que eles foram a um café?',
+              ops: [
+                'Porque começou a chover',
+                'Porque estavam com fome',
+                'Porque o trânsito estava ruim'
+              ],
+              c: 0,
+              exp: 'When we finally arrived, it started to rain! So we found a small café...'
             },
             {
               t: 'escreva',
@@ -625,7 +664,45 @@ nivel({
                 },
                 {
                   p: '**O par mais comum** é com o passado simples: uma ação longa, no past continuous, é interrompida por uma ação curta, no passado simples. ((I was taking a shower when you called.)) (Eu estava tomando banho quando você ligou.)'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: '"Quando você ligou, eu estava dormindo." Como fica?',
+              ops: [
+                'When you called, I was sleeping.',
+                'When you were calling, I slept.',
+                'When you called, I used to sleep.'
+              ],
+              c: 0,
+              exp: 'Ação em andamento interrompida: was sleeping. Used to é só para hábitos que acabaram.'
+            },
+            {
+              t: 'complete',
+              p: 'Complete:',
+              code: 'I ___ a shower when you ___.',
+              bank: ['was taking', 'called', 'took', 'were calling'],
+              c: ['was taking', 'called'],
+              exp: 'A ação longa (o banho) vai no past continuous; a curta (a ligação), no passado simples.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "O que você estava fazendo?"',
+              r: ['What were you doing?'],
+              exp: 'Com you, o passado de to be é were.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'It was raining.',
+              ops: ['It was raining.', 'It was rain.', 'It is raining.'],
+              c: 0
+            },
+            {
+              t: 'texto',
+              titulo: 'When, while e o sentido da frase',
+              blocos: [
                 { p: '**Repare como o sentido muda:**' },
                 {
                   tabela: {
@@ -648,7 +725,31 @@ nivel({
                 },
                 {
                   p: '**Onde o português engana.** Muitas vezes dizemos "quando você ligou, eu **tomava** banho", com o imperfeito. Em inglês, esse "tomava" de ação em andamento é sempre was taking, e não took nem used to take. Used to é só para hábitos que acabaram.'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Qual é a diferença entre "When she arrived, we were eating" e "When she arrived, we ate"?',
+              ops: [
+                'Na primeira, já estávamos comendo; na segunda, comemos depois que ela chegou',
+                'Nenhuma: as duas dizem a mesma coisa',
+                'A primeira está no presente e a segunda, no passado'
+              ],
+              c: 0,
+              exp: 'O past continuous mostra algo que já estava acontecendo. O passado simples mostra uma ação que veio depois.'
+            },
+            {
+              t: 'monte',
+              p: 'Monte a frase: "Enquanto eu cozinhava, ele arrumava a mesa."',
+              r: 'While I was cooking, he was setting the table.',
+              extra: ['when', 'cooked', 'were'],
+              exp: 'Duas ações longas ao mesmo tempo usam while, com o past continuous nas duas: I was cooking, he was setting the table.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Nas histórias',
+              blocos: [
                 {
                   p: '**Nas histórias**, o past continuous pinta o **cenário**, e o passado simples conta os **acontecimentos**. Ouça:'
                 },
@@ -675,42 +776,6 @@ nivel({
               ]
             },
             {
-              t: 'complete',
-              p: 'Complete:',
-              code: 'I ___ a shower when you ___.',
-              bank: ['was taking', 'called', 'took', 'were calling'],
-              c: ['was taking', 'called'],
-              exp: 'A ação longa (o banho) vai no past continuous; a curta (a ligação), no passado simples.'
-            },
-            {
-              t: 'escolha',
-              p: '"Quando você ligou, eu estava dormindo." Como fica?',
-              ops: [
-                'When you called, I was sleeping.',
-                'When you were calling, I slept.',
-                'When you called, I used to sleep.'
-              ],
-              c: 0,
-              exp: 'Ação em andamento interrompida: was sleeping. Used to é só para hábitos que acabaram.'
-            },
-            {
-              t: 'escolha',
-              p: 'Qual é a diferença entre "When she arrived, we were eating" e "When she arrived, we ate"?',
-              ops: [
-                'Na primeira, já estávamos comendo; na segunda, comemos depois que ela chegou',
-                'Nenhuma: as duas dizem a mesma coisa',
-                'A primeira está no presente e a segunda, no passado'
-              ],
-              c: 0,
-              exp: 'O past continuous mostra algo que já estava acontecendo. O passado simples mostra uma ação que veio depois.'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "O que você estava fazendo?"',
-              r: ['What were you doing?'],
-              exp: 'Com you, o passado de to be é were.'
-            },
-            {
               t: 'escolha',
               p: 'Na história, o que o senhor estava procurando?',
               ops: ['O hospital', 'O ponto de ônibus', 'A filha dele'],
@@ -727,19 +792,6 @@ nivel({
               ],
               c: 0,
               exp: 'While I was explaining the way, my bus arrived. So I decided to walk with him instead.'
-            },
-            {
-              t: 'monte',
-              p: 'Monte a frase: "Enquanto eu cozinhava, ele arrumava a mesa."',
-              r: 'While I was cooking, he was setting the table.',
-              extra: ['when', 'cooked', 'were']
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'It was raining.',
-              ops: ['It was raining.', 'It was rain.', 'It is raining.'],
-              c: 0
             },
             {
               t: 'escreva',

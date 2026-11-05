@@ -24,7 +24,7 @@ nivel({
     {
       id: 'hcu3',
       titulo: 'Links e imagens',
-      conceito: 'href · src',
+      conceito: 'href, src',
       desc: 'Levar a outros lugares e mostrar fotos.',
       licoes: [
         {
@@ -289,7 +289,7 @@ nivel({
     {
       id: 'hcu4',
       titulo: 'Listas e tabelas',
-      conceito: '<ul> · <table>',
+      conceito: '<ul>, <table>',
       desc: 'Organizar itens e dados.',
       licoes: [
         {

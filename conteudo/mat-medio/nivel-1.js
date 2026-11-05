@@ -43,6 +43,9 @@ nivel({
               titulo: 'Os tipos de número',
               blocos: [
                 {
+                  p: 'Os números se agrupam em famílias, e cada família cabe dentro da seguinte. Você já usa todas no dia a dia: os naturais para contar, os negativos no extrato do banco, as frações e os decimais na receita e no preço.'
+                },
+                {
                   tabela: {
                     cab: ['Conjunto', 'O que tem', 'Exemplos'],
                     codigo: [],
@@ -58,9 +61,6 @@ nivel({
                       ['Reais (ℝ)', 'racionais e irracionais juntos', 'todos acima']
                     ]
                   }
-                },
-                {
-                  p: 'Um intervalo é um pedaço da reta dos reais. Colchete virado para dentro inclui a ponta; virado para fora, exclui. [2, 5] vai de 2 a 5, com os dois. ]2, 5] não tem o 2, mas tem o 5. Também se escreve 2 < x ≤ 5.'
                 },
                 {
                   dica: 'Dízimas periódicas, como 0,333..., são racionais: 0,333... é $$1/3$$.'
@@ -82,6 +82,40 @@ nivel({
               exp: 'Dízima periódica vira fração: 0,333... = $$1/3$$.'
             },
             {
+              t: 'texto',
+              titulo: 'Intervalos',
+              blocos: [
+                {
+                  p: 'Um intervalo é um pedaço da reta dos reais. Colchete virado para dentro inclui a ponta; virado para fora, exclui. [2, 5] vai de 2 a 5, com os dois. ]2, 5] não tem o 2, mas tem o 5. Também se escreve 2 < x ≤ 5.'
+                },
+                {
+                  p: 'Para contar quantos números inteiros há num intervalo, faça fim menos começo e ajuste pelas pontas. Em [3, 7] entram 3, 4, 5, 6 e 7, que são 7 − 3 + 1 = 5 números. O + 1 aparece porque as duas pontas entram. Cada ponta que fica de fora tira um.'
+                },
+                {
+                  tabela: {
+                    cab: ['Intervalo', 'Inteiros dentro', 'Conta'],
+                    codigo: [],
+                    linhas: [
+                      ['[3, 7]', '3, 4, 5, 6, 7', '7 − 3 + 1 = 5'],
+                      ['[3, 7[', '3, 4, 5, 6', '7 − 3 = 4'],
+                      [']3, 7[', '4, 5, 6', '7 − 3 − 1 = 3']
+                    ]
+                  }
+                },
+                {
+                  dica: 'Na dúvida, escreva a lista e conte. Com negativos funciona igual: em [−2, 2] entram −2, −1, 0, 1 e 2, ou seja, 2 − (−2) + 1 = 5.'
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'O número {A} pertence ao intervalo ]{A}, {B}]?',
+              ops: ['Não: o colchete virado para fora exclui o {A}', 'Sim', 'Só se {A} for inteiro'],
+              c: 0,
+              exp: 'Em ]{A}, {B}], o {A} fica de fora e o {B} entra.',
+              vars: { A: { de: -5, ate: 3 }, B: { de: 5, ate: 12 } }
+            },
+            {
               t: 'numero',
               p: 'Quantos números inteiros há no intervalo [{A}, {B}]?',
               r: '{= B - A + 1 }',
@@ -94,14 +128,6 @@ nivel({
               r: '{= B - A - 1 }',
               exp: 'Agora as duas pontas ficam de fora.',
               vars: { A: { de: -8, ate: 3 }, B: { de: 5, ate: 15 } }
-            },
-            {
-              t: 'escolha',
-              p: 'O número {A} pertence ao intervalo ]{A}, {B}]?',
-              ops: ['Não: o colchete virado para fora exclui o {A}', 'Sim', 'Só se {A} for inteiro'],
-              c: 0,
-              exp: 'Em ]{A}, {B}], o {A} fica de fora e o {B} entra.',
-              vars: { A: { de: -5, ate: 3 }, B: { de: 5, ate: 12 } }
             },
             {
               t: 'numero',
@@ -125,18 +151,6 @@ nivel({
                 },
                 {
                   p: 'Em $$f(x) = 2x + 3$$, para calcular f(4), troque o x por 4: $$f(4) = 2 × 4 + 3 = 11$$. O conjunto dos x permitidos é o domínio; o dos y que saem, a imagem.'
-                },
-                {
-                  plano: {
-                    x: [-1, 5],
-                    y: [-1, 13],
-                    f: [{ e: '2*x + 3', nome: 'f' }],
-                    pontos: [[4, 11, '(4, 11)']],
-                    alt: 'Gráfico da reta f(x) = 2x + 3, com o ponto (4, 11) marcado'
-                  }
-                },
-                {
-                  p: 'Cada par (x, f(x)) é um ponto do gráfico. O ponto (4, 11) quer dizer: quando x é 4, y é 11.'
                 }
               ]
             },
@@ -162,11 +176,65 @@ nivel({
               vars: { A: { de: 1, ate: 20 }, X: { de: -6, ate: 6 } }
             },
             {
+              t: 'texto',
+              titulo: 'Do resultado de volta para o x',
+              blocos: [
+                {
+                  p: 'Às vezes o problema dá o resultado e pede a entrada. Se $$f(x) = 2x + 3$$ e f(x) = 11, qual é o x? Escreva a equação e resolva, desfazendo as contas na ordem contrária:'
+                },
+                {
+                  tabela: {
+                    cab: ['Passo', 'Conta'],
+                    codigo: [],
+                    linhas: [
+                      ['Monte a equação', '2x + 3 = 11'],
+                      ['Tire o 3 dos dois lados', '2x = 8'],
+                      ['Divida os dois lados por 2', 'x = 4']
+                    ]
+                  }
+                },
+                {
+                  dica: 'Confira trocando o x pela resposta: f(4) = 2 × 4 + 3 = 11. Deu certo.'
+                }
+              ]
+            },
+            {
               t: 'numero',
               p: 'Se $$f(x) = {A}x {= sn(B) }$$ e f(x) = {= A * X + B }, quanto vale x?',
               r: '{X}',
               exp: 'Resolva a equação $${A}x {= sn(B) } = {= A * X + B }$$.',
               vars: { A: { de: 2, ate: 9 }, B: { de: -10, ate: 10 }, X: { de: -5, ate: 12 } }
+            },
+            {
+              t: 'texto',
+              titulo: 'O gráfico da função',
+              blocos: [
+                {
+                  plano: {
+                    x: [-1, 5],
+                    y: [-1, 13],
+                    f: [{ e: '2*x + 3', nome: 'f' }],
+                    pontos: [[4, 11, '(4, 11)']],
+                    alt: 'Gráfico da reta f(x) = 2x + 3, com o ponto (4, 11) marcado'
+                  }
+                },
+                {
+                  p: 'Cada par (x, f(x)) é um ponto do gráfico. O ponto (4, 11) quer dizer: quando x é 4, y é 11.'
+                },
+                {
+                  p: 'Nem todo desenho é o gráfico de uma função. O teste é imaginar uma linha vertical passando pelo desenho. Se, em algum lugar, ela cortar o desenho em dois pontos, aquele x tem dois valores de y, e uma função só pode dar um. Na circunferência abaixo, a linha em x = 1 corta em dois pontos: não é função.'
+                },
+                {
+                  plano: {
+                    x: [-4, 4],
+                    y: [-3, 3],
+                    f: [{ e: 'sqrt(4 - x**2)', cor: 0 }, { e: '-sqrt(4 - x**2)', cor: 0 }],
+                    segmentos: [{ de: [1, -3], ate: [1, 3], tracejado: true }],
+                    pontos: [[1, 1.73], [1, -1.73]],
+                    alt: 'Uma circunferência cortada por uma linha vertical tracejada em x = 1, que passa por dois pontos dela'
+                  }
+                }
+              ]
             },
             {
               t: 'numero',
@@ -342,6 +410,17 @@ nivel({
               exp: 'O a vale −2: a cada passo para a direita, o y cai 2.'
             },
             {
+              t: 'escolha',
+              p: 'Uma conta de água é $$f(x) = 4x + 12$$, com x em metros cúbicos. O que o 12 representa?',
+              ops: [
+                'Um valor fixo cobrado mesmo sem consumo',
+                'O preço de cada metro cúbico',
+                'O consumo médio'
+              ],
+              c: 0,
+              exp: 'É o valor de f(0): o que se paga com consumo zero.'
+            },
+            {
               t: 'numero',
               p: 'Qual é a raiz de $$f(x) = {A}x {= sn(-A * R) }$$?',
               r: '{R}',
@@ -359,6 +438,32 @@ nivel({
               vars: { B: [4.5, 5, 5.5], K: [2.5, 2.8, 3.2], D: { de: 3, ate: 30 } }
             },
             {
+              t: 'texto',
+              titulo: 'Dois pontos e dois planos',
+              blocos: [
+                {
+                  p: 'Quando o problema dá dois pontos da reta, a taxa a é a variação do y dividida pela variação do x. Pelos pontos (0, 5) e (4, 17), o y subiu 17 − 5 = 12 enquanto o x andou 4, então $$a = 12/4 = 3$$.'
+                },
+                {
+                  p: 'Para saber quando dois planos custam o mesmo, iguale as duas funções e resolva. O plano A custa R$ 20 mais R$ 5 por GB; o plano B, R$ 35 mais R$ 2 por GB:'
+                },
+                {
+                  tabela: {
+                    cab: ['Passo', 'Conta'],
+                    codigo: [],
+                    linhas: [
+                      ['Iguale os preços', '20 + 5x = 35 + 2x'],
+                      ['Junte o x de um lado', '5x − 2x = 35 − 20'],
+                      ['Resolva', '3x = 15, então x = 5']
+                    ]
+                  }
+                },
+                {
+                  dica: 'Com 5 GB, os dois custam R$ 45. Abaixo disso, o plano A sai mais barato; acima, o B.'
+                }
+              ]
+            },
+            {
               t: 'numero',
               p: 'Uma reta passa por (0, {B}) e ({X}, {= A * X + B }). Qual é a taxa de variação a?',
               r: '{A}',
@@ -373,17 +478,6 @@ nivel({
               exp: '$${F} + {KA}x = {= F + D * (KA - KB) } + {KB}x$$.',
               unidade: 'GB',
               vars: { F: [20, 30, 40], KA: [8, 10, 12], KB: [3, 4, 5], D: { de: 2, ate: 10 } }
-            },
-            {
-              t: 'escolha',
-              p: 'Uma conta de água é $$f(x) = 4x + 12$$, com x em metros cúbicos. O que o 12 representa?',
-              ops: [
-                'Um valor fixo cobrado mesmo sem consumo',
-                'O preço de cada metro cúbico',
-                'O consumo médio'
-              ],
-              c: 0,
-              exp: 'É o valor de f(0): o que se paga com consumo zero.'
             }
           ]
         },
@@ -427,11 +521,11 @@ nivel({
               exp: '−2 < 4, mas dividindo por −1: 2 > −4.'
             },
             {
-              t: 'numero',
-              p: 'Qual é o menor número inteiro que satisfaz $${A}x − {B} > {C}$$?',
-              r: '{= Math.floor((B + C) / A) + 1 }',
-              exp: '$$x > {= B + C }/{A}$$. Ache o primeiro inteiro depois disso.',
-              vars: { A: { de: 2, ate: 6 }, B: { de: 1, ate: 20 }, C: { de: 1, ate: 20 } }
+              t: 'escolha',
+              p: 'Qual é a solução de $$3x − 6 ≤ 0$$?',
+              ops: ['x ≤ 2', 'x ≥ 2', 'x ≤ −2'],
+              c: 0,
+              exp: '$$3x ≤ 6$$, então $$x ≤ 2$$.'
             },
             {
               t: 'numero',
@@ -441,18 +535,40 @@ nivel({
               vars: { A: { de: 2, ate: 6 }, R: { de: 1, ate: 9 } }
             },
             {
+              t: 'texto',
+              titulo: 'Problemas com resposta inteira',
+              blocos: [
+                {
+                  p: 'Muitos problemas pedem um número inteiro: vendas, horas, pessoas. Resolva a inequação e depois escolha o inteiro certo na ponta do intervalo.'
+                },
+                {
+                  tabela: {
+                    cab: ['Problema', 'Conta', 'Resposta'],
+                    codigo: [],
+                    linhas: [
+                      ['Ganha R$ 1.200 fixos mais R$ 50 por venda. Quantas vendas, no mínimo, para passar de R$ 1.575?', '1.200 + 50x > 1.575, então x > 7,5', '8 vendas: 7 não bastam'],
+                      ['Tem R$ 45. O estacionamento cobra R$ 10 de entrada mais R$ 6 por hora. Quantas horas, no máximo?', '10 + 6x ≤ 45, então x ≤ 5,83', '5 horas']
+                    ]
+                  }
+                },
+                {
+                  dica: '“No mínimo” com x > 7,5 pede o primeiro inteiro depois de 7,5, que é 8. “No máximo” com x ≤ 5,83 pede o último inteiro antes, que é 5.'
+                }
+              ]
+            },
+            {
+              t: 'numero',
+              p: 'Qual é o menor número inteiro que satisfaz $${A}x − {B} > {C}$$?',
+              r: '{= Math.floor((B + C) / A) + 1 }',
+              exp: '$$x > {= B + C }/{A}$$. Ache o primeiro inteiro depois disso.',
+              vars: { A: { de: 2, ate: 6 }, B: { de: 1, ate: 20 }, C: { de: 1, ate: 20 } }
+            },
+            {
               t: 'numero',
               p: 'Um vendedor ganha R$ {= br(F) } fixos mais R$ {K} por venda. Quantas vendas, no mínimo, ele precisa fazer para ganhar mais de R$ {= br(M) }?',
               r: '{= Math.floor((M - F) / K) + 1 }',
               exp: '$${F} + {K}x > {M}$$, então $$x > {= M - F }/{K}$$.',
               vars: { F: [1200, 1500, 1800], K: [40, 50, 60], M: [2500, 3000, 3500] }
-            },
-            {
-              t: 'escolha',
-              p: 'Qual é a solução de $$3x − 6 ≤ 0$$?',
-              ops: ['x ≤ 2', 'x ≥ 2', 'x ≤ −2'],
-              c: 0,
-              exp: '$$3x ≤ 6$$, então $$x ≤ 2$$.'
             },
             {
               t: 'numero',

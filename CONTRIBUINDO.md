@@ -52,6 +52,25 @@ Cursos de idiomas levam `linguagem: 'en'` e uma configuração `fala` no catálo
 
 Se um curso precisar de um tipo de exercício novo, abra uma issue antes para combinarmos como fazer.
 
+## Formações completas
+
+Uma formação é um percurso que junta cursos de áreas diferentes, na ordem em que vale a pena fazer, do zero até a profissão. Ela não tem lições próprias: usa as lições dos cursos, então o que a pessoa faz num curso conta em todas as formações que o usam. As formações aparecem no topo da aba Cursos e ficam no fim de `conteudo/catalogo.js`:
+
+```js
+formacoes([
+  { id: 'seguranca', titulo: 'Segurança e hacking ético', sigla: 'CTF',
+    desc: 'Uma frase dizendo aonde a formação leva.',
+    etapas: [
+      { curso: 'seg-pessoal', porque: 'Por que este curso está aqui, em uma frase.' },
+      { curso: 'python', niveis: [1, 8], porque: 'Só os níveis 1 a 8 do curso entram nesta formação.' }
+    ] }
+]);
+```
+
+- Uma etapa pode ser um curso inteiro ou só alguns níveis dele, com `niveis: [primeiro, último]`.
+- Um curso ainda sem lições pode entrar como etapa: ele aparece como "em construção" e passa a contar assim que ganhar lições.
+- O validador confere se cada etapa aponta para um curso que existe e se os níveis existem nele.
+
 ## Formato de uma lição
 
 ```js
@@ -101,6 +120,8 @@ Os ids seguem o padrão `n<nível>l<número>` para lições e `n<nível>u<númer
 Os blocos `leia`, `trecho` e `perguntas` foram feitos para acompanhar a leitura de um livro, como no curso Leitura guiada de O Capital. O `leia` aceita também `rotulo`, que troca o texto pequeno de cima ("Para ler agora"). O `perguntas` aceita `titulo` ("Para pensar e conversar", por padrão). No `trecho`, explique com as suas palavras: não copie parágrafos de traduções protegidas por direito autoral.
 
 Nas tabelas, a primeira coluna aparece como código (fonte de largura fixa, sem quebrar a linha) e as outras como texto. Quando outras colunas também forem código, liste as posições em `codigo`, começando do 0.
+
+Nos cursos de idiomas e nos cursos de texto (`linguagem: 'texto'`), `**palavra**` fica em negrito nas leituras. Nos cursos de programação não, porque lá `**` é o operador de potência.
 
 ### Múltipla escolha (`escolha`)
 
@@ -216,6 +237,42 @@ Para cursos de terminal, como o de Git (`linguagem: 'shell'`). A pessoa digita o
 ```
 
 Espaços repetidos não importam, e aspas simples, aspas curvas e o travessão que o celular coloca no lugar de `--` são aceitos.
+
+### Missão no terminal (`terminal`)
+
+Um Linux simulado, com sistema de arquivos, donos e permissões (o motor fica em `js/linux.js`). A pessoa roda quantos comandos quiser e, quando acha que cumpriu a missão, toca em Verificar. O app confere o **estado final**, e não o comando digitado: quem resolve de outro jeito também acerta.
+
+```js
+{ t: 'terminal', p: 'Ache a senha escondida na pasta docs e escreva-a na caixa',
+  fs: {                                   // os arquivos da missão; caminhos relativos partem de /home/ana
+    'docs/notas.txt': 'comprar pão\n',
+    'docs/.segredo/senha.txt': 'girafa42\n',
+    'fotos/': null,                       // terminado em /: uma pasta vazia
+    'trancado.txt': { c: 'texto', modo: '600', dono: 'root' },
+    '/var/log/auth.log': 'linhas do log\n'  // caminho absoluto: fora da pasta pessoal
+  },
+  pasta: '~',                             // onde o terminal começa
+  sudo: false,                            // true: a usuária ana pode usar sudo
+  processos: [{ pid: 4321, usuario: 'ana', cmd: 'minerador' }],   // para ps e kill
+  usuarios: ['bia'],                      // outros usuários do sistema, além de root e ana
+  historico: ['ls', 'cd docs'],           // comandos que já estão no history
+  objetivo: { resposta: 'girafa42' },     // como conferir (veja abaixo)
+  sol: ['ls -a docs', 'cat docs/.segredo/senha.txt'],   // um jeito de resolver: o validador roda e confere
+  dica: 'Arquivos que começam com ponto ficam escondidos. Qual opção do ls mostra todos?',
+  exp: 'Explicação.' }
+```
+
+O `objetivo` aceita qualquer combinação destes testes (ou uma lista deles):
+
+- `pasta: '~/docs'`: terminar dentro desta pasta
+- `existe: 'projeto/'` e `naoExiste: 'lixo.txt'`: um caminho ou uma lista; terminado em `/`, precisa ser pasta
+- `conteudo: { arquivo: 'nota.txt', igual: 'texto' }` ou `contem: 'trecho'`
+- `modo: { arquivo: 'script.sh', modo: '755' }` e `dono: { arquivo: 'x', dono: 'root' }`
+- `executou: '^grep '`: algum comando digitado combina com a expressão regular
+- `resposta: 'girafa42'`: aparece uma caixa para a pessoa escrever o que encontrou
+- `semProcesso: 4321`, `usuario: 'root'`, `variavel: { nome: 'CIDADE', valor: 'Recife' }`
+
+O terminal tem `pwd`, `ls`, `cd`, `cat`, `head`, `tail`, `echo` com `>` e `>>`, `touch`, `mkdir`, `rm`, `rmdir`, `cp`, `mv`, `grep`, `find`, `wc`, `sort`, `uniq`, `cut`, `chmod`, `chown`, `whoami`, `id`, `sudo`, `ps`, `kill`, `export`, `env`, `history`, `base64`, scripts simples (`bash script.sh` e `./script.sh`), pipes, `&&`, `;`, `2>/dev/null`, curingas `*` e `?` e variáveis. As mensagens são as de um Linux em português.
 
 ### Montar uma página (`web`)
 
@@ -335,6 +392,8 @@ Em qualquer texto (parágrafos, dicas, tabelas, perguntas, opções e explicaç�
 - **Respostas alternativas:** `(a|b|c)` aceita qualquer uma das opções, e `(a|)` deixa um trecho opcional: `"(Hi|Hey|Hello)! How are you( doing|)?"`. A primeira forma é a que aparece como resposta certa.
 - **No monte**, as palavras da primeira resposta viram fichas, junto com as de `extra`. Confira se as fichas não formam outra frase certa que não está em `r`.
 - **Com ouvir**, a frase toca sozinha quando o exercício aparece, e há um botão para ouvir devagar. `voz` e `sotaque` funcionam como nos blocos.
+- **Palavras novas:** numa tradução, a pessoa só consegue escrever palavras que já viu. Apresente cada palavra nova numa leitura antes, num `vocab` por exemplo. O validador avisa quando uma tradução pede uma palavra que ainda não apareceu no curso.
+- **Explique as traduções e montagens** com `exp`: quem erra vê a resposta certa, mas precisa saber por quê.
 
 ### Áudio
 
@@ -353,7 +412,7 @@ Na primeira vez, o modelo da voz (uns 350 MB) é baixado para `ferramentas/.koko
 
 ### Faixa do Quadro Europeu
 
-Cada nível de um curso de idiomas pode ter `faixa: 'A2'` (ou `'A2–B1'`), que aparece na trilha ao lado do número do nível. Use a faixa do conteúdo novo que o nível ensina, pelos descritores do CEFR.
+Cada nível de um curso de idiomas pode ter `faixa: 'A2'` (ou `'A2 a B1'`), que aparece na trilha ao lado do número do nível. Use a faixa do conteúdo novo que o nível ensina, pelos descritores do CEFR.
 
 ## Teste da unidade
 
@@ -399,7 +458,8 @@ Nunca adicione links para PDFs piratas, nem para cópias de livros que a editora
 - Escreva como quem explica para um amigo: frases curtas, voz ativa, palavras do dia a dia.
 - Explique o porquê, não só o como.
 - Use exemplos com cara de Brasil: nomes, cidades, dinheiro em reais, situações do cotidiano.
-- Uma lição boa tem uma leitura curta e de 3 a 6 exercícios, indo do mais fácil ao mais difícil.
+- Uma lição boa vai do mais fácil ao mais difícil, com uma ideia de cada vez. Quando a lição ensina mais de uma coisa, use várias leituras curtas, cada uma seguida dos exercícios dela: explica, pratica, explica a próxima. Uma leitura longa no começo, com tudo de uma vez, faz a pessoa chegar aos exercícios sem lembrar de nada.
+- Não cobre num exercício o que a leitura ainda não mostrou. Se o exercício pede uma técnica (contar os inteiros de um intervalo, achar o x de uma função), mostre antes um exemplo resolvido, passo a passo. O `exp` é para reforçar depois da resposta, não para ensinar pela primeira vez.
 - Toda resposta errada deve ensinar algo: capriche no `exp`.
 - Não use dados pessoais reais em exemplos (CPFs, telefones, endereços).
 - Ao falar de dinheiro, juros e rendimentos, deixe claro que os números são exemplos.

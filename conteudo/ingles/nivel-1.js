@@ -34,124 +34,8 @@ nivel({
       id: 'enu1',
       titulo: 'Começando a conversa',
       conceito: 'Hi! How are you?',
-      desc: 'Por que o inglês não se lê como se escreve, cumprimentos e apresentações.',
+      desc: 'Cumprimentos, por que o inglês não se lê como se escreve e apresentações.',
       licoes: [
-        {
-          id: 'en1l1',
-          titulo: 'Por que o inglês não se lê como se escreve',
-          exs: [
-            {
-              t: 'texto',
-              titulo: 'Letras de um jeito, som de outro',
-              blocos: [
-                {
-                  p: 'Em português, quem sabe ler consegue falar quase qualquer palavra nova, mesmo sem nunca ter ouvido. Em inglês, não. Repare: ((though)), ((through)), ((tough)) e ((thought)) têm quase as mesmas letras e sons completamente diferentes.'
-                },
-                {
-                  p: '**Por que é assim?** A escrita do inglês foi fixada nos séculos 15 e 16, quando a imprensa chegou à Inglaterra. Bem nessa época, a pronúncia das vogais estava mudando muito (os linguistas chamam isso de Grande Mudança Vocálica). A fala continuou mudando e a escrita ficou parada no tempo. Além disso, o inglês pegou milhares de palavras do francês e do latim e manteve a grafia original delas.'
-                },
-                {
-                  p: 'O resultado são letras que não se pronunciam e vogais que mudam de som. Ouça estas palavras e repare no que some ou muda:'
-                },
-                {
-                  vocab: [
-                    ['know', 'saber', 'o k não se pronuncia: soa igual a "no"'],
-                    ['island', 'ilha', 'o s é mudo'],
-                    ['Wednesday', 'quarta-feira', 'o primeiro d é mudo: duas sílabas só'],
-                    ['people', 'pessoas', 'o "eo" soa como um i longo'],
-                    ['women', 'mulheres', 'o "wo" soa como "ui"'],
-                    ['comfortable', 'confortável', 'três sílabas, não quatro']
-                  ]
-                },
-                {
-                  p: '**O que isso muda para você:** aprenda cada palavra pelo som, e não pelas letras. Sempre que aparecer uma palavra nova, ouça antes de tentar ler. É para isso que servem os botões de som deste curso. Toque neles quantas vezes quiser e repita em voz alta.'
-                },
-                {
-                  dica: 'O inglês tem padrões, sim. Eles vão aparecer ao longo do curso: o som do -s, o som do -ed, as vogais curtas e longas. Com o tempo, você começa a adivinhar a pronúncia certa na maioria das vezes.',
-                  rotulo: 'A boa notícia'
-                },
-                {
-                  p: 'Para soletrar o seu nome, você vai precisar do nome das letras. As vogais são as que mais confundem, porque têm o nome "trocado" em relação ao português: A se chama "ei", E se chama "i" e I se chama "ai".'
-                },
-                {
-                  tabela: {
-                    cab: ['Letra', 'Nome em inglês', 'Cuidado com'],
-                    codigo: [],
-                    linhas: [
-                      ['A', 'parecido com "ei"', 'não é "a"'],
-                      ['E', 'parecido com "i"', 'não é "é"'],
-                      ['I', 'parecido com "ai"', 'não é "i"'],
-                      ['G e J', '"dji" e "djei"', 'o contrário do que parece'],
-                      ['H', '"eitch"', ''],
-                      ['R', '"ar"', ''],
-                      ['W', '"dâbliu"', 'literalmente "u duplo"'],
-                      ['Y', '"uai"', ''],
-                      [
-                        'Z',
-                        '"zi" nos EUA e "zéd" no Reino Unido',
-                        'uma das diferenças entre os dois países'
-                      ]
-                    ]
-                  }
-                },
-                { fala: 'How do you spell your name?', trad: 'Como se soletra o seu nome?' },
-                { fala: 'My name is Ana. A, N, A.', trad: 'Meu nome é Ana. A, N, A.' }
-              ]
-            },
-            {
-              t: 'escolha',
-              p: 'Por que a escrita do inglês é tão diferente da pronúncia?',
-              ops: [
-                'A escrita parou no tempo enquanto a fala continuou mudando, e muitas palavras vieram do francês e do latim com a grafia original',
-                'Os ingleses decidiram escrever difícil de propósito',
-                'O inglês tem menos letras que o português'
-              ],
-              c: 0,
-              exp: 'A grafia foi fixada há uns 500 anos, no meio de uma grande mudança na pronúncia das vogais. Por isso, aprender pelo som funciona melhor do que tentar ler as letras.'
-            },
-            {
-              t: 'escolha',
-              p: 'Ouça ((know)). Qual destas palavras tem exatamente o mesmo som?',
-              ops: ['no', 'now', 'knock'],
-              c: 0,
-              exp: 'O k de know é mudo, então know (saber) e no (não) soam igual. Quem diferencia é o contexto.'
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'Wednesday',
-              ops: ['Wednesday', 'Wedding day', 'Windy day'],
-              c: 0,
-              exp: 'Wednesday (quarta-feira) tem só duas sílabas: o primeiro d não se pronuncia.'
-            },
-            {
-              t: 'escolha',
-              p: 'Em ((island)), qual letra não é pronunciada?',
-              ops: ['s', 'l', 'd'],
-              c: 0,
-              exp: 'Island soa como "ailand". O s entrou na escrita séculos atrás, por engano, por causa de uma palavra parecida do latim.'
-            },
-            {
-              t: 'escolha',
-              p: 'Qual é o nome da letra I em inglês?',
-              ops: ['Parecido com "ai"', 'Parecido com "i"', 'Parecido com "ei"'],
-              c: 0,
-              exp: 'As vogais têm nomes "trocados": A é "ei", E é "i" e I é "ai". Isso confunde muito na hora de soletrar e-mails e nomes.'
-            },
-            {
-              t: 'escreva',
-              p: 'Escreva o que você ouviu',
-              ouvir: 'How do you spell your name?',
-              exp: 'Spell é soletrar. É a pergunta que você mais vai ouvir ao dizer um nome brasileiro numa ligação ou num balcão.'
-            },
-            {
-              t: 'monte',
-              p: 'Monte a frase: "Meu nome é Ana."',
-              r: ['My name is Ana.', 'I am Ana.'],
-              extra: ['I', 'am', 'Me']
-            }
-          ]
-        },
         {
           id: 'en1l2',
           titulo: 'Oi, tudo bem? Do jeito de verdade',
@@ -210,11 +94,70 @@ nivel({
                 {
                   dica: 'Você pode ouvir que o "certo" é I\'m well, e não I\'m good. Isso é regra de gramática antiga. Hoje, I\'m good é a resposta normal na conversa, em qualquer país de língua inglesa.',
                   rotulo: 'I\'m good ou I\'m well?'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Um colega diz "How are you?" ao passar por você no corredor. Qual resposta soa mais natural?',
+              ops: ['Good, you?', 'I am fine, thank you very much. And you?', 'I have good.'],
+              c: 0,
+              exp: 'How are you? de passagem é só um cumprimento: a resposta é curta e devolve a pergunta.'
+            },
+            {
+              t: 'escolha',
+              p: 'Você chega numa festa às 21h. Como cumprimenta as pessoas?',
+              ops: ['Good evening!', 'Good night!', 'Good afternoon!'],
+              c: 0,
+              exp: 'Good evening é para chegar. Good night é para ir embora ou dormir.'
+            },
+            {
+              t: 'monte',
+              p: 'Monte a resposta: "Nada mal, e você?"',
+              r: ['Not bad, you?', 'Not bad, and you?'],
+              extra: ['good', 'is', 'and'],
+              exp: 'Not bad é "nada mal": parece fraco, mas é uma resposta positiva. O you? no fim devolve a pergunta, como o nosso "e você?".'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza do jeito que se fala no dia a dia: "Oi! Tudo bem?"',
+              r: [
+                '(Hi|Hey|Hello)! (How are you|How\'s it going|How are you doing|How\'s everything)?',
+                '(Hi|Hey)! What\'s up?'
+              ],
+              exp: 'How\'s it going? e How are you doing? também são formas comuns de "tudo bem?".'
+            },
+            {
+              t: 'texto',
+              titulo: 'What\'s up? e You alright?',
+              blocos: [
                 {
                   p: 'Duas variações muito comuns. ((What\'s up?)) quer dizer, ao pé da letra, "o que está acontecendo?". Por isso a resposta natural não é "I\'m fine", e sim ((Not much, you?)) (nada de mais, e você?). E no Reino Unido você vai ouvir muito ((You alright?)), que é só um "oi, tudo bem?". Responda ((Yeah, you?)).'
-                },
-                { p: 'Para se despedir:' },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Alguém pergunta "What\'s up?". Qual resposta combina com essa pergunta?',
+              ops: ['Not much, you?', 'I\'m fine, thank you.', 'Up there.'],
+              c: 0,
+              exp: 'What\'s up? é "o que está rolando?", então a resposta natural é "nada de mais".'
+            },
+            {
+              t: 'escolha',
+              p: 'No Reino Unido, um colega diz "You alright?". O que ele quer saber?',
+              ops: [
+                'Nada de especial: é só um "oi, tudo bem?"',
+                'Se você está machucado',
+                'Se você tem razão'
+              ],
+              c: 0,
+              exp: 'You alright? é um cumprimento britânico. Responda Yeah, you? e siga a conversa.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Para se despedir',
+              blocos: [
                 {
                   vocab: [
                     ['Bye!', 'Tchau!'],
@@ -241,59 +184,135 @@ nivel({
             },
             {
               t: 'escolha',
-              p: 'Um colega diz "How are you?" ao passar por você no corredor. Qual resposta soa mais natural?',
-              ops: ['Good, you?', 'I am fine, thank you very much. And you?', 'I have good.'],
-              c: 0,
-              exp: 'How are you? de passagem é só um cumprimento: a resposta é curta e devolve a pergunta.'
-            },
-            {
-              t: 'escolha',
-              p: 'Alguém pergunta "What\'s up?". Qual resposta combina com essa pergunta?',
-              ops: ['Not much, you?', 'I\'m fine, thank you.', 'Up there.'],
-              c: 0,
-              exp: 'What\'s up? é "o que está rolando?", então a resposta natural é "nada de mais".'
-            },
-            {
-              t: 'escolha',
-              p: 'Você chega numa festa às 21h. Como cumprimenta as pessoas?',
-              ops: ['Good evening!', 'Good night!', 'Good afternoon!'],
-              c: 0,
-              exp: 'Good evening é para chegar. Good night é para ir embora ou dormir.'
-            },
-            {
-              t: 'escolha',
               p: 'O que você ouviu?',
               ouvir: 'Have a good one!',
               ops: ['Have a good one!', 'Have a good night!', 'Have a good time!'],
               c: 0,
               exp: 'Have a good one! (tenha um bom dia) é o tchau que o caixa de uma loja nos EUA mais usa.'
             },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'See you later!' },
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'See you later!' }
+          ]
+        },
+        {
+          id: 'en1l1',
+          titulo: 'Por que o inglês não se lê como se escreve',
+          exs: [
             {
-              t: 'escreva',
-              p: 'Traduza do jeito que se fala no dia a dia: "Oi! Tudo bem?"',
-              r: [
-                '(Hi|Hey|Hello)! (How are you|How\'s it going|How are you doing|How\'s everything)?',
-                '(Hi|Hey)! What\'s up?'
-              ],
-              exp: 'How\'s it going? e How are you doing? também são formas comuns de "tudo bem?".'
-            },
-            {
-              t: 'monte',
-              p: 'Monte a resposta: "Nada mal, e você?"',
-              r: ['Not bad, you?', 'Not bad, and you?'],
-              extra: ['good', 'is', 'and']
+              t: 'texto',
+              titulo: 'Letras de um jeito, som de outro',
+              blocos: [
+                {
+                  p: 'Em português, quem sabe ler consegue falar quase qualquer palavra nova, mesmo sem nunca ter ouvido. Em inglês, não. Repare: ((though)), ((through)), ((tough)) e ((thought)) têm quase as mesmas letras e sons completamente diferentes.'
+                },
+                {
+                  p: '**Por que é assim?** A escrita do inglês foi fixada nos séculos 15 e 16, quando a imprensa chegou à Inglaterra. Bem nessa época, a pronúncia das vogais estava mudando muito (os linguistas chamam isso de Grande Mudança Vocálica). A fala continuou mudando e a escrita ficou parada no tempo. Além disso, o inglês pegou milhares de palavras do francês e do latim e manteve a grafia original delas.'
+                },
+                {
+                  p: 'O resultado são letras que não se pronunciam e vogais que mudam de som. Ouça estas palavras e repare no que some ou muda:'
+                },
+                {
+                  vocab: [
+                    ['know', 'saber', 'o k não se pronuncia: soa igual a "no"'],
+                    ['island', 'ilha', 'o s é mudo'],
+                    ['Wednesday', 'quarta-feira', 'o primeiro d é mudo: duas sílabas só'],
+                    ['people', 'pessoas', 'o "eo" soa como um i longo'],
+                    ['women', 'mulheres', 'o "wo" soa como "ui"'],
+                    ['comfortable', 'confortável', 'três sílabas, não quatro']
+                  ]
+                },
+                {
+                  p: '**O que isso muda para você:** aprenda cada palavra pelo som, e não pelas letras. Sempre que aparecer uma palavra nova, ouça antes de tentar ler. É para isso que servem os botões de som deste curso. Toque neles quantas vezes quiser e repita em voz alta.'
+                },
+                {
+                  dica: 'O inglês tem padrões, sim. Eles vão aparecer ao longo do curso: o som do -s, o som do -ed, as vogais curtas e longas. Com o tempo, você começa a adivinhar a pronúncia certa na maioria das vezes.',
+                  rotulo: 'A boa notícia'
+                }
+              ]
             },
             {
               t: 'escolha',
-              p: 'No Reino Unido, um colega diz "You alright?". O que ele quer saber?',
+              p: 'Por que a escrita do inglês é tão diferente da pronúncia?',
               ops: [
-                'Nada de especial: é só um "oi, tudo bem?"',
-                'Se você está machucado',
-                'Se você tem razão'
+                'A escrita parou no tempo enquanto a fala continuou mudando, e muitas palavras vieram do francês e do latim com a grafia original',
+                'Os ingleses decidiram escrever difícil de propósito',
+                'O inglês tem menos letras que o português'
               ],
               c: 0,
-              exp: 'You alright? é um cumprimento britânico. Responda Yeah, you? e siga a conversa.'
+              exp: 'A grafia foi fixada há uns 500 anos, no meio de uma grande mudança na pronúncia das vogais. Por isso, aprender pelo som funciona melhor do que tentar ler as letras.'
+            },
+            {
+              t: 'escolha',
+              p: 'Ouça ((know)). Qual destas palavras tem exatamente o mesmo som?',
+              ops: ['no', 'now', 'knock'],
+              c: 0,
+              exp: 'O k de know é mudo, então know (saber) e no (não) soam igual. Quem diferencia é o contexto.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'Wednesday',
+              ops: ['Wednesday', 'Wedding day', 'Windy day'],
+              c: 0,
+              exp: 'Wednesday (quarta-feira) tem só duas sílabas: o primeiro d não se pronuncia.'
+            },
+            {
+              t: 'escolha',
+              p: 'Em ((island)), qual letra não é pronunciada?',
+              ops: ['s', 'l', 'd'],
+              c: 0,
+              exp: 'Island soa como "ailand". O s entrou na escrita séculos atrás, por engano, por causa de uma palavra parecida do latim.'
+            },
+            {
+              t: 'texto',
+              titulo: 'O nome das letras',
+              blocos: [
+                {
+                  p: 'Para soletrar o seu nome, você vai precisar do nome das letras. As vogais são as que mais confundem, porque têm o nome "trocado" em relação ao português: A se chama "ei", E se chama "i" e I se chama "ai".'
+                },
+                {
+                  tabela: {
+                    cab: ['Letra', 'Nome em inglês', 'Cuidado com'],
+                    codigo: [],
+                    linhas: [
+                      ['A', 'parecido com "ei"', 'não é "a"'],
+                      ['E', 'parecido com "i"', 'não é "é"'],
+                      ['I', 'parecido com "ai"', 'não é "i"'],
+                      ['G e J', '"dji" e "djei"', 'o contrário do que parece'],
+                      ['H', '"eitch"', ''],
+                      ['R', '"ar"', ''],
+                      ['W', '"dâbliu"', 'literalmente "u duplo"'],
+                      ['Y', '"uai"', ''],
+                      [
+                        'Z',
+                        '"zi" nos EUA e "zéd" no Reino Unido',
+                        'uma das diferenças entre os dois países'
+                      ]
+                    ]
+                  }
+                },
+                { fala: 'How do you spell your name?', trad: 'Como se soletra o seu nome?' },
+                { fala: 'My name is Ana. A, N, A.', trad: 'Meu nome é Ana. A, N, A.' }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Qual é o nome da letra I em inglês?',
+              ops: ['Parecido com "ai"', 'Parecido com "i"', 'Parecido com "ei"'],
+              c: 0,
+              exp: 'As vogais têm nomes "trocados": A é "ei", E é "i" e I é "ai". Isso confunde muito na hora de soletrar e-mails e nomes.'
+            },
+            {
+              t: 'escreva',
+              p: 'Escreva o que você ouviu',
+              ouvir: 'How do you spell your name?',
+              exp: 'Spell é soletrar. É a pergunta que você mais vai ouvir ao dizer um nome brasileiro numa ligação ou num balcão.'
+            },
+            {
+              t: 'monte',
+              p: 'Monte a frase: "Meu nome é Ana."',
+              r: ['My name is Ana.', 'I am Ana.'],
+              extra: ['I', 'am', 'Me'],
+              exp: 'My name is Ana é, palavra por palavra, "meu nome é Ana". O is é o "é" da frase. Na conversa também se diz I\'m Ana (eu sou a Ana).'
             }
           ]
         },
@@ -324,7 +343,32 @@ nivel({
                     ['You\'re right.', 'Você tem razão.'],
                     ['I\'m 25 years old.', 'Tenho 25 anos.']
                   ]
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Como se diz "Eu tenho 30 anos"?',
+              ops: ['I\'m 30.', 'I have 30 years.', 'I have 30 years old.'],
+              c: 0,
+              exp: 'A idade usa to be: I\'m 30 ou I\'m 30 years old. O "ter" do português não se traduz aqui.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Estou com fome."',
+              r: ['I\'m hungry.'],
+              exp: 'Fome, sede, frio e medo são estados, então usam to be: I\'m hungry, I\'m thirsty, I\'m cold, I\'m afraid.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Você tem razão."',
+              r: ['You\'re right.'],
+              exp: 'Ter razão também é um estado em inglês: be right.'
+            },
+            {
+              t: 'texto',
+              titulo: 'De onde você é',
+              blocos: [
                 {
                   p: 'Para dizer de onde você é: ((I\'m from Brazil.)) (eu sou do Brasil) ou ((I\'m Brazilian.)) (eu sou brasileiro). Repare na letra maiúscula: em inglês, nacionalidades e idiomas sempre começam com maiúscula, porque vêm do nome do país. Brazilian, Portuguese, English. O mesmo vale para o pronome I (eu), que é sempre maiúsculo.'
                 },
@@ -361,25 +405,6 @@ nivel({
             },
             {
               t: 'escolha',
-              p: 'Como se diz "Eu tenho 30 anos"?',
-              ops: ['I\'m 30.', 'I have 30 years.', 'I have 30 years old.'],
-              c: 0,
-              exp: 'A idade usa to be: I\'m 30 ou I\'m 30 years old. O "ter" do português não se traduz aqui.'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Estou com fome."',
-              r: ['I\'m hungry.'],
-              exp: 'Fome, sede, frio e medo são estados, então usam to be: I\'m hungry, I\'m thirsty, I\'m cold, I\'m afraid.'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Você tem razão."',
-              r: ['You\'re right.'],
-              exp: 'Ter razão também é um estado em inglês: be right.'
-            },
-            {
-              t: 'escolha',
               p: 'Qual frase está escrita corretamente?',
               ops: [
                 'I\'m Brazilian and I speak Portuguese.',
@@ -401,7 +426,8 @@ nivel({
               t: 'monte',
               p: 'Monte a pergunta: "De onde você é?"',
               r: 'Where are you from?',
-              extra: ['is', 'of', 'do']
+              extra: ['is', 'of', 'do'],
+              exp: 'A palavra de pergunta (where, onde) vem primeiro, depois o verbo are e o sujeito you. O from (de) fica no fim: em inglês, a pergunta pode terminar com a preposição.'
             },
             { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'I\'m from Brazil.' },
             {
@@ -417,7 +443,7 @@ nivel({
     {
       id: 'enu2',
       titulo: 'O verbo to be',
-      conceito: 'am · is · are',
+      conceito: 'am, is, are',
       desc: 'Ser e estar num verbo só, perguntas, negativas e this, that e it.',
       licoes: [
         {
@@ -445,22 +471,34 @@ nivel({
                       ['they', '((they are))', '((they\'re))', 'eles / elas são']
                     ]
                   }
-                },
+                }
+              ]
+            },
+            {
+              t: 'complete',
+              p: 'Complete as frases:',
+              code: 'She ___ my sister. We ___ very close.',
+              bank: ['is', 'are', 'am', 'be'],
+              c: ['is', 'are'],
+              exp: 'She usa is; we usa are.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'They\'re at home.',
+              ops: ['They\'re at home.', 'They\'re alone.', 'They\'re at work.'],
+              c: 0,
+              exp: 'They\'re (eles estão), there (lá) e their (deles) soam igual. Quem diferencia é o contexto.'
+            },
+            {
+              t: 'texto',
+              titulo: 'O sujeito nunca fica de fora',
+              blocos: [
                 {
                   p: '**Por que o inglês nunca deixa o sujeito de fora?** Em português, o verbo muda para cada pessoa: sou, é, somos, são. Por isso dá para dizer só "Somos amigos": o "-mos" já mostra quem é. Os verbos em inglês quase não mudam (are serve para you, we e they), então é o sujeito que carrega essa informação. Por isso "Are friends." não funciona: precisa ser ((We are friends.))'
                 },
                 {
-                  p: 'É também por isso que existe um ((it)) que parece sobrar. "Está chovendo" vira ((It\'s raining.)) "É tarde" vira ((It\'s late.)) O it não quer dizer nada nessas frases: ele só ocupa o lugar do sujeito, que o inglês não deixa vazio.'
-                },
-                {
-                  p: 'Mais uma diferença: antes de uma profissão, o inglês põe ((a)) ou ((an)). Em português dizemos "sou professor"; em inglês é ((I\'m a teacher.)) Para o inglês, você é **um** dos professores que existem.'
-                },
-                {
-                  p: 'E ((you)) serve para você e para vocês. Quando é preciso deixar claro que são várias pessoas, a conversa resolve: ((you guys)) nos EUA, para grupos de qualquer gênero, e ((y\'all)) no sul dos EUA.'
-                },
-                {
-                  dica: 'As contrações (I\'m, you\'re, it\'s) são o normal na fala e nas mensagens. A forma completa aparece em textos formais ou quando você quer dar ênfase: ((I am serious!)) é "eu tô falando sério!".',
-                  rotulo: 'Contração ou forma completa?'
+                  p: 'É também por isso que existe um ((it)) que parece sobrar. "Está chovendo" vira ((It\'s raining.)) "É tarde" vira ((It\'s late.)) E "está frio hoje" vira ((It\'s cold today.)), com ((today)) (hoje) no fim da frase. O it não quer dizer nada nessas frases: ele só ocupa o lugar do sujeito, que o inglês não deixa vazio.'
                 }
               ]
             },
@@ -475,21 +513,30 @@ nivel({
               c: 0,
               exp: 'Sem o sujeito, are poderia ser you, we ou they. Por isso: We are friends.'
             },
-            {
-              t: 'complete',
-              p: 'Complete as frases:',
-              code: 'She ___ my sister. We ___ very close.',
-              bank: ['is', 'are', 'am', 'be'],
-              c: ['is', 'are'],
-              exp: 'She usa is; we usa are.'
-            },
+            { t: 'escreva', p: 'Traduza: "Nós somos amigos."', r: ['We\'re friends.'], exp: 'We\'re é a contração de we are, "nós somos". Em inglês o sujeito sempre aparece: não dá para dizer só "Are friends".' },
             {
               t: 'escreva',
               p: 'Traduza: "Está frio hoje."',
               r: ['It\'s cold today.', 'Today it\'s cold.', 'It\'s cold out today.'],
               exp: 'O inglês precisa de um sujeito, mesmo quando ele não quer dizer nada: It\'s cold.'
             },
-            { t: 'escreva', p: 'Traduza: "Nós somos amigos."', r: ['We\'re friends.'] },
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'It\'s raining.' },
+            {
+              t: 'texto',
+              titulo: 'Profissões e o you',
+              blocos: [
+                {
+                  p: 'Mais uma diferença: antes de uma profissão, o inglês põe ((a)) ou ((an)). Em português dizemos "sou professor"; em inglês é ((I\'m a teacher.)) Para o inglês, você é **um** dos professores que existem.'
+                },
+                {
+                  p: 'E ((you)) serve para você e para vocês. Quando é preciso deixar claro que são várias pessoas, a conversa resolve: ((you guys)) nos EUA, para grupos de qualquer gênero, e ((y\'all)) no sul dos EUA.'
+                },
+                {
+                  dica: 'As contrações (I\'m, you\'re, it\'s) são o normal na fala e nas mensagens. A forma completa aparece em textos formais ou quando você quer dar ênfase: ((I am serious!)) é "eu tô falando sério!".',
+                  rotulo: 'Contração ou forma completa?'
+                }
+              ]
+            },
             {
               t: 'escolha',
               p: 'Como se diz "Eu sou estudante"?',
@@ -498,21 +545,12 @@ nivel({
               exp: 'Duas diferenças do português: o sujeito é obrigatório (I) e a profissão leva a ou an.'
             },
             {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'They\'re at home.',
-              ops: ['They\'re at home.', 'They\'re alone.', 'They\'re at work.'],
-              c: 0,
-              exp: 'They\'re (eles estão), there (lá) e their (deles) soam igual. Quem diferencia é o contexto.'
-            },
-            {
               t: 'monte',
               p: 'Monte a frase: "Ele é professor e ela é médica."',
               r: 'He\'s a teacher and she\'s a doctor.',
               extra: ['is', 'an', 'doctors'],
               exp: 'Cada profissão ganha o seu a: a teacher, a doctor.'
-            },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'It\'s raining again.' }
+            }
           ]
         },
         {
@@ -540,13 +578,63 @@ nivel({
                 },
                 {
                   p: 'Com palavra de pergunta (where, what, who, how), ela vem primeiro e o resto segue a mesma inversão: ((Where are you?)), ((What\'s your name?)), ((How old is he?)), ((Who is she?))'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'Is she your sister?',
+              ops: ['Is she your sister?', 'She is your sister.', 'Is he your sister?'],
+              c: 0,
+              exp: 'Repare na ordem: Is she... é pergunta. She is... seria uma afirmação.'
+            },
+            {
+              t: 'monte',
+              p: 'Monte a pergunta: "Onde eles estão?"',
+              r: 'Where are they?',
+              extra: ['is', 'do', 'there'],
+              exp: 'A palavra de pergunta (where) vem primeiro, e o verbo (are) passa para antes do sujeito (they): Where are they?'
+            },
+            {
+              t: 'escreva',
+              p: 'Transforme em pergunta: "You are ready."',
+              r: ['Are you ready?'],
+              exp: 'O verbo to be vai para antes do sujeito.'
+            },
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'Are you ready?' },
+            {
+              t: 'texto',
+              titulo: 'Para negar, o not',
+              blocos: [
                 {
                   p: 'Para negar, o not vem depois do verbo: ((I\'m not hungry.)), ((She isn\'t here.)), ((They aren\'t ready.)) Também se diz ((She\'s not here.)) e ((They\'re not ready.)): as duas contrações estão certas.'
                 },
                 {
                   p: 'Com I, só existe ((I\'m not)). "I amn\'t" não existe no inglês de hoje.'
-                },
+                }
+              ]
+            },
+            {
+              t: 'complete',
+              p: 'Complete as negativas:',
+              code: 'I ___ not tired. She ___ here today.',
+              bank: ['am', 'isn\'t', 'is', 'aren\'t'],
+              c: ['am', 'isn\'t'],
+              exp: 'Com I, o verbo é am, e o not vem depois dele: I am not. Com she, is not vira a contração isn\'t.'
+            },
+            { t: 'escreva', p: 'Traduza: "Eu não estou com fome."', r: ['I\'m not hungry.'], exp: 'Fome, em inglês, é um estado: I am hungry (eu estou com fome). Para negar, o not vem depois do verbo: I\'m not hungry.' },
+            {
+              t: 'escolha',
+              p: 'Qual destas formas NÃO existe em inglês?',
+              ops: ['I amn\'t', 'I\'m not', 'She isn\'t'],
+              c: 0,
+              exp: 'Com I, a negativa é sempre I\'m not.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Respostas curtas',
+              blocos: [
                 {
                   p: '**Respostas curtas.** Em vez de só Yes ou No, o inglês costuma repetir o sujeito e o verbo: ((Are you tired?)) → ((Yes, I am.)) ou ((No, I\'m not.)) Repare que no "sim" não se contrai: "Yes, I\'m." está errado.'
                 },
@@ -571,48 +659,12 @@ nivel({
               ]
             },
             {
-              t: 'escreva',
-              p: 'Transforme em pergunta: "You are ready."',
-              r: ['Are you ready?'],
-              exp: 'O verbo to be vai para antes do sujeito.'
-            },
-            {
               t: 'escolha',
               p: 'Qual é a resposta curta certa para "Are you hungry?"',
               ops: ['Yes, I am.', 'Yes, I\'m.', 'Yes, I hungry.'],
               c: 0,
               exp: 'No fim da frase, o verbo aparece inteiro: Yes, I am.'
-            },
-            {
-              t: 'complete',
-              p: 'Complete as negativas:',
-              code: 'I ___ not tired. She ___ here today.',
-              bank: ['am', 'isn\'t', 'is', 'aren\'t'],
-              c: ['am', 'isn\'t']
-            },
-            {
-              t: 'monte',
-              p: 'Monte a pergunta: "Onde eles estão?"',
-              r: 'Where are they?',
-              extra: ['is', 'do', 'there']
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'Is she your sister?',
-              ops: ['Is she your sister?', 'She is your sister.', 'Is he your sister?'],
-              c: 0,
-              exp: 'Repare na ordem: Is she... é pergunta. She is... seria uma afirmação.'
-            },
-            { t: 'escreva', p: 'Traduza: "Eu não estou com fome."', r: ['I\'m not hungry.'] },
-            {
-              t: 'escolha',
-              p: 'Qual destas formas NÃO existe em inglês?',
-              ops: ['I amn\'t', 'I\'m not', 'She isn\'t'],
-              c: 0,
-              exp: 'Com I, a negativa é sempre I\'m not.'
-            },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'Are you ready?' }
+            }
           ]
         },
         {
@@ -640,25 +692,7 @@ nivel({
                 {
                   p: 'Cuidado com a pronúncia de this e these, que confunde muita gente. This tem um i curto e termina em s. These tem um i longo e termina com som de z.'
                 },
-                { pares: [['this', 'these', 'i curto × i longo']] },
-                {
-                  p: 'Para apresentar alguém, use this: ((This is my friend Leo.)) Não se diz "He is my friend Leo". Ao telefone, é a mesma coisa: ((Hi, this is Ana.)) (Oi, aqui é a Ana.)'
-                },
-                {
-                  p: 'Depois que uma coisa já foi mencionada, ela vira ((it)): ((What\'s this?)) → ((It\'s a gift.)) (O que é isto? É um presente.)'
-                },
-                {
-                  p: 'That também aparece em várias reações do dia a dia. Vale decorar como blocos:'
-                },
-                {
-                  vocab: [
-                    ['That\'s great!', 'Que ótimo!'],
-                    ['That\'s right.', 'Isso mesmo.'],
-                    ['That\'s it!', 'É isso! / Acabou.'],
-                    ['That\'s too bad.', 'Que pena.'],
-                    ['That\'s OK.', 'Tudo bem. / Não tem problema.']
-                  ]
-                }
+                { pares: [['this', 'these', 'i curto × i longo']] }
               ]
             },
             {
@@ -678,11 +712,55 @@ nivel({
               exp: 'These tem i longo e som de z no fim; songs, no plural, confirma.'
             },
             {
+              t: 'monte',
+              p: 'Monte a frase: "Esses livros são meus."',
+              r: ['These books are mine.', 'These are my books.'],
+              extra: ['This', 'is', 'my'],
+              exp: 'Esses, no plural e perto, é these. Mine quer dizer "meu" quando vem sozinho, sem o nome depois. These are my books (estes são os meus livros) também está certo.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Para apresentar e para retomar',
+              blocos: [
+                {
+                  p: 'Para apresentar alguém, use this: ((This is my friend Leo.)) Não se diz "He is my friend Leo". Ao telefone, é a mesma coisa: ((Hi, this is Ana.)) (Oi, aqui é a Ana.)'
+                },
+                {
+                  p: 'Depois que uma coisa já foi mencionada, ela vira ((it)): ((What\'s this?)) → ((It\'s a gift.)) (O que é isto? É um presente.)'
+                }
+              ]
+            },
+            {
               t: 'escolha',
               p: 'Você vai apresentar um amigo. O que diz?',
               ops: ['This is my friend Leo.', 'He is my friend Leo.', 'That my friend is Leo.'],
               c: 0,
               exp: 'Para apresentar alguém, o inglês usa this.'
+            },
+            { t: 'escreva', p: 'Traduza: "O que é isto?"', r: ['What\'s this?'], exp: 'What is vira What\'s na fala. Isto, perto de você, é this.' },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Oi, aqui é o Pedro." (ao telefone)',
+              r: ['(Hi|Hello|Hey), (this is|it\'s) Pedro( here|).'],
+              exp: 'Ao telefone, o inglês usa this is ou it\'s, nunca I am.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Reações com that',
+              blocos: [
+                {
+                  p: 'That também aparece em várias reações do dia a dia. Vale decorar como blocos:'
+                },
+                {
+                  vocab: [
+                    ['That\'s great!', 'Que ótimo!'],
+                    ['That\'s right.', 'Isso mesmo.'],
+                    ['That\'s it!', 'É isso! / Acabou.'],
+                    ['That\'s too bad.', 'Que pena.'],
+                    ['That\'s OK.', 'Tudo bem. / Não tem problema.']
+                  ]
+                }
+              ]
             },
             {
               t: 'escolha',
@@ -691,20 +769,7 @@ nivel({
               c: 0,
               exp: 'That\'s great! é "que ótimo!". That\'s too bad é "que pena".'
             },
-            { t: 'escreva', p: 'Traduza: "O que é isto?"', r: ['What\'s this?'] },
-            {
-              t: 'monte',
-              p: 'Monte a frase: "Esses livros são meus."',
-              r: ['These books are mine.', 'These are my books.'],
-              extra: ['This', 'is', 'my']
-            },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'That\'s right.' },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Oi, aqui é o Pedro." (ao telefone)',
-              r: ['(Hi|Hello|Hey), (this is|it\'s) Pedro( here|).'],
-              exp: 'Ao telefone, o inglês usa this is ou it\'s, nunca I am.'
-            }
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'That\'s right.' }
           ]
         }
       ]

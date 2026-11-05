@@ -609,27 +609,32 @@ fimalgoritmo`,
             },
             {
               t: 'ordene',
-              p: 'Mesmo sem saber JavaScript ainda, dá para seguir a lógica. Monte a função',
+              plain: true,
+              p: 'Coloque os passos do algoritmo na ordem do fluxograma',
               lines: [
-                'function passagem(idade, estudante) {',
-                '  if (idade >= 65) return 0;',
-                '  if (estudante) return 2.5;',
-                '  return 5;',
-                '}'
+                'Ler a idade e se a pessoa é estudante',
+                'Ver se a idade é 65 ou mais: se for, o valor é R$ 0,00',
+                'Se não for, ver se é estudante: se for, o valor é R$ 2,50',
+                'Se não for nenhum dos dois, o valor é R$ 5,00',
+                'Mostrar o valor'
               ],
-              exp: 'A ordem dos ifs segue o fluxograma: primeiro a idade, depois o estudante.'
+              exp: 'A ordem segue o fluxograma: primeiro a idade, depois o estudante. Se a idade viesse depois, um estudante de 70 anos pagaria meia.'
             },
             {
               t: 'complete',
-              p: 'Complete a função seguindo o fluxograma',
-              code: `function passagem(idade, estudante) {
-  if (idade ___ 65) return 0;
-  if (estudante) return ___;
-  return 5;
-}`,
+              p: 'Complete o algoritmo em Portugol seguindo o fluxograma',
+              code: `se idade ___ 65 entao
+   valor <- 0
+senao
+   se estudante entao
+      valor <- ___
+   senao
+      valor <- 5
+   fimse
+fimse`,
               bank: ['>=', '<', '2.5', '5', '0'],
               c: ['>=', '2.5'],
-              exp: 'Quem tem 65 anos ou mais não paga; estudante paga R$ 2,50; os outros, R$ 5,00. Problema, decomposição, fluxograma, pseudocódigo e código: você fez o caminho inteiro.'
+              exp: 'Quem tem 65 anos ou mais não paga; estudante paga R$ 2,50; os outros, R$ 5,00. Problema, decomposição, fluxograma e pseudocódigo: você fez o caminho inteiro. O código em JavaScript vem no próximo nível.'
             },
             {
               t: 'escolha',
@@ -644,23 +649,12 @@ fimalgoritmo`,
               vars: { I: [20, 34, 50, 66, 70, 80] }
             },
             {
-              t: 'codigo',
-              p: 'Agora em JavaScript: com idade = {I} e estudante = {EST}, mostre o valor a pagar (0, 2.5 ou 5)',
-              start: `let idade = {I};
-let estudante = {EST};
-`,
-              sol: `let idade = {I};
-let estudante = {EST};
-if (idade >= 65) {
-  console.log(0);
-} else if (estudante) {
-  console.log(2.5);
-} else {
-  console.log(5);
-}`,
-              dica: 'Teste a idade primeiro, como no fluxograma. Depois, se é estudante.',
-              exp: 'É o mesmo algoritmo do Portugol, linha por linha.',
-              vars: { I: [15, 17, 30, 65, 72], EST: ['true', 'false'] }
+              t: 'escolha',
+              p: 'No próximo nível, você vai escrever decisões como esta em JavaScript. O `se ... entao` do Portugol vira qual comando?',
+              mono: true,
+              ops: ['if', 'for', 'console.log'],
+              c: 0,
+              exp: 'Você viu isso na lição de Portugol: se vira if e senao vira else. O raciocínio continua o mesmo, só muda a língua.'
             }
           ]
         }

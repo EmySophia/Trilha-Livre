@@ -32,7 +32,7 @@ nivel({
     {
       id: 'enu27',
       titulo: 'O que poderia ter sido',
-      conceito: 'would have · should have · I wish',
+      conceito: 'would have, should have, I wish',
       desc: 'Falar do passado que não aconteceu, do que devia ter sido e do que a gente queria que fosse diferente.',
       licoes: [
         {

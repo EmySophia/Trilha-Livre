@@ -60,6 +60,9 @@ nivel({
                 },
                 {
                   p: 'De A(1, 1) a B(5, 4): $$d = sqrt(4^2 + 3^2) = 5$$. O ponto médio é a média das coordenadas: $$M = ((1 + 5)/2, (1 + 4)/2) = (3; 2,5)$$.'
+                },
+                {
+                  p: 'Ao contrário também funciona: se o ponto médio de A(2, 1) e B é M(5, 3), então (2 + x) ÷ 2 = 5, e o x de B é 8.'
                 }
               ]
             },
@@ -234,6 +237,9 @@ nivel({
                 },
                 {
                   p: 'Exemplo: $$(x − 2)^2 + y^2 = 4$$ tem centro (2, 0) e raio 2. Para saber se um ponto está dentro, calcule a distância dele até o centro e compare com o raio.'
+                },
+                {
+                  p: 'Cuidado com o sinal: na equação aparece x menos a coordenada do centro. Por isso $$(y + 3)^2$$ quer dizer $$(y − (−3))^2$$, e o y do centro é −3.'
                 }
               ]
             },

@@ -40,7 +40,7 @@ nivel({
     {
       id: 'enu36',
       titulo: 'Palavras por dentro',
-      conceito: 'un- · -ness · stare · glance',
+      conceito: 'un-, -ness, stare, glance',
       desc: 'Prefixos, sufixos e sinônimos com sentidos diferentes.',
       licoes: [
         {

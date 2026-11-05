@@ -33,7 +33,7 @@ nivel({
     {
       id: 'enu3',
       titulo: 'Artigos e plurais',
-      conceito: 'a · an · the · -s',
+      conceito: 'a, an, the, -s',
       desc: 'Quando usar a, an e the, e como o plural muda o som da palavra.',
       licoes: [
         {
@@ -70,27 +70,6 @@ nivel({
                 },
                 {
                   p: '**Por que existe o an?** Ele é a forma antiga de one (um). Antes de uma vogal, o n ficou porque facilita a fala: "a apple" junta duas vogais e trava a boca, "an apple" desliza.'
-                },
-                {
-                  p: '**The** é para quando quem fala e quem ouve sabem de qual coisa se trata: ((I have a dog. The dog is black.)) Na primeira vez, é a dog (um cachorro qualquer); depois, the dog (aquele de que eu falei).'
-                },
-                {
-                  p: '**Onde o brasileiro mais erra: sem artigo nenhum.** Quando você fala de algo em geral, o inglês não usa the. Em português dizemos "a vida é curta" e "eu amo a música"; em inglês é ((Life is short.)) e ((I love music.)) Com plurais em geral também: "eu gosto de cachorros" é ((I like dogs.)) Dizer "I like the dogs" quer dizer que você gosta de uns cachorros específicos.'
-                },
-                {
-                  tabela: {
-                    cab: ['Em geral (sem artigo)', 'Algo específico (com the)'],
-                    codigo: [],
-                    linhas: [
-                      ['((Coffee is expensive.))', '((The coffee here is great.))'],
-                      ['((I love music.))', '((I love the music in this movie.))'],
-                      ['((Cats are independent.))', '((The cats are in the garden.))']
-                    ]
-                  }
-                },
-                {
-                  dica: 'A profissão sempre leva a ou an: She\'s an engineer. He\'s a nurse. É um dos erros mais comuns de quem fala português.',
-                  rotulo: 'Lembrete'
                 }
               ]
             },
@@ -117,6 +96,40 @@ nivel({
               exp: 'University começa com o som "iu", que funciona como consoante. Vale o som, não a letra.'
             },
             {
+              t: 'monte',
+              p: 'Monte a frase: "Ela é engenheira."',
+              r: 'She\'s an engineer.',
+              extra: ['a', 'is'],
+              exp: 'Engineer começa com som de vogal, então leva an. E profissão sempre leva a ou an: She\'s an engineer.'
+            },
+            {
+              t: 'texto',
+              titulo: 'O the, e quando não usar artigo',
+              blocos: [
+                {
+                  p: '**The** é para quando quem fala e quem ouve sabem de qual coisa se trata: ((I have a dog. The dog is black.)) Na primeira vez, é a dog (um cachorro qualquer); depois, the dog (aquele de que eu falei).'
+                },
+                {
+                  p: '**Onde o brasileiro mais erra: sem artigo nenhum.** Quando você fala de algo em geral, o inglês não usa the. Em português dizemos "a vida é curta" e "eu amo a música"; em inglês é ((Life is short.)) e ((I love music.)) Com plurais em geral também: "eu gosto de cachorros" é ((I like dogs.)) Dizer "I like the dogs" quer dizer que você gosta de uns cachorros específicos.'
+                },
+                {
+                  tabela: {
+                    cab: ['Em geral (sem artigo)', 'Algo específico (com the)'],
+                    codigo: [],
+                    linhas: [
+                      ['((Coffee is expensive.))', '((The coffee here is great.))'],
+                      ['((I love music.))', '((I love the music in this movie.))'],
+                      ['((Cats are independent.))', '((The cats are in the garden.))']
+                    ]
+                  }
+                },
+                {
+                  dica: 'A profissão sempre leva a ou an: She\'s an engineer. He\'s a nurse. É um dos erros mais comuns de quem fala português.',
+                  rotulo: 'Lembrete'
+                }
+              ]
+            },
+            {
               t: 'escreva',
               p: 'Traduza: "A vida é curta."',
               r: ['Life is short.'],
@@ -139,12 +152,6 @@ nivel({
                 'It\'s half an hour from here.'
               ],
               c: 0
-            },
-            {
-              t: 'monte',
-              p: 'Monte a frase: "Ela é engenheira."',
-              r: 'She\'s an engineer.',
-              extra: ['a', 'is']
             },
             { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'I have a dog and a cat.' }
           ]
@@ -193,7 +200,40 @@ nivel({
                     ['foot, feet', 'pé, pés'],
                     ['tooth, teeth', 'dente, dentes']
                   ]
-                },
+                }
+              ]
+            },
+            {
+              t: 'complete',
+              p: 'Complete com o plural:',
+              code: 'Two ___ and three ___.',
+              bank: ['children', 'women', 'childs', 'womans'],
+              c: ['children', 'women'],
+              exp: 'Child e woman têm plurais irregulares: children e women.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Eu tenho duas caixas."',
+              r: ['I have two boxes.', 'I\'ve got two boxes.'],
+              exp: 'Box termina em x, então o plural é boxes.'
+            },
+            {
+              t: 'escreva',
+              p: 'Escreva o plural de city.',
+              r: ['cities'],
+              exp: 'Consoante + y vira -ies: city, cities.'
+            },
+            {
+              t: 'monte',
+              p: 'Monte a frase: "Essas pessoas são minhas amigas."',
+              r: 'These people are my friends.',
+              extra: ['peoples', 'is', 'This'],
+              exp: 'People já é o plural de person.'
+            },
+            {
+              t: 'texto',
+              titulo: 'O som do -s',
+              blocos: [
                 {
                   p: '**O som do -s.** Aqui está o que mais denuncia o sotaque brasileiro. O -s do plural tem três sons, e só um deles cria uma sílaba a mais:'
                 },
@@ -222,7 +262,26 @@ nivel({
                 },
                 {
                   p: 'Ou seja: ((books)) tem uma sílaba só. Dizer "bukis" acrescenta uma sílaba que não existe. A sílaba extra só aparece quando a palavra já termina num som de s ou parecido, porque aí seria impossível juntar dois sons de s.'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Em qual destas palavras o -s forma uma sílaba a mais?',
+              ops: ['buses', 'cats', 'dogs'],
+              c: 0,
+              exp: 'A sílaba extra só aparece depois de sons de s, z, sh, ch e j. Cats e dogs têm uma sílaba só.'
+            },
+            {
+              t: 'escreva',
+              p: 'Escreva o que você ouviu',
+              ouvir: 'The women are at home.',
+              exp: 'Women soa como "uímin". É uma das palavras que mais confundem.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Palavras sem plural',
+              blocos: [
                 {
                   p: '**Palavras sem plural.** Algumas palavras são vistas pelo inglês como uma massa, e não como coisas que se contam. Elas não têm plural nem levam a ou an: ((information)), ((advice)) (conselho), ((news)), ((homework)), ((money)), ((furniture)) (móveis). "Informations" e "advices" estão sempre errados.'
                 },
@@ -232,21 +291,6 @@ nivel({
                   nota: 'Para contar, use a piece of: a piece of advice, two pieces of information.'
                 }
               ]
-            },
-            {
-              t: 'complete',
-              p: 'Complete com o plural:',
-              code: 'Two ___ and three ___.',
-              bank: ['children', 'women', 'childs', 'womans'],
-              c: ['children', 'women'],
-              exp: 'Child e woman têm plurais irregulares: children e women.'
-            },
-            {
-              t: 'escolha',
-              p: 'Em qual destas palavras o -s forma uma sílaba a mais?',
-              ops: ['buses', 'cats', 'dogs'],
-              c: 0,
-              exp: 'A sílaba extra só aparece depois de sons de s, z, sh, ch e j. Cats e dogs têm uma sílaba só.'
             },
             {
               t: 'escolha',
@@ -261,12 +305,6 @@ nivel({
               exp: 'Information não tem plural nem leva an: some information.'
             },
             {
-              t: 'escreva',
-              p: 'Traduza: "Eu tenho duas caixas."',
-              r: ['I have two boxes.', 'I\'ve got two boxes.'],
-              exp: 'Box termina em x, então o plural é boxes.'
-            },
-            {
               t: 'escolha',
               p: 'Qual frase está certa?',
               ops: [
@@ -276,25 +314,6 @@ nivel({
               ],
               c: 0,
               exp: 'Advice é incontável. Para um só conselho: a piece of advice.'
-            },
-            {
-              t: 'escreva',
-              p: 'Escreva o plural de city.',
-              r: ['cities'],
-              exp: 'Consoante + y vira -ies: city, cities.'
-            },
-            {
-              t: 'monte',
-              p: 'Monte a frase: "Essas pessoas são minhas amigas."',
-              r: 'These people are my friends.',
-              extra: ['peoples', 'is', 'This'],
-              exp: 'People já é o plural de person.'
-            },
-            {
-              t: 'escreva',
-              p: 'Escreva o que você ouviu',
-              ouvir: 'The women are in the kitchen.',
-              exp: 'Women soa como "uímin". É uma das palavras que mais confundem.'
             }
           ]
         }
@@ -303,7 +322,7 @@ nivel({
     {
       id: 'enu4',
       titulo: 'De quem é, como é, onde está',
-      conceito: 'his · her · there is',
+      conceito: 'his, her, there is',
       desc: 'Possessivos, os pronomes de quem recebe a ação, adjetivos, there is e there are e as preposições de lugar.',
       licoes: [
         {
@@ -334,15 +353,6 @@ nivel({
                 },
                 {
                   p: 'Por isso, "A Maria ama o cachorro dela" é ((Maria loves her dog.)) Se você disser "Maria loves his dog", está dizendo que ela ama o cachorro de outro homem. Esse é um dos erros que mais causam confusão de verdade numa conversa.'
-                },
-                {
-                  p: '**O \'s das pessoas.** Para dizer de quem é algo, o inglês põe o dono primeiro e acrescenta \'s: ((Ana\'s car)) (o carro da Ana), ((my mother\'s house)) (a casa da minha mãe). Se o dono é um plural terminado em s, fica só o apóstrofo: ((my parents\' house)) (a casa dos meus pais).'
-                },
-                {
-                  p: '**Its ou it\'s?** ((its)) é o possessivo das coisas e animais: ((The dog wagged its tail.)) (o cachorro abanou o rabo). ((it\'s)) é it is. Truque: se der para trocar por it is, leva apóstrofo.'
-                },
-                {
-                  p: 'As formas que ficam sozinhas substituem a coisa: ((This book is mine.)) (Este livro é meu.) ((Is this yours?)) (Isto é seu?) Para perguntar de quem é: ((Whose bag is this?))'
                 }
               ]
             },
@@ -361,10 +371,28 @@ nivel({
               exp: 'O possessivo depende do dono (Pedro), e não da irmã. Por isso his.'
             },
             {
+              t: 'texto',
+              titulo: 'O \'s das pessoas e o its',
+              blocos: [
+                {
+                  p: '**O \'s das pessoas.** Para dizer de quem é algo, o inglês põe o dono primeiro e acrescenta \'s: ((Ana\'s car)) (o carro da Ana), ((my mother\'s house)) (a casa da minha mãe). Se o dono é um plural terminado em s, fica só o apóstrofo: ((my parents\' house)) (a casa dos meus pais).'
+                },
+                {
+                  p: '**Its ou it\'s?** ((its)) é o possessivo das coisas e animais: ((The dog wagged its tail.)) (o cachorro abanou o rabo). ((it\'s)) é it is. Truque: se der para trocar por it is, leva apóstrofo.'
+                }
+              ]
+            },
+            {
               t: 'escreva',
               p: 'Traduza: "o carro da Ana"',
               r: ['Ana\'s car'],
               exp: 'O dono vem primeiro, com \'s: Ana\'s car.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "a casa dos meus pais"',
+              r: ['my parents\' house'],
+              exp: 'Parents já termina em s, então fica só o apóstrofo: parents\'.'
             },
             {
               t: 'complete',
@@ -375,10 +403,13 @@ nivel({
               exp: 'Its food: o possessivo, sem apóstrofo. It\'s very hungry: it is.'
             },
             {
-              t: 'monte',
-              p: 'Monte a pergunta: "De quem é esta bolsa?"',
-              r: 'Whose bag is this?',
-              extra: ['Who', 'Who\'s', 'these']
+              t: 'texto',
+              titulo: 'Mine, yours e whose',
+              blocos: [
+                {
+                  p: 'As formas que ficam sozinhas substituem a coisa: ((This book is mine.)) (Este livro é meu.) ((Is this yours?)) (Isto é seu?) Para perguntar de quem é: ((Whose bag is this?))'
+                }
+              ]
             },
             {
               t: 'escolha',
@@ -389,10 +420,11 @@ nivel({
               exp: 'Sozinho, no fim da frase, my vira mine.'
             },
             {
-              t: 'escreva',
-              p: 'Traduza: "a casa dos meus pais"',
-              r: ['my parents\' house'],
-              exp: 'Parents já termina em s, então fica só o apóstrofo: parents\'.'
+              t: 'monte',
+              p: 'Monte a pergunta: "De quem é esta bolsa?"',
+              r: 'Whose bag is this?',
+              extra: ['Who', 'Who\'s', 'these'],
+              exp: 'Whose é "de quem". Depois vem a coisa (bag), o verbo (is) e this. Who\'s é outra coisa: who is, "quem é".'
             },
             { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'Is this your phone?' }
           ]
@@ -426,13 +458,67 @@ nivel({
                 },
                 {
                   p: '**Por que isso existe?** O português faz a mesma coisa: eu vira me e mim, como em "ele **me** chamou" e "é para **mim**". Mas, na fala do Brasil, é comum dizer "eu vi ele". Em inglês, isso não funciona: é ((I saw him)), nunca "I saw he".'
-                },
+                }
+              ]
+            },
+            {
+              t: 'complete',
+              p: 'Complete com o pronome certo:',
+              code: 'Ana is my friend. I really like ___. Pedro and Lia? I don\'t know ___.',
+              bank: ['her', 'them', 'she', 'they'],
+              c: ['her', 'them'],
+              exp: 'Depois do verbo, she vira her e they vira them.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'Wait for us!',
+              ops: ['Wait for us!', 'Wait for it!', 'Wait for me!'],
+              c: 0
+            },
+            {
+              t: 'texto',
+              titulo: 'O lugar do pronome',
+              blocos: [
                 {
                   p: '**O lugar também muda.** Em português, o pronome costuma vir antes do verbo: "eu **te** amo", "ela **me** ligou". Em inglês, ele vem **depois**: ((I love you.)) ((She called me.)) Como os verbos do inglês quase não têm terminações, é a ordem das palavras que mostra quem faz e quem recebe.'
                 },
                 {
                   p: '**Depois de preposições**, sempre a forma de quem recebe: ((for me)), ((with him)), ((about them)), ((between you and me)). Por isso "para mim" é for me, e nunca "for I".'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: '"Ela me ligou." Como fica?',
+              ops: ['She called me.', 'She me called.', 'She called I.'],
+              c: 0,
+              exp: 'Em inglês, o pronome vem depois do verbo, e quem recebe a ação é me.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Eu te amo."',
+              r: ['I love you.'],
+              exp: 'O pronome vai depois do verbo: love you.'
+            },
+            {
+              t: 'escolha',
+              p: '"Isto é para mim?" Como fica?',
+              ops: ['Is this for me?', 'Is this for I?', 'Is this to my?'],
+              c: 0,
+              exp: 'Depois de preposição, a forma é me.'
+            },
+            {
+              t: 'monte',
+              p: 'Monte a pergunta: "Você pode me ajudar?"',
+              r: 'Can you help me?',
+              extra: ['I', 'my', 'to'],
+              exp: 'Can you...? é o jeito comum de pedir algo. Quem recebe a ajuda é me, que vem depois do verbo help (ajudar).'
+            },
+            {
+              t: 'texto',
+              titulo: 'Me too, e as duas funções de her',
+              blocos: [
                 {
                   p: '**Nas respostas curtas** da conversa, também: ((Me too!)) (Eu também!), ((Me neither.)) (Eu também não.) E, para "quem quer pizza?", a resposta é ((Me!))'
                 },
@@ -465,47 +551,6 @@ nivel({
                   rotulo: 'Me and my friend?'
                 }
               ]
-            },
-            {
-              t: 'escolha',
-              p: '"Ela me ligou." Como fica?',
-              ops: ['She called me.', 'She me called.', 'She called I.'],
-              c: 0,
-              exp: 'Em inglês, o pronome vem depois do verbo, e quem recebe a ação é me.'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Eu te amo."',
-              r: ['I love you.'],
-              exp: 'O pronome vai depois do verbo: love you.'
-            },
-            {
-              t: 'complete',
-              p: 'Complete com o pronome certo:',
-              code: 'Ana is my friend. I really like ___. Pedro and Lia? I don\'t know ___.',
-              bank: ['her', 'them', 'she', 'they'],
-              c: ['her', 'them'],
-              exp: 'Depois do verbo, she vira her e they vira them.'
-            },
-            {
-              t: 'escolha',
-              p: '"Isto é para mim?" Como fica?',
-              ops: ['Is this for me?', 'Is this for I?', 'Is this to my?'],
-              c: 0,
-              exp: 'Depois de preposição, a forma é me.'
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'Wait for us!',
-              ops: ['Wait for us!', 'Wait for it!', 'Wait for me!'],
-              c: 0
-            },
-            {
-              t: 'monte',
-              p: 'Monte a pergunta: "Você pode me ajudar?"',
-              r: 'Can you help me?',
-              extra: ['I', 'my', 'to']
             },
             {
               t: 'escolha',
@@ -545,11 +590,54 @@ nivel({
                 {
                   p: 'E o adjetivo nunca muda: não tem plural nem feminino. ((a red car)), ((two red cars)), ((a tall woman)), ((two tall men)). "Reds cars" está sempre errado.'
                 },
+                { p: 'Algumas cores para usar já:' },
+                {
+                  vocab: [
+                    ['red', 'vermelho'],
+                    ['blue', 'azul'],
+                    ['black', 'preto'],
+                    ['white', 'branco'],
+                    ['green', 'verde']
+                  ]
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Qual está certo?',
+              ops: ['two big houses', 'two bigs houses', 'two houses bigs'],
+              c: 0,
+              exp: 'O adjetivo vem antes e nunca vai para o plural.'
+            },
+            { t: 'escreva', p: 'Traduza: "um carro vermelho"', r: ['a red car'], exp: 'Em inglês, o adjetivo (red) vem antes do nome (car): a red car.' },
+            {
+              t: 'escreva',
+              p: 'Traduza: "dois carros azuis"',
+              r: 'two blue cars',
+              exp: 'O adjetivo vem antes e não vai para o plural: two blue cars, nunca "two blues cars".'
+            },
+            {
+              t: 'texto',
+              titulo: 'Vários adjetivos juntos',
+              blocos: [
                 {
                   p: '**Vários adjetivos juntos** seguem uma ordem que os nativos sentem sem pensar: primeiro a opinião, depois tamanho, idade, cor, origem e material. Fora dessa ordem, a frase soa esquisita para eles.'
                 },
                 { fala: 'a nice big old house', trad: 'uma casa velha, grande e bonita' },
-                { fala: 'a small black leather bag', trad: 'uma bolsa pequena de couro preto' },
+                { fala: 'a small black leather bag', trad: 'uma bolsa pequena de couro preto' }
+              ]
+            },
+            {
+              t: 'monte',
+              p: 'Monte: "uma bolsa pequena de couro preto"',
+              r: 'a small black leather bag',
+              extra: ['blacks', 'of'],
+              exp: 'A ordem é tamanho (small), cor (black), material (leather) e, por fim, a coisa (bag). E o adjetivo nunca vai para o plural: blacks não existe.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Muito, demais e um nome descrevendo outro',
+              blocos: [
                 { p: '**Para intensificar:**' },
                 {
                   vocab: [
@@ -572,20 +660,6 @@ nivel({
                   rotulo: 'Too × very'
                 }
               ]
-            },
-            { t: 'escreva', p: 'Traduza: "um carro vermelho"', r: ['a red car'] },
-            {
-              t: 'escolha',
-              p: 'Qual está certo?',
-              ops: ['two big houses', 'two bigs houses', 'two houses bigs'],
-              c: 0,
-              exp: 'O adjetivo vem antes e nunca vai para o plural.'
-            },
-            {
-              t: 'monte',
-              p: 'Monte: "uma bolsa pequena de couro preto"',
-              r: 'a small black leather bag',
-              extra: ['blacks', 'of']
             },
             {
               t: 'escolha',
@@ -616,12 +690,7 @@ nivel({
               ],
               c: 0
             },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Ela tem olhos azuis."',
-              r: ['She has blue eyes.', 'She\'s got blue eyes.']
-            },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'I love old movies.' }
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'I love old songs.' }
           ]
         },
         {
@@ -651,7 +720,50 @@ nivel({
                 },
                 {
                   p: 'Dizer "Have a problem" para dizer que existe um problema é um dos erros mais comuns de brasileiros. Sem sujeito, a frase nem existe em inglês.'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: '"Tem um problema no meu computador." Como fica?',
+              ops: [
+                'There\'s a problem with my computer.',
+                'Have a problem in my computer.',
+                'It has a problem in my computer.'
+              ],
+              c: 0,
+              exp: 'Existir é there is. E problema "com" alguma coisa usa with.'
+            },
+            {
+              t: 'complete',
+              p: 'Complete:',
+              code: '___ a bank near here? Yes, and ___ two pharmacies too.',
+              bank: ['Is there', 'there are', 'Are there', 'there is'],
+              c: ['Is there', 'there are'],
+              exp: 'Um banco: Is there. Duas farmácias: there are.'
+            },
+            {
+              t: 'monte',
+              p: 'Monte a frase: "Tem muita gente aqui."',
+              r: ['There are a lot of people here.', 'There are lots of people here.'],
+              extra: ['is', 'Have', 'peoples'],
+              exp: 'Muita gente é plural, então there are. E people já é o plural de person: peoples não existe.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'Is there a pharmacy near here?',
+              ops: [
+                'Is there a pharmacy near here?',
+                'Is there a farm near here?',
+                'Is it a pharmacy near here?'
+              ],
+              c: 0
+            },
+            {
+              t: 'texto',
+              titulo: 'In, on e at',
+              blocos: [
                 { p: '**In, on e at** dizem onde as coisas estão:' },
                 {
                   tabela: {
@@ -689,27 +801,15 @@ nivel({
                 {
                   dica: 'At home, at work e at school são expressões fixas, sem the. "Estou em casa" é I\'m at home.',
                   rotulo: 'Decore em bloco'
+                },
+                {
+                  vocab: [
+                    ['in the fridge', 'na geladeira', 'fridge é o jeito curto de refrigerator'],
+                    ['on the table', 'na mesa'],
+                    ['in my bag', 'na minha bolsa']
+                  ]
                 }
               ]
-            },
-            {
-              t: 'escolha',
-              p: '"Tem um problema no meu computador." Como fica?',
-              ops: [
-                'There\'s a problem with my computer.',
-                'Have a problem in my computer.',
-                'It has a problem in my computer.'
-              ],
-              c: 0,
-              exp: 'Existir é there is. E problema "com" alguma coisa usa with.'
-            },
-            {
-              t: 'complete',
-              p: 'Complete:',
-              code: '___ a bank near here? Yes, and ___ two pharmacies too.',
-              bank: ['Is there', 'there are', 'Are there', 'there is'],
-              c: ['Is there', 'there are'],
-              exp: 'Um banco: Is there. Duas farmácias: there are.'
             },
             {
               t: 'complete',
@@ -732,24 +832,8 @@ nivel({
               r: [
                 'There\'s no milk in the (fridge|refrigerator).',
                 'There isn\'t any milk in the (fridge|refrigerator).'
-              ]
-            },
-            {
-              t: 'monte',
-              p: 'Monte a frase: "Tem muita gente aqui."',
-              r: ['There are a lot of people here.', 'There are lots of people here.'],
-              extra: ['is', 'Have', 'peoples']
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'Is there a pharmacy near here?',
-              ops: [
-                'Is there a pharmacy near here?',
-                'Is there a farm near here?',
-                'Is it a pharmacy near here?'
               ],
-              c: 0
+              exp: 'Para "não tem", o inglês usa There\'s no milk ou There isn\'t any milk. E o leite está dentro da geladeira: in the fridge.'
             },
             {
               t: 'escreva',

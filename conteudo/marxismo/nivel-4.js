@@ -207,7 +207,7 @@ nivel({
     {
       id: 'mxu5',
       titulo: 'As experiências do século XX',
-      conceito: 'URSS · China · Cuba',
+      conceito: 'URSS, China, Cuba',
       desc: 'Conquistas, crimes e o que se discute sobre elas.',
       licoes: [
         {

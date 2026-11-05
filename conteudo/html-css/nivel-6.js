@@ -264,7 +264,7 @@ nivel({
                   code: `<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contato · Biblioteca da Vila</title>
+  <title>Contato da Biblioteca da Vila</title>
   <link rel="stylesheet" href="estilo.css">
 </head>`
                 },

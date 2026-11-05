@@ -30,7 +30,7 @@ nivel({
     {
       id: 'mbu15',
       titulo: 'Unidades de medida',
-      conceito: 'km · m · cm',
+      conceito: 'km, m, cm',
       desc: 'Comprimento, massa, capacidade e tempo.',
       licoes: [
         {

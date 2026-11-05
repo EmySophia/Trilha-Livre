@@ -32,7 +32,7 @@ nivel({
     {
       id: 'enu23',
       titulo: 'A voz passiva',
-      conceito: 'was built · had it done',
+      conceito: 'was built, had it done',
       desc: 'Quando o importante é o que aconteceu, e não quem fez.',
       licoes: [
         {

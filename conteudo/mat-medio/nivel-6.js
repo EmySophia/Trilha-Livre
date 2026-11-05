@@ -74,19 +74,19 @@ nivel({
             },
             {
               t: 'numero',
-              p: 'Dois triângulos são semelhantes, com razão de semelhança {K}. Se o menor tem área {A} cm², qual é a área do maior?',
-              r: '{= A * K * K }',
-              exp: 'As áreas são multiplicadas por $$k^2 = {= K * K }$$.',
-              unidade: 'cm²',
-              vars: { K: { de: 2, ate: 5 }, A: { de: 3, ate: 20 } }
-            },
-            {
-              t: 'numero',
               p: 'Uma maquete está na escala 1 : {K}. Um prédio tem {H} cm de altura na maquete. Qual é a altura real, em metros?',
               r: '{= H * K / 100 }',
               exp: 'Multiplique por {K} e passe de centímetros para metros.',
               unidade: 'm',
               vars: { K: [50, 100, 200, 250], H: { de: 10, ate: 60 } }
+            },
+            {
+              t: 'numero',
+              p: 'Dois triângulos são semelhantes, com razão de semelhança {K}. Se o menor tem área {A} cm², qual é a área do maior?',
+              r: '{= A * K * K }',
+              exp: 'As áreas são multiplicadas por $$k^2 = {= K * K }$$.',
+              unidade: 'cm²',
+              vars: { K: { de: 2, ate: 5 }, A: { de: 3, ate: 20 } }
             },
             {
               t: 'escolha',
@@ -97,19 +97,31 @@ nivel({
             },
             {
               t: 'numero',
+              p: 'Uma foto de {L} cm × {H} cm é ampliada para {= L * K } cm de largura. Quantas vezes a área aumenta?',
+              r: '{= K * K }',
+              exp: 'Lados multiplicados por {K}; a área, por {K}².',
+              vars: { L: [10, 15], H: [10, 15, 20], K: [2, 3, 4] }
+            },
+            {
+              t: 'texto',
+              titulo: 'O teorema de Tales',
+              blocos: [
+                {
+                  p: 'Quando três ou mais retas paralelas cortam duas retas transversais, os segmentos marcados numa transversal são proporcionais aos marcados na outra. Esse é o teorema de Tales.'
+                },
+                {
+                  p: 'Exemplo: numa transversal, os segmentos medem 2 cm e 3 cm; na outra, o primeiro mede 4 cm. Então $$2/3 = 4/x$$, e x = 6 cm.'
+                }
+              ]
+            },
+            {
+              t: 'numero',
               p: 'Três retas paralelas cortam duas transversais. Numa delas, os segmentos medem {A} cm e {B} cm; na outra, o primeiro mede {= A * K } cm. Quanto mede o segundo?',
               r: '{= B * K }',
               exp: 'Teorema de Tales: os segmentos são proporcionais, $${A}/{B} = {= A * K }/x$$.',
               unidade: 'cm',
               vars: { A: { de: 2, ate: 8 }, B: { de: 3, ate: 9 }, K: [2, 3] },
               se: 'A !== B'
-            },
-            {
-              t: 'numero',
-              p: 'Uma foto de {L} cm × {H} cm é ampliada para {= L * K } cm de largura. Quantas vezes a área aumenta?',
-              r: '{= K * K }',
-              exp: 'Lados multiplicados por {K}; a área, por {K}².',
-              vars: { L: [10, 15], H: [10, 15, 20], K: [2, 3, 4] }
             }
           ]
         },
@@ -337,6 +349,9 @@ nivel({
                 },
                 {
                   p: 'Exemplo: uma casquinha de sorvete (cone) de raio 3 cm e altura 10 cm tem $$(3 × 9 × 10)/3 = 90$$ cm³, usando π = 3.'
+                },
+                {
+                  p: 'Derreter e moldar de novo muda a forma, mas não o volume. Para achar uma medida da peça nova, iguale os dois volumes.'
                 }
               ]
             },

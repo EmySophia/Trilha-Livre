@@ -62,20 +62,6 @@ nivel({
               se: 'R !== 0'
             },
             {
-              t: 'numero',
-              p: 'Qual é o {K}º termo da PA ({A}, {= A + R }, {= A + 2 * R }, ...)?',
-              r: '{= A + (K - 1) * R }',
-              exp: '$$a_{K} = {A} + ({K} − 1) × {R}$$.',
-              vars: { A: { de: -10, ate: 20 }, R: { de: 2, ate: 9 }, K: { de: 10, ate: 50 } }
-            },
-            {
-              t: 'numero',
-              p: 'Em que posição da PA ({A}, {= A + R }, {= A + 2 * R }, ...) aparece o número {= A + (K - 1) * R }?',
-              r: '{K}',
-              exp: '$${A} + (n − 1) × {R} = {= A + (K - 1) * R }$$.',
-              vars: { A: { de: 1, ate: 20 }, R: { de: 2, ate: 9 }, K: { de: 8, ate: 40 } }
-            },
-            {
               t: 'escolha',
               p: 'Qual destas sequências é uma PA?',
               ops: ['(5, 8, 11, 14)', '(2, 4, 8, 16)', '(1, 4, 9, 16)'],
@@ -84,11 +70,44 @@ nivel({
             },
             {
               t: 'numero',
+              p: 'Qual é o {K}º termo da PA ({A}, {= A + R }, {= A + 2 * R }, ...)?',
+              r: '{= A + (K - 1) * R }',
+              exp: '$$a_{K} = {A} + ({K} − 1) × {R}$$.',
+              vars: { A: { de: -10, ate: 20 }, R: { de: 2, ate: 9 }, K: { de: 10, ate: 50 } }
+            },
+            {
+              t: 'numero',
               p: 'Um carro novo custa R$ {= br(P) } e perde R$ {= br(D) } de valor por ano. Quanto vale depois de {K} anos?',
               r: '{= P - K * D }',
               exp: 'É uma PA de razão −{= br(D) }.',
               prefixo: 'R$',
               vars: { P: [60000, 80000, 100000], D: [3000, 4000, 5000], K: { de: 2, ate: 8 } }
+            },
+            {
+              t: 'texto',
+              titulo: 'A fórmula ao contrário',
+              blocos: [
+                {
+                  p: 'A mesma fórmula serve para achar a posição de um termo ou a razão: troque o que você já sabe e resolva a equação.'
+                },
+                {
+                  tabela: {
+                    cab: ['Pergunta', 'Conta'],
+                    codigo: [],
+                    linhas: [
+                      ['Em que posição aparece o 59 na PA (3, 7, 11, ...)?', '3 + (n − 1) × 4 = 59, então (n − 1) × 4 = 56, n − 1 = 14 e n = 15'],
+                      ['O 1º termo é 5 e o 10º é 32. Qual é a razão?', '5 + 9r = 32, então 9r = 27 e r = 3']
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              t: 'numero',
+              p: 'Em que posição da PA ({A}, {= A + R }, {= A + 2 * R }, ...) aparece o número {= A + (K - 1) * R }?',
+              r: '{K}',
+              exp: '$${A} + (n − 1) × {R} = {= A + (K - 1) * R }$$.',
+              vars: { A: { de: 1, ate: 20 }, R: { de: 2, ate: 9 }, K: { de: 8, ate: 40 } }
             },
             {
               t: 'numero',

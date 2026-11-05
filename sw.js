@@ -4,7 +4,7 @@
    se a rede falhar ou demorar mais de 3 segundos, usa a cópia guardada.
    SPDX-License-Identifier: AGPL-3.0-or-later · Copyright (C) 2026 Contribuidores do Trilha Livre */
 
-const CACHE = 'trilha-livre-v11';
+const CACHE = 'trilha-livre-v12';
 const FONTES = 'trilha-livre-fontes';
 const PYTHON = 'trilha-livre-python'; // o Pyodide, baixado na primeira vez que alguém roda Python
 const AUDIO = 'trilha-livre-audio'; // as falas dos cursos de idiomas: o nome muda quando a frase muda, então a cópia vale para sempre
@@ -21,9 +21,11 @@ const ARQUIVOS = [
   'conteudo/ingles/nivel-1.js', 'conteudo/ingles/nivel-2.js', 'conteudo/ingles/nivel-3.js', 'conteudo/ingles/nivel-4.js', 'conteudo/ingles/nivel-5.js', 'conteudo/ingles/nivel-6.js', 'conteudo/ingles/nivel-7.js', 'conteudo/ingles/nivel-8.js', 'conteudo/ingles/nivel-9.js', 'conteudo/ingles/nivel-10.js', 'conteudo/ingles/nivel-11.js', 'conteudo/ingles/nivel-12.js', 'conteudo/ingles/nivel-13.js', 'conteudo/ingles/nivel-14.js', 'conteudo/ingles/nivel-15.js', 'conteudo/ingles/nivel-16.js', 'conteudo/ingles/nivel-17.js', 'conteudo/ingles/nivel-18.js', 'conteudo/ingles/nivel-19.js', 'conteudo/ingles/nivel-20.js', 'conteudo/ingles/nivel-21.js', 'conteudo/ingles/nivel-22.js', 'conteudo/ingles/nivel-23.js', 'conteudo/ingles/nivel-24.js', 'conteudo/ingles/pratica.js',
   'conteudo/marxismo/nivel-1.js', 'conteudo/marxismo/nivel-2.js', 'conteudo/marxismo/nivel-3.js', 'conteudo/marxismo/nivel-4.js', 'conteudo/marxismo/nivel-5.js', 'conteudo/marxismo/nivel-6.js', 'conteudo/marxismo/nivel-7.js', 'conteudo/o-capital/nivel-1.js', 'conteudo/o-capital/nivel-2.js', 'conteudo/o-capital/nivel-3.js', 'conteudo/o-capital/nivel-4.js', 'conteudo/o-capital/nivel-5.js', 'conteudo/o-capital/nivel-6.js', 'conteudo/o-capital/nivel-7.js',
   'conteudo/capital-guiado/nivel-1.js', 'conteudo/capital-guiado/nivel-2.js', 'conteudo/capital-guiado/nivel-3.js', 'conteudo/capital-guiado/nivel-4.js', 'conteudo/capital-guiado/nivel-5.js', 'conteudo/capital-guiado/nivel-6.js', 'conteudo/capital-guiado/nivel-7.js',
+  'conteudo/seg-pessoal/nivel-1.js', 'conteudo/seg-pessoal/nivel-2.js', 'conteudo/seg-pessoal/nivel-3.js', 'conteudo/seg-pessoal/nivel-4.js', 'conteudo/seg-pessoal/nivel-5.js', 'conteudo/seg-pessoal/nivel-6.js',
+  'conteudo/linux/nivel-1.js', 'conteudo/linux/nivel-2.js', 'conteudo/linux/nivel-3.js', 'conteudo/linux/nivel-4.js', 'conteudo/linux/nivel-5.js', 'conteudo/linux/nivel-6.js', 'conteudo/linux/nivel-7.js', 'conteudo/linux/nivel-8.js',
   // imagens usadas nos exercícios de HTML e CSS
   'imagens/biblioteca.jpg', 'imagens/computadores.jpg', 'imagens/feira.jpg', 'imagens/gato.jpg', 'imagens/horta.jpg', 'imagens/icone.png', 'imagens/livros.jpg', 'imagens/logo.png', 'imagens/mapa.png', 'imagens/pessoa.jpg', 'imagens/praia.jpg', 'imagens/quadra.jpg',
-  'js/nucleo.js', 'js/efeitos.js', 'js/teclado.js', 'js/variaveis.js', 'js/numeros.js', 'js/fala.js', 'js/web.js', 'js/python.js', 'js/py-worker.js', 'js/terminal.js', 'js/pwa.js', 'js/app.js',
+  'js/nucleo.js', 'js/efeitos.js', 'js/teclado.js', 'js/variaveis.js', 'js/numeros.js', 'js/fala.js', 'js/web.js', 'js/python.js', 'js/py-worker.js', 'js/terminal.js', 'js/linux.js', 'js/pwa.js', 'js/app.js',
   'icones/icone-192.png', 'icones/icone-512.png', 'icones/icone-maskable-512.png', 'icones/apple-touch-icon.png', 'icones/favicon-32.png'
 ];
 

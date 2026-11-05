@@ -509,7 +509,7 @@ section {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Início · Biblioteca Comunitária Vila Nova</title>
+  <title>Biblioteca Comunitária Vila Nova</title>
   <meta name="description" content="Biblioteca comunitária com empréstimo gratuito de livros e oficinas na Vila Nova.">
   <link rel="icon" href="imagens/icone.png">
   <link rel="stylesheet" href="estilo.css">
@@ -542,7 +542,7 @@ section {
     </section>
   </main>
   <footer>
-    <p>Rua das Palmeiras, 120 · Vila Nova · Entrada gratuita</p>
+    <p>Rua das Palmeiras, 120, Vila Nova. Entrada gratuita.</p>
   </footer>
 </body>
 </html>`,
@@ -682,7 +682,7 @@ footer {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Atividades · Biblioteca Comunitária Vila Nova</title>
+  <title>Atividades da Biblioteca Comunitária Vila Nova</title>
   <meta name="description" content="Biblioteca comunitária com empréstimo gratuito de livros e oficinas na Vila Nova.">
   <link rel="icon" href="imagens/icone.png">
   <link rel="stylesheet" href="estilo.css">
@@ -704,7 +704,7 @@ footer {
 
   </main>
   <footer>
-    <p>Rua das Palmeiras, 120 · Vila Nova · Entrada gratuita</p>
+    <p>Rua das Palmeiras, 120, Vila Nova. Entrada gratuita.</p>
   </footer>
 </body>
 </html>`,
@@ -857,7 +857,7 @@ footer {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Atividades · Biblioteca Comunitária Vila Nova</title>
+  <title>Atividades da Biblioteca Comunitária Vila Nova</title>
   <meta name="description" content="Biblioteca comunitária com empréstimo gratuito de livros e oficinas na Vila Nova.">
   <link rel="icon" href="imagens/icone.png">
   <link rel="stylesheet" href="estilo.css">
@@ -895,7 +895,7 @@ footer {
     </div>
   </main>
   <footer>
-    <p>Rua das Palmeiras, 120 · Vila Nova · Entrada gratuita</p>
+    <p>Rua das Palmeiras, 120, Vila Nova. Entrada gratuita.</p>
   </footer>
 </body>
 </html>`,
@@ -1057,7 +1057,7 @@ footer {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contato · Biblioteca Comunitária Vila Nova</title>
+  <title>Contato da Biblioteca Comunitária Vila Nova</title>
   <meta name="description" content="Biblioteca comunitária com empréstimo gratuito de livros e oficinas na Vila Nova.">
   <link rel="icon" href="imagens/icone.png">
   <link rel="stylesheet" href="estilo.css">
@@ -1079,7 +1079,7 @@ footer {
 
   </main>
   <footer>
-    <p>Rua das Palmeiras, 120 · Vila Nova · Entrada gratuita</p>
+    <p>Rua das Palmeiras, 120, Vila Nova. Entrada gratuita.</p>
   </footer>
 </body>
 </html>`,
@@ -1251,7 +1251,7 @@ footer {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contato · Biblioteca Comunitária Vila Nova</title>
+  <title>Contato da Biblioteca Comunitária Vila Nova</title>
   <meta name="description" content="Biblioteca comunitária com empréstimo gratuito de livros e oficinas na Vila Nova.">
   <link rel="icon" href="imagens/icone.png">
   <link rel="stylesheet" href="estilo.css">
@@ -1298,7 +1298,7 @@ footer {
     </form>
   </main>
   <footer>
-    <p>Rua das Palmeiras, 120 · Vila Nova · Entrada gratuita</p>
+    <p>Rua das Palmeiras, 120, Vila Nova. Entrada gratuita.</p>
   </footer>
 </body>
 </html>`,

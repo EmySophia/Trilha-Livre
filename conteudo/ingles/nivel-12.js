@@ -33,7 +33,7 @@ nivel({
     {
       id: 'enu20',
       titulo: 'Lendo de verdade',
-      conceito: 'skim · scan · context',
+      conceito: 'skim, scan, context',
       desc: 'Palavras parecidas com o português, estratégias de leitura e textos maiores.',
       licoes: [
         {

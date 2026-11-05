@@ -8,7 +8,7 @@ nivel({
   desc: 'Capítulo 4: como dinheiro vira mais dinheiro, e a força de trabalho.',
   videos: [
     {
-      titulo: 'Curso O Capital, de Marx · aula 3',
+      titulo: 'Curso O Capital, de Marx, aula 3',
       canal: 'TV Boitempo',
       obs: 'Marcelo Carcanholo: capital, fetichismo e classes sociais',
       url: 'https://www.youtube.com/watch?v=6JYKsqECnoI'

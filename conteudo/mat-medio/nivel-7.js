@@ -60,13 +60,6 @@ nivel({
             },
             {
               t: 'numero',
-              p: 'Quantos anagramas tem a palavra {= ["AMOR", "LIVRO", "BRASIL", "ARARA", "BANANA", "ENEM", "PAPAI"][I] }?',
-              r: '{= [24, 120, 720, 10, 60, 12, 30][I] }',
-              exp: 'Conte as letras e divida pelos fatoriais das que se repetem.',
-              vars: { I: { de: 0, ate: 6 } }
-            },
-            {
-              t: 'numero',
               p: 'De quantas formas {N} pessoas podem fazer uma fila?',
               r: '{= [1, 1, 2, 6, 24, 120, 720, 5040][N] }',
               exp: 'São {N}!.',
@@ -74,10 +67,10 @@ nivel({
             },
             {
               t: 'numero',
-              p: 'Quantos anagramas de {= ["AMOR", "LIVRO", "BRASIL"][I] } começam com a letra {= ["A", "L", "B"][I] }?',
-              r: '{= [6, 24, 120][I] }',
-              exp: 'Fixando a primeira letra, as outras {= I + 3 } se permutam: {= I + 3 }!.',
-              vars: { I: { de: 0, ate: 2 } }
+              p: 'Quantos anagramas tem a palavra {= ["AMOR", "LIVRO", "BRASIL", "ARARA", "BANANA", "ENEM", "PAPAI"][I] }?',
+              r: '{= [24, 120, 720, 10, 60, 12, 30][I] }',
+              exp: 'Conte as letras e divida pelos fatoriais das que se repetem.',
+              vars: { I: { de: 0, ate: 6 } }
             },
             {
               t: 'escolha',
@@ -89,6 +82,25 @@ nivel({
               ],
               c: 0,
               exp: 'As trocas entre letras iguais contam o mesmo anagrama várias vezes.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Contando etapa por etapa',
+              blocos: [
+                {
+                  p: 'Por trás do fatorial está o princípio multiplicativo: quando uma escolha acontece em etapas, multiplique o número de opções de cada etapa. Senhas de 2 letras diferentes com A, B e C: 3 opções para a primeira letra e 2 para a segunda, 3 × 2 = 6 senhas.'
+                },
+                {
+                  p: 'Se uma posição já está decidida, ela tem uma opção só. Nos anagramas de AMOR que começam com A, o A fica fixo e as outras 3 letras se permutam: 3! = 6.'
+                }
+              ]
+            },
+            {
+              t: 'numero',
+              p: 'Quantos anagramas de {= ["AMOR", "LIVRO", "BRASIL"][I] } começam com a letra {= ["A", "L", "B"][I] }?',
+              r: '{= [6, 24, 120][I] }',
+              exp: 'Fixando a primeira letra, as outras {= I + 3 } se permutam: {= I + 3 }!.',
+              vars: { I: { de: 0, ate: 2 } }
             },
             {
               t: 'numero',
@@ -191,7 +203,7 @@ nivel({
                   p: '“Pelo menos um” costuma ser mais fácil pelo complemento: a chance de sair pelo menos um 6 em dois dados é $$1 − (5/6)^2 = 11/36$$.'
                 },
                 {
-                  p: 'Para “A ou B”, some as chances e tire a parte contada duas vezes: $$P(A ou B) = P(A) + P(B) − P(A e B)$$.'
+                  p: 'Para “A ou B”, some as chances e tire a parte contada duas vezes: P(A ou B) = P(A) + P(B) − P(A e B).'
                 }
               ]
             },
@@ -254,7 +266,7 @@ nivel({
               titulo: 'Sabendo que...',
               blocos: [
                 {
-                  p: 'A probabilidade condicional é a chance de A acontecer sabendo que B aconteceu: o espaço de possibilidades encolhe para só os casos de B. $$P(A|B) = P(A e B)/P(B)$$.'
+                  p: 'A probabilidade condicional é a chance de A acontecer sabendo que B aconteceu: o espaço de possibilidades encolhe para só os casos de B. P(A|B) = P(A e B) ÷ P(B).'
                 },
                 {
                   p: 'Com uma tabela de dupla entrada, é só olhar a linha ou a coluna da condição. Exemplo, numa escola:'
@@ -313,12 +325,33 @@ nivel({
               exp: 'Exemplo: o resultado de um dado não muda a chance da moeda.'
             },
             {
+              t: 'texto',
+              titulo: 'Uma coisa depois da outra',
+              blocos: [
+                {
+                  p: 'Para duas coisas acontecerem uma depois da outra, multiplique a chance da primeira pela chance da segunda sabendo que a primeira aconteceu: P(A e B) = P(A) × P(B|A).'
+                },
+                {
+                  p: 'Exemplo: uma caixa tem 3 bombons de morango e 2 de coco. Tirando dois, sem devolver, a chance de os dois serem de morango é $$3/5 × 2/4 = 3/10$$. Na segunda tirada, sobraram 2 de morango em 4 bombons.'
+                }
+              ]
+            },
+            {
               t: 'numero',
               p: 'Uma urna tem {V} bolas vermelhas e {A} azuis. Tirando duas, sem devolver, qual é a probabilidade de as duas serem vermelhas? Fração irredutível',
               r: '{= fr(V * (V - 1), (V + A) * (V + A - 1)) }',
               exp: 'Primeira vermelha: $${V}/{= V + A }$$. Sabendo disso, a segunda: $${= V - 1 }/{= V + A - 1 }$$. Multiplique.',
               fracao: true,
               vars: { V: { de: 2, ate: 8 }, A: { de: 2, ate: 8 } }
+            },
+            {
+              t: 'numero',
+              p: 'Numa cidade, {P}% das pessoas usam ônibus e, entre elas, {Q}% usam também o metrô. Que porcentagem da cidade usa os dois?',
+              r: '{= P * Q / 100 }',
+              exp: 'P(A e B) = P(A) × P(B|A): {P}% de {Q}%.',
+              unidade: '%',
+              casas: 1,
+              vars: { P: [20, 40, 50, 60], Q: [10, 25, 30, 50] }
             },
             {
               t: 'escolha',
@@ -330,15 +363,6 @@ nivel({
               ],
               c: 0,
               exp: 'Com uma doença rara, os poucos erros entre os muitos saudáveis podem superar os acertos entre os poucos doentes. É por isso que se repete o exame.'
-            },
-            {
-              t: 'numero',
-              p: 'Numa cidade, {P}% das pessoas usam ônibus e, entre elas, {Q}% usam também o metrô. Que porcentagem da cidade usa os dois?',
-              r: '{= P * Q / 100 }',
-              exp: '$$P(A e B) = P(A) × P(B|A)$$: {P}% de {Q}%.',
-              unidade: '%',
-              casas: 1,
-              vars: { P: [20, 40, 50, 60], Q: [10, 25, 30, 50] }
             }
           ]
         }

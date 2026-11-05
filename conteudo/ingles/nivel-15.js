@@ -32,7 +32,7 @@ nivel({
     {
       id: 'enu25',
       titulo: 'Contar o que foi dito',
-      conceito: 'she said that · he asked if',
+      conceito: 'she said that, he asked if',
       desc: 'O discurso indireto e as perguntas dentro de outras frases.',
       licoes: [
         {
@@ -313,7 +313,7 @@ nivel({
     {
       id: 'enu26',
       titulo: 'Conversa natural',
-      conceito: 'isn\'t it? · you know',
+      conceito: 'isn\'t it?, you know',
       desc: 'Question tags, respostas curtas e as palavrinhas que os nativos usam o tempo todo.',
       licoes: [
         {

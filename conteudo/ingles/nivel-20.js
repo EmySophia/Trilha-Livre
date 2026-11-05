@@ -32,7 +32,7 @@ nivel({
     {
       id: 'enu33',
       titulo: 'Textos longos',
-      conceito: 'listen · understand',
+      conceito: 'listen, understand',
       desc: 'Três textos com áudio para ouvir antes de ler.',
       licoes: [
         {

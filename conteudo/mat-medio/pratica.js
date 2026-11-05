@@ -40,7 +40,7 @@ desafios('mat-medio', [
     unidade: 'meses',
     casas: 1,
     tol: 0.06,
-    dica: '$$(1 + i)^t = 2$$, então $$t = log 2/log(1 + i)$$. Use a calculadora.',
+    dica: '$$(1 + i)^t = 2$$, então $$t = (log 2)/(log(1 + i))$$. Use a calculadora.',
     exp: 'Um atalho conhecido: 72 dividido pela taxa dá uma boa estimativa.',
     vars: { I: [1, 2, 3, 4, 5, 6, 8] }
   },

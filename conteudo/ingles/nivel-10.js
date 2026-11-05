@@ -6,7 +6,7 @@ nivel({
   curso: 'ingles',
   n: 10,
   titulo: 'O present perfect',
-  faixa: 'A2–B1',
+  faixa: 'A2 a B1',
   desc: 'O tempo verbal que não existe em português: have + particípio, for e since, ever, already, yet, just, e quando usar o passado simples.',
   videos: [
     {

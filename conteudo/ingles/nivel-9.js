@@ -40,7 +40,7 @@ nivel({
     {
       id: 'enu17',
       titulo: 'Dois países, uma língua',
-      conceito: 'flat · apartment',
+      conceito: 'flat, apartment',
       desc: 'Vocabulário, grafia, gramática e pronúncia dos dois lados do Atlântico.',
       licoes: [
         {
