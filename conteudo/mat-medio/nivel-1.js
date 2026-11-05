@@ -63,6 +63,21 @@ nivel({
                   p: 'Um intervalo é um pedaço da reta dos reais. Colchete virado para dentro inclui a ponta; virado para fora, exclui. [2, 5] vai de 2 a 5, com os dois. ]2, 5] não tem o 2, mas tem o 5. Também se escreve 2 < x ≤ 5.'
                 },
                 {
+                  p: 'O colchete virado para fora não é erro de digitação: é a forma mais usada nas escolas do Brasil e no Enem. Em muitos livros, nas faculdades e nas calculadoras, a ponta que fica de fora vai entre parênteses. As duas formas querem dizer a mesma coisa:'
+                },
+                {
+                  tabela: {
+                    cab: ['Colchetes', 'Parênteses', 'Quer dizer'],
+                    codigo: [0, 1, 2],
+                    linhas: [
+                      ['[2, 5]', '[2, 5]', '2 ≤ x ≤ 5'],
+                      [']2, 5]', '(2, 5]', '2 < x ≤ 5'],
+                      ['[2, 5[', '[2, 5)', '2 ≤ x < 5'],
+                      [']2, 5[', '(2, 5)', '2 < x < 5']
+                    ]
+                  }
+                },
+                {
                   dica: 'Dízimas periódicas, como 0,333..., são racionais: 0,333... é $$1/3$$.'
                 }
               ]
@@ -85,14 +100,15 @@ nivel({
               t: 'numero',
               p: 'Quantos números inteiros há no intervalo [{A}, {B}]?',
               r: '{= B - A + 1 }',
-              exp: 'Os dois extremos entram: de {A} a {B}.',
+              dica: 'Colchete virado para dentro inclui a ponta.',
+              exp: 'Os dois colchetes estão virados para dentro, então os dois extremos entram: de {A} a {B}, contando os dois.',
               vars: { A: { de: -8, ate: 3 }, B: { de: 5, ate: 15 } }
             },
             {
               t: 'numero',
-              p: 'Quantos números inteiros há no intervalo ]{A}, {B}[?',
+              p: 'Quantos números inteiros há no intervalo ]{A}, {B}[? Os colchetes virados para fora deixam as duas pontas de fora.',
               r: '{= B - A - 1 }',
-              exp: 'Agora as duas pontas ficam de fora.',
+              exp: 'O {A} e o {B} ficam de fora: são os números com {A} < x < {B}. Com parênteses, esse intervalo se escreve ({A}, {B}).',
               vars: { A: { de: -8, ate: 3 }, B: { de: 5, ate: 15 } }
             },
             {
@@ -100,14 +116,16 @@ nivel({
               p: 'O número {A} pertence ao intervalo ]{A}, {B}]?',
               ops: ['Não: o colchete virado para fora exclui o {A}', 'Sim', 'Só se {A} for inteiro'],
               c: 0,
-              exp: 'Em ]{A}, {B}], o {A} fica de fora e o {B} entra.',
+              dica: 'Repare para que lado está virado o colchete ao lado do {A}.',
+              exp: 'O colchete do {A} está virado para fora, então o {A} fica de fora; o do {B} está virado para dentro, então o {B} entra. Com parênteses, o mesmo intervalo se escreve ({A}, {B}], ou {A} < x ≤ {B}.',
               vars: { A: { de: -5, ate: 3 }, B: { de: 5, ate: 12 } }
             },
             {
               t: 'numero',
               p: 'Quantos números inteiros há no intervalo [{A}, {B}[?',
               r: '{= B - A }',
-              exp: 'O {A} entra e o {B} fica de fora.',
+              dica: 'O colchete virado para fora, que não é erro de digitação, deixa a ponta de fora. Com parênteses, este intervalo se escreve [{A}, {B}).',
+              exp: 'O {A} entra e o {B} fica de fora: são os números com {A} ≤ x < {B}.',
               vars: { A: { de: -8, ate: 3 }, B: { de: 5, ate: 15 } }
             }
           ]
