@@ -32,7 +32,7 @@ nivel({
     {
       id: 'enu7',
       titulo: 'O presente simples',
-      conceito: 'she works · does she?',
+      conceito: 'she works, does she?',
       desc: 'Rotina, fatos, o -s da terceira pessoa e o ajudante do e does.',
       licoes: [
         {
@@ -59,7 +59,43 @@ nivel({
                       ['he, she, it', '((she works))', '((he lives))']
                     ]
                   }
-                },
+                }
+              ]
+            },
+            {
+              t: 'complete',
+              p: 'Complete:',
+              code: 'My sister ___ in a bank and ___ to work by bus.',
+              bank: ['works', 'goes', 'work', 'go'],
+              c: ['works', 'goes'],
+              exp: 'My sister é she: o verbo ganha -s. Go vira goes.'
+            },
+            {
+              t: 'escolha',
+              p: 'Por que "He work here" está errado?',
+              ops: [
+                'Com he, she e it, o verbo no presente ganha -s: he works',
+                'Porque falta o verbo to be',
+                'Porque work precisa de -ing'
+              ],
+              c: 0,
+              exp: 'Esse -s é a única terminação que sobrou do inglês antigo, e é obrigatória.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'My brother lives in London.',
+              ops: [
+                'My brother lives in London.',
+                'My brother lived in London.',
+                'My brothers live in London.'
+              ],
+              c: 0
+            },
+            {
+              t: 'texto',
+              titulo: 'O -s na escrita e na fala',
+              blocos: [
                 {
                   p: '**Por que só a terceira pessoa?** O inglês antigo tinha uma terminação diferente para cada pessoa, como o português ainda tem (falo, falas, fala...). Com os séculos, quase todas sumiram. Esse -s é a única que sobreviveu. Por isso ele parece uma regra solta, mas é obrigatório: "she work" soa errado para qualquer nativo.'
                 },
@@ -79,7 +115,26 @@ nivel({
                 },
                 {
                   p: 'O som desse -s segue a mesma regra do plural: s em ((works)), z em ((plays)) e uma sílaba a mais em ((watches)). E duas palavras muito comuns têm a vogal diferente do que parece: ((does)) soa como "dâz" e ((says)) soa como "séz".'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Em qual verbo o -s forma uma sílaba a mais?',
+              ops: ['watches', 'plays', 'works'],
+              c: 0,
+              exp: 'Igual ao plural: a sílaba extra só vem depois de sons de s, sh e ch.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Ele estuda à noite."',
+              r: ['He studies at night.'],
+              exp: 'Study, com consoante + y, vira studies.'
+            },
+            {
+              t: 'texto',
+              titulo: 'A rotina e a família',
+              blocos: [
                 { p: '**A rotina em inglês:**' },
                 {
                   vocab: [
@@ -106,40 +161,17 @@ nivel({
                       'Nossa, cedo! Meu irmão trabalha à noite, então ele dorme a manhã toda.'
                     ]
                   ]
+                },
+                { p: 'E a família, que aparece muito quando se fala da rotina:' },
+                {
+                  vocab: [
+                    ['my [[mom|mum]]', 'minha mãe', 'mom nos EUA e mum no Reino Unido'],
+                    ['my dad', 'meu pai'],
+                    ['my brother', 'meu irmão'],
+                    ['my sister', 'minha irmã']
+                  ]
                 }
               ]
-            },
-            {
-              t: 'complete',
-              p: 'Complete:',
-              code: 'My sister ___ in a bank and ___ to work by bus.',
-              bank: ['works', 'goes', 'work', 'go'],
-              c: ['works', 'goes'],
-              exp: 'My sister é she: o verbo ganha -s. Go vira goes.'
-            },
-            {
-              t: 'escolha',
-              p: 'Em qual verbo o -s forma uma sílaba a mais?',
-              ops: ['watches', 'plays', 'works'],
-              c: 0,
-              exp: 'Igual ao plural: a sílaba extra só vem depois de sons de s, sh e ch.'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Ele estuda à noite."',
-              r: ['He studies at night.'],
-              exp: 'Study, com consoante + y, vira studies.'
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'My brother lives in London.',
-              ops: [
-                'My brother lives in London.',
-                'My brother lived in London.',
-                'My brothers live in London.'
-              ],
-              c: 0
             },
             {
               t: 'monte',
@@ -149,15 +181,9 @@ nivel({
               exp: 'De ônibus é by bus, sem artigo.'
             },
             {
-              t: 'escolha',
-              p: 'Por que "He work here" está errado?',
-              ops: [
-                'Com he, she e it, o verbo no presente ganha -s: he works',
-                'Porque falta o verbo to be',
-                'Porque work precisa de -ing'
-              ],
-              c: 0,
-              exp: 'Esse -s é a única terminação que sobrou do inglês antigo, e é obrigatória.'
+              t: 'escreva',
+              p: 'Escreva o que você ouviu',
+              ouvir: 'I usually wake up at seven.'
             },
             {
               t: 'escreva',
@@ -169,11 +195,6 @@ nivel({
                 'My [[mom|mum]] has got two brothers.'
               ],
               exp: 'Have vira has com he, she e it. Mãe na conversa é mom nos EUA e mum no Reino Unido.'
-            },
-            {
-              t: 'escreva',
-              p: 'Escreva o que você ouviu',
-              ouvir: 'I usually wake up at seven.'
             }
           ]
         },
@@ -212,7 +233,27 @@ nivel({
                 },
                 {
                   p: '**Por que esse ajudante existe?** Até uns 400 anos atrás, o inglês invertia o verbo direto, como em Shakespeare: "Know you the man?". Depois, o do passou a fazer esse papel em todas as perguntas, e a ordem sujeito + verbo ficou sempre intacta. Hoje ele parece um enfeite para quem fala português, mas é ele que mostra que é uma pergunta.'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Qual está certa?',
+              ops: ['She doesn\'t like fish.', 'She doesn\'t likes fish.', 'She don\'t like fish.'],
+              c: 0,
+              exp: 'Com she, o ajudante é doesn\'t, e o verbo volta para a forma básica: like.'
+            },
+            {
+              t: 'escreva',
+              p: 'Transforme em pergunta: "She works on Saturdays."',
+              r: ['Does she work on Saturdays?'],
+              exp: 'O -s vai para o ajudante: does. O verbo fica work.'
+            },
+            { t: 'escreva', p: 'Traduza: "Eu não moro aqui."', r: ['I don\'t live here.'], exp: 'Para negar um verbo comum, use don\'t antes dele: I don\'t live here. O verbo live não muda.' },
+            {
+              t: 'texto',
+              titulo: 'Respostas curtas e perguntas com where e what',
+              blocos: [
                 {
                   p: '**Respostas curtas** usam o ajudante: ((Do you like coffee?)) → ((Yes, I do.)) / ((No, I don\'t.)) ((Does he speak English?)) → ((Yes, he does.))'
                 },
@@ -231,17 +272,19 @@ nivel({
               ]
             },
             {
-              t: 'escreva',
-              p: 'Transforme em pergunta: "She works on Saturdays."',
-              r: ['Does she work on Saturdays?'],
-              exp: 'O -s vai para o ajudante: does. O verbo fica work.'
+              t: 'complete',
+              p: 'Complete:',
+              code: 'Where ___ you live? And where ___ your brother live?',
+              bank: ['do', 'does', 'are', 'is'],
+              c: ['do', 'does'],
+              exp: 'Com you, o ajudante é do. Com your brother, que é he, o ajudante é does, e o verbo live fica na forma básica.'
             },
             {
-              t: 'escolha',
-              p: 'Qual está certa?',
-              ops: ['She doesn\'t like fish.', 'She doesn\'t likes fish.', 'She don\'t like fish.'],
-              c: 0,
-              exp: 'Com she, o ajudante é doesn\'t, e o verbo volta para a forma básica: like.'
+              t: 'monte',
+              p: 'Monte a pergunta: "Você fala inglês?"',
+              r: 'Do you speak English?',
+              extra: ['Are', 'speaks', 'Does'],
+              exp: 'Speak não é to be, então a pergunta precisa do ajudante do, que vem antes do sujeito: Do you speak English?'
             },
             {
               t: 'escolha',
@@ -251,19 +294,6 @@ nivel({
               exp: 'É a pergunta sobre profissão. "O que você está fazendo?" seria What are you doing?'
             },
             {
-              t: 'complete',
-              p: 'Complete:',
-              code: 'Where ___ you live? And where ___ your brother live?',
-              bank: ['do', 'does', 'are', 'is'],
-              c: ['do', 'does']
-            },
-            {
-              t: 'monte',
-              p: 'Monte a pergunta: "Você fala inglês?"',
-              r: 'Do you speak English?',
-              extra: ['Are', 'speaks', 'Does']
-            },
-            {
               t: 'escolha',
               p: 'O que você ouviu?',
               ouvir: 'I don\'t know.',
@@ -271,7 +301,6 @@ nivel({
               c: 0,
               exp: 'Na fala rápida, I don\'t know às vezes vira "I dunno". É informal, mas você vai ouvir muito.'
             },
-            { t: 'escreva', p: 'Traduza: "Eu não moro aqui."', r: ['I don\'t live here.'] },
             { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'What does your sister do?' }
           ]
         },
@@ -309,22 +338,6 @@ nivel({
                 },
                 {
                   p: '**Never já é negativo.** Em português, falamos "eu não como nunca". Em inglês, juntar duas negativas soa errado no inglês padrão: é ((I never eat meat.)) e não "I don\'t never eat". O never sozinho já nega.'
-                },
-                {
-                  p: 'Para perguntar: ((How often do you go to the gym?)) (Com que frequência você vai à academia?) Respostas com expressões de tempo, que ficam no fim da frase:'
-                },
-                {
-                  vocab: [
-                    ['every day', 'todo dia'],
-                    ['once a week', 'uma vez por semana'],
-                    ['twice a month', 'duas vezes por mês'],
-                    ['three times a year', 'três vezes por ano'],
-                    [
-                      '[[on weekends|at the weekend]]',
-                      'nos fins de semana',
-                      'on weekends nos EUA, at the weekend no Reino Unido'
-                    ]
-                  ]
                 }
               ]
             },
@@ -360,10 +373,40 @@ nivel({
               exp: 'Duas negativas juntas soam erradas no inglês padrão.'
             },
             {
+              t: 'texto',
+              titulo: 'Com que frequência?',
+              blocos: [
+                {
+                  p: 'Para perguntar: ((How often do you go to the gym?)) (Com que frequência você vai à academia?) Respostas com expressões de tempo, que ficam no fim da frase:'
+                },
+                {
+                  vocab: [
+                    ['every day', 'todo dia'],
+                    ['once a week', 'uma vez por semana'],
+                    ['twice a month', 'duas vezes por mês'],
+                    ['three times a year', 'três vezes por ano'],
+                    [
+                      '[[on weekends|at the weekend]]',
+                      'nos fins de semana',
+                      'on weekends nos EUA, at the weekend no Reino Unido'
+                    ]
+                  ]
+                },
+                { p: 'Duas atividades para usar nas respostas:' },
+                {
+                  vocab: [
+                    ['play [[soccer|football]]', 'jogar futebol', 'soccer nos EUA e football no Reino Unido'],
+                    ['go to the gym', 'ir à academia']
+                  ]
+                }
+              ]
+            },
+            {
               t: 'monte',
               p: 'Monte a pergunta: "Com que frequência você vai à academia?"',
               r: 'How often do you go to the gym?',
-              extra: ['much', 'does', 'are']
+              extra: ['much', 'does', 'are'],
+              exp: 'How often é "com que frequência". Go não é to be, então a pergunta usa o ajudante do: How often do you go to the gym?'
             },
             {
               t: 'escolha',
@@ -398,7 +441,7 @@ nivel({
     {
       id: 'enu8',
       titulo: 'Agora e depois',
-      conceito: 'I\'m doing · I\'m gonna',
+      conceito: 'I\'m doing, I\'m gonna',
       desc: 'O presente contínuo, o que muda em relação ao simples e como falar do futuro.',
       licoes: [
         {
@@ -443,7 +486,45 @@ nivel({
                       ['Termina em ie: vira y', '((lie)) → ((lying)), ((die)) → ((dying))']
                     ]
                   }
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Sua amiga pergunta "What do you do?". O que ela quer saber?',
+              ops: [
+                'Sua profissão',
+                'O que você está fazendo neste momento',
+                'O que você fez ontem'
+              ],
+              c: 0,
+              exp: 'What do you do? é sobre o trabalho. Para "agora", seria What are you doing?'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'We\'re watching a movie.',
+              ops: ['We\'re watching a movie.', 'We watch a movie.', 'We\'re washing the car.'],
+              c: 0
+            },
+            {
+              t: 'monte',
+              p: 'Monte a frase: "Ela está estudando agora."',
+              r: 'She\'s studying now.',
+              extra: ['studing', 'study', 'does'],
+              exp: 'Study + ing é studying: o y fica.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "O que você está fazendo?"',
+              r: ['What are you doing?'],
+              exp: 'O que está acontecendo agora usa to be + -ing: What are you doing? O doing é o verbo do (fazer) com -ing.'
+            },
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'I\'m waiting for the bus.' },
+            {
+              t: 'texto',
+              titulo: 'Verbos que não vão para o -ing',
+              blocos: [
                 {
                   p: '**Verbos que não vão para o -ing.** Alguns verbos falam de estados, e não de ações: saber, gostar, querer, precisar, entender, acreditar, ter (no sentido de possuir). Eles ficam no presente simples mesmo quando você fala de agora: ((I know.)) (não "I\'m knowing"), ((I need help.)), ((I understand.)), ((She wants a coffee.))'
                 },
@@ -481,41 +562,10 @@ nivel({
             },
             {
               t: 'escreva',
-              p: 'Traduza: "O que você está fazendo?"',
-              r: ['What are you doing?']
-            },
-            {
-              t: 'escolha',
-              p: 'Sua amiga pergunta "What do you do?". O que ela quer saber?',
-              ops: [
-                'Sua profissão',
-                'O que você está fazendo neste momento',
-                'O que você fez ontem'
-              ],
-              c: 0,
-              exp: 'What do you do? é sobre o trabalho. Para "agora", seria What are you doing?'
-            },
-            {
-              t: 'monte',
-              p: 'Monte a frase: "Ela está estudando agora."',
-              r: 'She\'s studying now.',
-              extra: ['studing', 'study', 'does'],
-              exp: 'Study + ing é studying: o y fica.'
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'We\'re watching a movie.',
-              ops: ['We\'re watching a movie.', 'We watch a movie.', 'We\'re washing the car.'],
-              c: 0
-            },
-            {
-              t: 'escreva',
               p: 'Traduza: "Eu preciso de ajuda."',
               r: ['I need (some |)help.'],
               exp: 'Need é um estado: I need, e não I\'m needing.'
-            },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'I\'m waiting for the bus.' }
+            }
           ]
         },
         {
@@ -532,7 +582,42 @@ nivel({
                 },
                 {
                   p: 'Na fala, going to quase sempre vira ((gonna)): ((I\'m gonna call her tomorrow.)) É o mesmo significado, só que falado rápido. Use gonna na conversa e em mensagens informais, mas escreva going to em textos formais, como e-mails de trabalho e provas.'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'I\'m gonna call her tomorrow.',
+              ops: [
+                'I\'m gonna call her tomorrow.',
+                'I\'m gonna call her today.',
+                'I\'m gonna tell her tomorrow.'
+              ],
+              c: 0
+            },
+            {
+              t: 'monte',
+              p: 'Monte a frase: "Vai chover."',
+              r: 'It\'s going to rain.',
+              extra: ['will', 'go', 'raining'],
+              exp: 'Previsão pelo que se vê (as nuvens): going to.'
+            },
+            {
+              t: 'escolha',
+              p: 'Onde não se deve escrever gonna?',
+              ops: [
+                'Num e-mail para o seu chefe ou numa redação',
+                'Numa mensagem para um amigo',
+                'Numa legenda de rede social'
+              ],
+              c: 0,
+              exp: 'Gonna é o going to falado. Em textos formais, escreva going to.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Will: decidir na hora, prometer, oferecer',
+              blocos: [
                 {
                   p: '**Will** é para decisões tomadas na hora, promessas, ofertas e opiniões sobre o futuro. Na fala, quase sempre vira ((I\'ll)), e a negativa é ((won\'t)) (will not).'
                 },
@@ -547,7 +632,38 @@ nivel({
                       ['Opinião sobre o futuro', '((I think it\'ll be fine.))']
                     ]
                   }
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'No restaurante, olhando o cardápio, você decide o prato. O que diz?',
+              ops: [
+                'I\'ll have the soup, please.',
+                'I\'m going to have the soup, please.',
+                'I have the soup, please.'
+              ],
+              c: 0,
+              exp: 'Decisão tomada na hora: will.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Eu vou te ajudar." (uma oferta, na hora)',
+              r: ['I\'ll help you.', 'I will help you.'],
+              exp: 'É uma oferta feita na hora, então o inglês usa will, que na fala vira I\'ll. Quem recebe a ajuda é you.'
+            },
+            {
+              t: 'complete',
+              p: 'Complete a promessa:',
+              code: 'I ___ tell anyone. I promise!',
+              bank: ['won\'t', 'don\'t', 'am not'],
+              c: ['won\'t'],
+              exp: 'Promessa é com will. Na negativa, will not vira won\'t.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Compromisso marcado',
+              blocos: [
                 {
                   p: '**Compromisso marcado:** para algo já combinado, com data e hora, o inglês usa até o presente contínuo: ((I\'m meeting Ana tomorrow at five.)) (Vou encontrar a Ana amanhã às cinco.)'
                 },
@@ -580,59 +696,6 @@ nivel({
                   rotulo: 'Resumo'
                 }
               ]
-            },
-            {
-              t: 'escolha',
-              p: 'No restaurante, olhando o cardápio, você decide o prato. O que diz?',
-              ops: [
-                'I\'ll have the soup, please.',
-                'I\'m going to have the soup, please.',
-                'I have the soup, please.'
-              ],
-              c: 0,
-              exp: 'Decisão tomada na hora: will.'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Eu vou te ajudar." (uma oferta, na hora)',
-              r: ['I\'ll help you.', 'I will help you.']
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'I\'m gonna call her tomorrow.',
-              ops: [
-                'I\'m gonna call her tomorrow.',
-                'I\'m gonna call her today.',
-                'I\'m gonna tell her tomorrow.'
-              ],
-              c: 0
-            },
-            {
-              t: 'escolha',
-              p: 'Onde não se deve escrever gonna?',
-              ops: [
-                'Num e-mail para o seu chefe ou numa redação',
-                'Numa mensagem para um amigo',
-                'Numa legenda de rede social'
-              ],
-              c: 0,
-              exp: 'Gonna é o going to falado. Em textos formais, escreva going to.'
-            },
-            {
-              t: 'monte',
-              p: 'Monte a frase: "Vai chover."',
-              r: 'It\'s going to rain.',
-              extra: ['will', 'go', 'raining'],
-              exp: 'Previsão pelo que se vê (as nuvens): going to.'
-            },
-            {
-              t: 'complete',
-              p: 'Complete a promessa:',
-              code: 'I ___ tell anyone. I promise!',
-              bank: ['won\'t', 'don\'t', 'am not'],
-              c: ['won\'t'],
-              exp: 'Promessa é com will. Na negativa, will not vira won\'t.'
             },
             {
               t: 'escreva',

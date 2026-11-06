@@ -40,7 +40,7 @@ nivel({
     {
       id: 'enu30',
       titulo: 'Combinações',
-      conceito: 'make a mistake · get used to',
+      conceito: 'make a mistake, get used to',
       desc: 'As palavras que costumam aparecer juntas, e o used to que muda de sentido.',
       licoes: [
         {
@@ -281,7 +281,7 @@ nivel({
     {
       id: 'enu31',
       titulo: 'Expressões',
-      conceito: 'come up with · break the ice',
+      conceito: 'come up with, break the ice',
       desc: 'Phrasal verbs do intermediário e as expressões idiomáticas mais comuns.',
       licoes: [
         {

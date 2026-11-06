@@ -41,6 +41,21 @@ const { PY_PRELUDIO, PY_VERSAO } = require(path.join(raiz, 'js', 'python.js'));
 const { instanciar } = require(path.join(raiz, 'js', 'variaveis.js'));
 const { lerNumero, respostaNumericaOk, respostaNumericaTexto, problemasPlano } = require(path.join(raiz, 'js', 'numeros.js'));
 const fala = require(path.join(raiz, 'js', 'fala.js'));
+const linux = require(path.join(raiz, 'js', 'linux.js'));
+// missão no terminal: começa sem estar cumprida, e a solução, rodada no mesmo Linux simulado do app, cumpre
+function validarMissao(onde, ex) {
+  if (!Array.isArray(ex.sol) || !ex.sol.length || !ex.sol.every(c => typeof c === 'string' && c.trim())) { erro(onde, 'terminal precisa de sol: a lista de comandos que resolve a missão'); return; }
+  if (!ex.objetivo || typeof ex.objetivo !== 'object') { erro(onde, 'terminal precisa de objetivo'); return; }
+  const respostaCerta = [].concat(ex.objetivo).map(o => o.resposta).filter(r => r != null).map(r => [].concat(r)[0])[0];
+  const st = linux.lxCriar(ex);
+  if (linux.lxConferir(st, ex.objetivo, '').ok) erro(onde, 'a missão já começa cumprida');
+  for (const c of ex.sol) {
+    const r = linux.lxRodar(st, c);
+    if (/comando não encontrado|erro de sintaxe|predicado desconhecido/.test(r.texto)) erro(onde, `o comando "${c}" da solução não funciona no terminal simulado: ${r.texto.split('\n')[0]}`);
+  }
+  const fim = linux.lxConferir(st, ex.objetivo, respostaCerta);
+  if (!fim.ok) erro(onde, `a solução não cumpre a missão: ${fim.motivo}`);
+}
 // sorteio com semente fixa, para o validador conferir sempre os mesmos valores
 function semente(n) { return () => { n |= 0; n = n + 0x6D2B79F5 | 0; let t = Math.imul(n ^ n >>> 15, 1 | n); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
 const SORTEIOS = 12; // quantas versões de cada exercício que muda o validador confere
@@ -179,6 +194,9 @@ function validarExercicio(onde, ex) {
     case 'web':
       validarWeb(onde, ex);
       break;
+    case 'terminal':
+      validarMissao(onde, ex);
+      break;
     case 'comando':
       if (typeof ex.sol !== 'string' || !ex.sol.trim()) erro(onde, 'comando precisa de sol (o comando certo)');
       if (ex.antes != null && !(Array.isArray(ex.antes) && ex.antes.every(l => typeof l === 'string'))) erro(onde, 'antes precisa ser uma lista de linhas');
@@ -260,10 +278,31 @@ for (const c of TRILHA.cursos) {
 }
 for (const nv of TRILHA.niveis) {
   if (!idsCurso.has(nv.curso)) erro(`nível ${nv.n}`, `curso desconhecido: ${nv.curso}`);
-  if (nv.faixa != null && !(typeof nv.faixa === 'string' && nv.faixa.trim() && nv.faixa.length <= 12)) erro(`${nv.curso} nível ${nv.n}`, 'faixa precisa ser um texto curto, como A2 ou B1–B2');
+  if (nv.faixa != null && !(typeof nv.faixa === 'string' && nv.faixa.trim() && nv.faixa.length <= 12)) erro(`${nv.curso} nível ${nv.n}`, 'faixa precisa ser um texto curto, como A2 ou B1 a B2');
   for (const v of nv.videos || []) {
     if (!v.titulo || !v.canal || !/^https:\/\//.test(v.url || '')) erro(`${nv.curso} nível ${nv.n}`, 'cada vídeo precisa de titulo, canal e url com https://');
     if (v.tipo != null && !['video', 'texto'].includes(v.tipo)) erro(`${nv.curso} nível ${nv.n}`, `tipo de material desconhecido: ${v.tipo}`);
+  }
+}
+// formações: cada etapa aponta para um curso que existe; niveis, se houver, é [primeiro, último] dentro do curso
+const idsFormacao = new Set();
+for (const f of TRILHA.formacoes || []) {
+  const onde = `formação ${f.id}`;
+  if (!f.id || !f.titulo || !f.desc) erro(onde, 'formação precisa de id, titulo e desc');
+  if (idsFormacao.has(f.id)) erro(onde, 'id de formação repetido');
+  idsFormacao.add(f.id);
+  if (!Array.isArray(f.etapas) || f.etapas.length < 2) { erro(onde, 'uma formação precisa de pelo menos 2 etapas'); continue; }
+  const vistos = new Set();
+  for (const e of f.etapas) {
+    if (!idsCurso.has(e.curso)) { erro(onde, `curso desconhecido: ${e.curso}`); continue; }
+    if (vistos.has(e.curso)) erro(onde, `o curso ${e.curso} aparece duas vezes`);
+    vistos.add(e.curso);
+    if (!e.porque) erro(onde, `a etapa ${e.curso} precisa dizer o porquê`);
+    if (e.niveis != null) {
+      const ns = TRILHA.niveis.filter(nv => nv.curso === e.curso).map(nv => nv.n);
+      const ok = Array.isArray(e.niveis) && e.niveis.length === 2 && e.niveis[0] <= e.niveis[1] && (!ns.length || (ns.includes(e.niveis[0]) && ns.includes(e.niveis[1])));
+      if (!ok) erro(onde, `niveis da etapa ${e.curso} precisa ser [primeiro, último], com níveis que existem no curso`);
+    }
   }
 }
 for (const c of idsCurso) {
@@ -322,7 +361,7 @@ for (const l of TRILHA.livros) {
   if (idsLivro.has(l.id)) erro(onde, 'id de livro repetido');
   idsLivro.add(l.id);
   if (!idsEstante.has(l.estante)) erro(onde, `estante desconhecida: ${l.estante}`);
-  if (l.ano != null && !/^\d{3,4}(–\d{4})?$/.test(String(l.ano))) erro(onde, `ano em formato estranho: ${l.ano} (use 1867 ou '1845–1846')`);
+  if (l.ano != null && !/^\d{3,4}( a \d{4})?$/.test(String(l.ano))) erro(onde, `ano em formato estranho: ${l.ano} (use 1867 ou '1845 a 1846')`);
   if (!Array.isArray(l.links) || !l.links.length) erro(onde, 'livro precisa de pelo menos um link');
   for (const k of l.links || []) if (!k.rotulo || !/^https:\/\//.test(k.url || '')) erro(onde, 'cada link precisa de rotulo e de url com https://');
   for (const c of l.cursos || []) if (!idsCurso.has(c)) erro(onde, `curso desconhecido: ${c}`);
@@ -365,12 +404,39 @@ async function conferirPython() {
   }
 }
 
+// cursos de idiomas: avisa quando uma tradução pede uma palavra que ainda não apareceu em nenhuma leitura ou exercício antes
+const palavrasNovas = [];
+{
+  const palavras = t => (String(t).match(/[A-Za-z][A-Za-z']*/g) || []).map(w => w.toLowerCase().replace(/'s$/, ''));
+  const textos = o => o == null ? [] : typeof o === 'string' ? [o] : Array.isArray(o) ? o.flatMap(textos) : typeof o === 'object' ? Object.values(o).flatMap(textos) : [];
+  for (const c of TRILHA.cursos.filter(c => c.fala)) {
+    const visto = new Set();
+    const ver = o => textos(o).forEach(t => ['us', 'uk'].forEach(sot => palavras(fala.variante(t, sot)).forEach(w => visto.add(w))));
+    for (const nv of TRILHA.niveis.filter(n => n.curso === c.id)) for (const u of TRILHA.unidades.filter(u => u.curso === c.id && u.nivel === nv.n)) for (const l of u.licoes) l.exs.forEach((ex, i) => {
+      if (ex.t === 'texto') { ver(ex.blocos); return; }
+      if (ex.t === 'escreva' && !ex.ouvir && ex.lingua !== 'pt' && ex.r != null) {
+        ver(ex.p); // a palavra escrita no próprio enunciado conta como vista
+        const certa = fala.variante(fala.primeiraForma([].concat(ex.r)[0]), 'us');
+        // nomes próprios, com maiúscula no meio da frase, não contam
+        const ws = (certa.match(/[A-Za-z][A-Za-z']*/g) || []).filter((w, k) => k === 0 || !/^[A-Z][a-z]/.test(w));
+        const novas = [...new Set(ws.map(w => w.toLowerCase().replace(/'s$/, '')))].filter(w => w.length > 1 && ![w, w.replace(/e?s$/, '')].some(f => visto.has(f)));
+        if (novas.length) palavrasNovas.push(`${l.id} item ${i + 1}: ${novas.join(', ')}`);
+      }
+      ver(ex);
+    });
+  }
+}
+
 (async () => {
 await conferirPython();
 const comConteudo = TRILHA.cursos.filter(c => TRILHA.niveis.some(nv => nv.curso === c.id));
-console.log(`${TRILHA.areas.length} áreas · ${TRILHA.cursos.length} cursos (${comConteudo.length} com conteúdo: ${comConteudo.map(c => c.id).join(', ')})`);
+console.log(`${TRILHA.areas.length} áreas, ${(TRILHA.formacoes || []).length} formações e ${TRILHA.cursos.length} cursos (${comConteudo.length} com conteúdo: ${comConteudo.map(c => c.id).join(', ')})`);
 console.log(`${TRILHA.niveis.length} níveis · ${TRILHA.unidades.length} unidades · ${nLicoes} lições · ${nItens} itens · ${TRILHA.desafios.length} desafios`);
 console.log(`Biblioteca: ${TRILHA.estantes.length} estantes · ${TRILHA.livros.length} livros · ${TRILHA.acervos.length} acervos`);
+if (palavrasNovas.length) {
+  console.log(`Aviso: ${palavrasNovas.length} ${palavrasNovas.length === 1 ? 'tradução pede' : 'traduções pedem'} palavras que o aluno ainda não viu. Apresente a palavra numa leitura antes (um vocab, por exemplo) ou troque a frase:`);
+  palavrasNovas.forEach(p => console.log('  - ' + p));
+}
 if (audiosFaltando.size) console.log(`Aviso: faltam ${audiosFaltando.size} áudios das frases dos cursos de idiomas. Sem eles, o app usa a voz do navegador. Para gravar, veja "Áudio" no CONTRIBUINDO.md (npm run audio).`);
 if (problemas.length) {
   console.log(`\n${problemas.length} problema(s):`);

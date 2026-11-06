@@ -147,16 +147,7 @@ print("==========")`,
                 },
                 {
                   p: 'A divisão com `/` sempre dá um número com vírgula (o Python usa ponto): `6 / 2` dá `3.0`. Use `//` quando quiser só a parte inteira, e `%` para o que sobra.'
-                },
-                {
-                  p: 'A ordem é a da matemática: primeiro `**`, depois `*`, `/`, `//` e `%`, e por último `+` e `-`. Parênteses mudam a ordem.'
-                },
-                {
-                  code: `print(2 + 3 * 4)
-print((2 + 3) * 4)
-print(round(10 / 3, 2))`
-                },
-                { dica: '`round(valor, casas)` arredonda: `round(3.14159, 2)` dá `3.14`.' }
+                }
               ]
             },
             {
@@ -195,6 +186,32 @@ print(round(10 / 3, 2))`
             },
             {
               t: 'codigo',
+              p: 'Uma pizza tem {F} fatias para {P} pessoas. Mostre quantas fatias inteiras cada pessoa come e, na linha de baixo, quantas sobram',
+              start: `# uma conta com // e outra com %
+`,
+              sol: `print({F} // {P})
+print({F} % {P})`,
+              dica: 'Divisão inteira para as fatias de cada um e resto para as que sobram.',
+              exp: '// e % andam juntos: um dá quantas vezes cabe, o outro o que sobra.',
+              vars: { F: { de: 8, ate: 16 }, P: { de: 3, ate: 5 } }
+            },
+            {
+              t: 'texto',
+              titulo: 'A ordem das contas e o round',
+              blocos: [
+                {
+                  p: 'A ordem é a da matemática: primeiro `**`, depois `*`, `/`, `//` e `%`, e por último `+` e `-`. Parênteses mudam a ordem.'
+                },
+                {
+                  code: `print(2 + 3 * 4)
+print((2 + 3) * 4)
+print(round(10 / 3, 2))`
+                },
+                { dica: '`round(valor, casas)` arredonda: `round(3.14159, 2)` dá `3.14`.' }
+              ]
+            },
+            {
+              t: 'codigo',
               p: 'Mostre o resultado de (12 + 8) dividido por 4',
               start: `# use parênteses para somar antes de dividir
 print(12 + 8 / 4)
@@ -216,30 +233,13 @@ print(12 + 8 / 4)
             },
             {
               t: 'codigo',
-              p: 'Uma pizza tem {F} fatias para {P} pessoas. Mostre quantas fatias inteiras cada pessoa come e, na linha de baixo, quantas sobram',
-              start: `fatias = {F}
-pessoas = {P}
+              p: 'Uma conta de R$ {V} vai ser dividida igualmente entre {P} amigos. Mostre quanto cada um paga, com 2 casas',
+              start: `# divida o valor pelo número de amigos e arredonde
 `,
-              sol: `fatias = {F}
-pessoas = {P}
-print(fatias // pessoas)
-print(fatias % pessoas)`,
-              dica: 'Divisão inteira para as fatias de cada um e resto para as que sobram.',
-              exp: '// e % andam juntos: um dá quantas vezes cabe, o outro o que sobra.',
-              vars: { F: { de: 8, ate: 16 }, P: { de: 3, ate: 5 } }
-            },
-            {
-              t: 'codigo',
-              p: 'R$ {CAP} rendem {TX}% ao mês, com juros compostos. Mostre quanto ficam depois de 12 meses, com 2 casas',
-              start: `capital = {CAP}
-taxa = {TX}
-`,
-              sol: `capital = {CAP}
-taxa = {TX}
-print(round(capital * (1 + taxa / 100) ** 12, 2))`,
-              dica: 'Juros compostos: capital vezes (1 + taxa/100) elevado ao número de meses.',
-              exp: 'É só um exemplo de conta, não uma recomendação de investimento.',
-              vars: { CAP: [500, 1000, 1500, 2000], TX: [1, 2] }
+              sol: 'print(round({V} / {P}, 2))',
+              dica: 'Use / para dividir e round(valor, 2) para ficar com 2 casas.',
+              exp: 'Com dinheiro, quase sempre se arredonda para 2 casas: os centavos.',
+              vars: { V: [85, 100, 137, 250, 312], P: [3, 6, 7] }
             }
           ]
         }

@@ -14,7 +14,10 @@ const IC = {
   code: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 7L3.5 12l5 5M15.5 7l5 5-5 5"/></svg>',
   term: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4" width="19" height="16" rx="3"/><path d="M7 9.5l3 2.5-3 2.5M12.5 15h4.5"/></svg>',
   play: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l12.5-7.5z"/></svg>',
-  trophy: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 3h10v2h3v3a5 5 0 0 1-4.3 4.9A5 5 0 0 1 13 15.8V18h3v3H8v-3h3v-2.2a5 5 0 0 1-2.7-2.9A5 5 0 0 1 4 8V5h3zm10 4v3.8A3 3 0 0 0 18 8V7zM6 7v1a3 3 0 0 0 1 2.8V7z"/></svg>',
+  // "trophy" é o ícone de conquista (teste da unidade, fim de lição, medalhas): uma estrela de pontas arredondadas
+  trophy: '<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 3.2l2.6 5.4 5.9.8-4.3 4.1 1.1 5.9L12 16.6l-5.3 2.8 1.1-5.9-4.3-4.1 5.9-.8z"/></svg>',
+  seta: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
+  voltar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',
   refresh: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8M4 4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16M20 20v-4h-4"/></svg>',
   som: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 9.5v5h3.8L12 19V5L6.8 9.5zm12.2 2.5a3.6 3.6 0 0 0-2-3.2v6.4a3.6 3.6 0 0 0 2-3.2zm-2-7.6v2a6.5 6.5 0 0 1 0 11.2v2a8.4 8.4 0 0 0 0-15.2z"/></svg>',
   lento: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.5 15.5a7 6 0 0 1 14 0zM18.6 15.5c.2-1.6 1.4-2.8 2.9-2.8a1.5 1.5 0 0 1 0 3zM5 16.5h2.4l-.8 2.5H4.4zM13 16.5h2.4l-.8 2.5h-2.2z"/></svg>',

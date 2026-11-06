@@ -31,7 +31,7 @@ nivel({
     {
       id: 'mxu2',
       titulo: 'Como a sociedade funciona',
-      conceito: 'base · superestrutura',
+      conceito: 'base, superestrutura',
       desc: 'Produção, classes, contradições e ideias.',
       licoes: [
         {

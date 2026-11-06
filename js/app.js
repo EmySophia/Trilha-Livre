@@ -42,7 +42,8 @@ function botaoFala(falas, { classe = '', devagar = false, rotulo = '' } = {}) {
 }
 // texto com **negrito** e ((trecho em inglês que dá para ouvir)), só nos cursos de idiomas
 function mdF(s) {
-  if (!temFala()) return inlineMd(s);
+  // negrito com **: nos cursos de idiomas e nos de texto; nos de programação, ** é o operador de potência
+  if (!temFala()) return CURSO && CURSO.linguagem === 'texto' ? inlineMd(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>') : inlineMd(s);
   return String(s).split(/(\(\(.+?\)\))/g).map(p => {
     const m = /^\(\((.+)\)\)$/.exec(p);
     if (m) return `<button type="button" class="fala-in" lang="en" ${atributoFalas([{ texto: m[1] }])} aria-label="Ouvir: ${esc(textoFalado(m[1]))}">${inlineMd(m[1]).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>')}${IC.som}</button>`;
@@ -276,6 +277,7 @@ const telaDaHash = () => {
   const h = location.hash.replace('#', '');
   if (h === 'conquistas') return 'perfil'; // link antigo
   if (VIEWS.includes(h)) return h;
+  if (h.startsWith('cursos/') || h.startsWith('formacao/')) return 'cursos'; // uma área ou uma formação aberta no catálogo
   return S.curso ? 'trilha' : 'cursos'; // na primeira visita, a pessoa escolhe o curso
 };
 
@@ -318,7 +320,8 @@ $('barra').addEventListener('click', e => { if (e.target.closest('[data-term]'))
 /* =========================================================
    Tela: Cursos (catálogo por área)
    ========================================================= */
-let filtroArea = 'todas';
+// área aberta no catálogo, pelo endereço (#cursos/programacao); sem área, mostra a escolha das áreas
+const areaAberta = () => { const h = location.hash.replace('#', ''); return h.startsWith('cursos/') ? AREAS.find(a => a.id === h.slice(7)) || null : null; };
 function cartaoCurso(c) {
   const ls = licoesDoCurso(c.id), feitas = ls.filter(l => feita(l.id)).length;
   const atual = S.curso === c.id;
@@ -326,7 +329,7 @@ function cartaoCurso(c) {
   const desafiosN = TODOS_DESAFIOS.filter(d => d.curso === c.id).length;
   let meta, acao;
   if (c.disponivel) {
-    meta = `<p class="cc-meta">${niveis} ${niveis === 1 ? 'nível' : 'níveis'} · ${ls.length} lições${desafiosN ? ` · ${desafiosN} desafios` : ''}</p>`
+    meta = `<p class="cc-meta">${niveis} ${niveis === 1 ? 'nível' : 'níveis'}${desafiosN ? `, ${ls.length} lições e ${desafiosN} desafios` : ` e ${ls.length} lições`}</p>`
       + (feitas ? `<div class="cc-prog"><div class="bar" aria-hidden="true"><i style="width:${feitas / ls.length * 100}%"></i></div><span>${feitas} de ${ls.length}</span></div>` : '');
     acao = `<button class="btn-card${atual ? '' : ' sec'}" data-curso="${esc(c.id)}" aria-label="${feitas ? 'Continuar' : 'Começar'} ${esc(c.titulo)}">${feitas ? 'Continuar' : 'Começar'}</button>`;
   } else {
@@ -339,28 +342,109 @@ function cartaoCurso(c) {
     ${acao}
   </article>`;
 }
+// junta itens como numa frase: "a", "a e b", "a, b e c"
+function listaNatural(xs) { return xs.length < 2 ? xs.join('') : xs.slice(0, -1).join(', ') + ' e ' + xs[xs.length - 1]; }
 function renderCursos() {
-  const areasVisiveis = AREAS.filter(a => filtroArea === 'todas' || a.id === filtroArea);
-  const filtros = [['todas', 'Todas', CURSOS.length], ...AREAS.map(a => [a.id, a.nome, CURSOS.filter(c => c.area === a.id).length])];
-  const temBreve = CURSOS.some(c => !c.disponivel);
-  $('tela-cursos').innerHTML = `
+  const area = areaAberta(), form = formacaoAberta();
+  $('tela-cursos').innerHTML = form ? telaFormacao(form) : area ? telaArea(area) : telaAreas();
+}
+
+/* ---------- formações completas ----------
+   Uma formação junta cursos (ou alguns níveis de um curso) numa ordem. O progresso é a soma das lições das etapas. */
+const FORMACOES = TRILHA.formacoes || [];
+const formacaoAberta = () => { const h = location.hash.replace('#', ''); return h.startsWith('formacao/') ? FORMACOES.find(f => f.id === h.slice(9)) || null : null; };
+const cursoDe = id => CURSOS.find(c => c.id === id);
+const licoesDaEtapa = e => licoesDoCurso(e.curso).filter(l => !e.niveis || (l.unit.nivel >= e.niveis[0] && l.unit.nivel <= e.niveis[1]));
+function resumoFormacao(f) {
+  const etapas = f.etapas.map(e => { const ls = licoesDaEtapa(e); return { ...e, c: cursoDe(e.curso), total: ls.length, feitas: ls.filter(l => feita(l.id)).length }; });
+  const total = etapas.reduce((t, e) => t + e.total, 0), feitas = etapas.reduce((t, e) => t + e.feitas, 0);
+  const prontas = etapas.filter(e => e.c.disponivel).length;
+  const proxima = etapas.find(e => e.c.disponivel && e.feitas < e.total);
+  return { etapas, total, feitas, prontas, breve: etapas.length - prontas, proxima };
+}
+function cartaoFormacao(f) {
+  const r = resumoFormacao(f);
+  const meta = `${f.etapas.length} cursos e ${r.total} lições${r.breve ? `, com ${r.breve} ${r.breve === 1 ? 'curso' : 'cursos'} em construção` : ''}`;
+  return `<a class="form-card" href="#formacao/${esc(f.id)}">
+    <span class="fc-rotulo">Formação completa</span>
+    <h3>${esc(f.titulo)}</h3>
+    <p>${esc(f.desc)}</p>
+    <ol class="fc-passos" aria-hidden="true">${r.etapas.map(e => `<li class="${e.c.disponivel ? (e.total && e.feitas === e.total ? 'feito' : '') : 'breve'}">${esc(e.c.sigla)}</li>`).join('')}</ol>
+    <span class="fc-meta">${meta}</span>
+    ${r.feitas ? `<span class="fc-prog"><span class="bar" aria-hidden="true"><i style="width:${r.feitas / r.total * 100}%"></i></span>${r.feitas} de ${r.total}</span>` : ''}
+    <span class="ac-seta" aria-hidden="true">${IC.seta}</span>
+  </a>`;
+}
+function telaFormacao(f) {
+  const r = resumoFormacao(f);
+  return `
+    <a class="voltar-areas" href="#cursos">${IC.voltar}Todos os cursos</a>
+    <div class="form-topo">
+      <p class="kind">Formação completa</p>
+      <h1>${esc(f.titulo)}</h1>
+      <p>${esc(f.desc)}</p>
+      <p class="fc-meta">${f.etapas.length} cursos e ${r.total} lições${r.breve ? `. ${r.breve} ${r.breve === 1 ? 'curso ainda está' : 'cursos ainda estão'} em construção e ${r.breve === 1 ? 'entra' : 'entram'} assim que ${r.breve === 1 ? 'tiver' : 'tiverem'} lições` : ''}.</p>
+      ${r.total ? `<div class="overall"><div class="bar" aria-hidden="true"><i style="width:${r.feitas / r.total * 100}%"></i></div><span>${r.feitas} de ${r.total} lições</span></div>` : ''}
+      ${r.proxima ? `<button class="btn-card" data-curso="${esc(r.proxima.curso)}">${r.feitas ? 'Continuar' : 'Começar'}: ${esc(r.proxima.c.titulo)}</button>` : ''}
+    </div>
+    <ol class="etapas">
+      ${r.etapas.map((e, i) => {
+        const completa = e.c.disponivel && e.total && e.feitas === e.total;
+        const parte = e.niveis ? `Níveis ${e.niveis[0]} a ${e.niveis[1]}, ` : '';
+        return `<li class="etapa${e.c.disponivel ? '' : ' breve'}${completa ? ' completa' : ''}">
+          <span class="et-num" aria-hidden="true">${completa ? IC.check : i + 1}</span>
+          <div class="et-card">
+            <div class="et-topo"><span class="selo selo-${esc(e.c.area)}" aria-hidden="true">${esc(e.c.sigla)}</span><div><h3>${esc(e.c.titulo)}</h3><p class="cc-meta">${e.c.disponivel ? `${parte}${e.total} lições${e.feitas ? `, ${e.feitas} feitas` : ''}` : '<span class="breve-tag">Em construção</span>'}</p></div></div>
+            <p class="et-porque">${esc(e.porque)}</p>
+            ${e.c.disponivel && e.feitas && !completa ? `<div class="cc-prog"><div class="bar" aria-hidden="true"><i style="width:${e.feitas / e.total * 100}%"></i></div><span>${e.feitas} de ${e.total}</span></div>` : ''}
+            ${e.c.disponivel ? `<button class="btn-card${S.curso === e.curso ? '' : ' sec'}" data-curso="${esc(e.curso)}" aria-label="${completa ? 'Rever' : e.feitas ? 'Continuar' : 'Começar'} ${esc(e.c.titulo)}">${completa ? 'Rever' : e.feitas ? 'Continuar' : 'Começar'}</button>` : ''}
+          </div>
+        </li>`;
+      }).join('')}
+    </ol>
+    ${r.breve ? `<footer class="foot"><p>Os cursos em construção ainda não têm lições. Quer ajudar a escrever um deles? O guia de contribuição (CONTRIBUINDO.md) explica como criar lições sem precisar mexer no app.${REPOSITORIO ? ` <a href="${esc(REPOSITORIO)}" target="_blank" rel="noopener">Ver o repositório</a>.` : ''}</p></footer>` : ''}`;
+}
+function telaAreas() {
+  return `
     <div class="intro">
       <p class="kind">Catálogo</p>
       <h1>Escolha o que aprender</h1>
       <p>Todos os cursos são gratuitos e abertos. O progresso de cada curso fica guardado separado, então você pode trocar quando quiser.</p>
     </div>
-    <div class="filtros" role="group" aria-label="Filtrar por área">
-      ${filtros.map(([k, n, q]) => `<button class="filtro${filtroArea === k ? ' ativo' : ''}" data-area="${esc(k)}" aria-pressed="${filtroArea === k}">${esc(n)}<span>${q}</span></button>`).join('')}
+    ${FORMACOES.length ? `<section class="secao-cat" aria-labelledby="tit-form">
+      <div class="area-head"><h2 id="tit-form">Formações completas</h2><p>Percursos que juntam vários cursos, na ordem certa, do zero até a profissão. O que você já fez num curso conta em todas as formações que o usam.</p></div>
+      <div class="forms-grid">${FORMACOES.map(cartaoFormacao).join('')}</div>
+    </section>` : ''}
+    <section class="secao-cat" aria-labelledby="tit-areas">
+    <div class="area-head"><h2 id="tit-areas">Cursos por área</h2><p>Cada curso também pode ser feito sozinho.</p></div>
+    <div class="areas-grid">
+      ${AREAS.map(a => {
+        const cs = CURSOS.filter(c => c.area === a.id), prontos = cs.filter(c => c.disponivel).length;
+        const atual = cs.some(c => c.id === S.curso);
+        return `<a class="area-card area-${esc(a.id)}" href="#cursos/${esc(a.id)}">
+          <span class="ac-topo"><span class="ac-num">${prontos ? `${prontos} ${prontos === 1 ? 'curso' : 'cursos'}${cs.length > prontos ? ` e ${cs.length - prontos} em construção` : ''}` : `${cs.length} cursos em construção`}</span>${atual ? '<span class="ac-atual">Seu curso está aqui</span>' : ''}</span>
+          <h2>${esc(a.nome)}</h2>
+          <p>${esc(a.desc)}</p>
+          <span class="ac-siglas" aria-hidden="true">${cs.map(c => `<i>${esc(c.sigla)}</i>`).join('')}</span>
+          <span class="ac-seta" aria-hidden="true">${IC.seta}</span>
+        </a>`;
+      }).join('')}
     </div>
-    ${areasVisiveis.map(a => `<section class="area" aria-labelledby="area-${esc(a.id)}">
-      <div class="area-head"><h2 id="area-${esc(a.id)}">${esc(a.nome)}</h2><p>${esc(a.desc)}</p></div>
-      <div class="cursos-grid">${CURSOS.filter(c => c.area === a.id).map(cartaoCurso).join('')}</div>
-    </section>`).join('')}
-    ${temBreve ? `<footer class="foot"><p>Os cursos em construção ainda não têm lições. Quer ajudar a escrever um deles? O guia de contribuição (CONTRIBUINDO.md) explica como criar lições sem precisar mexer no app.${REPOSITORIO ? ` <a href="${esc(REPOSITORIO)}" target="_blank" rel="noopener">Ver o repositório</a>.` : ''}</p></footer>` : ''}`;
+    </section>`;
+}
+function telaArea(a) {
+  const cs = CURSOS.filter(c => c.area === a.id);
+  return `
+    <a class="voltar-areas" href="#cursos">${IC.voltar}Todas as áreas</a>
+    <div class="area-topo area-${esc(a.id)}">
+      <p class="kind">${cs.length} ${cs.length === 1 ? 'curso' : 'cursos'}</p>
+      <h1>${esc(a.nome)}</h1>
+      <p>${esc(a.desc)}</p>
+    </div>
+    <div class="cursos-grid">${cs.map(cartaoCurso).join('')}</div>
+    ${cs.some(c => !c.disponivel) ? `<footer class="foot"><p>Os cursos em construção ainda não têm lições. Quer ajudar a escrever um deles? O guia de contribuição (CONTRIBUINDO.md) explica como criar lições sem precisar mexer no app.${REPOSITORIO ? ` <a href="${esc(REPOSITORIO)}" target="_blank" rel="noopener">Ver o repositório</a>.` : ''}</p></footer>` : ''}`;
 }
 $('tela-cursos').addEventListener('click', e => {
-  const f = e.target.closest('[data-area]');
-  if (f) { filtroArea = f.dataset.area; renderCursos(); return; }
   const b = e.target.closest('[data-curso]');
   if (b) { S.curso = b.dataset.curso; save(); usarCurso(S.curso); som('toque'); voltar('trilha'); }
 });
@@ -383,7 +467,7 @@ function painelHTML() {
       if (rv.erros) partes.push(rv.erros + (rv.erros === 1 ? ' erro' : ' erros'));
       h += `<div class="card rev">
         <span class="card-ic" aria-hidden="true">${IC.refresh}</span>
-        <div class="card-txt"><p class="kind">Revisão do dia</p><p class="card-num">${partes.join(' + ')}</p><p class="card-sub">Revisar agora fixa o que você aprendeu.</p></div>
+        <div class="card-txt"><p class="kind">Revisão do dia</p><p class="card-num">${listaNatural(partes)}</p><p class="card-sub">Revisar agora fixa o que você aprendeu.</p></div>
         <button class="btn-card" data-revisar="">Revisar</button></div>`;
     } else {
       h += `<div class="card rev">
@@ -408,7 +492,7 @@ function renderTrilha() {
   const offsets = [0, 56, 0, -56];
   let k = 0, unitNo = 0;
   let html = `
-    <div class="intro">
+    <div class="intro hero">
       <div class="curso-atual"><span class="selo selo-${esc(CURSO.area)}" aria-hidden="true">${esc(CURSO.sigla)}</span><p class="kind">${esc(areaDe(CURSO.area).nome)}</p><a class="trocar" href="#cursos">Trocar de curso</a></div>
       <h1>${esc(CURSO.titulo)}</h1>
       <p>${esc(CURSO.desc)} São ${NIVEIS.length} ${NIVEIS.length === 1 ? 'nível' : 'níveis'} de lições curtas, para fazer no celular ou no computador.</p>
@@ -425,7 +509,7 @@ function renderTrilha() {
     html += `<section class="nivel" id="niv-${nv.n}" aria-labelledby="niv-t-${nv.n}">
       <div class="nivel-head">
         <span class="niv-num" aria-hidden="true">${nv.n}</span>
-        <div><p class="kind">Nível ${nv.n}${nv.faixa ? ` · <span class="faixa" title="Faixa do Quadro Europeu (CEFR), de A1 a C2">${esc(nv.faixa)}</span>` : ''} · ${d} de ${ls.length} lições</p><h2 id="niv-t-${nv.n}">${esc(nv.titulo)}</h2><p>${esc(nv.desc)}</p></div>
+        <div><p class="kind">Nível ${nv.n}${nv.faixa ? ` <span class="faixa" title="Faixa do Quadro Europeu (CEFR), de A1 a C2">${esc(nv.faixa)}</span>` : ''}, ${d} de ${ls.length} lições feitas</p><h2 id="niv-t-${nv.n}">${esc(nv.titulo)}</h2><p>${esc(nv.desc)}</p></div>
       </div>${materiaisHTML(nv)}`;
     UNITS.filter(u => u.nivel === nv.n).forEach(u => {
       unitNo++;
@@ -453,7 +537,7 @@ function renderTrilha() {
         const x = offsets[k++ % offsets.length], aberta = st.every(s => s.done), r = S.provas[u.id];
         const dominada = r && r.nota >= NOTA_PROVA;
         html += `<div class="stop prova${aberta ? '' : ' locked'}" style="--x:${x}px">
-          <button class="node node-prova${dominada ? ' done' : ''}" data-prova="${esc(u.id)}" ${aberta ? '' : 'disabled'} aria-label="Teste da unidade ${esc(u.titulo)}${r ? `, melhor nota ${r.nota}%` : ''}${aberta ? '' : ', libera quando você terminar as lições da unidade'}">${IC.trophy}</button>
+          <button class="node node-prova${dominada ? ' done' : ''}" data-prova="${esc(u.id)}" ${aberta ? '' : 'disabled'} aria-label="Teste da unidade ${esc(u.titulo)}${r ? `, melhor nota ${r.nota}%` : ''}${aberta ? '' : ', libera quando você terminar as lições da unidade'}">${dominada ? IC.check : aberta ? '' : IC.lock}</button>
           <span class="label" aria-hidden="true">${r ? `Teste: ${r.nota}%` : 'Teste da unidade'}</span>
         </div>`;
       }
@@ -494,7 +578,7 @@ function materiaisHTML(nv) {
   const titulo = nVideo === vs.length ? 'Aulas em vídeo sobre este nível' : nVideo ? 'Vídeos e leituras sobre este nível' : 'Leituras sobre este nível';
   return `<details class="videos"><summary>${nVideo ? IC.play : ''}${titulo}</summary>
     <ul>${vs.map(v => `<li><a href="${esc(v.url)}" target="_blank" rel="noopener">${esc(v.titulo)}</a>
-      <span>${v.tipo === 'texto' ? 'Texto' : 'Vídeo'} · ${esc(v.canal)}${v.obs ? ` · ${esc(v.obs)}` : ''}</span></li>`).join('')}</ul>
+      <span>${v.tipo === 'texto' ? 'Texto' : 'Vídeo'} de ${esc(v.canal)}${v.obs ? `, ${esc(v.obs)}` : ''}</span></li>`).join('')}</ul>
     <p class="muted">São sites de fora, gratuitos. Precisam de internet.</p>
   </details>`;
 }
@@ -520,13 +604,13 @@ function renderPratica() {
   const lista = DESAFIOS.filter(d => filtroDif === 'todos' || d.dif === filtroDif);
   const filtros = [['todos', 'Todos'], ['facil', 'Fácil'], ['medio', 'Médio'], ['dificil', 'Difícil']];
   if (!total) {
-    $('tela-pratica').innerHTML = `<div class="intro"><p class="kind">Prática livre · ${esc(CURSO.titulo)}</p><h1>Desafios avulsos</h1>
+    $('tela-pratica').innerHTML = `<div class="intro"><p class="kind">Prática livre de ${esc(CURSO.titulo)}</p><h1>Desafios avulsos</h1>
       <p>Este curso ainda não tem desafios de prática. Enquanto isso, a revisão na aba Trilha ajuda a fixar o que você aprendeu.</p></div>`;
     return;
   }
   $('tela-pratica').innerHTML = `
     <div class="intro">
-      <p class="kind">Prática livre · ${esc(CURSO.titulo)}</p>
+      <p class="kind">Prática livre de ${esc(CURSO.titulo)}</p>
       <h1>Desafios avulsos</h1>
       <p>Treine o que quiser, na ordem que quiser, fora da trilha. Cada desafio vale XP cheio na primeira vez que você resolve.</p>
       <div class="overall"><div class="bar" aria-hidden="true"><i style="width:${(feitos / total) * 100}%"></i></div><span>${feitos} de ${total} resolvidos</span></div>
@@ -591,7 +675,7 @@ function cartaoLivro(l) {
       <div class="lv-txt">
         ${tags.length ? `<p class="lv-tags">${tags.map(t => `<i>${t}</i>`).join('')}</p>` : ''}
         <h3 id="lvt-${esc(l.id)}">${esc(l.titulo)}</h3>
-        <p class="lv-autor">${esc(l.autor)}${l.ano ? ` · ${esc(l.ano)}` : ''}${l.obs ? ` · ${esc(l.obs)}` : ''}</p>
+        <p class="lv-autor">${esc(l.autor)}${l.ano ? `, ${esc(l.ano)}` : ''}${l.obs ? `, ${esc(l.obs)}` : ''}</p>
       </div>
     </div>
     <p class="lv-desc">${esc(l.desc)}</p>
@@ -614,7 +698,7 @@ function resumoEstanteHTML() {
   const conta = st => TRILHA.livros.filter(l => (meuLivro(l.id) || {}).st === st).length;
   const partes = [['lendo', 'lendo', 'lendo'], ['quero', 'para ler', 'para ler'], ['lido', 'lido', 'lidos']]
     .map(([st, um, varios]) => { const n = conta(st); return n ? `${n} ${n === 1 ? um : varios}` : ''; }).filter(Boolean);
-  return partes.length ? `Na sua estante: ${partes.join(' · ')}` : 'Marque os livros como Quero ler, Lendo ou Lido para montar a sua estante.';
+  return partes.length ? `Na sua estante: ${listaNatural(partes)}` : 'Marque os livros como Quero ler, Lendo ou Lido para montar a sua estante.';
 }
 function renderLivros() {
   $('tela-livros').innerHTML = `
@@ -981,11 +1065,11 @@ function updateProg() {
 function rotulo(ex) {
   const texto = ['texto', 'mat', 'en'].includes(lingDe(ex));
   const tipo = { escreva: ex.ouvir ? 'Ouça e escreva' : ex.lingua === 'pt' ? 'Escreva em português' : 'Escreva em inglês', monte: ex.ouvir ? 'Ouça e monte a frase' : 'Monte a frase',
-    escolha: ex.ouvir ? 'Ouça e escolha' : 'Escolha a resposta', complete: texto ? 'Complete a frase' : lingDe(ex) === 'shell' ? 'Complete o comando' : 'Complete o código', ordene: ex.plain || texto ? 'Coloque em ordem' : ['js', 'py'].includes(lingDe(ex)) ? 'Monte o programa' : lingDe(ex) === 'shell' ? 'Coloque os comandos em ordem' : 'Monte o código', codigo: 'Escreva o código', web: ex.conserte ? 'Conserte a página' : 'Monte a página', comando: 'Digite o comando', numero: 'Calcule e responda' }[ex.t];
-  if (L.tipo === 'revisao') return `${tipo} · revisão de ${esc(LICAO[item().lid].titulo)}`;
-  if (L.tipo === 'pratica') return `Desafio · ${DIF[L.desafio.dif].nome} · ${esc(L.desafio.titulo)}`;
-  if (L.tipo === 'nivelamento') return `Teste de nivelamento · Nível ${item().nivel}`;
-  if (L.tipo === 'prova') return `Teste da unidade · ${tipo}`;
+    escolha: ex.ouvir ? 'Ouça e escolha' : 'Escolha a resposta', complete: texto ? 'Complete a frase' : lingDe(ex) === 'shell' ? 'Complete o comando' : 'Complete o código', ordene: ex.plain || texto ? 'Coloque em ordem' : ['js', 'py'].includes(lingDe(ex)) ? 'Monte o programa' : lingDe(ex) === 'shell' ? 'Coloque os comandos em ordem' : 'Monte o código', codigo: 'Escreva o código', web: ex.conserte ? 'Conserte a página' : 'Monte a página', comando: 'Digite o comando', terminal: 'Missão no terminal', numero: 'Calcule e responda' }[ex.t];
+  if (L.tipo === 'revisao') return `${tipo}, revisão de ${esc(LICAO[item().lid].titulo)}`;
+  if (L.tipo === 'pratica') return `Desafio ${DIF[L.desafio.dif].nome.toLowerCase()}: ${esc(L.desafio.titulo)}`;
+  if (L.tipo === 'nivelamento') return `Teste de nivelamento do nível ${item().nivel}`;
+  if (L.tipo === 'prova') return `Teste da unidade: ${tipo}`;
   return tipo;
 }
 // linguagem usada no destaque de código: a do exercício, a do curso ou JavaScript
@@ -1055,6 +1139,17 @@ function renderEx() {
       ${tecladoHTML('cmdIn', 'shell')}
       ${ex.dica ? `<details class="dica-cmd"><summary>Ver uma dica</summary><p>${inlineMd(ex.dica)}</p></details>` : ''}
       <p class="atalho">Digite o comando e aperte Enter.</p>`;
+    setMain('check', false);
+  }
+  if (ex.t === 'terminal') {
+    // missão num Linux simulado (js/linux.js): a pessoa roda quantos comandos quiser e depois confere
+    L.lx = lxCriar(ex); L.motivo = null; L.lxPos = null;
+    const antes = (ex.antes || []).map(l => `<div class="sh-out">${esc(l)}</div>`).join('');
+    body.innerHTML = `<div class="shell lx" id="lxTela"><div id="lxLog">${antes}</div><label class="sh-in"><span class="sh-pr" id="lxPr" aria-hidden="true">${esc(lxPrompt(L.lx))}</span><input id="lxIn" type="text" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" enterkeyhint="send" aria-label="Comando"></label></div>
+      ${tecladoHTML('lxIn', 'shell')}
+      ${lxPedeResposta(ex.objetivo) ? `<label class="lx-resp"><span class="lab">Sua resposta</span><input id="lxResp" type="text" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" enterkeyhint="done" placeholder="O que você encontrou"></label>` : ''}
+      ${ex.dica ? `<details class="dica-cmd"><summary>Ver uma dica</summary><p>${inlineMd(ex.dica)}</p></details>` : ''}
+      <p class="atalho">Digite um comando e aperte Enter. Rode quantos quiser; quando terminar a missão, toque em Verificar.</p>`;
     setMain('check', false);
   }
   if (ex.t === 'escreva') {
@@ -1266,7 +1361,7 @@ function projetosHTML() {
     const site = pj.site ? arquivosDoSite(pj) : null;
     const resumo = site ? `${site.lista.length - 1} ${site.lista.length === 2 ? 'página' : 'páginas'}, estilo.css${site.imagens.length ? ` e ${site.imagens.length} ${site.imagens.length === 1 ? 'imagem' : 'imagens'}` : ''}` : '';
     return `<div class="projeto">
-      <div class="pj-txt"><b>${esc(pj.titulo)}</b><span>${site ? esc(resumo) + ' · ' : ''}Guardado em ${fmtData(pj.dia)}</span></div>
+      <div class="pj-txt"><b>${esc(pj.titulo)}</b><span>${site ? esc(resumo) + ', guardado' : 'Guardado'} em ${fmtData(pj.dia)}</span></div>
       <div class="acoes-linha">
         ${topo ? `<button class="btn-card" data-proj-baixar="${esc(id)}">${site ? 'Baixar o site (.zip)' : 'Baixar index.html'}</button>` : ''}
         <button class="btn-card${topo ? ' sec' : ''}" data-proj-copiar="${esc(id)}">${site ? 'Ver os arquivos' : 'Copiar o código'}</button>
@@ -1385,7 +1480,7 @@ function renderTexto(ex) {
       <p>Esta lição usa o que aparece em ${falta.map(id => `<b>${esc(nomeBase(id))}</b>`).join(' e ')}, que você ainda não fez. Dá para seguir assim mesmo, mas, se travar, comece por lá.</p>
       <div class="acoes-linha">${botoesBase(falta, L.idx, 'btn-card sec')}</div></aside>`;
   }
-  area.innerHTML = `<p class="kind">Leitura · ${esc(L.les ? L.les.unit.titulo : '')}</p><h2 class="prompt" tabindex="-1">${esc(ex.titulo)}</h2>${aviso}<article class="reading">${corpo}</article>`;
+  area.innerHTML = `<p class="kind">${L.les ? `Leitura da unidade ${esc(L.les.unit.titulo)}` : 'Leitura'}</p><h2 class="prompt" tabindex="-1">${esc(ex.titulo)}</h2>${aviso}<article class="reading">${corpo}</article>`;
   ligarPrevias(area);
   setMain('read', true, 'Entendi, continuar');
 }
@@ -1479,6 +1574,33 @@ function comandoOk(digitado, ex) {
 }
 $('exArea').addEventListener('input', e => {
   if (['cmdIn', 'numIn', 'escIn'].includes(e.target.id) && L && !L.checked) setMain('check', e.target.value.trim() !== '');
+  if (e.target.id === 'lxResp' && L && !L.checked) setMain('check', e.target.value.trim() !== '' || L.lx.hist.length > 0);
+});
+
+// terminal das missões: Enter roda o comando, as setas trazem os comandos anteriores
+$('exArea').addEventListener('keydown', e => {
+  if (e.target.id !== 'lxIn' || !L || !L.lx || L.checked) return;
+  const inp = e.target, st = L.lx;
+  if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+    e.preventDefault();
+    const h = st.hist; if (!h.length) return;
+    L.lxPos = Math.max(0, Math.min(h.length, (L.lxPos == null ? h.length : L.lxPos) + (e.key === 'ArrowUp' ? -1 : 1)));
+    inp.value = h[L.lxPos] || '';
+    return;
+  }
+  if (e.key !== 'Enter') return;
+  e.preventDefault(); e.stopPropagation();
+  const linha = inp.value;
+  const pr = lxPrompt(st);
+  const r = lxRodar(st, linha);
+  const log = $('lxLog');
+  if (r.limpar) log.innerHTML = '';
+  else log.insertAdjacentHTML('beforeend', `<div class="sh-cmd"><span class="sh-pr" aria-hidden="true">${esc(pr)}</span> ${esc(linha)}</div>`
+    + (r.texto ? r.texto.split('\n').map(l => `<div class="sh-out">${esc(l) || '&nbsp;'}</div>`).join('') : ''));
+  inp.value = ''; L.lxPos = null;
+  $('lxPr').textContent = lxPrompt(st);
+  const tela = $('lxTela'); tela.scrollTop = tela.scrollHeight;
+  if (linha.trim()) { aoUsarTerminal(); setMain('check', true); }
 });
 
 // roda o código do aluno na linguagem do exercício; no Python, avisa enquanto ele é baixado
@@ -1588,6 +1710,13 @@ async function check() {
     linha.outerHTML = `<div class="sh-cmd"><span class="sh-pr" aria-hidden="true">${esc(ex.pasta || '~')} $</span> <span${ok ? '' : ' class="sh-errado"'}>${esc(inp.value)}</span></div>`
       + (ok && ex.saida ? ex.saida.replace('{msg}', msg).split('\n').map(l => `<div class="sh-out">${esc(l)}</div>`).join('') : '');
   }
+  if (ex.t === 'terminal') {
+    const r = lxConferir(L.lx, ex.objetivo, ($('lxResp') || {}).value);
+    ok = r.ok; correct = ex.sol.join('\n');
+    if (!ok && r.motivo) L.motivo = r.motivo;
+    const inp = $('lxIn'); if (inp) inp.disabled = true;
+    const resp = $('lxResp'); if (resp) resp.disabled = true;
+  }
   if (ex.t === 'escreva' || ex.t === 'monte') {
     const aceitas = ex.r != null ? ex.r : ex.ouvir;
     const digitada = ex.t === 'monte' ? L.ans.map(i => L.palavras[i]).join(' ') : $('escIn').value;
@@ -1651,7 +1780,8 @@ function feedback(ok, ex, correct, r) {
   if (!ok && !isCode) {
     // respostas em texto (com fórmulas) aparecem formatadas; código continua em fonte de código
     const formatada = (ex.t === 'escolha' && !ex.mono) || (ex.t === 'ordene' && ex.plain) || idioma || (ex.t === 'complete' && lingDe(ex) === 'en');
-    h += `<p class="fb-label">Resposta certa</p>${formatada ? `<p class="fb-ans fb-txt"${idioma && ex.lingua !== 'pt' ? ' lang="en"' : ''}>${correct.split('\n').map(mdF).join('<br>')}${ouvirCerta}</p>` : `<pre class="fb-ans">${esc(correct)}</pre>`}`;
+    if (ex.t === 'terminal' && L.motivo) h += `<p class="fb-exp">${esc(L.motivo)}</p>`;
+    h += `<p class="fb-label">${ex.t === 'terminal' ? 'Um jeito de resolver' : 'Resposta certa'}</p>${formatada ? `<p class="fb-ans fb-txt"${idioma && ex.lingua !== 'pt' ? ' lang="en"' : ''}>${correct.split('\n').map(mdF).join('<br>')}${ouvirCerta}</p>` : `<pre class="fb-ans">${esc(correct)}</pre>`}`;
     falado += ' Resposta certa: ' + semFormula(correct) + '.';
   } else if (ok && L.quase) {
     h += `<p class="fb-label">${L.quase.acento ? 'Repare nos acentos' : 'Repare na escrita'}</p><p class="fb-ans fb-txt"${ex.lingua !== 'pt' ? ' lang="en"' : ''}>${mdF(correct)}${ouvirCerta}</p>`;
@@ -1794,7 +1924,7 @@ function finish() {
     s.nota = nota;
     xp = passou ? 20 : 10;
     festa = passou;
-    eyebrow = 'Teste da unidade · ' + s.unit.titulo;
+    eyebrow = 'Teste da unidade ' + s.unit.titulo;
     titulo = passou ? 'Unidade dominada' : 'Quase lá';
     sub = passou ? `Você acertou ${certos} de ${s.itens.length} de primeira.` : `Você acertou ${certos} de ${s.itens.length} de primeira. Com ${NOTA_PROVA}%, a unidade fica dominada. O que você errou volta na revisão.`;
     botoes = `<button class="btn-main" data-acao="voltar">Voltar à trilha</button>`
@@ -1814,7 +1944,7 @@ function finish() {
     const d = s.desafio, primeira = !S.pratica[d.id];
     S.pratica[d.id] = hoje();
     xp = primeira ? DIF[d.dif].xp : 5;
-    eyebrow = 'Desafio · ' + DIF[d.dif].nome; titulo = 'Desafio resolvido'; sub = d.titulo;
+    eyebrow = 'Desafio ' + DIF[d.dif].nome.toLowerCase(); titulo = 'Desafio resolvido'; sub = d.titulo;
     const prox = DESAFIOS.find(x => !S.pratica[x.id]);
     botoes = (prox ? `<button class="btn-main" data-acao="desafio" data-id="${prox.id}">Próximo desafio</button>` : '')
       + `<button class="btn-sec" data-acao="voltar">Voltar à prática</button>`;

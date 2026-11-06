@@ -24,7 +24,7 @@ nivel({
     {
       id: 'hcu8',
       titulo: 'Caixas e alinhamento',
-      conceito: 'flex · grid',
+      conceito: 'flex, grid',
       desc: 'O modelo de caixa, flexbox e grid.',
       licoes: [
         {
@@ -944,16 +944,16 @@ nivel({
             {
               t: 'web',
               p: 'Faça o topo acompanhar a rolagem: header com position sticky e top 0',
-              html: `<header>Rádio Vila · Ao vivo</header>
-<p>6h · Bom dia, Vila</p>
-<p>8h · Notícias do bairro</p>
-<p>10h · Música popular</p>
-<p>12h · Hora do almoço</p>
-<p>14h · Rodas de conversa</p>
-<p>16h · Esporte</p>
-<p>18h · Forró</p>
-<p>20h · Rap nacional</p>
-<p>22h · Boa noite</p>`,
+              html: `<header>Rádio Vila, ao vivo</header>
+<p>6h: Bom dia, Vila</p>
+<p>8h: Notícias do bairro</p>
+<p>10h: Música popular</p>
+<p>12h: Hora do almoço</p>
+<p>14h: Rodas de conversa</p>
+<p>16h: Esporte</p>
+<p>18h: Forró</p>
+<p>20h: Rap nacional</p>
+<p>22h: Boa noite</p>`,
               css: `header {
   background-color: #4527a0;
   color: white;
@@ -978,16 +978,16 @@ p {
                   msg: 'Falta `top: 0;`, que diz onde ele gruda.'
                 }
               ],
-              solHtml: `<header>Rádio Vila · Ao vivo</header>
-<p>6h · Bom dia, Vila</p>
-<p>8h · Notícias do bairro</p>
-<p>10h · Música popular</p>
-<p>12h · Hora do almoço</p>
-<p>14h · Rodas de conversa</p>
-<p>16h · Esporte</p>
-<p>18h · Forró</p>
-<p>20h · Rap nacional</p>
-<p>22h · Boa noite</p>`,
+              solHtml: `<header>Rádio Vila, ao vivo</header>
+<p>6h: Bom dia, Vila</p>
+<p>8h: Notícias do bairro</p>
+<p>10h: Música popular</p>
+<p>12h: Hora do almoço</p>
+<p>14h: Rodas de conversa</p>
+<p>16h: Esporte</p>
+<p>18h: Forró</p>
+<p>20h: Rap nacional</p>
+<p>22h: Boa noite</p>`,
               solCss: `header {
   background-color: #4527a0;
   color: white;

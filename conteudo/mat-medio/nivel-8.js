@@ -66,22 +66,6 @@ nivel({
               vars: { A: { de: 2, ate: 10 }, B: { de: 2, ate: 12 }, C: { de: 2, ate: 10 } }
             },
             {
-              t: 'numero',
-              p: 'Uma prova tem peso {P1} e um trabalho tem peso {P2}. Com nota {N1} na prova e {N2} no trabalho, qual é a média?',
-              r: '{= (P1 * N1 + P2 * N2) / (P1 + P2) }',
-              exp: '$$({P1} × {N1} + {P2} × {N2})/({P1} + {P2})$$.',
-              casas: 2,
-              vars: { P1: [2, 3, 4], P2: [1, 2], N1: { de: 4, ate: 10 }, N2: { de: 4, ate: 10 } }
-            },
-            {
-              t: 'numero',
-              p: 'Um aluno precisa de média ponderada 6. A prova tem peso 3 e ele tirou {N1}; o trabalho tem peso 2. Que nota mínima ele precisa no trabalho?',
-              r: '{= (30 - 3 * N1) / 2 }',
-              exp: '$$(3 × {N1} + 2x)/5 = 6$$, então $$2x = 30 − {= 3 * N1 }$$.',
-              casas: 1,
-              vars: { N1: [4, 4.5, 5, 5.5, 6, 7] }
-            },
-            {
               t: 'escolha',
               p: 'Numa tabela, o salário mais comum de uma empresa é R$ 2.000. Essa medida é...',
               ops: ['A moda', 'A média', 'A mediana'],
@@ -95,6 +79,34 @@ nivel({
               exp: '$$(0 × {A} + 1 × {B} + 2 × {C})/{= A + B + C }$$.',
               casas: 2,
               vars: { A: { de: 2, ate: 8 }, B: { de: 2, ate: 10 }, C: { de: 2, ate: 8 } }
+            },
+            {
+              t: 'numero',
+              p: 'Uma prova tem peso {P1} e um trabalho tem peso {P2}. Com nota {N1} na prova e {N2} no trabalho, qual é a média?',
+              r: '{= (P1 * N1 + P2 * N2) / (P1 + P2) }',
+              exp: '$$({P1} × {N1} + {P2} × {N2})/({P1} + {P2})$$.',
+              casas: 2,
+              vars: { P1: [2, 3, 4], P2: [1, 2], N1: { de: 4, ate: 10 }, N2: { de: 4, ate: 10 } }
+            },
+            {
+              t: 'texto',
+              titulo: 'A média ao contrário',
+              blocos: [
+                {
+                  p: 'A média vezes a quantidade de valores dá a soma deles. Com isso, dá para descobrir um valor que falta. Se a média de 4 números é 7, a soma é 4 × 7 = 28.'
+                },
+                {
+                  p: 'Exemplo: com peso 3 na prova e 2 no trabalho, quem tirou 4 na prova precisa de quanto no trabalho para ter média 6? $$(3 × 4 + 2x)/5 = 6$$, então 12 + 2x = 30, 2x = 18 e x = 9.'
+                }
+              ]
+            },
+            {
+              t: 'numero',
+              p: 'Um aluno precisa de média ponderada 6. A prova tem peso 3 e ele tirou {N1}; o trabalho tem peso 2. Que nota mínima ele precisa no trabalho?',
+              r: '{= (30 - 3 * N1) / 2 }',
+              exp: '$$(3 × {N1} + 2x)/5 = 6$$, então $$2x = 30 − {= 3 * N1 }$$.',
+              casas: 1,
+              vars: { N1: [4, 4.5, 5, 5.5, 6, 7] }
             },
             {
               t: 'numero',
@@ -215,15 +227,6 @@ nivel({
               ]
             },
             {
-              t: 'numero',
-              p: 'Um valor foi de {A} para {B}. Qual foi o aumento percentual, com 1 casa?',
-              r: '{= (B - A) / A * 100 }',
-              exp: '({B} − {A}) ÷ {A} × 100.',
-              unidade: '%',
-              casas: 1,
-              vars: { A: { de: 90, ate: 99 }, B: { de: 100, ate: 110 } }
-            },
-            {
               t: 'escolha',
               p: 'No gráfico, em qual intervalo o valor subiu mais?',
               ops: [
@@ -264,19 +267,32 @@ nivel({
               exp: 'Porcentagens sobre números pequenos podem exagerar uma mudança.'
             },
             {
-              t: 'numero',
-              p: 'Uma cidade de {= br(P) } habitantes teve {A} casos de uma doença. Quantos casos por 100 mil habitantes?',
-              r: '{= A / P * 100000 }',
-              exp: 'Divida os casos pela população e multiplique por 100.000. Assim dá para comparar cidades de tamanhos diferentes.',
-              casas: 1,
-              vars: { P: [50000, 200000, 800000, 1500000], A: { de: 10, ate: 500 } }
-            },
-            {
               t: 'escolha',
               p: 'Um gráfico de barras mostra 2.000 e 2.200, com o eixo começando em 1.900. A segunda barra parece 3 vezes maior. Quanto ela é maior, de verdade?',
               ops: ['10%', '200%', '300%'],
               c: 0,
               exp: '2.200 ÷ 2.000 = 1,1: só 10% a mais.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Duas contas para conferir',
+              blocos: [
+                {
+                  p: 'Aumento percentual: a variação dividida pelo valor de antes, vezes 100. De 80 para 92, a variação é 12, e 12 ÷ 80 × 100 = 15%.'
+                },
+                {
+                  p: 'Taxa por 100 mil habitantes: divida os casos pela população e multiplique por 100.000. Assim dá para comparar uma cidade pequena com uma grande. 30 casos em 200.000 habitantes dão 30 ÷ 200.000 × 100.000 = 15 casos por 100 mil.'
+                }
+              ]
+            },
+            {
+              t: 'numero',
+              p: 'Um valor foi de {A} para {B}. Qual foi o aumento percentual, com 1 casa?',
+              r: '{= (B - A) / A * 100 }',
+              exp: '({B} − {A}) ÷ {A} × 100.',
+              unidade: '%',
+              casas: 1,
+              vars: { A: { de: 90, ate: 99 }, B: { de: 100, ate: 110 } }
             },
             {
               t: 'numero',
@@ -286,6 +302,14 @@ nivel({
               unidade: '%',
               casas: 1,
               vars: { A: { de: 10, ate: 80 }, T: [100, 120, 150, 200] }
+            },
+            {
+              t: 'numero',
+              p: 'Uma cidade de {= br(P) } habitantes teve {A} casos de uma doença. Quantos casos por 100 mil habitantes?',
+              r: '{= A / P * 100000 }',
+              exp: 'Divida os casos pela população e multiplique por 100.000. Assim dá para comparar cidades de tamanhos diferentes.',
+              casas: 1,
+              vars: { P: [50000, 200000, 800000, 1500000], A: { de: 10, ate: 500 } }
             }
           ]
         }

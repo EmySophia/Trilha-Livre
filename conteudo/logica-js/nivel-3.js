@@ -10,7 +10,7 @@ nivel({
     {
       id: 'n3u1',
       titulo: 'Textos e tipos',
-      conceito: '.length · Number()',
+      conceito: '.length, Number()',
       desc: 'Trabalhar com textos e converter valores.',
       licoes: [
         {
@@ -710,7 +710,7 @@ console.log([...a, ...b]);`,
     {
       id: 'n3u3',
       titulo: 'Objetos e matrizes',
-      conceito: '{ } · [[ ]]',
+      conceito: '{ }, [[ ]]',
       desc: 'Agrupar informações e montar tabelas.',
       licoes: [
         {

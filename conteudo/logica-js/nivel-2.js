@@ -193,7 +193,7 @@ console.log("5" + "5"); // 55`
     {
       id: 'u2',
       titulo: 'Variáveis',
-      conceito: 'let · const',
+      conceito: 'let, const',
       desc: 'Guardar valores com nome para usar depois.',
       licoes: [
         {
@@ -509,7 +509,7 @@ console.log(vidas);`,
     {
       id: 'u3',
       titulo: 'Decisões',
-      conceito: 'if · else',
+      conceito: 'if, else',
       desc: 'Fazer o programa escolher o que fazer.',
       licoes: [
         {
@@ -910,7 +910,7 @@ switch (dia) {
     {
       id: 'u4',
       titulo: 'Repetição',
-      conceito: 'for · while',
+      conceito: 'for, while',
       desc: 'Repetir tarefas sem copiar código.',
       licoes: [
         {

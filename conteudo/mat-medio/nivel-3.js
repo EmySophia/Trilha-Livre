@@ -134,6 +134,9 @@ nivel({
                     '$$4 = 2^2$$ e $$8 = 2^3$$, então $$2^(2x) = 2^3$$',
                     '$$2x = 3$$, e $$x = 3/2$$'
                   ]
+                },
+                {
+                  p: 'Um expoente negativo vira fração: $$5^(−2) = 1/5^2 = 1/25$$. Então, para resolver $$5^x = 1/25$$, escreva $$1/25 = 5^(−2)$$, e x = −2.'
                 }
               ]
             },
@@ -215,6 +218,9 @@ nivel({
                 },
                 {
                   dica: 'Só existe logaritmo de número positivo, com base positiva e diferente de 1.'
+                },
+                {
+                  p: 'Com números entre 0 e 1, o logaritmo dá negativo: $$log 0,01 = −2$$, porque $$10^(−2) = 1/100 = 0,01$$. Conte as casas depois da vírgula até chegar no 1.'
                 }
               ]
             },
@@ -327,10 +333,31 @@ nivel({
               vars: { A: { de: 5, ate: 8 }, B: { de: 3, ate: 4 } }
             },
             {
+              t: 'texto',
+              titulo: 'Quando o x está no expoente',
+              blocos: [
+                {
+                  p: 'Quando o x está no expoente e os dois lados não viram a mesma base, aplique o log dos dois lados. A propriedade $$log a^n = n × log a$$ traz o x para baixo. Exemplo: um valor cresce 25% ao ano. Em quanto tempo dobra? Use $$log 1,25 ≈ 0,097$$.'
+                },
+                {
+                  tabela: {
+                    cab: ['Passo', 'Conta'],
+                    codigo: [],
+                    linhas: [
+                      ['A equação', '$$1,25^t = 2$$'],
+                      ['Log dos dois lados', '$$t × log 1,25 = log 2$$'],
+                      ['Isole o t', '$$t = (log 2)/(log 1,25) ≈ 0,301/0,097$$'],
+                      ['Resposta', 't ≈ 3,1 anos']
+                    ]
+                  }
+                }
+              ]
+            },
+            {
               t: 'numero',
               p: 'Um investimento rende 10% ao ano. Usando $$log 2 ≈ 0,301$$ e $$log 1,1 ≈ 0,041$$, em quantos anos ele dobra, aproximadamente? (1 casa)',
               r: '7.3',
-              exp: '$$1,1^t = 2$$, então $$t = log 2/log 1,1$$.',
+              exp: '$$1,1^t = 2$$, então $$t = (log 2)/(log 1,1)$$.',
               casas: 1,
               tol: 0.06
             }

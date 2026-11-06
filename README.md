@@ -4,7 +4,9 @@
 
 Plataforma gratuita e de código aberto para aprender **programação, matemática, idiomas e política** em português, no estilo dos apps de idiomas: lições curtas, exercícios interativos, sequência de dias e XP. Funciona no navegador, no celular e no computador, sem instalar nada e sem criar conta.
 
-A pessoa escolhe a área e o curso num catálogo. Os cursos prontos são **Lógica de programação com JavaScript** (54 lições), **Sites com HTML e CSS** (42 lições), **Python do zero** (59 lições), **Git e GitHub** (25 lições), **Matemática básica** (46 lições), **Matemática do ensino médio** (38 lições), **Inglês do zero** (100 lições), **Introdução ao marxismo** (25 lições), **O Capital, de Marx** (24 lições) e **Leitura guiada de O Capital** (39 lições). Uma **biblioteca** reúne livros que dá para ler de graça e de forma legal. Os outros (Matemática financeira e Espanhol) já aparecem no catálogo como "em construção" e ficam disponíveis assim que ganham lições.
+No topo do catálogo ficam as **formações completas**: percursos que juntam vários cursos, na ordem certa, do zero até a profissão. São quatro: **Programação do zero**, **Segurança e hacking ético**, **Matemática para o Enem** e **Marxismo e O Capital**. O que a pessoa faz num curso conta em todas as formações que o usam.
+
+Abaixo delas, a pessoa escolhe a área e o curso. Os cursos prontos são **Lógica de programação com JavaScript** (54 lições), **Sites com HTML e CSS** (42 lições), **Python do zero** (59 lições), **Git e GitHub** (25 lições), **Segurança para todo mundo** (29 lições), **Linux e terminal** (45 lições, com missões num Linux simulado dentro do app), **Matemática básica** (46 lições), **Matemática do ensino médio** (38 lições), **Inglês do zero** (100 lições), **Introdução ao marxismo** (25 lições), **O Capital, de Marx** (24 lições) e **Leitura guiada de O Capital** (39 lições). Uma **biblioteca** reúne livros que dá para ler de graça e de forma legal. Os outros (os quatro cursos técnicos que faltam na área de segurança, Matemática financeira e Espanhol) já aparecem no catálogo como "em construção" e ficam disponíveis assim que ganham lições.
 
 ## O que tem
 

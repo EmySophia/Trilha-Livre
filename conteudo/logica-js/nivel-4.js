@@ -227,7 +227,7 @@ console.log(ehPositivo(-{B}));`,
     {
       id: 'n4u2',
       titulo: 'Funções avançadas',
-      conceito: 'map · filter · reduce',
+      conceito: 'map, filter, reduce',
       desc: 'Escopo, funções curtas, funções como valores e recursão.',
       licoes: [
         {

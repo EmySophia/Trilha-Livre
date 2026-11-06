@@ -8,7 +8,7 @@ nivel({
   desc: 'Livro I, seções 2 e 3: a força de trabalho, a mais-valia e a jornada de trabalho.',
   videos: [
     {
-      titulo: 'Curso O Capital, de Marx · aula 3',
+      titulo: 'Curso O Capital, de Marx, aula 3',
       canal: 'TV Boitempo',
       obs: 'Marcelo Carcanholo: capital, fetichismo e classes sociais',
       url: 'https://www.youtube.com/watch?v=6JYKsqECnoI'

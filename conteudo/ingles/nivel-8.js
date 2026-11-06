@@ -32,7 +32,7 @@ nivel({
     {
       id: 'enu15',
       titulo: 'Conversa de verdade',
-      conceito: 'No way! · My bad.',
+      conceito: 'No way!, My bad.',
       desc: 'As reações rápidas, as gírias mais ouvidas e a escrita das mensagens.',
       licoes: [
         {
@@ -69,7 +69,48 @@ nivel({
                 },
                 {
                   p: '**Eu também e eu também não.** Para concordar com algo positivo, ((Me too.)) Com algo negativo, é ((Me neither.)): "I don\'t like coffee." → "Me neither." Dizer "me too" para uma frase negativa soa como se você estivesse discordando. Nos EUA também se ouve ((Me either.)) com o mesmo sentido.'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Um amigo conta que vai morar no Japão. Qual reação combina?',
+              ops: ['No way! That\'s amazing!', 'Never mind.', 'My bad.'],
+              c: 0,
+              exp: 'No way! mostra surpresa.'
+            },
+            {
+              t: 'escolha',
+              p: '"I don\'t like horror movies." Você também não gosta. O que diz?',
+              ops: ['Me neither.', 'Me too.', 'Me no.'],
+              c: 0,
+              exp: 'Para concordar com uma frase negativa, use me neither.'
+            },
+            {
+              t: 'escolha',
+              p: 'Alguém pergunta "Pizza at eight?". Você topa. O que responde?',
+              ops: ['Sounds good!', 'Whatever.', 'Never mind.'],
+              c: 0,
+              exp: 'Sounds good! aceita o plano. Whatever soaria como "tanto faz", meio grosseiro.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'Fair enough.',
+              ops: ['Fair enough.', 'Fair enough?', 'Fairly enough.'],
+              c: 0,
+              exp: 'Fair enough aceita o argumento do outro: "justo, faz sentido".'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Eu também não."',
+              r: ['Me neither.', 'Neither do I.', 'Me either.'],
+              exp: 'Para concordar com algo negativo, é Me neither. Me too seria para algo positivo.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Desculpas e notícia ruim',
+              blocos: [
                 { p: '**Pedir desculpas e tranquilizar:**' },
                 {
                   vocab: [
@@ -111,50 +152,17 @@ nivel({
             },
             {
               t: 'escolha',
-              p: 'Um amigo conta que vai morar no Japão. Qual reação combina?',
-              ops: ['No way! That\'s amazing!', 'Never mind.', 'My bad.'],
-              c: 0,
-              exp: 'No way! mostra surpresa.'
-            },
-            {
-              t: 'escolha',
-              p: '"I don\'t like horror movies." Você também não gosta. O que diz?',
-              ops: ['Me neither.', 'Me too.', 'Me no.'],
-              c: 0,
-              exp: 'Para concordar com uma frase negativa, use me neither.'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Eu também não."',
-              r: ['Me neither.', 'Neither do I.', 'Me either.']
-            },
-            {
-              t: 'escolha',
               p: 'Você esbarrou em alguém sem querer, numa situação informal. O que diz?',
               ops: ['My bad!', 'Fair enough.', 'Sounds good!'],
               c: 0,
               exp: 'My bad é o "foi mal" para coisas pequenas.'
             },
             {
-              t: 'escolha',
-              p: 'Alguém pergunta "Pizza at eight?". Você topa. O que responde?',
-              ops: ['Sounds good!', 'Whatever.', 'Never mind.'],
-              c: 0,
-              exp: 'Sounds good! aceita o plano. Whatever soaria como "tanto faz", meio grosseiro.'
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'Fair enough.',
-              ops: ['Fair enough.', 'Fair enough?', 'Fairly enough.'],
-              c: 0,
-              exp: 'Fair enough aceita o argumento do outro: "justo, faz sentido".'
-            },
-            {
               t: 'monte',
               p: 'Monte a frase: "Sem problema, acontece."',
               r: 'No worries, it happens.',
-              extra: ['problems', 'happen', 'worry']
+              extra: ['problems', 'happen', 'worry'],
+              exp: 'No worries é "sem problema, relaxa". It happens é "acontece": happens com -s, porque o sujeito é it.'
             },
             { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'You\'re kidding!' }
           ]
@@ -187,7 +195,26 @@ nivel({
                     ['totally', 'totalmente, com certeza'],
                     ['dude', 'cara', 'bem americano']
                   ]
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'Do you wanna hang out later?',
+              ops: [
+                'Do you wanna hang out later?',
+                'Do you wanna hang up later?',
+                'Do you wanna help out later?'
+              ],
+              c: 0,
+              exp: 'Hang out é sair junto. Hang up é desligar o telefone.'
+            },
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'That\'s so cool!' },
+            {
+              t: 'texto',
+              titulo: 'Das redes e dos mais jovens',
+              blocos: [
                 {
                   p: '**Das redes e dos mais jovens.** Estas aparecem muito em comentários, vídeos e jogos. Entenda todas; use só se combinar com você:'
                 },
@@ -203,7 +230,20 @@ nivel({
                     ['the vibe', 'a energia, o clima de um lugar'],
                     ['no cap', 'sem mentira, papo reto']
                   ]
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: '"He ghosted me." O que aconteceu?',
+              ops: ['Ele sumiu e parou de responder', 'Ele me assustou', 'Ele me deu um presente'],
+              c: 0,
+              exp: 'Ghost, como verbo, é desaparecer sem explicação.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Do Reino Unido',
+              blocos: [
                 { p: '**Do Reino Unido.** Algumas são bem diferentes do inglês americano:' },
                 {
                   vocab: [
@@ -241,36 +281,10 @@ nivel({
             },
             {
               t: 'escolha',
-              p: 'O que quer dizer "I\'m down" quando alguém convida você para algo?',
-              ops: ['Topo! Estou dentro.', 'Estou triste.', 'Estou caindo.'],
-              c: 0,
-              exp: 'Down aqui não é triste: é concordar com o plano.'
-            },
-            {
-              t: 'escolha',
               p: 'Um britânico diz "I\'m knackered." Como ele está?',
               ops: ['Exausto', 'Animado', 'Bêbado'],
               c: 0,
               exp: 'Knackered é morto de cansado, bem britânico.'
-            },
-            {
-              t: 'escolha',
-              p: '"He ghosted me." O que aconteceu?',
-              ops: ['Ele sumiu e parou de responder', 'Ele me assustou', 'Ele me deu um presente'],
-              c: 0,
-              exp: 'Ghost, como verbo, é desaparecer sem explicação.'
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'Do you wanna hang out later?',
-              ops: [
-                'Do you wanna hang out later?',
-                'Do you wanna hang up later?',
-                'Do you wanna help out later?'
-              ],
-              c: 0,
-              exp: 'Hang out é sair junto. Hang up é desligar o telefone.'
             },
             {
               t: 'escreva',
@@ -293,20 +307,29 @@ nivel({
                 'O filme foi uma porcaria.',
                 'Esse filme foi uma porcaria.'
               ],
-              lingua: 'pt'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Topo!" (aceitando um convite)',
-              r: ['I\'m down!', 'I\'m in!']
+              lingua: 'pt',
+              exp: 'Rubbish é a gíria britânica para "lixo", algo muito ruim. Nos EUA, se diria That movie was terrible.'
             },
             {
               t: 'monte',
               p: 'Monte a frase: "Valeu, cara!" (como um britânico)',
               r: ['Cheers, mate!', 'Thanks, mate!'],
-              extra: ['dude', 'thanks', 'man']
+              extra: ['dude', 'thanks', 'man'],
+              exp: 'Cheers é o "valeu" britânico, e mate é "cara, amigo". Thanks, mate! também serve.'
             },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'That\'s so cool!' }
+            {
+              t: 'escolha',
+              p: 'O que quer dizer "I\'m down" quando alguém convida você para algo?',
+              ops: ['Topo! Estou dentro.', 'Estou triste.', 'Estou caindo.'],
+              c: 0,
+              exp: 'Down aqui não é triste: é concordar com o plano.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Topo!" (aceitando um convite)',
+              r: ['I\'m down!', 'I\'m in!'],
+              exp: 'I\'m down é gíria para "topo, tô dentro". I\'m in quer dizer o mesmo.'
+            }
           ]
         },
         {
@@ -341,7 +364,37 @@ nivel({
                       ['asap', 'as soon as possible', 'o quanto antes']
                     ]
                   }
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'O que quer dizer "tbh"?',
+              ops: [
+                'To be honest: pra ser sincero',
+                'To be happy: pra ser feliz',
+                'Thanks, bye, hugs'
+              ],
+              c: 0,
+              exp: 'Tbh costuma vir antes de uma opinião sincera.'
+            },
+            { t: 'escreva', p: 'Escreva por extenso: btw', r: ['by the way'], exp: 'Btw é by the way: "aliás", "a propósito".' },
+            { t: 'escreva', p: 'Escreva por extenso: idk', r: ['I don\'t know'], exp: 'Idk é I don\'t know: "não sei".' },
+            {
+              t: 'escolha',
+              p: 'Onde não é uma boa usar "u" no lugar de "you"?',
+              ops: [
+                'Num e-mail para uma empresa',
+                'Numa mensagem para um amigo',
+                'Num comentário num jogo'
+              ],
+              c: 0,
+              exp: 'Em textos formais, sempre por extenso.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Por extenso, e o ponto final',
+              blocos: [
                 { p: 'Ouça algumas por extenso, que é como elas aparecem na fala:' },
                 {
                   vocab: [
@@ -359,18 +412,10 @@ nivel({
                 }
               ]
             },
-            { t: 'escreva', p: 'Escreva por extenso: btw', r: ['by the way'] },
-            { t: 'escreva', p: 'Escreva por extenso: idk', r: ['I don\'t know'] },
             {
-              t: 'escolha',
-              p: 'O que quer dizer "tbh"?',
-              ops: [
-                'To be honest: pra ser sincero',
-                'To be happy: pra ser feliz',
-                'Thanks, bye, hugs'
-              ],
-              c: 0,
-              exp: 'Tbh costuma vir antes de uma opinião sincera.'
+              t: 'escreva',
+              p: 'Escreva o que você ouviu',
+              ouvir: 'By the way, are you coming tonight?'
             },
             {
               t: 'escolha',
@@ -397,23 +442,8 @@ nivel({
                 'Já volto, minha mãe está me chamando',
                 'Já volto, minha mãe tá me chamando'
               ],
-              lingua: 'pt'
-            },
-            {
-              t: 'escolha',
-              p: 'Onde não é uma boa usar "u" no lugar de "you"?',
-              ops: [
-                'Num e-mail para uma empresa',
-                'Numa mensagem para um amigo',
-                'Num comentário num jogo'
-              ],
-              c: 0,
-              exp: 'Em textos formais, sempre por extenso.'
-            },
-            {
-              t: 'escreva',
-              p: 'Escreva o que você ouviu',
-              ouvir: 'By the way, are you coming tonight?'
+              lingua: 'pt',
+              exp: 'Brb é be right back: "já volto". E is calling é o presente contínuo: está ligando agora.'
             }
           ]
         }
@@ -459,7 +489,30 @@ nivel({
                 },
                 {
                   p: '**Por que a pergunta é mais educada?** Ela deixa a outra pessoa com a escolha, ao menos na forma. É a mesma lógica do nosso "você poderia...?". O inglês leva isso mais a sério que o português: pedidos diretos soam como ordens.'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Qual pedido soa mais educado?',
+              ops: ['Could I have a water, please?', 'Give me a water, please.', 'I want water.'],
+              c: 0,
+              exp: 'Pedidos em forma de pergunta soam educados; ordens soam grosseiras, mesmo com please.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Eu queria um café, por favor."',
+              r: [
+                'I\'d like a coffee(, please|).',
+                '(Can|Could|May) I (have|get) a coffee(, please|)?',
+                'A coffee(, please|).'
+              ],
+              exp: 'I\'d like (eu gostaria) é o jeito educado de pedir. Can I have a coffee? e Could I get a coffee? também servem.'
+            },
+            {
+              t: 'texto',
+              titulo: 'O que você vai ouvir',
+              blocos: [
                 { p: 'O que você vai ouvir:' },
                 {
                   vocab: [
@@ -490,30 +543,7 @@ nivel({
                   ],
                   titulo: 'Num café',
                   vozes: ['f', 'm']
-                },
-                {
-                  p: 'Para pagar no restaurante: ((Can I have the [[check|bill]], please?)) A conta é check nos EUA e bill no Reino Unido.'
-                },
-                {
-                  dica: 'Nos EUA, a gorjeta não está incluída e é esperada: de 15% a 20% em restaurantes. No Reino Unido, ela costuma ser menor, por volta de 10% a 12,5%, e às vezes já vem na conta como service charge.',
-                  rotulo: 'Gorjeta'
                 }
-              ]
-            },
-            {
-              t: 'escolha',
-              p: 'Qual pedido soa mais educado?',
-              ops: ['Could I have a water, please?', 'Give me a water, please.', 'I want water.'],
-              c: 0,
-              exp: 'Pedidos em forma de pergunta soam educados; ordens soam grosseiras, mesmo com please.'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Eu queria um café, por favor."',
-              r: [
-                'I\'d like a coffee(, please|).',
-                '(Can|Could|May) I (have|get) a coffee(, please|)?',
-                'A coffee(, please|).'
               ]
             },
             {
@@ -530,6 +560,20 @@ nivel({
               ops: ['That\'s it, thanks.', 'Everything.', 'Yes, nothing.'],
               c: 0,
               exp: 'That\'s it é "é só isso".'
+            },
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'Here you go. Enjoy!' },
+            {
+              t: 'texto',
+              titulo: 'A conta e a gorjeta',
+              blocos: [
+                {
+                  p: 'Para pagar no restaurante: ((Can I have the [[check|bill]], please?)) A conta é check nos EUA e bill no Reino Unido.'
+                },
+                {
+                  dica: 'Nos EUA, a gorjeta não está incluída e é esperada: de 15% a 20% em restaurantes. No Reino Unido, ela costuma ser menor, por volta de 10% a 12,5%, e às vezes já vem na conta como service charge.',
+                  rotulo: 'Gorjeta'
+                }
+              ]
             },
             {
               t: 'monte',
@@ -548,8 +592,7 @@ nivel({
               ],
               c: 0,
               exp: 'Em restaurantes americanos, quem atende vive em boa parte da gorjeta.'
-            },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'Here you go. Enjoy!' }
+            }
           ]
         },
         {
@@ -585,7 +628,61 @@ nivel({
                 },
                 {
                   p: 'Repare em ((What does it mean?)): o verbo mean fica na forma básica porque o does já está lá. É a mesma regra das perguntas no presente.'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Você quer pedir uma informação a um desconhecido na rua. Como começa?',
+              ops: ['Excuse me...', 'Sorry for that...', 'Hey you...'],
+              c: 0,
+              exp: 'Excuse me chama a atenção com educação, antes de pedir algo.'
+            },
+            {
+              t: 'escreva',
+              p: 'Peça para a pessoa repetir, com educação.',
+              r: [
+                'Could you say that again, please?',
+                'Can you say that again, please?',
+                'Could you repeat that, please?',
+                'Can you repeat that, please?',
+                'Sorry, could you say that again?',
+                'Sorry, could you repeat that?',
+                'Could you say that again?',
+                'Could you repeat that?',
+                'Pardon?',
+                'Sorry?'
+              ],
+              exp: 'Could you...? é o jeito mais educado de pedir. Say that again é "dizer de novo"; repeat that também serve.'
+            },
+            {
+              t: 'escreva',
+              p: 'Como se diz: "O que quer dizer awkward?"',
+              r: [
+                'What does awkward mean?',
+                'What does "awkward" mean?',
+                'What is the meaning of awkward?'
+              ],
+              exp: 'Com does, mean fica na forma básica.'
+            },
+            {
+              t: 'escolha',
+              p: 'Qual destas perguntas está certa?',
+              ops: ['What does it mean?', 'What does it means?', 'What it means?'],
+              c: 0,
+              exp: 'Depois de does, o verbo fica na forma básica.'
+            },
+            {
+              t: 'monte',
+              p: 'Monte: "Como se diz isso em inglês?"',
+              r: 'How do you say this in English?',
+              extra: ['speak', 'talk', 'does'],
+              exp: 'How do you say...? é "como se diz...?". O do é o ajudante da pergunta, e o say fica na forma básica.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Direções',
+              blocos: [
                 { p: '**Direções:**' },
                 {
                   vocab: [
@@ -608,39 +705,6 @@ nivel({
             },
             {
               t: 'escolha',
-              p: 'Você quer pedir uma informação a um desconhecido na rua. Como começa?',
-              ops: ['Excuse me...', 'Sorry for that...', 'Hey you...'],
-              c: 0,
-              exp: 'Excuse me chama a atenção com educação, antes de pedir algo.'
-            },
-            {
-              t: 'escreva',
-              p: 'Como se diz: "O que quer dizer awkward?"',
-              r: [
-                'What does awkward mean?',
-                'What does "awkward" mean?',
-                'What is the meaning of awkward?'
-              ],
-              exp: 'Com does, mean fica na forma básica.'
-            },
-            {
-              t: 'escreva',
-              p: 'Peça para a pessoa repetir, com educação.',
-              r: [
-                'Could you say that again, please?',
-                'Can you say that again, please?',
-                'Could you repeat that, please?',
-                'Can you repeat that, please?',
-                'Sorry, could you say that again?',
-                'Sorry, could you repeat that?',
-                'Could you say that again?',
-                'Could you repeat that?',
-                'Pardon?',
-                'Sorry?'
-              ]
-            },
-            {
-              t: 'escolha',
               p: 'O que você ouviu?',
               ouvir: 'Turn left at the corner.',
               ops: [
@@ -649,19 +713,6 @@ nivel({
                 'Turn left after the corner.'
               ],
               c: 0
-            },
-            {
-              t: 'monte',
-              p: 'Monte: "Como se diz isso em inglês?"',
-              r: 'How do you say this in English?',
-              extra: ['speak', 'talk', 'does']
-            },
-            {
-              t: 'escolha',
-              p: 'Qual destas perguntas está certa?',
-              ops: ['What does it mean?', 'What does it means?', 'What it means?'],
-              c: 0,
-              exp: 'Depois de does, o verbo fica na forma básica.'
             },
             {
               t: 'escreva',
@@ -723,7 +774,48 @@ nivel({
                     ['pick up', 'buscar alguém, pegar'],
                     ['put on / take off', 'vestir / tirar (roupa); take off também é decolar']
                   ]
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'O que quer dizer "give up"?',
+              ops: ['Desistir', 'Dar para cima', 'Doar'],
+              c: 0,
+              exp: 'Give é dar, mas give up é desistir.'
+            },
+            { t: 'escreva', p: 'Traduza: "Eu desisti."', r: ['I gave up.'], exp: 'Give up é desistir. No passado, give vira gave: I gave up.' },
+            {
+              t: 'escolha',
+              p: 'Por que os nativos preferem "find out" a "discover" numa conversa?',
+              ops: [
+                'Phrasal verbs são do inglês do dia a dia; as palavras latinas soam mais formais',
+                'Porque discover está errado',
+                'Porque find out é mais curto'
+              ],
+              c: 0,
+              exp: 'As duas existem, mas cada uma combina com um tipo de situação.'
+            },
+            {
+              t: 'complete',
+              p: 'Complete:',
+              code: 'Can you turn ___ the light? I can\'t sleep.',
+              bank: ['off', 'on', 'out'],
+              c: ['off'],
+              exp: 'Para dormir, desligar a luz: turn off.'
+            },
+            {
+              t: 'monte',
+              p: 'Monte a frase: "Nós ficamos sem leite."',
+              r: 'We ran out of milk.',
+              extra: ['run', 'from', 'without'],
+              exp: 'Run out of é "ficar sem". No passado, run vira ran: We ran out of milk.'
+            },
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'I can\'t figure it out.' },
+            {
+              t: 'texto',
+              titulo: 'Onde fica o pronome',
+              blocos: [
                 {
                   p: '**Onde fica o pronome:** com muitos phrasal verbs, o pronome vai **no meio**: ((Turn it off.)) e não "Turn off it". ((I\'ll pick you up at eight.)) (Busco você às oito.)'
                 },
@@ -735,32 +827,10 @@ nivel({
             },
             {
               t: 'escolha',
-              p: 'O que quer dizer "give up"?',
-              ops: ['Desistir', 'Dar para cima', 'Doar'],
-              c: 0,
-              exp: 'Give é dar, mas give up é desistir.'
-            },
-            {
-              t: 'complete',
-              p: 'Complete:',
-              code: 'Can you turn ___ the light? I can\'t sleep.',
-              bank: ['off', 'on', 'out'],
-              c: ['off'],
-              exp: 'Para dormir, desligar a luz: turn off.'
-            },
-            { t: 'escreva', p: 'Traduza: "Eu desisti."', r: ['I gave up.'] },
-            {
-              t: 'escolha',
               p: 'Qual está certa?',
               ops: ['Turn it off.', 'Turn off it.', 'Turn it of.'],
               c: 0,
               exp: 'O pronome fica no meio: turn it off.'
-            },
-            {
-              t: 'monte',
-              p: 'Monte a frase: "Nós ficamos sem leite."',
-              r: 'We ran out of milk.',
-              extra: ['run', 'from', 'without']
             },
             {
               t: 'escolha',
@@ -773,19 +843,7 @@ nivel({
               ],
               c: 0,
               exp: 'Pick someone up: buscar alguém.'
-            },
-            {
-              t: 'escolha',
-              p: 'Por que os nativos preferem "find out" a "discover" numa conversa?',
-              ops: [
-                'Phrasal verbs são do inglês do dia a dia; as palavras latinas soam mais formais',
-                'Porque discover está errado',
-                'Porque find out é mais curto'
-              ],
-              c: 0,
-              exp: 'As duas existem, mas cada uma combina com um tipo de situação.'
-            },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'I can\'t figure it out.' }
+            }
           ]
         }
       ]

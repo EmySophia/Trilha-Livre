@@ -33,7 +33,7 @@ nivel({
     {
       id: 'enu34',
       titulo: 'Ênfase e estilo',
-      conceito: 'Never have I · What I need is',
+      conceito: 'Never have I, What I need is',
       desc: 'Mudar a ordem da frase para destacar uma ideia.',
       licoes: [
         {
@@ -312,7 +312,7 @@ nivel({
     {
       id: 'enu35',
       titulo: 'O inglês das notícias e dos livros',
-      conceito: 'is said to · having finished',
+      conceito: 'is said to, having finished',
       desc: 'A passiva das reportagens e as orações reduzidas.',
       licoes: [
         {

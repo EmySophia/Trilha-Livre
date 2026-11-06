@@ -32,7 +32,7 @@ nivel({
     {
       id: 'enu5',
       titulo: 'Contar e pagar',
-      conceito: 'thirteen · thirty · $9.99',
+      conceito: 'thirteen, thirty, $9.99',
       desc: 'Os números, os preços, os anos e a armadilha do 13 × 30.',
       licoes: [
         {
@@ -69,7 +69,48 @@ nivel({
                 },
                 {
                   p: '**As dezenas** terminam em **-ty**: ((twenty)), ((thirty)), ((forty)), ((fifty)), ((sixty)), ((seventy)), ((eighty)), ((ninety)). Cuidado com forty: four tem u, forty não tem. Entre a dezena e a unidade vai um hífen, e não um "e": vinte e um é ((twenty-one)), noventa e nove é ((ninety-nine)). Cem é ((a hundred)).'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Como se diz 99?',
+              ops: ['ninety-nine', 'nineteen-nine', 'nine-nine'],
+              c: 0,
+              exp: 'Noventa é ninety (com -ty); dezenove é nineteen (com -teen).'
+            },
+            {
+              t: 'complete',
+              p: 'Complete a sequência:',
+              code: 'eleven, twelve, ___, fourteen, ___, sixteen',
+              bank: ['thirteen', 'fifteen', 'thirty', 'fifty'],
+              c: ['thirteen', 'fifteen'],
+              exp: 'Depois de twelve vêm os -teen: thirteen (13), fourteen (14), fifteen (15), sixteen (16). Thirty e fifty são 30 e 50.'
+            },
+            {
+              t: 'escreva',
+              p: 'Escreva por extenso: 40',
+              r: ['forty'],
+              exp: 'Four tem u, mas forty não tem. É um erro de escrita comum até entre nativos.',
+              exato: true
+            },
+            {
+              t: 'escreva',
+              p: 'Escreva por extenso: 21',
+              r: ['twenty-one'],
+              exp: 'A dezena e a unidade se juntam com hífen, sem "and".'
+            },
+            {
+              t: 'monte',
+              p: 'Monte a frase: "Tenho vinte e cinco anos."',
+              r: ['I\'m twenty-five.', 'I\'m twenty-five years old.'],
+              extra: ['have', 'and', 'yours'],
+              exp: 'Idade usa to be: I\'m twenty-five.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Thirteen ou thirty?',
+              blocos: [
                 {
                   p: '**A armadilha do 13 × 30.** Thirteen e thirty soam parecidos para quem está aprendendo, e a confusão acontece até com nativos, ao telefone. Ouça cada par:'
                 },
@@ -84,18 +125,6 @@ nivel({
                 },
                 {
                   p: '**Como diferenciar:** no -teen, a sílaba forte é a última, com um "ii" longo e o n bem claro no fim: thir-TEEN. No -ty, a forte é a primeira, e o fim é curto: THIR-ty. No inglês americano, o t do -ty ainda vira um toque rápido, quase um d: "thírdi". Se ainda ficar na dúvida, peça: ((Sorry, one three or three zero?))'
-                },
-                {
-                  p: '**Telefones** se dizem número por número, e o zero quase sempre vira **oh**, como a letra O. No Reino Unido, números repetidos viram ((double)): 55 é ((double five)).'
-                },
-                { fala: 'What\'s your phone number?', trad: 'Qual é o seu telefone?' },
-                {
-                  fala: 'It\'s nine eight seven, oh one two, three four five six.',
-                  trad: 'É 987 012 3456.'
-                },
-                {
-                  dica: 'Os números aparecem rápido na fala, então treine em voz alta: placas de carro, preços do mercado, a hora do celular. Em poucos dias, eles começam a sair sem você pensar.',
-                  rotulo: 'Treine no dia a dia'
                 }
               ]
             },
@@ -116,24 +145,22 @@ nivel({
               exp: 'Fifty tem a força no começo e termina curto: FIF-ty.'
             },
             {
-              t: 'escreva',
-              p: 'Escreva por extenso: 40',
-              r: ['forty'],
-              exp: 'Four tem u, mas forty não tem. É um erro de escrita comum até entre nativos.',
-              exato: true
-            },
-            {
-              t: 'escreva',
-              p: 'Escreva por extenso: 21',
-              r: ['twenty-one'],
-              exp: 'A dezena e a unidade se juntam com hífen, sem "and".'
-            },
-            {
-              t: 'escolha',
-              p: 'Como se diz 99?',
-              ops: ['ninety-nine', 'nineteen-nine', 'nine-nine'],
-              c: 0,
-              exp: 'Noventa é ninety (com -ty); dezenove é nineteen (com -teen).'
+              t: 'texto',
+              titulo: 'Números de telefone',
+              blocos: [
+                {
+                  p: '**Telefones** se dizem número por número, e o zero quase sempre vira **oh**, como a letra O. No Reino Unido, números repetidos viram ((double)): 55 é ((double five)).'
+                },
+                { fala: 'What\'s your phone number?', trad: 'Qual é o seu telefone?' },
+                {
+                  fala: 'It\'s nine eight seven, oh one two, three four five six.',
+                  trad: 'É 987 012 3456.'
+                },
+                {
+                  dica: 'Os números aparecem rápido na fala, então treine em voz alta: placas de carro, preços do mercado, a hora do celular. Em poucos dias, eles começam a sair sem você pensar.',
+                  rotulo: 'Treine no dia a dia'
+                }
+              ]
             },
             {
               t: 'escolha',
@@ -145,20 +172,6 @@ nivel({
               ],
               c: 0,
               exp: 'Seven oh one, e não seven zero one: é assim que quase todo mundo fala.'
-            },
-            {
-              t: 'complete',
-              p: 'Complete a sequência:',
-              code: 'eleven, twelve, ___, fourteen, ___, sixteen',
-              bank: ['thirteen', 'fifteen', 'thirty', 'fifty'],
-              c: ['thirteen', 'fifteen']
-            },
-            {
-              t: 'monte',
-              p: 'Monte a frase: "Tenho vinte e cinco anos."',
-              r: ['I\'m twenty-five.', 'I\'m twenty-five years old.'],
-              extra: ['have', 'and', 'yours'],
-              exp: 'Idade usa to be: I\'m twenty-five.'
             },
             {
               t: 'escreva',
@@ -199,34 +212,6 @@ nivel({
                 },
                 {
                   p: '**Ponto e vírgula trocados.** Em inglês, a vírgula separa os milhares e o ponto separa os decimais, o contrário do Brasil. Então 1,500 é mil e quinhentos, e 1.5 é um e meio, que se lê ((one point five)). Num site americano, $1,299.90 é mil duzentos e noventa e nove dólares e noventa centavos. Esse detalhe já causou muita compra errada pela internet.'
-                },
-                {
-                  p: '**Preços.** Na conversa, um preço se fala como dois números: $4.99 é ((four ninety-nine)). Por extenso, é ((four dollars and ninety-nine cents)). Nos EUA, a gíria para dólar é ((bucks)): ((ten bucks)). No Reino Unido, a moeda é a libra (pound), os centavos são ((pence)), e a gíria é ((quid)): ((ten quid)), dez libras, sem s no plural.'
-                },
-                {
-                  dialogo: [
-                    [
-                      'Ana',
-                      'Excuse me, how much is this T-shirt?',
-                      'Com licença, quanto custa esta camiseta?'
-                    ],
-                    ['Clerk', 'It\'s nineteen ninety-nine.', 'É dezenove e noventa e nove.'],
-                    ['Ana', 'And the jacket?', 'E a jaqueta?'],
-                    [
-                      'Clerk',
-                      'That one\'s on sale. It\'s forty [[dollars|pounds]].',
-                      'Essa está em promoção. É quarenta [[dólares|libras]].'
-                    ],
-                    ['Ana', 'Great, I\'ll take both.', 'Ótimo, vou levar as duas.']
-                  ],
-                  titulo: 'Numa loja'
-                },
-                {
-                  p: '**Anos** se leem em dois pedaços de dois números: 1998 é ((nineteen ninety-eight)) e 1500 é ((fifteen hundred)). De 2000 a 2009, diz-se ((two thousand)) e ((two thousand [[five|and five]])). A partir de 2010, os dois jeitos existem, mas o mais comum hoje é o de dois pedaços: 2026 é ((twenty twenty-six)).'
-                },
-                {
-                  dica: 'Por que o inglês divide o ano em dois? É mais curto: nineteen ninety-eight tem cinco sílabas; "one thousand nine hundred ninety-eight" teria nove.',
-                  rotulo: 'Uma curiosidade'
                 }
               ]
             },
@@ -256,20 +241,6 @@ nivel({
               exp: 'O decimal é point, o ponto.'
             },
             {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'It\'s four ninety-nine.',
-              ops: ['It\'s four ninety-nine.', 'It\'s forty-nine.', 'It\'s four nineteen.'],
-              c: 0,
-              exp: '$4.99 se diz four ninety-nine.'
-            },
-            {
-              t: 'escreva',
-              p: 'Escreva por extenso, do jeito mais comum: o ano 1990',
-              r: ['nineteen ninety'],
-              exp: 'Os anos se leem em dois pedaços: nineteen e ninety.'
-            },
-            {
               t: 'escreva',
               p: 'Traduza para o português: "There were hundreds of people."',
               r: [
@@ -281,13 +252,67 @@ nivel({
               exp: 'Sem número na frente, hundreds vai para o plural: centenas de.'
             },
             {
+              t: 'texto',
+              titulo: 'Preços',
+              blocos: [
+                {
+                  p: '**Preços.** Na conversa, um preço se fala como dois números: $4.99 é ((four ninety-nine)). Por extenso, é ((four dollars and ninety-nine cents)). Nos EUA, a gíria para dólar é ((bucks)): ((ten bucks)). No Reino Unido, a moeda é a libra (pound), os centavos são ((pence)), e a gíria é ((quid)): ((ten quid)), dez libras, sem s no plural.'
+                },
+                {
+                  dialogo: [
+                    [
+                      'Ana',
+                      'Excuse me, how much is this T-shirt?',
+                      'Com licença, quanto custa esta camiseta?'
+                    ],
+                    ['Clerk', 'It\'s nineteen ninety-nine.', 'É dezenove e noventa e nove.'],
+                    ['Ana', 'And the jacket?', 'E a jaqueta?'],
+                    [
+                      'Clerk',
+                      'That one\'s on sale. It\'s forty [[dollars|pounds]].',
+                      'Essa está em promoção. É quarenta [[dólares|libras]].'
+                    ],
+                    ['Ana', 'Great, I\'ll take both.', 'Ótimo, vou levar as duas.']
+                  ],
+                  titulo: 'Numa loja'
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'It\'s four ninety-nine.',
+              ops: ['It\'s four ninety-nine.', 'It\'s forty-nine.', 'It\'s four nineteen.'],
+              c: 0,
+              exp: '$4.99 se diz four ninety-nine.'
+            },
+            {
               t: 'monte',
               p: 'Monte a pergunta: "Quanto custa?"',
               r: ['How much is it?', 'How much does it cost?'],
               extra: ['many', 'are', 'price'],
               exp: 'How much é "quanto" para preços e coisas que não se contam.'
             },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'Great, I\'ll take both.' }
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'Great, I\'ll take both.' },
+            {
+              t: 'texto',
+              titulo: 'Anos',
+              blocos: [
+                {
+                  p: '**Anos** se leem em dois pedaços de dois números: 1998 é ((nineteen ninety-eight)) e 1500 é ((fifteen hundred)). De 2000 a 2009, diz-se ((two thousand)) e ((two thousand [[five|and five]])). A partir de 2010, os dois jeitos existem, mas o mais comum hoje é o de dois pedaços: 2026 é ((twenty twenty-six)).'
+                },
+                {
+                  dica: 'Por que o inglês divide o ano em dois? É mais curto: nineteen ninety-eight tem cinco sílabas; "one thousand nine hundred ninety-eight" teria nove.',
+                  rotulo: 'Uma curiosidade'
+                }
+              ]
+            },
+            {
+              t: 'escreva',
+              p: 'Escreva por extenso, do jeito mais comum: o ano 1990',
+              r: ['nineteen ninety'],
+              exp: 'Os anos se leem em dois pedaços: nineteen e ninety.'
+            }
           ]
         }
       ]
@@ -295,7 +320,7 @@ nivel({
     {
       id: 'enu6',
       titulo: 'Hora e data',
-      conceito: 'at 7 · on Monday · in May',
+      conceito: 'at 7, on Monday, in May',
       desc: 'As horas, o calendário e as preposições do tempo.',
       licoes: [
         {
@@ -312,7 +337,30 @@ nivel({
                 },
                 {
                   p: '**O jeito mais fácil** é dizer os números como no relógio digital: 7:15 é ((seven fifteen)), 7:30 é ((seven thirty)), 7:45 é ((seven forty-five)). Funciona em qualquer país e é cada vez mais comum.'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Como perguntar as horas a um desconhecido?',
+              ops: [
+                'Excuse me, do you have the time?',
+                'Excuse me, do you have time?',
+                'Excuse me, what hour is it?'
+              ],
+              c: 0,
+              exp: 'Sem o the, do you have time? é "você tem tempo?". E hour é a hora como duração.'
+            },
+            {
+              t: 'escreva',
+              p: 'Escreva 10:30 do jeito digital, por extenso.',
+              r: ['ten thirty'],
+              exp: 'No jeito digital, é só dizer os números do relógio: ten (10) thirty (30).'
+            },
+            {
+              t: 'texto',
+              titulo: 'O jeito tradicional',
+              blocos: [
                 {
                   p: '**O jeito tradicional** usa past (passado de) e to (para), como o nosso "quinze para as oito":'
                 },
@@ -338,38 +386,8 @@ nivel({
                 },
                 {
                   p: '**Manhã ou noite?** Na fala, o inglês quase não usa o relógio de 24 horas. Para 19h, diz-se ((seven p.m.)) ou ((seven in the evening)). A.m. vai da meia-noite ao meio-dia; p.m., do meio-dia à meia-noite. Meio-dia é ((noon)) e meia-noite é ((midnight)).'
-                },
-                {
-                  p: '**A hora de um evento** leva at: ((The class starts at nine.)) ((See you at six!))'
-                },
-                {
-                  dialogo: [
-                    ['Leo', 'Hey, what time is it?', 'Ei, que horas são?'],
-                    ['Ana', 'It\'s a quarter to ten.', 'São quinze para as dez.'],
-                    ['Leo', 'Oh no, my bus leaves at ten!', 'Ah, não, meu ônibus sai às dez!'],
-                    [
-                      'Ana',
-                      'Relax, you have fifteen minutes.',
-                      'Calma, você tem quinze minutos.'
-                    ]
-                  ]
-                },
-                {
-                  dica: 'Hour é a hora como duração: one hour, uma hora de aula. A hora do relógio é time: What time is it? Por isso, "What hour is it?" não funciona.',
-                  rotulo: 'Time × hour'
                 }
               ]
-            },
-            {
-              t: 'escolha',
-              p: 'Como perguntar as horas a um desconhecido?',
-              ops: [
-                'Excuse me, do you have the time?',
-                'Excuse me, do you have time?',
-                'Excuse me, what hour is it?'
-              ],
-              c: 0,
-              exp: 'Sem o the, do you have time? é "você tem tempo?". E hour é a hora como duração.'
             },
             {
               t: 'escolha',
@@ -394,9 +412,29 @@ nivel({
               exp: 'To é "para": faltam vinte para as nove.'
             },
             {
-              t: 'escreva',
-              p: 'Escreva 10:30 do jeito digital, por extenso.',
-              r: ['ten thirty']
+              t: 'texto',
+              titulo: 'A hora de um evento',
+              blocos: [
+                {
+                  p: '**A hora de um evento** leva at: ((The class starts at nine.)) ((See you at six!))'
+                },
+                {
+                  dialogo: [
+                    ['Leo', 'Hey, what time is it?', 'Ei, que horas são?'],
+                    ['Ana', 'It\'s a quarter to ten.', 'São quinze para as dez.'],
+                    ['Leo', 'Oh no, my bus leaves at ten!', 'Ah, não, meu ônibus sai às dez!'],
+                    [
+                      'Ana',
+                      'Relax, you have fifteen minutes.',
+                      'Calma, você tem quinze minutos.'
+                    ]
+                  ]
+                },
+                {
+                  dica: 'Hour é a hora como duração: one hour, uma hora de aula. A hora do relógio é time: What time is it? Por isso, "What hour is it?" não funciona.',
+                  rotulo: 'Time × hour'
+                }
+              ]
             },
             {
               t: 'monte',
@@ -412,7 +450,8 @@ nivel({
                 '(O meu|Meu) ônibus sai às (dez|10h|dez horas).',
                 '(O meu|Meu) ônibus parte às (dez|10h|dez horas).'
               ],
-              lingua: 'pt'
+              lingua: 'pt',
+              exp: 'Leave quer dizer sair, partir. E at ten é "às dez": a hora de um evento leva at.'
             },
             { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'It\'s a quarter to ten.' }
           ]
@@ -446,7 +485,27 @@ nivel({
                 },
                 {
                   p: '**Por que esses nomes?** Os romanos davam aos dias os nomes dos astros e dos seus deuses, e os povos germânicos, ao adotar a semana, trocaram vários deles pelos próprios deuses, como Thor e Odin. O português seguiu outro caminho: a Igreja numerou os dias, e daí vieram segunda, terça, quarta...'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'De onde vem o nome Thursday?',
+              ops: ['De Thor, o deus nórdico do trovão', 'Do número três em latim', 'Do sol'],
+              c: 0,
+              exp: 'Vários dias da semana em inglês homenageiam deuses germânicos: Tiw, Woden, Thor e Frigg.'
+            },
+            {
+              t: 'escreva',
+              p: 'Escreva o dia da semana que vem depois de Tuesday.',
+              r: ['Wednesday'],
+              exp: 'Wednesday se escreve com d, mas ele não se pronuncia: "uénzdei".',
+              exato: true
+            },
+            {
+              t: 'texto',
+              titulo: 'Os meses',
+              blocos: [
                 {
                   vocab: [
                     ['January', 'janeiro'],
@@ -462,7 +521,20 @@ nivel({
                     ['November', 'novembro'],
                     ['December', 'dezembro']
                   ]
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Qual destas frases está escrita certo?',
+              ops: ['My birthday is in June.', 'My birthday is in june.', 'My Birthday Is In june.'],
+              c: 0,
+              exp: 'Meses e dias da semana sempre começam com maiúscula.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Ordinais e datas',
+              blocos: [
                 {
                   p: '**Os ordinais** (primeiro, segundo...) são usados nas datas. Os três primeiros são irregulares; depois, quase sempre basta pôr -th:'
                 },
@@ -514,20 +586,6 @@ nivel({
             },
             {
               t: 'escolha',
-              p: 'Qual destas frases está escrita certo?',
-              ops: ['My birthday is in June.', 'My birthday is in june.', 'My Birthday Is In june.'],
-              c: 0,
-              exp: 'Meses e dias da semana sempre começam com maiúscula.'
-            },
-            {
-              t: 'escreva',
-              p: 'Escreva o dia da semana que vem depois de Tuesday.',
-              r: ['Wednesday'],
-              exp: 'Wednesday se escreve com d, mas ele não se pronuncia: "uénzdei".',
-              exato: true
-            },
-            {
-              t: 'escolha',
               p: 'O que você ouviu?',
               ouvir: 'It\'s on the third of March.',
               ops: [
@@ -545,19 +603,13 @@ nivel({
               c: 0,
               exp: 'Na fala, a data usa o ordinal: fifth.'
             },
-            { t: 'escreva', p: 'Escreva por extenso o ordinal de 2.', r: ['second'] },
-            {
-              t: 'escolha',
-              p: 'De onde vem o nome Thursday?',
-              ops: ['De Thor, o deus nórdico do trovão', 'Do número três em latim', 'Do sol'],
-              c: 0,
-              exp: 'Vários dias da semana em inglês homenageiam deuses germânicos: Tiw, Woden, Thor e Frigg.'
-            },
+            { t: 'escreva', p: 'Escreva por extenso o ordinal de 2.', r: ['second'], exp: 'Os três primeiros ordinais são irregulares: first, second, third. Do quarto em diante, quase sempre é só pôr -th: fourth, fifth.' },
             {
               t: 'monte',
               p: 'Monte a pergunta: "Quando é o seu aniversário?"',
               r: 'When\'s your birthday?',
-              extra: ['Where', 'are', 'you']
+              extra: ['Where', 'are', 'you'],
+              exp: 'When é "quando". When\'s é a contração de when is, e o seu aniversário é your birthday.'
             },
             { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'When\'s your birthday?' }
           ]
@@ -602,10 +654,55 @@ nivel({
                 },
                 {
                   p: '**As exceções que mais aparecem:** ((at night)) (à noite), mas ((in the morning)), ((in the afternoon)) e ((in the evening)). E o fim de semana: ((on the weekend)) nos EUA e ((at the weekend)) no Reino Unido.'
-                },
+                }
+              ]
+            },
+            {
+              t: 'complete',
+              p: 'Complete com at, on ou in:',
+              code: 'My class is ___ Monday ___ eight ___ the morning.',
+              bank: ['on', 'at', 'in'],
+              c: ['on', 'at', 'in'],
+              exp: 'Dia: on. Hora: at. Parte do dia: in.'
+            },
+            {
+              t: 'escolha',
+              p: '"I was born ___ 2004."',
+              ops: ['in', 'on', 'at'],
+              c: 0,
+              exp: 'Ano é um período grande: in.'
+            },
+            {
+              t: 'escolha',
+              p: '"We usually go out ___ night."',
+              ops: ['at', 'in', 'on'],
+              c: 0,
+              exp: 'At night é a exceção: à noite.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Sem preposição',
+              blocos: [
                 {
                   p: '**Sem preposição.** Antes de this, next, last e every, não vai nada: ((next Monday)), ((last year)), ((this morning)), ((every day)). O mesmo vale para ((today)), ((tomorrow)) e ((yesterday)). "In next week" e "on last Monday" estão errados.'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Qual está certa?',
+              ops: [
+                'I\'ll see you next Friday.',
+                'I\'ll see you on next Friday.',
+                'I\'ll see you in next Friday.'
+              ],
+              c: 0,
+              exp: 'Antes de next, last, this e every, não vai preposição.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Daqui a e há',
+              blocos: [
                 {
                   p: '**Daqui a e há.** Para o futuro, in também quer dizer "daqui a": ((I\'ll be back in ten minutes.)) (Volto daqui a dez minutos.) Para o passado, use ago, depois do tempo: ((ten minutes ago)) (há dez minutos).'
                 },
@@ -632,39 +729,6 @@ nivel({
               ]
             },
             {
-              t: 'complete',
-              p: 'Complete com at, on ou in:',
-              code: 'My class is ___ Monday ___ eight ___ the morning.',
-              bank: ['on', 'at', 'in'],
-              c: ['on', 'at', 'in'],
-              exp: 'Dia: on. Hora: at. Parte do dia: in.'
-            },
-            {
-              t: 'escolha',
-              p: 'Qual está certa?',
-              ops: [
-                'I\'ll see you next Friday.',
-                'I\'ll see you on next Friday.',
-                'I\'ll see you in next Friday.'
-              ],
-              c: 0,
-              exp: 'Antes de next, last, this e every, não vai preposição.'
-            },
-            {
-              t: 'escolha',
-              p: '"I was born ___ 2004."',
-              ops: ['in', 'on', 'at'],
-              c: 0,
-              exp: 'Ano é um período grande: in.'
-            },
-            {
-              t: 'escolha',
-              p: '"We usually go out ___ night."',
-              ops: ['at', 'in', 'on'],
-              c: 0,
-              exp: 'At night é a exceção: à noite.'
-            },
-            {
               t: 'escreva',
               p: 'Traduza: "Volto daqui a dez minutos."',
               r: [
@@ -675,19 +739,19 @@ nivel({
               exp: 'In, com o futuro, quer dizer "daqui a".'
             },
             {
+              t: 'monte',
+              p: 'Monte a frase: "Ela chegou há duas horas."',
+              r: 'She arrived two hours ago.',
+              extra: ['in', 'has', 'before'],
+              exp: 'Arrived é "chegou", o passado de arrive. E o ago vem depois do tempo: two hours ago.'
+            },
+            {
               t: 'escolha',
               p: 'O que você ouviu?',
               ouvir: 'I work until noon.',
               ops: ['I work until noon.', 'I work until nine.', 'I walk until noon.'],
               c: 0,
               exp: 'Noon é meio-dia.'
-            },
-            {
-              t: 'monte',
-              p: 'Monte a frase: "Ela chegou há duas horas."',
-              r: 'She arrived two hours ago.',
-              extra: ['in', 'has', 'before'],
-              exp: 'Ago vem depois do tempo.'
             },
             {
               t: 'escreva',

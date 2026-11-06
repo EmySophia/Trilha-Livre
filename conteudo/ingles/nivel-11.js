@@ -6,7 +6,7 @@ nivel({
   curso: 'ingles',
   n: 11,
   titulo: 'Poder, dever e as condições',
-  faixa: 'A2–B1',
+  faixa: 'A2 a B1',
   desc: 'Can, could, should, must e have to, a armadilha do mustn\'t, e as frases com if.',
   videos: [
     {
@@ -32,7 +32,7 @@ nivel({
     {
       id: 'enu19',
       titulo: 'Os modais e o if',
-      conceito: 'can · should · if',
+      conceito: 'can, should, if',
       desc: 'Habilidade, permissão, conselho, obrigação e as três condicionais mais usadas.',
       licoes: [
         {

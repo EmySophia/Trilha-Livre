@@ -462,7 +462,7 @@ console.log(saldo.toFixed(2));`,
     {
       id: 'n7u2',
       titulo: 'Jogos e validação',
-      conceito: 'CPF · jogos',
+      conceito: 'CPF, jogos',
       desc: 'Dígito verificador, adivinhação, jogo da velha e lista de compras.',
       licoes: [
         {

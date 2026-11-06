@@ -39,7 +39,7 @@ nivel({
     {
       id: 'enu11',
       titulo: 'Sons que o português não tem',
-      conceito: 'think · ship · sheep',
+      conceito: 'think, ship, sheep',
       desc: 'O th, as vogais curtas e longas, o h, o r e o fim das palavras.',
       licoes: [
         {
@@ -86,19 +86,6 @@ nivel({
                     ['thought', 'taught', 'pensou × ensinou'],
                     ['mouth', 'mouse', 'boca × rato']
                   ]
-                },
-                {
-                  p: '**Para treinar:** fale devagar, exagerando a língua para fora no começo. Com o tempo, ela vai para trás dos dentes e o som fica natural. Repita estas frases em voz alta, junto com o áudio:'
-                },
-                { fala: 'Thank you. I think so.', trad: 'Obrigado. Acho que sim.' },
-                {
-                  fala: 'My brother and my mother are there.',
-                  trad: 'Meu irmão e minha mãe estão lá.'
-                },
-                { fala: 'Three thousand three hundred.', trad: 'Três mil e trezentos.' },
-                {
-                  dica: 'Ninguém precisa de um th perfeito para ser entendido. Muitos nativos da Irlanda e de partes de Londres também o trocam por t ou f. Mas, quando a troca cria outra palavra (three e tree), o contexto precisa ajudar, e vale caprichar.',
-                  rotulo: 'Calma'
                 }
               ]
             },
@@ -144,12 +131,32 @@ nivel({
               c: 0,
               exp: 'Mother, this, the, they: th com voz. [[Math|Maths]], thanks, think: sem voz.'
             },
-            { t: 'escreva', p: 'Traduza: "Eu acho que sim."', r: ['I think so.'] },
+            {
+              t: 'texto',
+              titulo: 'Para treinar',
+              blocos: [
+                {
+                  p: '**Para treinar:** fale devagar, exagerando a língua para fora no começo. Com o tempo, ela vai para trás dos dentes e o som fica natural. Repita estas frases em voz alta, junto com o áudio:'
+                },
+                { fala: 'Thank you. I think so.', trad: 'Obrigado. Acho que sim.' },
+                {
+                  fala: 'My brother and my mother are there.',
+                  trad: 'Meu irmão e minha mãe estão lá.'
+                },
+                { fala: 'Three thousand three hundred.', trad: 'Três mil e trezentos.' },
+                {
+                  dica: 'Ninguém precisa de um th perfeito para ser entendido. Muitos nativos da Irlanda e de partes de Londres também o trocam por t ou f. Mas, quando a troca cria outra palavra (three e tree), o contexto precisa ajudar, e vale caprichar.',
+                  rotulo: 'Calma'
+                }
+              ]
+            },
+            { t: 'escreva', p: 'Traduza: "Eu acho que sim."', r: ['I think so.'], exp: 'Think é pensar, achar: "acho que sim" é I think so, com o th sem voz.' },
             {
               t: 'monte',
               p: 'Monte: "minha mãe e meu irmão"',
               r: ['my mother and my brother', 'my mom and my brother'],
-              extra: ['the', 'mom', 'with']
+              extra: ['the', 'mom', 'with'],
+              exp: 'Mother e brother têm o th com voz: a garganta vibra. My mom and my brother também está certo.'
             },
             { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'Thank you so much.' }
           ]
@@ -181,19 +188,6 @@ nivel({
                 {
                   dica: 'Brasileiros costumam falar todas essas palavras com o i longo. Cuidado especial com sheet (folha) e beach (praia): elas têm o i longo. Com o i curto, viram palavrões.',
                   rotulo: 'Atenção'
-                },
-                { p: 'O mesmo acontece com o u e com o a:' },
-                {
-                  pares: [
-                    ['full', 'fool', 'cheio × bobo: u curto × u longo'],
-                    ['pull', 'pool', 'puxar × piscina'],
-                    ['bad', 'bed', 'ruim × cama'],
-                    ['man', 'men', 'homem × homens'],
-                    ['sad', 'said', 'triste × disse']
-                  ]
-                },
-                {
-                  p: 'O a de ((bad)), ((man)) e ((cat)) é um som aberto, entre o nosso a e o é, com a boca bem aberta. É um dos sons mais marcantes do inglês americano.'
                 }
               ]
             },
@@ -215,22 +209,6 @@ nivel({
             },
             {
               t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'bed',
-              ops: ['bed', 'bad', 'bird'],
-              c: 0,
-              exp: 'Bed (cama) tem um é. Bad (ruim) tem o a bem aberto.'
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'men',
-              ops: ['men', 'man', 'mean'],
-              c: 0,
-              exp: 'Men, o plural de man, tem o som de é.'
-            },
-            {
-              t: 'escolha',
               p: 'Qual destas palavras tem o i longo?',
               ops: ['seat', 'sit', 'city'],
               c: 0,
@@ -247,11 +225,47 @@ nivel({
               c: 0,
               exp: 'Live, com i curto, é morar. Leave, com i longo, é sair, partir.'
             },
-            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'I live in a big city.' },
             {
               t: 'escreva',
               p: 'Traduza: "O navio é grande."',
-              r: ['The ship is big.', 'The ship is large.']
+              r: ['The ship is big.', 'The ship is large.'],
+              exp: 'Ship, com o i curto, é navio. Com o i longo, sheep, seria ovelha.'
+            },
+            { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'I live in a big city.' },
+            {
+              t: 'texto',
+              titulo: 'O u e o a',
+              blocos: [
+                { p: 'O mesmo acontece com o u e com o a:' },
+                {
+                  pares: [
+                    ['full', 'fool', 'cheio × bobo: u curto × u longo'],
+                    ['pull', 'pool', 'puxar × piscina'],
+                    ['bad', 'bed', 'ruim × cama'],
+                    ['man', 'men', 'homem × homens'],
+                    ['sad', 'said', 'triste × disse']
+                  ]
+                },
+                {
+                  p: 'O a de ((bad)), ((man)) e ((cat)) é um som aberto, entre o nosso a e o é, com a boca bem aberta. É um dos sons mais marcantes do inglês americano.'
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'bed',
+              ops: ['bed', 'bad', 'bird'],
+              c: 0,
+              exp: 'Bed (cama) tem um é. Bad (ruim) tem o a bem aberto.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'men',
+              ops: ['men', 'man', 'mean'],
+              c: 0,
+              exp: 'Men, o plural de man, tem o som de é.'
             }
           ]
         },
@@ -262,7 +276,7 @@ nivel({
           exs: [
             {
               t: 'texto',
-              titulo: 'Três sons que entregam o sotaque',
+              titulo: 'O h e o r',
               blocos: [
                 {
                   p: '**O h do inglês** é um sopro suave, como o rr de "carro" ou o r de "rato" em boa parte do Brasil: ((house)), ((hello)), ((happy)). Ele existe, e engolir o h muda palavras: ((hair)) (cabelo) vira ((air)) (ar).'
@@ -279,7 +293,47 @@ nivel({
                 },
                 {
                   p: '**O r depois da vogal** é uma das maiores diferenças entre os sotaques. Nos EUA, ele é pronunciado: ((car)), ((park)), ((her)). No Reino Unido, ele some quando não vem vogal depois: car soa "cá", park soa "páak". Os dois estão certos.'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'red',
+              ops: ['red', 'head', 'bed'],
+              c: 0,
+              exp: 'Red começa com o r do inglês, com a língua curvada para trás.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'hair',
+              ops: ['hair', 'air', 'her'],
+              c: 0,
+              exp: 'Hair começa com o sopro do h.'
+            },
+            {
+              t: 'escolha',
+              p: 'Por que ready às vezes sai como "hédi"?',
+              ops: [
+                'Porque o nosso r de "rato" soa como o h do inglês',
+                'Porque o r de ready é mudo',
+                'Porque é assim no Reino Unido'
+              ],
+              c: 0,
+              exp: 'O r inglês é com a língua curvada para trás, sem encostar, e não um sopro.'
+            },
+            {
+              t: 'escolha',
+              p: 'Como um britânico costuma pronunciar car?',
+              ops: ['Sem o r: "cá"', 'Com o r bem forte no fim', 'Como "quér"'],
+              c: 0,
+              exp: 'No Reino Unido, o r depois de vogal some se não vier outra vogal em seguida.'
+            },
+            {
+              t: 'texto',
+              titulo: 'O fim das palavras',
+              blocos: [
                 {
                   p: '**O fim das palavras.** O português quase não termina palavras em consoantes como t, d, k, g ou p. Por isso, brasileiros costumam acrescentar um i no fim: "Facebook-i", "big-i", "internet-chi". Em inglês, a palavra termina na consoante: ((big)), ((book)), ((good)), ((stop)), ((cat)).'
                 },
@@ -304,22 +358,6 @@ nivel({
             },
             {
               t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'red',
-              ops: ['red', 'head', 'bed'],
-              c: 0,
-              exp: 'Red começa com o r do inglês, com a língua curvada para trás.'
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'hair',
-              ops: ['hair', 'air', 'her'],
-              c: 0,
-              exp: 'Hair começa com o sopro do h.'
-            },
-            {
-              t: 'escolha',
               p: 'Por que tantos brasileiros falam "bigi" para big?',
               ops: [
                 'O português quase não termina palavras em g, t, d ou k, então a boca acrescenta um i',
@@ -328,24 +366,6 @@ nivel({
               ],
               c: 0,
               exp: 'Em inglês, a palavra termina na própria consoante.'
-            },
-            {
-              t: 'escolha',
-              p: 'Por que ready às vezes sai como "hédi"?',
-              ops: [
-                'Porque o nosso r de "rato" soa como o h do inglês',
-                'Porque o r de ready é mudo',
-                'Porque é assim no Reino Unido'
-              ],
-              c: 0,
-              exp: 'O r inglês é com a língua curvada para trás, sem encostar, e não um sopro.'
-            },
-            {
-              t: 'escolha',
-              p: 'Como um britânico costuma pronunciar car?',
-              ops: ['Sem o r: "cá"', 'Com o r bem forte no fim', 'Como "quér"'],
-              c: 0,
-              exp: 'No Reino Unido, o r depois de vogal some se não vier outra vogal em seguida.'
             },
             {
               t: 'escolha',
@@ -362,7 +382,7 @@ nivel({
     {
       id: 'enu12',
       titulo: 'Ritmo e fala conectada',
-      conceito: 'gonna · wanna · ə',
+      conceito: 'gonna, wanna, ə',
       desc: 'A sílaba forte, o schwa, as palavras fracas e como as palavras se juntam na fala rápida.',
       licoes: [
         {
@@ -371,7 +391,7 @@ nivel({
           exs: [
             {
               t: 'texto',
-              titulo: 'O ritmo do inglês',
+              titulo: 'A sílaba forte',
               blocos: [
                 {
                   p: 'Toda palavra em inglês tem uma **sílaba forte**, e errar qual é atrapalha mais a compreensão do que errar uma vogal. Repare como ela muda de lugar numa mesma família de palavras:'
@@ -386,20 +406,6 @@ nivel({
                 },
                 {
                   p: 'Às vezes, a sílaba forte separa duas palavras: ((desert)) (deserto) é forte no começo; ((dessert)) (sobremesa) é forte no fim.'
-                },
-                {
-                  p: '**O schwa.** As sílabas fracas do inglês perdem a vogal original e viram um som neutro e curto, parecido com o "â" de "cama" falado bem rápido. Os linguistas chamam esse som de schwa, e ele é **o som mais comum do inglês**. Está no a de ((about)), nos dois a fracos de ((banana)) e no o de ((problem)).'
-                },
-                {
-                  p: '**Palavras fracas.** Numa frase, as palavras de conteúdo (verbos, substantivos, adjetivos) são fortes, e as pequenas (to, for, and, of, can, a, the) ficam fracas, com schwa. ((a cup of coffee)) soa como "a cáp-â cófi". ((fish and chips)) soa como "fish-ân-chips".'
-                },
-                {
-                  p: '**Can e can\'t:** na frase afirmativa, can é fraco ("kân"). Can\'t é sempre forte. É por isso que ((I can swim)) e ((I can\'t swim)) se diferenciam mais pela força da palavra do que pelo t final, que muitas vezes quase some.'
-                },
-                { pares: [['I can swim.', 'I can\'t swim.', 'can fraco × can\'t forte']] },
-                {
-                  dica: 'O português dá o mesmo tempo para cada sílaba. O inglês corre pelas fracas e se demora nas fortes, como uma música com batidas. Ouvir e imitar o ritmo, e não só os sons, deixa a sua fala muito mais fácil de entender.',
-                  rotulo: 'O segredo do ritmo'
                 }
               ]
             },
@@ -419,19 +425,31 @@ nivel({
               exp: 'Dessert, a sobremesa, é forte no fim. Desert, o deserto, é forte no começo.'
             },
             {
+              t: 'texto',
+              titulo: 'O schwa e as palavras fracas',
+              blocos: [
+                {
+                  p: '**O schwa.** As sílabas fracas do inglês perdem a vogal original e viram um som neutro e curto, parecido com o "â" de "cama" falado bem rápido. Os linguistas chamam esse som de schwa, e ele é **o som mais comum do inglês**. Está no a de ((about)), nos dois a fracos de ((banana)) e no o de ((problem)).'
+                },
+                {
+                  p: '**Palavras fracas.** Numa frase, as palavras de conteúdo (verbos, substantivos, adjetivos) são fortes, e as pequenas (to, for, and, of, can, a, the) ficam fracas, com schwa. ((a cup of coffee)) soa como "a cáp-â cófi". ((fish and chips)) soa como "fish-ân-chips".'
+                },
+                {
+                  p: '**Can e can\'t:** na frase afirmativa, can é fraco ("kân"). Can\'t é sempre forte. É por isso que ((I can swim)) e ((I can\'t swim)) se diferenciam mais pela força da palavra do que pelo t final, que muitas vezes quase some.'
+                },
+                { pares: [['I can swim.', 'I can\'t swim.', 'can fraco × can\'t forte']] },
+                {
+                  dica: 'O português dá o mesmo tempo para cada sílaba. O inglês corre pelas fracas e se demora nas fortes, como uma música com batidas. Ouvir e imitar o ritmo, e não só os sons, deixa a sua fala muito mais fácil de entender.',
+                  rotulo: 'O segredo do ritmo'
+                }
+              ]
+            },
+            {
               t: 'escolha',
               p: 'Qual é o som mais comum do inglês?',
               ops: ['O schwa, a vogal fraca e neutra de about', 'O th', 'O i longo'],
               c: 0,
               exp: 'Ele aparece em quase toda sílaba fraca.'
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'I can\'t swim.',
-              ops: ['I can\'t swim.', 'I can swim.'],
-              c: 0,
-              exp: 'Can\'t é forte; can, na afirmativa, é fraco.'
             },
             {
               t: 'escolha',
@@ -443,6 +461,14 @@ nivel({
               ],
               c: 0,
               exp: 'Palavras pequenas ficam fracas na frase.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'I can\'t swim.',
+              ops: ['I can\'t swim.', 'I can swim.'],
+              c: 0,
+              exp: 'Can\'t é forte; can, na afirmativa, é fraco.'
             },
             { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'A cup of coffee, please.' },
             {
@@ -487,16 +513,6 @@ nivel({
                 },
                 {
                   p: '**Um erro comum:** gonna substitui going to, e não o verbo to be. Continua sendo ((I\'m gonna)), e não "I gonna".'
-                },
-                {
-                  p: '**Palavras que se ligam.** Quando uma palavra termina em consoante e a seguinte começa com vogal, elas se juntam: ((an apple)) soa "a-népol", ((turn it off)) soa "tur-ni-tóff", ((check it out)) soa "che-ki-dáut".'
-                },
-                {
-                  p: '**O t americano.** Nos EUA, o t entre vogais vira um toque rápido da língua, parecido com o r de "caro": ((water)) soa "uóder", ((better)) soa "béder", ((city)) soa "cídi". No Reino Unido, o t costuma ficar claro, ou vira uma pausa na garganta na fala informal ("wa\'er").'
-                },
-                {
-                  dica: 'Se você ouve uma frase e não entende, mas lendo entende na hora, o problema não é vocabulário: é a fala conectada. Ouvir e repetir frases inteiras, como os ditados deste curso, treina exatamente isso.',
-                  rotulo: 'Por que é difícil entender filme sem legenda'
                 }
               ]
             },
@@ -515,14 +531,37 @@ nivel({
               c: 0,
               exp: 'I gotta go é "tenho que ir".'
             },
-            { t: 'escreva', p: 'Escreva por extenso: "I dunno."', r: ['I don\'t know.'] },
-            { t: 'escreva', p: 'Escreva por extenso: "Lemme see."', r: ['Let me see.'] },
             {
               t: 'escolha',
               p: 'Qual destas frases está errada?',
               ops: ['I gonna travel.', 'I\'m gonna travel.', 'I wanna travel.'],
               c: 0,
               exp: 'Gonna substitui going to. O am continua lá: I\'m gonna.'
+            },
+            { t: 'escreva', p: 'Escreva por extenso: "I dunno."', r: ['I don\'t know.'], exp: 'Dunno é a fala rápida de don\'t know: "sei lá", "não sei".' },
+            { t: 'escreva', p: 'Escreva por extenso: "Lemme see."', r: ['Let me see.'], exp: 'Lemme é a fala rápida de let me: "deixa eu ver".' },
+            {
+              t: 'escreva',
+              p: 'Escreva o que você ouviu',
+              ouvir: 'I gotta go.',
+              exp: 'Gotta é got to, "ter que". Por extenso, também vale.',
+              r: '(I gotta go|I\'ve got to go|I have got to go|I got to go|I have to go).'
+            },
+            {
+              t: 'texto',
+              titulo: 'Palavras que se ligam e o t americano',
+              blocos: [
+                {
+                  p: '**Palavras que se ligam.** Quando uma palavra termina em consoante e a seguinte começa com vogal, elas se juntam: ((an apple)) soa "a-népol", ((turn it off)) soa "tur-ni-tóff", ((check it out)) soa "che-ki-dáut".'
+                },
+                {
+                  p: '**O t americano.** Nos EUA, o t entre vogais vira um toque rápido da língua, parecido com o r de "caro": ((water)) soa "uóder", ((better)) soa "béder", ((city)) soa "cídi". No Reino Unido, o t costuma ficar claro, ou vira uma pausa na garganta na fala informal ("wa\'er").'
+                },
+                {
+                  dica: 'Se você ouve uma frase e não entende, mas lendo entende na hora, o problema não é vocabulário: é a fala conectada. Ouvir e repetir frases inteiras, como os ditados deste curso, treina exatamente isso.',
+                  rotulo: 'Por que é difícil entender filme sem legenda'
+                }
+              ]
             },
             {
               t: 'escolha',
@@ -534,13 +573,6 @@ nivel({
               ],
               c: 0,
               exp: 'É o mesmo que acontece em better, city e party.'
-            },
-            {
-              t: 'escreva',
-              p: 'Escreva o que você ouviu',
-              ouvir: 'I gotta go.',
-              exp: 'Gotta é got to, "ter que". Por extenso, também vale.',
-              r: '(I gotta go|I\'ve got to go|I have got to go|I got to go|I have to go).'
             },
             {
               t: 'escolha',

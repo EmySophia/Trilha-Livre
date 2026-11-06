@@ -36,7 +36,7 @@ livros([
   { id: 'teses-feuerbach', titulo: 'Teses sobre Feuerbach', autor: 'Karl Marx', ano: 1845, estante: 'classicos', cursos: ['marxismo'],
     desc: 'Onze teses curtas. A última é a mais famosa: os filósofos só interpretaram o mundo, e o que importa é transformá-lo.',
     links: [{ rotulo: 'Ler', url: `${MIA}/marx/1845/tesfeuer.htm` }] },
-  { id: 'ideologia-alema', titulo: 'A ideologia alemã (capítulo 1)', autor: 'Karl Marx e Friedrich Engels', ano: '1845–1846', estante: 'classicos', cursos: ['marxismo'],
+  { id: 'ideologia-alema', titulo: 'A ideologia alemã (capítulo 1)', autor: 'Karl Marx e Friedrich Engels', ano: '1845 a 1846', estante: 'classicos', cursos: ['marxismo'],
     desc: 'Onde Marx e Engels expõem pela primeira vez a concepção materialista da história. No site está o primeiro capítulo, sobre Feuerbach.',
     links: [{ rotulo: 'Ler', url: `${MIA}/marx/1845/ideologia-alema-oe/index.htm` }] },
   { id: 'brumario', titulo: 'O 18 de brumário de Luís Bonaparte', autor: 'Karl Marx', ano: 1852, estante: 'classicos', cursos: ['marxismo'],

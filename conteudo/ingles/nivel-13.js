@@ -32,7 +32,7 @@ nivel({
     {
       id: 'enu21',
       titulo: 'A pessoa que, o lugar onde',
-      conceito: 'who · which · that · whose',
+      conceito: 'who, which, that, whose',
       desc: 'As orações relativas: como dizer qual pessoa, qual coisa, qual lugar.',
       licoes: [
         {
@@ -306,7 +306,7 @@ nivel({
     {
       id: 'enu22',
       titulo: 'Verbos e conectores',
-      conceito: 'enjoy doing · although',
+      conceito: 'enjoy doing, although',
       desc: 'Gerúndio ou infinitivo depois de um verbo, e as palavras que ligam as ideias.',
       licoes: [
         {

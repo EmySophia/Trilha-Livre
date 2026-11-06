@@ -33,7 +33,7 @@ nivel({
     {
       id: 'enu32',
       titulo: 'Escrever com o tom certo',
-      conceito: 'Dear... · Moreover · It seems',
+      conceito: 'Dear..., Moreover, It seems',
       desc: 'Registro formal e informal, textos de opinião e o hedging, o jeito de não soar absoluto.',
       licoes: [
         {

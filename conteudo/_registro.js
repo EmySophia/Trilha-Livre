@@ -1,11 +1,11 @@
 /* Trilha Livre · registro de conteúdo
-   catalogo.js chama areas() e cursos(). Cada arquivo de nível chama nivel({ curso, ... })
+   catalogo.js chama areas(), cursos() e formacoes(). Cada arquivo de nível chama nivel({ curso, ... })
    e o arquivo de prática de um curso chama desafios(idDoCurso, [...]).
    biblioteca.js chama estantes(), livros() e acervos().
    A ordem das tags <script> no index.html define a ordem dos níveis dentro de cada curso.
    Conteúdo sob licença CC BY-NC-SA 4.0 (veja conteudo/LICENCA.md). */
 
-const TRILHA = { areas: [], cursos: [], niveis: [], unidades: [], desafios: [], estantes: [], livros: [], acervos: [] };
+const TRILHA = { areas: [], cursos: [], formacoes: [], niveis: [], unidades: [], desafios: [], estantes: [], livros: [], acervos: [] };
 
 function areas(lista) {
   TRILHA.areas.push(...lista);
@@ -13,6 +13,11 @@ function areas(lista) {
 
 function cursos(lista) {
   TRILHA.cursos.push(...lista);
+}
+
+// formações completas: percursos que juntam cursos (ou parte deles) de áreas diferentes, numa ordem
+function formacoes(lista) {
+  TRILHA.formacoes.push(...lista);
 }
 
 function nivel(def) {

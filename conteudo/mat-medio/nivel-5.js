@@ -31,7 +31,7 @@ nivel({
     {
       id: 'mmu9',
       titulo: 'Triângulo retângulo',
-      conceito: 'sen · cos · tg',
+      conceito: 'sen, cos, tg',
       desc: 'As razões trigonométricas e os ângulos notáveis.',
       licoes: [
         {
@@ -156,6 +156,18 @@ nivel({
               ops: ['Maior que 0 e menor que 1', 'Maior que 1', 'Negativo'],
               c: 0,
               exp: 'O cateto oposto é sempre menor que a hipotenusa.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Achando um lado',
+              blocos: [
+                {
+                  p: 'Se você conhece a razão de um ângulo e um lado, dá para achar outro lado: escreva a razão e resolva a equação.'
+                },
+                {
+                  p: 'Exemplo: a hipotenusa mede 20 e o seno de α é $$3/5$$. O lado oposto x sai de $$x/20 = 3/5$$, e x = 20 × 3 ÷ 5 = 12.'
+                }
+              ]
             },
             {
               t: 'numero',
@@ -321,6 +333,9 @@ nivel({
                     ],
                     alt: 'Círculo de raio 1 com o ponto de 30 graus; o seno é a altura do ponto'
                   }
+                },
+                {
+                  p: 'Ângulos que somam 180° têm o mesmo seno: no círculo, os dois pontos ficam na mesma altura, um de cada lado. Por isso sen 150° = sen 30° = $$1/2$$.'
                 }
               ]
             },

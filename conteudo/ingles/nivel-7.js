@@ -32,7 +32,7 @@ nivel({
     {
       id: 'enu13',
       titulo: 'Quanto?',
-      conceito: 'some · any · much · many',
+      conceito: 'some, any, much, many',
       desc: 'O que se conta, o que não se conta e como dizer muito e pouco.',
       licoes: [
         {
@@ -72,7 +72,34 @@ nivel({
                 },
                 {
                   p: '**Para contar o incontável**, use uma medida: ((a glass of water)), ((a cup of coffee)), ((a piece of cake)), ((a bottle of milk)), ((a slice of bread)).'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Qual frase está certa?',
+              ops: ['My hair is very long.', 'My hairs are very long.', 'My hair are very long.'],
+              c: 0,
+              exp: 'Hair, o cabelo da cabeça, é incontável.'
+            },
+            {
+              t: 'escolha',
+              p: 'Como pedir "uma fatia de bolo"?',
+              ops: ['a piece of cake', 'a cake', 'a cakes piece'],
+              c: 0,
+              exp: 'A cake é um bolo inteiro! Para uma fatia, use a piece of cake ou a slice of cake.'
+            },
+            {
+              t: 'monte',
+              p: 'Monte a frase: "A notícia é boa."',
+              r: 'The news is good.',
+              extra: ['are', 'new', 'a'],
+              exp: 'News termina em s, mas é singular: the news is.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Some e any',
+              blocos: [
                 {
                   p: '**Some e any** querem dizer "algum, alguns, um pouco de" e servem para os dois grupos. A regra básica:'
                 },
@@ -110,10 +137,10 @@ nivel({
             },
             {
               t: 'escolha',
-              p: 'Qual frase está certa?',
-              ops: ['My hair is very long.', 'My hairs are very long.', 'My hair are very long.'],
+              p: 'Num café, o garçom oferece: "Would you like ___ coffee?"',
+              ops: ['some', 'any', 'a'],
               c: 0,
-              exp: 'Hair, o cabelo da cabeça, é incontável.'
+              exp: 'Numa oferta, a pergunta usa some, porque quem oferece espera um sim.'
             },
             {
               t: 'complete',
@@ -122,13 +149,6 @@ nivel({
               bank: ['some', 'any', 'a', 'an'],
               c: ['some', 'any'],
               exp: 'Afirmativa: some. Negativa: any.'
-            },
-            {
-              t: 'escolha',
-              p: 'Num café, o garçom oferece: "Would you like ___ coffee?"',
-              ops: ['some', 'any', 'a'],
-              c: 0,
-              exp: 'Numa oferta, a pergunta usa some, porque quem oferece espera um sim.'
             },
             {
               t: 'escreva',
@@ -143,24 +163,10 @@ nivel({
             },
             {
               t: 'escolha',
-              p: 'Como pedir "uma fatia de bolo"?',
-              ops: ['a piece of cake', 'a cake', 'a cakes piece'],
-              c: 0,
-              exp: 'A cake é um bolo inteiro! Para uma fatia, use a piece of cake ou a slice of cake.'
-            },
-            {
-              t: 'escolha',
               p: 'O que você ouviu?',
               ouvir: 'Are there any eggs?',
               ops: ['Are there any eggs?', 'Are there any eyes?', 'Is there any egg?'],
               c: 0
-            },
-            {
-              t: 'monte',
-              p: 'Monte a frase: "A notícia é boa."',
-              r: 'The news is good.',
-              extra: ['are', 'new', 'a'],
-              exp: 'News termina em s, mas é singular: the news is.'
             },
             {
               t: 'escreva',
@@ -199,7 +205,44 @@ nivel({
                 },
                 {
                   p: '**Much e many** aparecem mais em perguntas e negativas: ((I don\'t have much time.)) ((Were there many people?)) Numa frase afirmativa, "I have much time" soa estranho e formal. O natural é ((a lot of)) ou ((lots of)), que servem para os dois grupos: ((I have a lot of time.))'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Qual frase soa mais natural?',
+              ops: ['I have a lot of friends.', 'I have much friends.', 'I have many of friends.'],
+              c: 0,
+              exp: 'Na afirmativa, a lot of é o mais natural. E friends se conta, então much nunca serviria.'
+            },
+            {
+              t: 'complete',
+              p: 'Complete com much ou many:',
+              code: 'How ___ people were there? I don\'t know, but there wasn\'t ___ food.',
+              bank: ['many', 'much', 'a lot'],
+              c: ['many', 'much'],
+              exp: 'People é contável: many. Food é incontável: much.'
+            },
+            {
+              t: 'monte',
+              p: 'Monte a frase: "Não tenho muito tempo."',
+              r: ['I don\'t have much time.', 'I haven\'t got much time.'],
+              extra: ['many', 'lot', 'times'],
+              exp: 'Time, no sentido de tempo, é incontável: much time.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Quantos irmãos você tem?"',
+              r: [
+                'How many (brothers and sisters|siblings|brothers) do you have?',
+                'How many (brothers and sisters|siblings|brothers) have you got?'
+              ],
+              exp: 'Irmãos, em geral, é brothers and sisters, ou siblings. Brothers sozinho são só irmãos homens.'
+            },
+            {
+              t: 'texto',
+              titulo: 'A few e a little',
+              blocos: [
                 {
                   p: '**A few e a little** são positivos: "alguns", "um pouco", o bastante para alguma coisa. Sem o a, **few** e **little** ficam negativos, quase "nenhum":'
                 },
@@ -218,7 +261,24 @@ nivel({
                       ]
                     ]
                   }
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Qual é a diferença entre "I have a little money" e "I have little money"?',
+              ops: [
+                'A primeira: tenho um pouco, dá para algo. A segunda: quase nenhum.',
+                'Nenhuma: as duas dizem a mesma coisa',
+                'A primeira é quase nenhum; a segunda é um pouco.'
+              ],
+              c: 0,
+              exp: 'Com o a, é positivo. Sem o a, quase nada.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Preços e o demais',
+              blocos: [
                 {
                   p: '**Preços.** How much também é a pergunta do preço: ((How much is it?)) ((How much are these shoes?)) Repare que, com coisas no plural, o verbo é are.'
                 },
@@ -251,46 +311,6 @@ nivel({
               ]
             },
             {
-              t: 'complete',
-              p: 'Complete com much ou many:',
-              code: 'How ___ people were there? I don\'t know, but there wasn\'t ___ food.',
-              bank: ['many', 'much', 'a lot'],
-              c: ['many', 'much'],
-              exp: 'People é contável: many. Food é incontável: much.'
-            },
-            {
-              t: 'escolha',
-              p: 'Qual frase soa mais natural?',
-              ops: ['I have a lot of friends.', 'I have much friends.', 'I have many of friends.'],
-              c: 0,
-              exp: 'Na afirmativa, a lot of é o mais natural. E friends se conta, então much nunca serviria.'
-            },
-            {
-              t: 'escolha',
-              p: 'Qual é a diferença entre "I have a little money" e "I have little money"?',
-              ops: [
-                'A primeira: tenho um pouco, dá para algo. A segunda: quase nenhum.',
-                'Nenhuma: as duas dizem a mesma coisa',
-                'A primeira é quase nenhum; a segunda é um pouco.'
-              ],
-              c: 0,
-              exp: 'Com o a, é positivo. Sem o a, quase nada.'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Quanto custam estes sapatos?"',
-              r: ['How much are these shoes?', 'How much do these shoes cost?']
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Quantos irmãos você tem?"',
-              r: [
-                'How many (brothers and sisters|siblings|brothers) do you have?',
-                'How many (brothers and sisters|siblings|brothers) have you got?'
-              ],
-              exp: 'Irmãos, em geral, é brothers and sisters, ou siblings. Brothers sozinho são só irmãos homens.'
-            },
-            {
               t: 'escolha',
               p: 'O que você ouviu?',
               ouvir: 'There\'s too much sugar in this.',
@@ -302,11 +322,10 @@ nivel({
               c: 0
             },
             {
-              t: 'monte',
-              p: 'Monte a frase: "Não tenho muito tempo."',
-              r: ['I don\'t have much time.', 'I haven\'t got much time.'],
-              extra: ['many', 'lot', 'times'],
-              exp: 'Time, no sentido de tempo, é incontável: much time.'
+              t: 'escreva',
+              p: 'Traduza: "Quanto custam estes sapatos?"',
+              r: ['How much are these shoes?', 'How much do these shoes cost?'],
+              exp: 'How much é a pergunta do preço. Sapatos é plural, então o verbo é are: How much are these shoes?'
             },
             { t: 'escreva', p: 'Escreva o que você ouviu', ouvir: 'How much are the mangoes?' }
           ]
@@ -316,7 +335,7 @@ nivel({
     {
       id: 'enu14',
       titulo: 'Comparar e descrever',
-      conceito: 'bigger · the best · well',
+      conceito: 'bigger, the best, well',
       desc: 'Comparativos, superlativos, too, enough e como se faz alguma coisa.',
       licoes: [
         {
@@ -362,7 +381,39 @@ nivel({
                 },
                 {
                   p: '**Os irregulares** são poucos e muito usados: ((good, better)) (bom, melhor), ((bad, worse)) (ruim, pior) e ((far, further)) (longe, mais longe; nos EUA, também farther).'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Qual é o comparativo de big?',
+              ops: ['bigger', 'biger', 'more big'],
+              c: 0,
+              exp: 'Consoante + vogal + consoante: a última letra dobra.'
+            },
+            {
+              t: 'escolha',
+              p: 'Qual está certa?',
+              ops: [
+                'This book is more interesting than the movie.',
+                'This book is interestinger than the movie.',
+                'This book is more interesting that the movie.'
+              ],
+              c: 0,
+              exp: 'Adjetivo longo: more. E o "do que" é than.'
+            },
+            {
+              t: 'complete',
+              p: 'Complete:',
+              code: 'My new job is ___ than my old one. It\'s much ___ interesting.',
+              bank: ['better', 'more', 'gooder', 'most'],
+              c: ['better', 'more'],
+              exp: 'Good vira better. Interesting é longo: more interesting.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Than, as ... as e much better',
+              blocos: [
                 {
                   p: '**O "do que" da comparação é than**, que na fala soa fraco e rápido: ((São Paulo is bigger than Rio.)) Não confunda com then (depois, então).'
                 },
@@ -396,41 +447,16 @@ nivel({
             },
             {
               t: 'escolha',
-              p: 'Qual é o comparativo de big?',
-              ops: ['bigger', 'biger', 'more big'],
-              c: 0,
-              exp: 'Consoante + vogal + consoante: a última letra dobra.'
-            },
-            {
-              t: 'escolha',
-              p: 'Qual está certa?',
-              ops: [
-                'This book is more interesting than the movie.',
-                'This book is interestinger than the movie.',
-                'This book is more interesting that the movie.'
-              ],
-              c: 0,
-              exp: 'Adjetivo longo: more. E o "do que" é than.'
-            },
-            {
-              t: 'complete',
-              p: 'Complete:',
-              code: 'My new job is ___ than my old one. It\'s much ___ interesting.',
-              bank: ['better', 'more', 'gooder', 'most'],
-              c: ['better', 'more'],
-              exp: 'Good vira better. Interesting é longo: more interesting.'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Meu irmão é mais alto que eu."',
-              r: ['My brother is taller than (me|I am|I).']
-            },
-            {
-              t: 'escolha',
               p: '"Muito melhor" em inglês é...',
               ops: ['much better', 'very better', 'more better'],
               c: 0,
               exp: 'Para reforçar um comparativo, use much, a lot ou a bit. Very não funciona.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Meu irmão é mais alto que eu."',
+              r: ['My brother is taller than (me|I am|I).'],
+              exp: 'Tall é curto, então ganha -er: taller. E o "do que" é than.'
             },
             {
               t: 'monte',
@@ -508,7 +534,73 @@ nivel({
                 },
                 {
                   p: '**Com o present perfect**, que você vai ver no nível 10, o superlativo forma uma frase muito comum: ((It\'s the best movie I\'ve ever seen.)) (É o melhor filme que eu já vi.)'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Qual é o superlativo de good?',
+              ops: ['the best', 'the goodest', 'the most good'],
+              c: 0,
+              exp: 'Good, better, the best.'
+            },
+            {
+              t: 'escolha',
+              p: '"O prédio mais alto do mundo" é...',
+              ops: [
+                'the tallest building in the world',
+                'the most tall building of the world',
+                'the taller building in the world'
+              ],
+              c: 0,
+              exp: 'Tall é curto: tallest. E para lugares, in.'
+            },
+            {
+              t: 'escolha',
+              p: 'Qual está certa?',
+              ops: [
+                'She is one of the best singers in Brazil.',
+                'She is one of the best singer in Brazil.',
+                'She is one of best singers in Brazil.'
+              ],
+              c: 0,
+              exp: 'One of the + plural.'
+            },
+            {
+              t: 'escreva',
+              p: 'Escreva o superlativo de expensive.',
+              r: ['the most expensive', 'most expensive'],
+              exp: 'Expensive é longo, então o superlativo usa the most: the most expensive.'
+            },
+            {
+              t: 'complete',
+              p: 'Complete:',
+              code: 'This is the ___ day ___ my life!',
+              bank: ['best', 'of', 'in', 'better'],
+              c: ['best', 'of'],
+              exp: 'Para um período, como a vida, o superlativo usa of.'
+            },
+            {
+              t: 'escreva',
+              p: 'Traduza: "Ela é a melhor aluna da turma."',
+              r: ['She\'s the best student in (the|our|her|my) class.'],
+              exp: 'A melhor é the best, o superlativo de good. E na turma é in, porque a turma é um grupo: in the class.'
+            },
+            {
+              t: 'escolha',
+              p: 'O que você ouviu?',
+              ouvir: 'It\'s the worst movie I\'ve ever seen.',
+              ops: [
+                'It\'s the worst movie I\'ve ever seen.',
+                'It\'s the best movie I\'ve ever seen.',
+                'It\'s the first movie I\'ve ever seen.'
+              ],
+              c: 0
+            },
+            {
+              t: 'texto',
+              titulo: 'Fatos sobre o Brasil',
+              blocos: [
                 { p: 'Ouça alguns fatos sobre o Brasil:' },
                 {
                   fala: 'Brazil is the largest country in South America.',
@@ -533,68 +625,11 @@ nivel({
               ]
             },
             {
-              t: 'escolha',
-              p: 'Qual é o superlativo de good?',
-              ops: ['the best', 'the goodest', 'the most good'],
-              c: 0,
-              exp: 'Good, better, the best.'
-            },
-            {
-              t: 'complete',
-              p: 'Complete:',
-              code: 'This is the ___ day ___ my life!',
-              bank: ['best', 'of', 'in', 'better'],
-              c: ['best', 'of'],
-              exp: 'Para um período, como a vida, o superlativo usa of.'
-            },
-            {
-              t: 'escolha',
-              p: '"O prédio mais alto do mundo" é...',
-              ops: [
-                'the tallest building in the world',
-                'the most tall building of the world',
-                'the taller building in the world'
-              ],
-              c: 0,
-              exp: 'Tall é curto: tallest. E para lugares, in.'
-            },
-            {
-              t: 'escreva',
-              p: 'Traduza: "Ela é a melhor aluna da turma."',
-              r: ['She\'s the best student in (the|our|her|my) class.']
-            },
-            {
-              t: 'escolha',
-              p: 'Qual está certa?',
-              ops: [
-                'She is one of the best singers in Brazil.',
-                'She is one of the best singer in Brazil.',
-                'She is one of best singers in Brazil.'
-              ],
-              c: 0,
-              exp: 'One of the + plural.'
-            },
-            {
-              t: 'escreva',
-              p: 'Escreva o superlativo de expensive.',
-              r: ['the most expensive', 'most expensive']
-            },
-            {
-              t: 'escolha',
-              p: 'O que você ouviu?',
-              ouvir: 'It\'s the worst movie I\'ve ever seen.',
-              ops: [
-                'It\'s the worst movie I\'ve ever seen.',
-                'It\'s the best movie I\'ve ever seen.',
-                'It\'s the first movie I\'ve ever seen.'
-              ],
-              c: 0
-            },
-            {
               t: 'monte',
               p: 'Monte a frase: "O Brasil é o maior país da América do Sul."',
               r: 'Brazil is the largest country in South America.',
-              extra: ['of', 'larger', 'most']
+              extra: ['of', 'larger', 'most'],
+              exp: 'Largest é o superlativo de large, o mais comum para países. E na América do Sul é in, porque é um lugar.'
             },
             {
               t: 'escreva',
@@ -623,7 +658,45 @@ nivel({
                 },
                 {
                   p: '**A posição.** O advérbio não fica entre o verbo e o objeto: é ((She speaks English well.)), e não "She speaks well English". Primeiro vem o verbo com o que ele pega; depois, o como.'
-                },
+                }
+              ]
+            },
+            {
+              t: 'escolha',
+              p: 'Qual está certa?',
+              ops: ['She sings really well.', 'She sings really good.', 'She sings well really.'],
+              c: 0,
+              exp: 'Como ela canta: well, o advérbio.'
+            },
+            {
+              t: 'escolha',
+              p: '"Ela fala inglês muito bem." Como fica?',
+              ops: [
+                'She speaks English very well.',
+                'She speaks very well English.',
+                'She speaks English very good.'
+              ],
+              c: 0,
+              exp: 'O advérbio vai depois do objeto (English), e bem é well.'
+            },
+            {
+              t: 'escreva',
+              p: 'Transforme em advérbio: careful',
+              r: ['carefully'],
+              exp: 'Careful + ly: carefully, com dois l.',
+              exato: true
+            },
+            {
+              t: 'escolha',
+              p: '"I hardly sleep." O que quer dizer?',
+              ops: ['Eu quase não durmo', 'Eu durmo muito pesado', 'Eu durmo muito'],
+              c: 0,
+              exp: 'Hardly é "quase não". Não confunda com hard.'
+            },
+            {
+              t: 'texto',
+              titulo: 'Too e enough',
+              blocos: [
                 { p: '**Too e enough** dizem se algo passou do limite ou não chegou a ele:' },
                 {
                   tabela: {
@@ -671,44 +744,12 @@ nivel({
               ]
             },
             {
-              t: 'escolha',
-              p: 'Qual está certa?',
-              ops: ['She sings really well.', 'She sings really good.', 'She sings well really.'],
-              c: 0,
-              exp: 'Como ela canta: well, o advérbio.'
-            },
-            {
-              t: 'escolha',
-              p: '"Ela fala inglês muito bem." Como fica?',
-              ops: [
-                'She speaks English very well.',
-                'She speaks very well English.',
-                'She speaks English very good.'
-              ],
-              c: 0,
-              exp: 'O advérbio vai depois do objeto (English), e bem é well.'
-            },
-            {
               t: 'complete',
               p: 'Complete:',
               code: 'I can\'t drink this coffee. It\'s ___ hot. Wait until it\'s cool ___.',
               bank: ['too', 'enough', 'very', 'so'],
               c: ['too', 'enough'],
               exp: 'Passou do limite: too. Chegou ao ponto: adjetivo + enough.'
-            },
-            {
-              t: 'escreva',
-              p: 'Transforme em advérbio: careful',
-              r: ['carefully'],
-              exp: 'Careful + ly: carefully, com dois l.',
-              exato: true
-            },
-            {
-              t: 'escolha',
-              p: '"I hardly sleep." O que quer dizer?',
-              ops: ['Eu quase não durmo', 'Eu durmo muito pesado', 'Eu durmo muito'],
-              c: 0,
-              exp: 'Hardly é "quase não". Não confunda com hard.'
             },
             {
               t: 'escreva',

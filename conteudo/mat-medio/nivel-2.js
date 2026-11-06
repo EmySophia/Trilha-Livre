@@ -54,10 +54,10 @@ nivel({
                   }
                 },
                 {
-                  p: 'Se a > 0, a parábola tem a concavidade (a “boca”) para cima; se a < 0, para baixo. O c é onde ela corta o eixo y. As raízes, onde ela corta o eixo x, saem da fórmula de Bhaskara: $$x = (−b ± sqrt(Δ))/(2a)$$, com $$Δ = b^2 − 4ac$$.'
+                  p: 'O sinal do a mostra para onde a parábola abre. Se a > 0, a concavidade (a “boca”) fica para cima; se a < 0, para baixo.'
                 },
                 {
-                  dica: 'Atalho com a = 1: as raízes somam −b e multiplicam c. Em $$x^2 − 5x + 6$$, os números 2 e 3 somam 5 e multiplicam 6.'
+                  p: 'O c mostra onde a parábola corta o eixo y. Nesse ponto x = 0, então os termos com x somem e sobra f(0) = c. Em $$f(x) = x^2 − 4$$, ela corta o eixo y em −4.'
                 }
               ]
             },
@@ -83,11 +83,41 @@ nivel({
             },
             {
               t: 'numero',
-              p: 'Qual é a maior raiz de $$x^2 {= tm(-(R1 + R2), "x") } {= sn(R1 * R2) } = 0$$?',
-              r: '{= Math.max(R1, R2) }',
-              exp: 'Dois números que somam {= R1 + R2 } e multiplicam {= R1 * R2 }.',
-              vars: { R1: { de: -5, ate: 6 }, R2: { de: 1, ate: 9 } },
-              se: 'R1 !== R2 && R1 + R2 !== 0 && R1 !== 0'
+              p: 'Calcule f({X}) para $$f(x) = {A}x^2 − {B}x {= sn(C) }$$',
+              r: '{= A * X * X - B * X + C }',
+              exp: 'Primeiro a potência, depois as multiplicações.',
+              vars: {
+                A: { de: 2, ate: 4 },
+                B: { de: 2, ate: 6 },
+                C: { de: -5, ate: 5 },
+                X: { de: -3, ate: 4 }
+              },
+              se: 'C !== 0'
+            },
+            {
+              t: 'texto',
+              titulo: 'As raízes',
+              blocos: [
+                {
+                  p: 'As raízes são os valores de x que fazem f(x) = 0, ou seja, os pontos em que a parábola corta o eixo x. Elas saem da fórmula de Bhaskara: $$x = (−b ± sqrt(Δ))/(2a)$$, com $$Δ = b^2 − 4ac$$.'
+                },
+                {
+                  tabela: {
+                    cab: ['Passo', 'Exemplo'],
+                    codigo: [],
+                    linhas: [
+                      ['A equação', 'x² − 5x + 6 = 0'],
+                      ['Ache a, b e c', 'a = 1, b = −5, c = 6'],
+                      ['Calcule o Δ', 'Δ = (−5)² − 4 × 1 × 6 = 25 − 24 = 1'],
+                      ['Use a fórmula', 'x = (5 ± 1) / 2'],
+                      ['As duas raízes', 'x = 3 ou x = 2']
+                    ]
+                  }
+                },
+                {
+                  dica: 'Atalho com a = 1: as raízes somam −b e multiplicam c. Em $$x^2 − 5x + 6$$, os números 2 e 3 somam 5 e multiplicam 6.'
+                }
+              ]
             },
             {
               t: 'numero',
@@ -104,19 +134,6 @@ nivel({
             },
             {
               t: 'numero',
-              p: 'Calcule f({X}) para $$f(x) = {A}x^2 − {B}x {= sn(C) }$$',
-              r: '{= A * X * X - B * X + C }',
-              exp: 'Primeiro a potência, depois as multiplicações.',
-              vars: {
-                A: { de: 2, ate: 4 },
-                B: { de: 2, ate: 6 },
-                C: { de: -5, ate: 5 },
-                X: { de: -3, ate: 4 }
-              },
-              se: 'C !== 0'
-            },
-            {
-              t: 'numero',
               p: 'Pelo gráfico, qual é o produto das duas raízes?',
               r: '{= R1 * R2 }',
               exp: 'Leia onde a parábola corta o eixo x e multiplique.',
@@ -127,6 +144,14 @@ nivel({
                 alt: 'Parábola que corta o eixo x em dois pontos'
               },
               vars: { R1: { de: -5, ate: -1 }, R2: { de: 1, ate: 5 } }
+            },
+            {
+              t: 'numero',
+              p: 'Qual é a maior raiz de $$x^2 {= tm(-(R1 + R2), "x") } {= sn(R1 * R2) } = 0$$?',
+              r: '{= Math.max(R1, R2) }',
+              exp: 'Dois números que somam {= R1 + R2 } e multiplicam {= R1 * R2 }.',
+              vars: { R1: { de: -5, ate: 6 }, R2: { de: 1, ate: 9 } },
+              se: 'R1 !== R2 && R1 + R2 !== 0 && R1 !== 0'
             }
           ]
         },
@@ -152,6 +177,9 @@ nivel({
                 },
                 {
                   p: 'Exemplo: $$f(x) = x^2 − 6x + 5$$. $$x_v = 6/2 = 3$$ e $$y_v = 9 − 18 + 5 = −4$$. Como a > 0, −4 é o valor mínimo da função.'
+                },
+                {
+                  p: 'A parábola é simétrica: o vértice fica bem no meio das raízes. Se as raízes são 1 e 5, o x do vértice é $$(1 + 5)/2 = 3$$.'
                 }
               ]
             },
@@ -278,12 +306,29 @@ nivel({
               vars: { V: [10, 20, 30, 40] }
             },
             {
-              t: 'numero',
-              p: 'Um ônibus de excursão cobra R$ {P} por pessoa e dá R$ {D} de desconto para cada pessoa a mais além de {B}. A receita com x pessoas a mais é $$R(x) = ({B} + x)({P} − {D}x)$$. Quantas pessoas a mais dão a maior receita?',
-              r: '{= (P / D - B) / 2 }',
-              exp: 'Abra a conta: $$R(x) = −{D}x^2 + {= P - B * D }x + {= B * P }$$. O máximo é no x do vértice.',
-              vars: { P: [100, 120, 150], D: [2, 4, 5], B: [10, 20] },
-              se: '(P / D - B) / 2 > 0 && Number.isInteger((P / D - B) / 2)'
+              t: 'texto',
+              titulo: 'Montando a função',
+              blocos: [
+                {
+                  p: 'Às vezes o problema não dá a função pronta, e é preciso montar. Chame de x o que você pode escolher, escreva em função de x o que quer deixar maior ou menor e ache o vértice. Exemplo: 40 m de tela para cercar um canteiro retangular encostado num muro, que faz um dos lados.'
+                },
+                {
+                  tabela: {
+                    cab: ['Passo', 'Conta'],
+                    codigo: [],
+                    linhas: [
+                      ['Chame a largura de x', 'os dois lados que saem do muro medem x'],
+                      ['O lado de frente para o muro', '40 − 2x'],
+                      ['A área', '$$A(x) = x(40 − 2x) = −2x^2 + 40x$$'],
+                      ['O vértice', '$$x_v = −40/(2 × (−2)) = 10$$'],
+                      ['A área máxima', 'A(10) = 10 × 20 = 200 m²']
+                    ]
+                  }
+                },
+                {
+                  dica: 'Na excursão com desconto, o x é o número de pessoas a mais: o preço por pessoa cai e o número de pessoas sobe. A receita é preço vezes pessoas, que também vira uma parábola.'
+                }
+              ]
             },
             {
               t: 'numero',
@@ -292,6 +337,14 @@ nivel({
               exp: 'Com largura x, o comprimento é {P} − 2x e a área é $$x({P} − 2x)$$. O máximo é em x = {= P / 4 }.',
               unidade: 'm²',
               vars: { P: { de: 20, ate: 120, passo: 4 } }
+            },
+            {
+              t: 'numero',
+              p: 'Um ônibus de excursão cobra R$ {P} por pessoa e dá R$ {D} de desconto para cada pessoa a mais além de {B}. A receita com x pessoas a mais é $$R(x) = ({B} + x)({P} − {D}x)$$. Quantas pessoas a mais dão a maior receita?',
+              r: '{= (P / D - B) / 2 }',
+              exp: 'Abra a conta: $$R(x) = −{D}x^2 + {= P - B * D }x + {= B * P }$$. O máximo é no x do vértice.',
+              vars: { P: [100, 120, 150], D: [2, 4, 5], B: [10, 20] },
+              se: '(P / D - B) / 2 > 0 && Number.isInteger((P / D - B) / 2)'
             }
           ]
         },
